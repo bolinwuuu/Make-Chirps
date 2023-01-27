@@ -1,0 +1,695 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1429A39D29842E0700F919F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A39C29842E0700F919F8 /* AppDelegate.swift */; };
+		1429A39F29842E0700F919F8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A39E29842E0700F919F8 /* SceneDelegate.swift */; };
+		1429A3A129842E0700F919F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3A029842E0700F919F8 /* ViewController.swift */; };
+		1429A3A429842E0700F919F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1429A3A229842E0700F919F8 /* Main.storyboard */; };
+		1429A3A629842E0900F919F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1429A3A529842E0900F919F8 /* Assets.xcassets */; };
+		1429A3A929842E0900F919F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1429A3A729842E0900F919F8 /* LaunchScreen.storyboard */; };
+		1429A3B429842E0900F919F8 /* StoryboardChirpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3B329842E0900F919F8 /* StoryboardChirpTests.swift */; };
+		1429A3BE29842E0900F919F8 /* StoryboardChirpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3BD29842E0900F919F8 /* StoryboardChirpUITests.swift */; };
+		1429A3C029842E0900F919F8 /* StoryboardChirpUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3BF29842E0900F919F8 /* StoryboardChirpUITestsLaunchTests.swift */; };
+		1429A3CD29842E9B00F919F8 /* run_chirp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3CC29842E9B00F919F8 /* run_chirp.swift */; };
+		1429A3CF29842EF000F919F8 /* ColorTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3CE29842EF000F919F8 /* ColorTable.swift */; };
+		1429A3D1298433D500F919F8 /* WaveformViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3D0298433D500F919F8 /* WaveformViewController.swift */; };
+		1429A3D3298433EC00F919F8 /* FreqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3D2298433EC00F919F8 /* FreqViewController.swift */; };
+		1429A3D52984340700F919F8 /* SpectrogramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3D42984340700F919F8 /* SpectrogramViewController.swift */; };
+		1429A3D7298463AC00F919F8 /* Spectrogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3D6298463AC00F919F8 /* Spectrogram.swift */; };
+		62AD7610B71025A4077B45C9 /* Pods_StoryboardChirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1429A3B029842E0900F919F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1429A39129842E0700F919F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1429A39829842E0700F919F8;
+			remoteInfo = StoryboardChirp;
+		};
+		1429A3BA29842E0900F919F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1429A39129842E0700F919F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1429A39829842E0700F919F8;
+			remoteInfo = StoryboardChirp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1429A39929842E0700F919F8 /* StoryboardChirp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryboardChirp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1429A39C29842E0700F919F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1429A39E29842E0700F919F8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		1429A3A029842E0700F919F8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1429A3A329842E0700F919F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1429A3A529842E0900F919F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1429A3A829842E0900F919F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1429A3AA29842E0900F919F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1429A3AF29842E0900F919F8 /* StoryboardChirpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoryboardChirpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1429A3B329842E0900F919F8 /* StoryboardChirpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardChirpTests.swift; sourceTree = "<group>"; };
+		1429A3B929842E0900F919F8 /* StoryboardChirpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoryboardChirpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1429A3BD29842E0900F919F8 /* StoryboardChirpUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardChirpUITests.swift; sourceTree = "<group>"; };
+		1429A3BF29842E0900F919F8 /* StoryboardChirpUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardChirpUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1429A3CC29842E9B00F919F8 /* run_chirp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = run_chirp.swift; sourceTree = "<group>"; };
+		1429A3CE29842EF000F919F8 /* ColorTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTable.swift; sourceTree = "<group>"; };
+		1429A3D0298433D500F919F8 /* WaveformViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformViewController.swift; sourceTree = "<group>"; };
+		1429A3D2298433EC00F919F8 /* FreqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreqViewController.swift; sourceTree = "<group>"; };
+		1429A3D42984340700F919F8 /* SpectrogramViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectrogramViewController.swift; sourceTree = "<group>"; };
+		1429A3D6298463AC00F919F8 /* Spectrogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spectrogram.swift; sourceTree = "<group>"; };
+		5566186B885D36136704E55C /* Pods-StoryboardChirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardChirp.debug.xcconfig"; path = "Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp.debug.xcconfig"; sourceTree = "<group>"; };
+		658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoryboardChirp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F26AE5C897BB6A27C5898720 /* Pods-StoryboardChirp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardChirp.release.xcconfig"; path = "Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1429A39629842E0700F919F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62AD7610B71025A4077B45C9 /* Pods_StoryboardChirp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1429A3AC29842E0900F919F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1429A3B629842E0900F919F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1429A39029842E0700F919F8 = {
+			isa = PBXGroup;
+			children = (
+				1429A39B29842E0700F919F8 /* StoryboardChirp */,
+				1429A3B229842E0900F919F8 /* StoryboardChirpTests */,
+				1429A3BC29842E0900F919F8 /* StoryboardChirpUITests */,
+				1429A39A29842E0700F919F8 /* Products */,
+				77B10D0682D8EBE0B99140E2 /* Pods */,
+				4095422F4E59C35CBF7E8D48 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1429A39A29842E0700F919F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1429A39929842E0700F919F8 /* StoryboardChirp.app */,
+				1429A3AF29842E0900F919F8 /* StoryboardChirpTests.xctest */,
+				1429A3B929842E0900F919F8 /* StoryboardChirpUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1429A39B29842E0700F919F8 /* StoryboardChirp */ = {
+			isa = PBXGroup;
+			children = (
+				1429A39C29842E0700F919F8 /* AppDelegate.swift */,
+				1429A39E29842E0700F919F8 /* SceneDelegate.swift */,
+				1429A3A029842E0700F919F8 /* ViewController.swift */,
+				1429A3A229842E0700F919F8 /* Main.storyboard */,
+				1429A3A529842E0900F919F8 /* Assets.xcassets */,
+				1429A3A729842E0900F919F8 /* LaunchScreen.storyboard */,
+				1429A3AA29842E0900F919F8 /* Info.plist */,
+				1429A3CC29842E9B00F919F8 /* run_chirp.swift */,
+				1429A3D6298463AC00F919F8 /* Spectrogram.swift */,
+				1429A3CE29842EF000F919F8 /* ColorTable.swift */,
+				1429A3D0298433D500F919F8 /* WaveformViewController.swift */,
+				1429A3D2298433EC00F919F8 /* FreqViewController.swift */,
+				1429A3D42984340700F919F8 /* SpectrogramViewController.swift */,
+			);
+			path = StoryboardChirp;
+			sourceTree = "<group>";
+		};
+		1429A3B229842E0900F919F8 /* StoryboardChirpTests */ = {
+			isa = PBXGroup;
+			children = (
+				1429A3B329842E0900F919F8 /* StoryboardChirpTests.swift */,
+			);
+			path = StoryboardChirpTests;
+			sourceTree = "<group>";
+		};
+		1429A3BC29842E0900F919F8 /* StoryboardChirpUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1429A3BD29842E0900F919F8 /* StoryboardChirpUITests.swift */,
+				1429A3BF29842E0900F919F8 /* StoryboardChirpUITestsLaunchTests.swift */,
+			);
+			path = StoryboardChirpUITests;
+			sourceTree = "<group>";
+		};
+		4095422F4E59C35CBF7E8D48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		77B10D0682D8EBE0B99140E2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5566186B885D36136704E55C /* Pods-StoryboardChirp.debug.xcconfig */,
+				F26AE5C897BB6A27C5898720 /* Pods-StoryboardChirp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1429A39829842E0700F919F8 /* StoryboardChirp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1429A3C329842E0900F919F8 /* Build configuration list for PBXNativeTarget "StoryboardChirp" */;
+			buildPhases = (
+				F1BC3BFD85FDB2EA5BA6C54F /* [CP] Check Pods Manifest.lock */,
+				1429A39529842E0700F919F8 /* Sources */,
+				1429A39629842E0700F919F8 /* Frameworks */,
+				1429A39729842E0700F919F8 /* Resources */,
+				32E1C7E8AB523149DF30624C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StoryboardChirp;
+			productName = StoryboardChirp;
+			productReference = 1429A39929842E0700F919F8 /* StoryboardChirp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1429A3AE29842E0900F919F8 /* StoryboardChirpTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1429A3C629842E0900F919F8 /* Build configuration list for PBXNativeTarget "StoryboardChirpTests" */;
+			buildPhases = (
+				1429A3AB29842E0900F919F8 /* Sources */,
+				1429A3AC29842E0900F919F8 /* Frameworks */,
+				1429A3AD29842E0900F919F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1429A3B129842E0900F919F8 /* PBXTargetDependency */,
+			);
+			name = StoryboardChirpTests;
+			productName = StoryboardChirpTests;
+			productReference = 1429A3AF29842E0900F919F8 /* StoryboardChirpTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1429A3B829842E0900F919F8 /* StoryboardChirpUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1429A3C929842E0900F919F8 /* Build configuration list for PBXNativeTarget "StoryboardChirpUITests" */;
+			buildPhases = (
+				1429A3B529842E0900F919F8 /* Sources */,
+				1429A3B629842E0900F919F8 /* Frameworks */,
+				1429A3B729842E0900F919F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1429A3BB29842E0900F919F8 /* PBXTargetDependency */,
+			);
+			name = StoryboardChirpUITests;
+			productName = StoryboardChirpUITests;
+			productReference = 1429A3B929842E0900F919F8 /* StoryboardChirpUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1429A39129842E0700F919F8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					1429A39829842E0700F919F8 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					1429A3AE29842E0900F919F8 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 1429A39829842E0700F919F8;
+					};
+					1429A3B829842E0900F919F8 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 1429A39829842E0700F919F8;
+					};
+				};
+			};
+			buildConfigurationList = 1429A39429842E0700F919F8 /* Build configuration list for PBXProject "StoryboardChirp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1429A39029842E0700F919F8;
+			productRefGroup = 1429A39A29842E0700F919F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1429A39829842E0700F919F8 /* StoryboardChirp */,
+				1429A3AE29842E0900F919F8 /* StoryboardChirpTests */,
+				1429A3B829842E0900F919F8 /* StoryboardChirpUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1429A39729842E0700F919F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1429A3A929842E0900F919F8 /* LaunchScreen.storyboard in Resources */,
+				1429A3A629842E0900F919F8 /* Assets.xcassets in Resources */,
+				1429A3A429842E0700F919F8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1429A3AD29842E0900F919F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1429A3B729842E0900F919F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		32E1C7E8AB523149DF30624C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1BC3BFD85FDB2EA5BA6C54F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StoryboardChirp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1429A39529842E0700F919F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1429A3D52984340700F919F8 /* SpectrogramViewController.swift in Sources */,
+				1429A3CD29842E9B00F919F8 /* run_chirp.swift in Sources */,
+				1429A3A129842E0700F919F8 /* ViewController.swift in Sources */,
+				1429A3CF29842EF000F919F8 /* ColorTable.swift in Sources */,
+				1429A3D1298433D500F919F8 /* WaveformViewController.swift in Sources */,
+				1429A3D3298433EC00F919F8 /* FreqViewController.swift in Sources */,
+				1429A39D29842E0700F919F8 /* AppDelegate.swift in Sources */,
+				1429A39F29842E0700F919F8 /* SceneDelegate.swift in Sources */,
+				1429A3D7298463AC00F919F8 /* Spectrogram.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1429A3AB29842E0900F919F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1429A3B429842E0900F919F8 /* StoryboardChirpTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1429A3B529842E0900F919F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1429A3C029842E0900F919F8 /* StoryboardChirpUITestsLaunchTests.swift in Sources */,
+				1429A3BE29842E0900F919F8 /* StoryboardChirpUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1429A3B129842E0900F919F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1429A39829842E0700F919F8 /* StoryboardChirp */;
+			targetProxy = 1429A3B029842E0900F919F8 /* PBXContainerItemProxy */;
+		};
+		1429A3BB29842E0900F919F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1429A39829842E0700F919F8 /* StoryboardChirp */;
+			targetProxy = 1429A3BA29842E0900F919F8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1429A3A229842E0700F919F8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1429A3A329842E0700F919F8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1429A3A729842E0900F919F8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1429A3A829842E0900F919F8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1429A3C129842E0900F919F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1429A3C229842E0900F919F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1429A3C429842E0900F919F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5566186B885D36136704E55C /* Pods-StoryboardChirp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StoryboardChirp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bolinw.StoryboardChirp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1429A3C529842E0900F919F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F26AE5C897BB6A27C5898720 /* Pods-StoryboardChirp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StoryboardChirp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bolinw.StoryboardChirp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1429A3C729842E0900F919F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bolinw.StoryboardChirpTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StoryboardChirp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StoryboardChirp";
+			};
+			name = Debug;
+		};
+		1429A3C829842E0900F919F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bolinw.StoryboardChirpTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StoryboardChirp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StoryboardChirp";
+			};
+			name = Release;
+		};
+		1429A3CA29842E0900F919F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bolinw.StoryboardChirpUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StoryboardChirp;
+			};
+			name = Debug;
+		};
+		1429A3CB29842E0900F919F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bolinw.StoryboardChirpUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StoryboardChirp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1429A39429842E0700F919F8 /* Build configuration list for PBXProject "StoryboardChirp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1429A3C129842E0900F919F8 /* Debug */,
+				1429A3C229842E0900F919F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1429A3C329842E0900F919F8 /* Build configuration list for PBXNativeTarget "StoryboardChirp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1429A3C429842E0900F919F8 /* Debug */,
+				1429A3C529842E0900F919F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1429A3C629842E0900F919F8 /* Build configuration list for PBXNativeTarget "StoryboardChirpTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1429A3C729842E0900F919F8 /* Debug */,
+				1429A3C829842E0900F919F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1429A3C929842E0900F919F8 /* Build configuration list for PBXNativeTarget "StoryboardChirpUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1429A3CA29842E0900F919F8 /* Debug */,
+				1429A3CB29842E0900F919F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1429A39129842E0700F919F8 /* Project object */;
+}
