@@ -8,9 +8,21 @@
 import UIKit
 import Charts
 
-class WaveformViewController: UIViewController, ChartViewDelegate {
+// Kurt
 
-    var waveformChart = LineChartView()
+
+class WaveformViewController: UIViewController, ChartViewDelegate {
+    
+    
+    let RunChirp1 = Run_Chirp( mass1: 10, mass2: 30)
+    
+    @IBAction func AudioButton(_ sender: UIButton) {
+        RunChirp1.saveWav([RunChirp1.make_h_float(h: RunChirp1.h), RunChirp1.make_h_float(h: RunChirp1.h)])
+    }
+    
+    
+    var waveformChart = LineChartView();
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

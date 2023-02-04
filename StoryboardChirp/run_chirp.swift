@@ -11,6 +11,7 @@ import Accelerate
 import Darwin
 import SwiftUI
 import Charts
+import AVFoundation
 
 
 
@@ -278,6 +279,45 @@ class Run_Chirp {
         return cd;
     }
     
+    
+    func saveWav(_ buf: [[Float]]) {
+        if let format = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100, channels: 2, interleaved: false) {
+            let pcmBuf = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: AVAudioFrameCount(buf[0].count))
+            memcpy(pcmBuf?.floatChannelData?[0], buf[0], 4 * buf[0].count)
+            memcpy(pcmBuf?.floatChannelData?[1], buf[1], 4 * buf[1].count)
+            pcmBuf?.frameLength = UInt32(buf[0].count)
+            
+            //var filePath = ""
+
+            let fileManager = FileManager.default
+            let documentDirectory = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
+            //var fileURL2 = documentDirectory.appendingPathComponent("out.wav")
+            //if fileManager.fileExists(atPath: documentDirectory){
+               // try! fileManager.removeItem(at: fileURL2)
+            //}
+            do {
+                //search for out.wav
+                // 'fexist'
+                
+                let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
+                try FileManager.default.createDirectory(atPath: documentDirectory.path, withIntermediateDirectories: true, attributes: nil)
+                let fileURL = documentDirectory.appendingPathComponent("out.wav")
+                print(fileURL.path)
+                let audioFile = try AVAudioFile(forWriting: fileURL, settings: format.settings)
+                try audioFile.write(from: pcmBuf!)
+                let audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
+                audioPlayer.prepareToPlay()
+                audioPlayer.play()
+            } catch {
+                let documentDirectory = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
+                // Delete the file immediately
+                let fileURL1 = documentDirectory.appendingPathComponent("out.wav")
+                try! fileManager.removeItem(at: fileURL1)
+                print(error)
+            }
+        }
+    }
+    
     func freqDataEntries() -> [ChartDataEntry] {
         var cd = [ChartDataEntry]()
         
@@ -369,6 +409,18 @@ class Run_Chirp {
         return lastFreq
     }
     
+
+    
+    
+    func make_h_float(h: [Double]) -> [Float] {
+        var index = 0
+        var h_flt: [Float] = []
+        while (index < h.count) {
+            h_flt.append(Float(h[index]))
+            index += 1
+        }
+        return h_flt
+    }
 };
 
 var testChirp = Run_Chirp(mass1: 10, mass2: 30)

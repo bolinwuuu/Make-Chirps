@@ -18,7 +18,19 @@
                         <viewLayoutGuide key="safeArea" id="AKP-Oa-bkL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Waveform" id="X7T-MA-XGQ"/>
+                    <navigationItem key="navigationItem" title="Waveform" id="X7T-MA-XGQ">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Ztn-u7-byh">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="CCw-zk-6E5">
+                                <rect key="frame" x="228" y="4.6666666666666679" width="149" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Waveform Audio"/>
+                                <connections>
+                                    <action selector="AudioButton:" destination="swp-8I-xMo" eventType="touchUpInside" id="zrW-6b-orB"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wWY-Rn-tV6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
