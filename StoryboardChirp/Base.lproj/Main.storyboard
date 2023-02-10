@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jjg-Qm-ZGM">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,16 +13,37 @@
             <objects>
                 <viewController id="swp-8I-xMo" customClass="WaveformViewController" customModule="StoryboardChirp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="N7J-Mv-W2X">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="time (s)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDs-Mp-5WB">
+                                <rect key="frame" x="372" y="896" width="91" height="79"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="AKP-Oa-bkL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Waveform" id="X7T-MA-XGQ"/>
+                    <navigationItem key="navigationItem" title="Waveform" id="X7T-MA-XGQ">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Ztn-u7-byh">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="CCw-zk-6E5">
+                                <rect key="frame" x="665" y="7.5" width="149" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Waveform Audio"/>
+                                <connections>
+                                    <action selector="AudioButton:" destination="swp-8I-xMo" eventType="touchUpInside" id="zrW-6b-orB"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wWY-Rn-tV6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2399" y="995"/>
+            <point key="canvasLocation" x="-2401.4388489208636" y="993.96984924623121"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="c0K-5q-uie">
@@ -38,6 +59,7 @@
                         <segue destination="147-Ls-eQ9" kind="relationship" relationship="viewControllers" id="nDd-LK-HFc"/>
                         <segue destination="ANV-TF-VSu" kind="relationship" relationship="viewControllers" id="RRW-Zy-huO"/>
                         <segue destination="Smx-Gv-ts7" kind="relationship" relationship="viewControllers" id="pww-df-K7i"/>
+                        <segue destination="HVk-Ff-g17" kind="relationship" relationship="viewControllers" id="3BN-1J-m8v"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="USZ-PA-aPP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -50,7 +72,7 @@
                 <navigationController id="Aj3-IT-7nq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="aJg-0D-maE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="S1m-cM-gTC">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="24" width="834" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -67,7 +89,7 @@
                 <navigationController id="ANV-TF-VSu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="BfH-1K-AtT"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="bwH-t2-FFQ">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="24" width="834" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -84,7 +106,7 @@
                 <navigationController id="147-Ls-eQ9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="J3B-lL-6d3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="NvI-xL-qBA">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="24" width="834" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -100,7 +122,7 @@
             <objects>
                 <viewController id="KDV-GT-FgE" customClass="SpectrogramViewController" customModule="StoryboardChirp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fau-TJ-2Jg">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="0X2-5t-1e8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -116,7 +138,7 @@
             <objects>
                 <viewController id="Cf1-M7-VHs" customClass="FreqViewController" customModule="StoryboardChirp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rSX-J9-6eN">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="lgJ-ra-yZM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -133,7 +155,7 @@
                 <navigationController id="Smx-Gv-ts7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="pNP-jw-Q1M"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Gt2-ub-ebt">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="24" width="834" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -149,7 +171,7 @@
             <objects>
                 <viewController id="0dC-PB-Xld" customClass="AnimationViewController" customModule="StoryboardChirp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QUR-yp-tRA">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="M8S-Mo-9Ss"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -159,6 +181,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ihj-kL-ZO6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-422" y="994"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="9iv-Zm-wzZ">
+            <objects>
+                <navigationController id="HVk-Ff-g17" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="QU8-5A-d5H"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="bE8-OW-3vG">
+                        <rect key="frame" x="0.0" y="24" width="834" height="102"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="7Ej-B0-auj" kind="relationship" relationship="rootViewController" id="ch9-U3-b4Q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TO2-Ts-A8r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="211" y="327"/>
+        </scene>
+        <!--Audio-->
+        <scene sceneID="zUi-9h-Eas">
+            <objects>
+                <viewController id="7Ej-B0-auj" customClass="AudioViewController" customModule="StoryboardChirp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sVE-JT-LoF">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="eQh-Iu-VMn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Audio" id="ZsK-DX-eJg">
+                        </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1j7-mS-cxO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="210.79136690647485" y="993.96984924623121"/>
         </scene>
     </scenes>
     <resources>

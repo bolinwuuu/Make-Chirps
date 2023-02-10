@@ -9,7 +9,13 @@ import UIKit
 import Charts
 
 class WaveformViewController: UIViewController, ChartViewDelegate {
+    
+//    let RunChirp1 = Run_Chirp( mass1: 10, mass2: 30)
 
+    @IBAction func AudioButton(_ sender: UIButton) {
+        testChirp.saveWav([testChirp.make_h_float(h: testChirp.h), testChirp.make_h_float(h: testChirp.h)])
+    }
+    
     var waveformChart = LineChartView()
     
     override func viewDidLoad() {
@@ -30,8 +36,8 @@ class WaveformViewController: UIViewController, ChartViewDelegate {
         super.viewDidLayoutSubviews()
         
         waveformChart.frame = CGRect(x: 0, y: 0,
-                                   width: self.view.frame.size.width,
-                                   height: self.view.frame.size.width)
+                                   width: self.view.frame.size.width * 3 / 4,
+                                   height: self.view.frame.size.width * 3 / 4)
         
         waveformChart.center = view.center
         
