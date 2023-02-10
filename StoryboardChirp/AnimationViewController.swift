@@ -187,5 +187,9 @@ class AnimationViewController: UIViewController {
             samp += self!.animationdownSample
         }
     }
+    
+    func refreshView() {
+        loadView()
+    }
 
 }

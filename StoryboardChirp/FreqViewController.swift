@@ -12,22 +12,11 @@ class FreqViewController: UIViewController, ChartViewDelegate {
 
     var freqChart = LineChartView()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        freqChart.delegate = self
-//        Chart(testSpiral.createSpiral(), id: \.x_val) {
-//            LineMark(
-//                x: .value("Time", $0.x_val),
-//                y: .value("Waveform Value", $0.y_val)
-//            )
-//        }
-        
-    }
-
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        freqChart.delegate = self
         
         freqChart.frame = CGRect(x: 0, y: 0,
                                    width: self.view.frame.size.width,
@@ -73,5 +62,25 @@ class FreqViewController: UIViewController, ChartViewDelegate {
         
         freqChart.animate(xAxisDuration: 2.5)
     }
+    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        freqChart.delegate = self
+////        Chart(testSpiral.createSpiral(), id: \.x_val) {
+////            LineMark(
+////                x: .value("Time", $0.x_val),
+////                y: .value("Waveform Value", $0.y_val)
+////            )
+////        }
+//        
+//    }
+//
+//    
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        
+//        
+//    }
 
 }

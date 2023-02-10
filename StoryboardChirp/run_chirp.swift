@@ -30,51 +30,51 @@ struct Coords {
 class Run_Chirp {
     
     // two input masses
-    var m1: Double
-    var m2: Double
+    var m1: Double = 20
+    var m2: Double = 20
     
     // radii of stars
-    var r1: Double
-    var r2: Double
+    var r1: Double = 0
+    var r2: Double = 0
     
     // number of samples, which is the size of the vectors below, t, freq, h
-    var sampleN: Double
+    var sampleN: Double = 0
     
     // time vector, on the x axis
-    var t: [Double]
+    var t: [Double] = []
     
     // frequency vector, for runMode 3
-    var freq: [Double]
+    var freq: [Double] = []
     
     //var freqw: [Double]
     
     // waveform vector, for runMode 2
-    var h: [Double]
+    var h: [Double] = []
     
 //    // vector of semi-major axis, for animation
 //    var a: [Double]
     
     // max value of h
-    var max_h: Double
+    var max_h: Double = 0
     
     // sample frequency
-    var fsamp: Double
+    var fsamp: Double = 0
     
-    let dt: Double
+    var dt: Double = 0
     
     // last sample before triming
-    var lastSample: Double
+    var lastSample: Double = 0
     
     // time remaining to coalescence from entering band
-    let tau: Double
+    var tau: Double = 0
     
     // Frequency coefficient
-    let fcoeff: Double
+    var fcoeff: Double = 0
     
-    let ftouch: Double
+    var ftouch: Double = 0
     
     // down sample factor
-    let downSample: Double
+    var downSample: Double = 0
     
     // Physical constants
 
@@ -86,6 +86,10 @@ class Run_Chirp {
     
     // initializer, all computations for the vectors above
     init(mass1: Double, mass2: Double) {
+        changeMasses(mass1: mass1, mass2: mass2)
+    } // initializer
+    
+    func changeMasses(mass1: Double, mass2: Double) {
         m1 = mass1
         m2 = mass2
         
@@ -226,8 +230,7 @@ class Run_Chirp {
         h = vDSP.multiply(amp, vForce.sin(phi))
         
         max_h = vDSP.maximum(h)
-//        run_mode_5()
-    } // initializer
+    }
     
     
 //    // currently runMode 2 and 3

@@ -12,28 +12,28 @@ class WaveformViewController: UIViewController, ChartViewDelegate {
     
 //    let RunChirp1 = Run_Chirp( mass1: 10, mass2: 30)
 
-    @IBAction func AudioButton(_ sender: UIButton) {
-        testChirp.saveWav([testChirp.make_h_float(h: testChirp.h), testChirp.make_h_float(h: testChirp.h)])
-    }
+//    @IBAction func AudioButton(_ sender: UIButton) {
+//        testChirp.saveWav([testChirp.make_h_float(h: testChirp.h), testChirp.make_h_float(h: testChirp.h)])
+//    }
     
     var waveformChart = LineChartView()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        waveformChart.delegate = self
-//        Chart(testSpiral.createSpiral(), id: \.x_val) {
-//            LineMark(
-//                x: .value("Time", $0.x_val),
-//                y: .value("Waveform Value", $0.y_val)
-//            )
-//        }
-        
-    }
-
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        waveformChart.delegate = self
+////        Chart(testSpiral.createSpiral(), id: \.x_val) {
+////            LineMark(
+////                x: .value("Time", $0.x_val),
+////                y: .value("Waveform Value", $0.y_val)
+////            )
+////        }
+//
+//    }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        waveformChart.delegate = self
         
         waveformChart.frame = CGRect(x: 0, y: 0,
                                    width: self.view.frame.size.width * 3 / 4,
@@ -78,6 +78,20 @@ class WaveformViewController: UIViewController, ChartViewDelegate {
         
         waveformChart.animate(xAxisDuration: 2.5)
     }
+//
+//    func refreshView() {
+//        loadView()
+//    }
+    
+    @IBAction func refreshView(_ sender: Any) {
+//        viewWillAppear(true)
+    }
+    
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//
 
+//    }
+//
 }
 

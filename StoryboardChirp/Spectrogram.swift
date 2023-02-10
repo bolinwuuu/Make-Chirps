@@ -15,48 +15,86 @@ import Charts
 class Spectrogram {
     
     // magnitudes: each column of spectrogram
-    var magnitudes: [Float]
+    var magnitudes: [Float] = []
     
     // magnitudes in log scale
-    var mag_log: [Float]
+    var mag_log: [Float] = []
     
     // for fourier transforms
-    var splitComplexRealInput: [Float]
-    var splitComplexImaginaryInput: [Float]
+    var splitComplexRealInput: [Float] = []
+    var splitComplexImaginaryInput: [Float] = []
     
     // length of each piece of data put in fourier transform
-    var piece_len: Int
+    var piece_len: Int = 0
     
     // actual length of magnitudes, take in account of zero_padding
-    var sampleCount: Int
+    var sampleCount: Int = 0
     
     // prune the bottom of the spectrogram to make it start at 10 hz
-    var start_idx: Int
+    var start_idx: Int = 0
     
     // last exponential in making log-scale y-axis
-    var last_exp: Int
+    var last_exp: Int = 0
     
     // hanning window applied to fourier transform
-    var hannWindow: [Float]
+    var hannWindow: [Float] = []
     
     // split data into bufferCount buffer and apply fourier transform to each buffer
     var bufferCount: Int = 40
     
     
-    var timeDomainBuffer: [Float]
+    var timeDomainBuffer: [Float] = []
     var freqDomainValues: [Float] = []
     
     let bin_duplicate: Int = 2
     
     // zero-padding of each column of spectrogram
-    let zero_padding: Int
+    var zero_padding: Int = 0
     
     // waveform curve values
-    var h: [Double]
+    var h: [Double] = []
     
-    let len_log: Int
+    var len_log: Int = 0
     
     init(run_chirp: inout Run_Chirp) {
+//        refresh(run_chirp: &testChirp)
+        let freqCount = run_chirp.freqCount()
+        
+        piece_len = Int(freqCount / bufferCount)
+        
+        let sc_no_padding = Int(pow(2, ceil(log2(Double(piece_len)))))
+        
+        last_exp = Int(log2(Double(sc_no_padding / 2))) - 1
+        
+        let len_log_no_padding = (last_exp + 1) * Int(pow(2, Double(last_exp)))
+        
+        zero_padding = max(Int(pow(2, floor(log2(9000 / Double(len_log_no_padding))))), 1)
+        
+        sampleCount = sc_no_padding * zero_padding
+        
+        splitComplexRealInput = [Float](repeating: 0, count: sampleCount)
+        splitComplexImaginaryInput = [Float](repeating: 0, count: sampleCount)
+        
+        magnitudes = [Float](repeating: 0, count: sampleCount)
+        
+        len_log = zero_padding * len_log_no_padding
+        
+        mag_log = [Float](repeating: 0, count: len_log)
+        
+        start_idx = Int(floor(Double(sampleCount) / (run_chirp.getFSamp() / 20)))
+        
+        timeDomainBuffer = [Float](repeating: 0, count: piece_len)
+        freqDomainValues.reserveCapacity(len_log * bufferCount * bin_duplicate)
+        
+        hannWindow = vDSP.window(ofType: Float.self,
+                                 usingSequence: .hanningDenormalized,
+                                 count: piece_len,
+                                 isHalfWindow: false)
+        
+        h = run_chirp.getH()
+    }
+    
+    func refresh(run_chirp: inout Run_Chirp) {
         let freqCount = run_chirp.freqCount()
         
         piece_len = Int(freqCount / bufferCount)
@@ -262,6 +300,4 @@ class Spectrogram {
 }
 
 
-var testSpect = Spectrogram(run_chirp: &testChirp)
 
-let spectUIIm = testSpect.genSpectrogram()
