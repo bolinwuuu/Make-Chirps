@@ -410,6 +410,64 @@ class Run_Chirp {
         }
     }
     
+    
+    func taperWavelength(){
+        
+    }
+    
+    func saveWav1(_ buf: [[Float]]) -> (URL, AVAudioPCMBuffer) {
+        let format = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100, channels: 2, interleaved: false/*was false*/)
+        let pcmBuf = AVAudioPCMBuffer(pcmFormat: format!, frameCapacity: AVAudioFrameCount(buf[0].count))
+            memcpy(pcmBuf?.floatChannelData?[0], buf[0], 4 * buf[0].count)
+            memcpy(pcmBuf?.floatChannelData?[1], buf[1], 4 * buf[1].count)
+            pcmBuf?.frameLength = UInt32(buf[0].count)
+            
+  
+
+               let fileManager = FileManager.default
+               let tempDirURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
+               let fileEnum = fileManager.enumerator(at: tempDirURL, includingPropertiesForKeys: nil)!
+        for case let tempfilesUrl as URL in fileEnum {
+            do{
+                try fileManager.removeItem(at: tempfilesUrl)
+            } catch {
+                print("Error deleting files")
+            }
+        }
+            
+        //    do {
+                //search for out.wav
+                // 'fexist'
+                //he
+            
+        // let fileEnum = ;
+                let wave_filename = ProcessInfo().globallyUniqueString;
+                let fileURL = tempDirURL.appendingPathComponent(wave_filename + ".wav")
+                print(fileURL.path)
+                let audioFile = try! AVAudioFile(forWriting: fileURL, settings: format!.settings)
+                try! audioFile.write(from: pcmBuf!)
+                
+                
+                
+                /* % Apply sigmoid taper to end of waveform
+                 
+                 halfperiod_end = 0.01;
+                 twindow_end = transpose([0:1/fsamp:halfperiod_end]);
+                 envelope_end = 0.5 + 0.5*cos(pi/halfperiod_end*twindow_end);
+                 for i = 1:min(length(twindow_end),N-lastsample);
+                    haudio(lastsample+i) = envelope_end(i)*abs(hmax)*sin(phi(lastsample+i));
+                 end*/
+                let halfperiod_end = 0.01;
+                var maxwavelength = buf[0].max();
+             //    var maxewavelength_index = (where )
+                return (fileURL,pcmBuf!);
+                // let documentDirectory = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
+                // Delete the file immediately
+               // let fileURL1 = documentDirectory.appendingPathComponent("out.wav")
+             //   try! fileManager.removeItem(at: fileURL1)
+    }
+    
+    
     func make_h_float(h: [Double]) -> [Float] {
         var index = 0
         var h_flt: [Float] = []
@@ -423,7 +481,7 @@ class Run_Chirp {
     
 }
 
-var testChirp = Run_Chirp(mass1: 10, mass2: 30)
+var testChirp = Run_Chirp(mass1: 2, mass2: 2)
 
 var waveData = testChirp.genWaveform()
 
