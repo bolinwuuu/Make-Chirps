@@ -24,6 +24,8 @@
 		1429A3D3298433EC00F919F8 /* FreqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3D2298433EC00F919F8 /* FreqViewController.swift */; };
 		1429A3D52984340700F919F8 /* SpectrogramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3D42984340700F919F8 /* SpectrogramViewController.swift */; };
 		1429A3D7298463AC00F919F8 /* Spectrogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3D6298463AC00F919F8 /* Spectrogram.swift */; };
+		1462249129ABFB6300DDF1E9 /* SpiralAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1462249029ABFB6300DDF1E9 /* SpiralAnimation.swift */; };
+		14D2EA6E29AD5E7E001E6226 /* SpiralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D2EA6D29AD5E7E001E6226 /* SpiralViewController.swift */; };
 		62AD7610B71025A4077B45C9 /* Pods_StoryboardChirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +68,8 @@
 		1429A3D2298433EC00F919F8 /* FreqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreqViewController.swift; sourceTree = "<group>"; };
 		1429A3D42984340700F919F8 /* SpectrogramViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectrogramViewController.swift; sourceTree = "<group>"; };
 		1429A3D6298463AC00F919F8 /* Spectrogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spectrogram.swift; sourceTree = "<group>"; };
+		1462249029ABFB6300DDF1E9 /* SpiralAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralAnimation.swift; sourceTree = "<group>"; };
+		14D2EA6D29AD5E7E001E6226 /* SpiralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralViewController.swift; sourceTree = "<group>"; };
 		5566186B885D36136704E55C /* Pods-StoryboardChirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardChirp.debug.xcconfig"; path = "Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp.debug.xcconfig"; sourceTree = "<group>"; };
 		658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoryboardChirp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F26AE5C897BB6A27C5898720 /* Pods-StoryboardChirp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardChirp.release.xcconfig"; path = "Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp.release.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				1427180229969F2D006CE66D /* AudioViewController.swift */,
 				1429A3D2298433EC00F919F8 /* FreqViewController.swift */,
 				1429A3D42984340700F919F8 /* SpectrogramViewController.swift */,
+				1462249029ABFB6300DDF1E9 /* SpiralAnimation.swift */,
+				14D2EA6D29AD5E7E001E6226 /* SpiralViewController.swift */,
 			);
 			path = StoryboardChirp;
 			sourceTree = "<group>";
@@ -356,7 +362,9 @@
 				1429A3CF29842EF000F919F8 /* ColorTable.swift in Sources */,
 				1429A3D1298433D500F919F8 /* WaveformViewController.swift in Sources */,
 				1429A3D3298433EC00F919F8 /* FreqViewController.swift in Sources */,
+				14D2EA6E29AD5E7E001E6226 /* SpiralViewController.swift in Sources */,
 				1429A39D29842E0700F919F8 /* AppDelegate.swift in Sources */,
+				1462249129ABFB6300DDF1E9 /* SpiralAnimation.swift in Sources */,
 				1404292B298D6716000AAD9C /* AnimationViewController.swift in Sources */,
 				1427180329969F2D006CE66D /* AudioViewController.swift in Sources */,
 				1429A39F29842E0700F919F8 /* SceneDelegate.swift in Sources */,

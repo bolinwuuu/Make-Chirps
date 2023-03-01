@@ -19,7 +19,9 @@ class SpectrogramViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        var spectUIIm = Spectrogram(run_chirp: &testChirp).genSpectrogram()
+        //var spectUIIm = Spectrogram(run_chirp: &testChirp).genSpectrogram()
+        testChirp.initSpectrogram()
+        let spectUIIm = testChirp.genSpectrogram()
         
 //        spectView = Spectrogram()
         spectView = UIView(frame: CGRect(x: 0, y: 0,

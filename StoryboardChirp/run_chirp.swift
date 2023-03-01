@@ -51,6 +51,10 @@ class Run_Chirp {
     // waveform vector, for runMode 2
     var h: [Double] = []
     
+    var amp: [Double] = []
+    var phi: [Double] = []
+    
+    
 //    // vector of semi-major axis, for animation
 //    var a: [Double]
     
@@ -78,10 +82,83 @@ class Run_Chirp {
     
     // Physical constants
 
-    let g:Double = 6.67e-11;
-    let c:Double = 2.998e8;
-    let pc:Double = 3.086e16;
-    let msun:Double = 2.0e30;
+    let g:Double = 6.67e-11
+    let c:Double = 2.998e8
+    let pc:Double = 3.086e16
+    let msun:Double = 2.0e30
+    
+    
+    // ----------------------------------------------------------
+    // ----------------------------------------------------------
+    //              variables for spectrogram
+
+    
+    // magnitudes: each column of spectrogram
+    var magnitudes: [Float] = []
+    
+    // magnitudes in log scale
+    var mag_log: [Float] = []
+    
+    // for fourier transforms
+    var splitComplexRealInput: [Float] = []
+    var splitComplexImaginaryInput: [Float] = []
+    
+    // length of each piece of data put in fourier transform
+    var piece_len: Int = 0
+    
+    // actual length of magnitudes, take in account of zero_padding
+    var sampleCount: Int = 0
+    
+    // prune the bottom of the spectrogram to make it start at 10 hz
+    var start_idx: Int = 0
+    
+    // last exponential in making log-scale y-axis
+    var last_exp: Int = 0
+    
+    // hanning window applied to fourier transform
+    var hannWindow: [Float] = []
+    
+    // split data into bufferCount buffer and apply fourier transform to each buffer
+    var bufferCount: Int = 40
+    
+    
+    var timeDomainBuffer: [Float] = []
+    var freqDomainValues: [Float] = []
+    
+    let bin_duplicate: Int = 2
+    
+    // zero-padding of each column of spectrogram
+    var zero_padding: Int = 0
+    
+    var len_log: Int = 0
+    
+
+    //          end variables for spectrogram
+    // ----------------------------------------------------------
+    // ----------------------------------------------------------
+    
+    
+    // ----------------------------------------------------------
+    // ----------------------------------------------------------
+    //              variables for spiral animation
+
+    
+    // number of rows & cols of animation images (nrow * nrow)
+    let nrow: Int = 150
+    
+    // dist of half of the window
+    let halfwindow: Double = 1e7
+    
+    // flatten matrix of retarded time
+    var tret_grid: [Double] = []
+    
+    // flatten matrix of 2 * arctan(y/x)
+    var arctan_2: [Double] = []
+    
+
+    //          end variables for spiral animation
+    // ----------------------------------------------------------
+    // ----------------------------------------------------------
     
     
     // initializer, all computations for the vectors above
@@ -132,10 +209,10 @@ class Run_Chirp {
 
         // Debugging summary
 
-        print("Starting chirp simulation with M1, M2, Mchirp = " + String(m1) + " " + String(m2) + " " + String(mchirp) + " " + "(Msun)");
-        print("--> Schwarzchild radii = " + String(r1) + " " + String(r2) + "m");
-        print("Distance to source r = " + String(rMpc) + " Mpc");
-        print("Detection band low frequency = " + String(fbandlo) + "Hz\n--> Time to coalescence = " + String(tau) + " s\n");
+        print("Starting chirp simulation with M1, M2, Mchirp = ", m1, " ", m2, " ", mchirp, " (Msun)")
+        print("--> Schwarzchild radii = ", r1, " ", r2, "m")
+        print("Distance to source r = ", rMpc, " Mpc")
+        print("Detection band low frequency = ", fbandlo, "Hz\n--> Time to coalescence = ", tau, " s\n")
 
         // Sampling rate (Hz) - fixed at 48 kHz for mp4 output
         
@@ -160,7 +237,7 @@ class Run_Chirp {
 
         ftouch = 2 * (1/(2*Double.pi)) * pow(g*(m1+m2)*msun/pow(r1+r2,3), 1/2)
         let tautouch = pow(fcoeff/ftouch, 8/3)
-        print("GW frequency when Schwarzchild radii touch: " + String(ftouch) + " Hz\n--> Occurs " + String(tautouch) + " seconds before point-mass coalescence\n");
+        print("GW frequency when Schwarzchild radii touch: ", ftouch, " Hz\n--> Occurs ", tautouch, " seconds before point-mass coalescence\n")
         
         // Create frequency value vs time (up to last time sample before point-mass coalescence)
         // (Based on PPNP Eqn 73)
@@ -203,7 +280,7 @@ class Run_Chirp {
         //vDSP.fill(&exp, with: -1/4);
 
         
-        var amp = [Double](repeating: 0, count: freq.count)
+        amp = [Double](repeating: 0, count: freq.count)
         //vForce.pow(bases: freq1, exponents: exp, result: &freq1);
         freq1 = freq1.map { (pow($0, -1/4)) }
         vDSP.multiply(hcoeff * hscale, freq1, result: &freq1)
@@ -218,7 +295,7 @@ class Run_Chirp {
         // Generate strain signal in time domain
         
         
-        var phi = [Double](repeating: 0, count: freq.count)
+        phi = [Double](repeating: 0, count: freq.count)
         // Cumulative sum of freq
         phi[0] = freq[0]
         for index in 1...freq.count - 1 {
@@ -230,6 +307,11 @@ class Run_Chirp {
         h = vDSP.multiply(amp, vForce.sin(phi))
         
         max_h = vDSP.maximum(h)
+        
+        print("t size: ", t.count)
+        print("amp size: ", amp.count)
+        print("phi size: ", phi.count)
+        print("freq size: ", freq.count)
     }
     
     
@@ -481,7 +563,7 @@ class Run_Chirp {
     
 }
 
-var testChirp = Run_Chirp(mass1: 2, mass2: 2)
+var testChirp = Run_Chirp(mass1: 20, mass2: 30)
 
 var waveData = testChirp.genWaveform()
 
