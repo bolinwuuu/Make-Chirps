@@ -455,49 +455,23 @@ class Run_Chirp {
         return lastFreq
     }
     
-    func saveWav(_ buf: [[Float]]) {
-        if let format = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100, channels: 2, interleaved: false) {
-            let pcmBuf = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: AVAudioFrameCount(buf[0].count))
-            memcpy(pcmBuf?.floatChannelData?[0], buf[0], 4 * buf[0].count)
-            memcpy(pcmBuf?.floatChannelData?[1], buf[1], 4 * buf[1].count)
-            pcmBuf?.frameLength = UInt32(buf[0].count)
-            
-            //var filePath = ""
-            let fileManager = FileManager.default
-            let documentDirectory = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
-            //var fileURL2 = documentDirectory.appendingPathComponent("out.wav")
-            //if fileManager.fileExists(atPath: documentDirectory){
-               // try! fileManager.removeItem(at: fileURL2)
-            //}
-            do {
-                //search for out.wav
-                // 'fexist'
-                
-                let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
-                try FileManager.default.createDirectory(atPath: documentDirectory.path, withIntermediateDirectories: true, attributes: nil)
-                let fileURL = documentDirectory.appendingPathComponent("out.wav")
-                print(fileURL.path)
-                let audioFile = try AVAudioFile(forWriting: fileURL, settings: format.settings)
-                try audioFile.write(from: pcmBuf!)
-                let audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
-                audioPlayer.prepareToPlay()
-                audioPlayer.play()
-            } catch {
-                let documentDirectory = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
-                // Delete the file immediately
-                let fileURL1 = documentDirectory.appendingPathComponent("out.wav")
-                try! fileManager.removeItem(at: fileURL1)
-                print(error)
-            }
-        }
-    }
-    
-    
-    func taperWavelength(){
+    func saveWav1(_ buf: [[Float]]) -> URL {
+       
+        // The exponential decay would have to happen here
+        /* % Apply sigmoid taper to end of waveform
+         
+         halfperiod_end = 0.01;
+         twindow_end = transpose([0:1/fsamp:halfperiod_end]);
+         envelope_end = 0.5 + 0.5*cos(pi/halfperiod_end*twindow_end);
+         for i = 1:min(length(twindow_end),N-lastsample);
+            haudio(lastsample+i) = envelope_end(i)*abs(hmax)*sin(phi(lastsample+i));
+         end*/
+        let halfperiod_end = 0.01;
+        var maxwavelength = buf[0].max();
+     
         
-    }
-    
-    func saveWav1(_ buf: [[Float]]) -> (URL, AVAudioPCMBuffer) {
+        
+        // Putting Floats into AVAudioPCMBuffer Format
         let format = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100, channels: 2, interleaved: false/*was false*/)
         let pcmBuf = AVAudioPCMBuffer(pcmFormat: format!, frameCapacity: AVAudioFrameCount(buf[0].count))
             memcpy(pcmBuf?.floatChannelData?[0], buf[0], 4 * buf[0].count)
@@ -505,7 +479,7 @@ class Run_Chirp {
             pcmBuf?.frameLength = UInt32(buf[0].count)
             
   
-
+        // Deleting all files currently in temp directory in order to reduce clutter
                let fileManager = FileManager.default
                let tempDirURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
                let fileEnum = fileManager.enumerator(at: tempDirURL, includingPropertiesForKeys: nil)!
@@ -516,13 +490,8 @@ class Run_Chirp {
                 print("Error deleting files")
             }
         }
-            
-        //    do {
-                //search for out.wav
-                // 'fexist'
-                //he
-            
-        // let fileEnum = ;
+   
+        //Create the .wav file from the PCMBuffer and save with random string name
                 let wave_filename = ProcessInfo().globallyUniqueString;
                 let fileURL = tempDirURL.appendingPathComponent(wave_filename + ".wav")
                 print(fileURL.path)
@@ -531,25 +500,12 @@ class Run_Chirp {
                 
                 
                 
-                /* % Apply sigmoid taper to end of waveform
-                 
-                 halfperiod_end = 0.01;
-                 twindow_end = transpose([0:1/fsamp:halfperiod_end]);
-                 envelope_end = 0.5 + 0.5*cos(pi/halfperiod_end*twindow_end);
-                 for i = 1:min(length(twindow_end),N-lastsample);
-                    haudio(lastsample+i) = envelope_end(i)*abs(hmax)*sin(phi(lastsample+i));
-                 end*/
-                let halfperiod_end = 0.01;
-                var maxwavelength = buf[0].max();
-             //    var maxewavelength_index = (where )
-                return (fileURL,pcmBuf!);
-                // let documentDirectory = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
-                // Delete the file immediately
-               // let fileURL1 = documentDirectory.appendingPathComponent("out.wav")
-             //   try! fileManager.removeItem(at: fileURL1)
+           //Return the URL to the temporary .wav file that was created, to be played in view controller.
+                return fileURL;
+             
     }
     
-    
+    //Function to convert the array h of doubles into an array of floats to be compatible with AVAudio Fctns.
     func make_h_float(h: [Double]) -> [Float] {
         var index = 0
         var h_flt: [Float] = []
