@@ -14,10 +14,12 @@ class AudioViewController: UIViewController {
         
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let result = testChirp.saveWav1([testChirp.make_h_float(h: testChirp.h), testChirp.make_h_float(h: testChirp.h)])
-        let soundURL = result.0; let soundpcmBuf = result.1;
+        
+        // soundURL becomes the URL to the temporary .wav file.
+        let soundURL = testChirp.saveWav1([testChirp.make_h_float(h: testChirp.h), testChirp.make_h_float(h: testChirp.h)])
         
         do{
+            //Initialize audioPlayer node
             audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
         }
         catch{
