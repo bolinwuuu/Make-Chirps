@@ -33,7 +33,7 @@ extension Run_Chirp {
     }
     
     
-    func genSpiralAnimation() -> UIImage {
+    func genSpiralAnimation(speedX: Double) -> UIImage {
 //        let nrow = 150
 //        var heightD: [Double] = spiral_test()
         
@@ -126,7 +126,7 @@ extension Run_Chirp {
             imageList.append(UIImage(cgImage: result!))
         }
         
-        let timePerImage = 0.01
+        let timePerImage = dtnow / speedX
         
         return UIImage.animatedImage(with: imageList, duration: ntime * timePerImage)!
 
