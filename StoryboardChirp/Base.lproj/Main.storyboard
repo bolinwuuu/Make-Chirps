@@ -307,6 +307,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Button"/>
+                                <connections>
+                                    <action selector="animButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="RhG-Ev-wsI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3j-XR-l3h">
                                 <rect key="frame" x="498" y="962" width="75" height="35"/>
@@ -324,18 +327,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Collision Animation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0aS-pz-5Uk">
+                                <rect key="frame" x="581" y="920" width="145" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="5" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Qbm-Ur-5kE">
                                 <rect key="frame" x="18" y="798" width="330" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="mass1Change:" destination="dCC-hP-mkN" eventType="valueChanged" id="HmJ-bk-SvQ"/>
+                                    <action selector="mass1Change:" destination="dCC-hP-mkN" eventType="valueChanged" id="DcQ-Ky-8vZ"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="5" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="77g-eT-1Ti">
                                 <rect key="frame" x="25" y="933" width="330" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="mass2Change:" destination="dCC-hP-mkN" eventType="valueChanged" id="vYh-1z-Abh"/>
+                                    <action selector="mass2Change:" destination="dCC-hP-mkN" eventType="valueChanged" id="evE-Bm-6fz"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mass1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V61-P9-Xmj">
@@ -395,13 +405,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Audio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7j-8R-3Wa">
-                                <rect key="frame" x="584" y="875" width="75" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bl6-Pd-Hi5">
                                 <rect key="frame" x="380" y="259" width="74" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -413,19 +416,27 @@
                                     <action selector="playButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="pUw-xS-jJD"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Audio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7j-8R-3Wa">
+                                <rect key="frame" x="581" y="875" width="75" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YnS-1K-rlp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Initialize" id="4Q8-XO-oIw"/>
                     <connections>
+                        <outlet property="animButton" destination="8az-5Z-Qlq" id="rae-j8-dOp"/>
                         <outlet property="audioButton" destination="47P-Is-PLO" id="L34-ap-irz"/>
                         <outlet property="freqButton" destination="xH2-Ru-DwP" id="xX0-K9-bEC"/>
                         <outlet property="intializeButton" destination="b9V-ZK-Svp" id="Nf7-Ae-tP8"/>
-                        <outlet property="mass1" destination="Qbm-Ur-5kE" id="ayW-3n-lB4"/>
                         <outlet property="mass1Label" destination="HtK-TU-NWc" id="vtK-wY-HVI"/>
-                        <outlet property="mass2" destination="77g-eT-1Ti" id="MXA-kM-3er"/>
+                        <outlet property="mass1Slider" destination="Qbm-Ur-5kE" id="r2O-MV-cxn"/>
                         <outlet property="mass2Label" destination="Ylh-nj-m8s" id="pOd-Y7-bAu"/>
+                        <outlet property="mass2Slider" destination="77g-eT-1Ti" id="OS1-g5-Yye"/>
                         <outlet property="playButton" destination="bl6-Pd-Hi5" id="7SL-mX-YEe"/>
                         <outlet property="spectroButton" destination="L0G-tM-J0M" id="SZl-p2-C3X"/>
                         <outlet property="speedLabel" destination="Gga-0I-cfK" id="Srf-SM-fih"/>
