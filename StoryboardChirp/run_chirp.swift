@@ -306,6 +306,15 @@ class Run_Chirp {
         
         h = vDSP.multiply(amp, vForce.sin(phi))
         
+        
+        
+        //Adjustments for Ringdown
+        var quasi = computeFinalOrbitalAngularMomentum(M1: m1, M2: m2);
+        h = appendRingDownandNormalWaveForm(h: h, quasi: quasi)
+        //t = [];
+        var tmax = Double(h.count) * dt
+        t = stride(from: 0.0, through: tmax, by: dt).map { $0 }
+        
         max_h = vDSP.maximum(h)
         
         print("t size: ", t.count)
@@ -330,7 +339,8 @@ class Run_Chirp {
 //    }
     
     func genWaveform() -> [Coords] {
-        var cd = [Coords](repeating: Coords(x_in: 0, y_in: 0), count: self.freq.count)
+        var cd = [Coords](repeating: Coords(x_in: 0, y_in: 0), count: self.h.count)
+        // wsa self.freq.count, changed to self.h.count
         
         var idx = 0;
         while (idx < cd.count) {
@@ -515,9 +525,138 @@ class Run_Chirp {
         }
         return h_flt
     }
+    
+    //Function to return an array of double values that model the ringdown waveform
+    func computeFinalOrbitalAngularMomentum(M1: Double, M2: Double) -> [Double] {
+         // Physical constants
+         let G = 6.67e-11
+         let c = 2.998e8
+         let Msun = 2.0e30
+         let factor = (G * Msun / pow(c, 3))
+         
+         // Masses of initial stars (solar mass units)
+         //let M1 = 30.0
+         //let M2 = 30.0
+         
+         // Compute final black hole mass (neglecting ~5% GW energy loss) and nu parameter
+         let Mfinal = M1 + M2
+         let nu = M1 * M2 / pow(Mfinal, 2)
+         
+         print("Starting with M1=\(M1), M2=\(M2) --> Mfinal=\(Mfinal) and nu=\(nu)")
+         
+         // Starting guess for af
+         var af = nu * 0.66 / 0.25
+         var aflast = 0.0
+         
+         // Iteratively improve estimate (assume prograde orbit for risco)
+         var niter = 0
+         
+         while abs(af - aflast) > 0.00001 && niter <= 50 {
+             aflast = af
+             niter += 1
+             let Z1 = 1 + pow((1 - pow(af, 2)), 1.0 / 3.0) * (pow((1 + af), 1.0 / 3.0) + pow((1 - af), 1.0 / 3.0))
+             let Z2 = sqrt(3 * pow(af, 2) + pow(Z1, 2))
+             let risco = 3 + Z2 - sqrt((3 - Z1) * (3 + Z1 + 2 * Z2))
+             let Lorb = nu * (pow(risco, 2) - 2 * af * sqrt(risco) + pow(af, 2)) / pow(risco, 0.75) / (pow(risco, 1.5) - 3 * sqrt(risco) + 2 * af).squareRoot()
+             af = Lorb
+             print("niter=\(niter): af=\(aflast) gives Z1=\(Z1), Z2=\(Z2), risco=\(risco) and new af=\(af)")
+             af = Lorb
+         }
+         
+         // Values for dominant (m=2) mode column in Andersson table 17.1:
+         let af_table = [0.0, 0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70, 0.80, 0.90, 0.99]
+         let omega_real_table = [0.37367, 0.38702, 0.40215, 0.41953, 0.43984, 0.46412, 0.49405, 0.53260, 0.58602, 0.67163, 0.87086]
+         let omega_imag_table = [0.08896, 0.08871, 0.08831, 0.08773, 0.08688, 0.08564, 0.08377, 0.08079, 0.07563, 0.06486, 0.02951]
+         
+         let omega_real = interpolate(af_table, omega_real_table, af)
+         let omega_imag = interpolate(af_table, omega_imag_table, af)
+         
+         let QNM_freq = omega_real / (2 * Double.pi) / (factor * Mfinal)
+         let QNM_tau = factor * Mfinal / omega_imag
+         
+         let R1 = (2 * G * M1 * Msun / pow(c, 2))
+         let R2 = (2 * G * M2 * Msun / pow(c, 2))
+         let ftouch = 2 * (1 / (2 * Double.pi)) * pow((G * (M1 + M2) * Msun / pow((R1 + R2), 3)), 1 / 2)
+         
+         print("Interpolated real/imag omega values: \(omega_real) -\(omega_imag) i\n --> QNM freq = \(QNM_freq) Hz, tau = \(QNM_tau) s (merger orbital freq = \(ftouch) Hz)")
+        
+        
+        var tmax = 5 * QNM_tau;
+        var dt: Double
+        dt = 10.0 / 48000.0 ;
+        var t = stride(from: 0.0, through: tmax, by: dt).map { $0 }
+        
+        var quasi: [Double] = []
+        
+        
+        
+        
+        for i in 0...(t.count-1) {
+            quasi.append(cos(2 * Double.pi * QNM_freq * t[i])  * exp(-t[i] / QNM_tau) )
+        }
+        
+        
+        return quasi; //pl
+     }
+    
+    // Function to find the last sample of waveform and append the ringdown to it with a scalar
+    func appendRingDownandNormalWaveForm(h: [Double], quasi: [Double]) -> [Double] {
+        
+        
+        var maxindex: Int = h.enumerated().max(by: { abs($0.element) < abs($1.element)})!.offset
+        
+        var scalarForRingdown = h[maxindex];
+        
+        var quasi: [Double] = quasi;
+            
+        for i in 0...(quasi.count - 1){
+            quasi[i] = scalarForRingdown * quasi[i];
+        }
+        
+        //find index of element that is closest to one
+        var closestIndex: Int?
+        
+        if maxindex < h.count - 1 {
+            closestIndex = h.enumerated().filter({$0.offset > maxindex})
+                .min(by: { abs($0.element - 1) < abs($1.element - 1) })?.offset
+        }
+        //identify time of coalescence, take last data sample before then
+        
+        let closestValuetoOne = h[closestIndex!];
+        
+        var conjoinedArray: [Double] = [];
+        
+        for i in 0...maxindex {
+            conjoinedArray.append(h[i])
+        }
+        
+        for i in 0...(quasi.count-1){
+            conjoinedArray.append(quasi[i])
+        }
+        
+        
+        
+        
+        return conjoinedArray;
+        
+    }
+     
+     func interpolate(_ x: [Double], _ y: [Double], _ xi: Double) -> Double {
+         guard let index = x.firstIndex(where: { $0 >= xi }) else { return y.last! }
+         if index == 0 { return y.first! }
+         
+         let x0 = x[index - 1]
+         let x1 = x[index]
+         let y0 = y[index - 1]
+         let y1 = y[index]
+         
+         return y0 + (y1 - y0) * (xi - x0) / (x1 - x0)
+     }
+    
+ }
 
     
-}
+
 
 var testChirp = Run_Chirp(mass1: 20, mass2: 30)
 
