@@ -142,6 +142,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         body2.isHidden = true
         
         animInit()
+        audioInit()
         
 //        windowFrame
         let windowProp = frameProp + 0.02
@@ -179,6 +180,7 @@ class ViewController: UIViewController, ChartViewDelegate {
 //        spectUIIm = testSpect.genSpectrogram()
         
         animInit()
+        audioInit()
         
 //        initPress = true
     }
@@ -270,20 +272,22 @@ class ViewController: UIViewController, ChartViewDelegate {
     }
     
     @IBAction func audioButtonPress(_ sender: Any) {
-        removeViews()
-        
-        playButton.isHidden = false
-        playButton.isEnabled = true
-        
-        let soundURL = testChirp.saveWav1([testChirp.make_h_float(h: testChirp.h), testChirp.make_h_float(h: testChirp.h)])
-        
-        do{
-            //Initialize audioPlayer node
-            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-        }
-        catch{
-            print("Could not intitialize AVAudioPlayer with the file")
-        }
+//        removeViews()
+//
+//        playButton.isHidden = false
+//        playButton.isEnabled = true
+//
+//        let soundURL = testChirp.saveWav1([testChirp.make_h_float(h: testChirp.h), testChirp.make_h_float(h: testChirp.h)])
+//
+//        do{
+//            //Initialize audioPlayer node
+//            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+//        }
+//        catch{
+//            print("Could not intitialize AVAudioPlayer with the file")
+//        }
+        audioPlayer?.currentTime = 0
+        audioPlayer?.play()
     }
     
     
@@ -472,6 +476,24 @@ class ViewController: UIViewController, ChartViewDelegate {
         
     }
     
+    // initialize audio when init button is pressed
+    func audioInit() {
+//        removeViews()
+        
+//        playButton.isHidden = false
+//        playButton.isEnabled = true
+        
+        let soundURL = testChirp.saveWav1([testChirp.make_h_float(h: testChirp.h), testChirp.make_h_float(h: testChirp.h)])
+        
+        do{
+            //Initialize audioPlayer node
+            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+        }
+        catch{
+            print("Could not intitialize AVAudioPlayer with the file")
+        }
+    }
+    
     @IBAction func spiralButtonPress(_ sender: Any) {
         removeViews()
         
@@ -490,6 +512,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         
     }
     
+    // for spiral animation
     func displayWithTime(duration: Double) {
 //        self.view.bringSubviewToFront(spiralView)
 //        self.uiview.removeFromSuperview()
@@ -502,6 +525,7 @@ class ViewController: UIViewController, ChartViewDelegate {
             
         }
     }
+    
     
     func removeViews() {
         self.uiview.removeFromSuperview()

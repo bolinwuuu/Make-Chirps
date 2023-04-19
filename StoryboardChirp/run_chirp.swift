@@ -308,12 +308,12 @@ class Run_Chirp {
         
         
         
-        //Adjustments for Ringdown
-        var quasi = computeFinalOrbitalAngularMomentum(M1: m1, M2: m2);
-        h = appendRingDownandNormalWaveForm(h: h, quasi: quasi)
-        //t = [];
-        var tmax = Double(h.count) * dt
-        t = stride(from: 0.0, through: tmax, by: dt).map { $0 }
+//        //Adjustments for Ringdown
+//        var quasi = computeFinalOrbitalAngularMomentum(M1: m1, M2: m2);
+//        h = appendRingDownandNormalWaveForm(h: h, quasi: quasi)
+//        //t = [];
+//        var tmax = Double(h.count) * dt
+//        t = stride(from: 0.0, through: tmax, by: dt).map { $0 }
         
         max_h = vDSP.maximum(h)
         
