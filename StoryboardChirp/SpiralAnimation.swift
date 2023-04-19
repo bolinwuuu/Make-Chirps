@@ -37,7 +37,7 @@ extension Run_Chirp {
 //        let nrow = 150
 //        var heightD: [Double] = spiral_test()
         
-        let tstart: Double = t[0] + sqrt(2) * halfwindow / c
+        var tstart: Double = t[0] + sqrt(2) * halfwindow / c
         let tend: Double = t[freq.count - 1]
         
         var imageList: [UIImage] = []
@@ -66,10 +66,21 @@ extension Run_Chirp {
             return buffer
         }()
         
+        // only keep the last dur seconds
+        let dur: Double = 10
+        let originalDur = (tend - tstart) / speedX
+        
 //        let ntime: Double = 800
 //        let dtnow = (tend - tstart) / ntime
         let dtnow = 0.0006
         let ntime = (tend - tstart) / dtnow
+        let timePerImage = dtnow / speedX
+        
+        
+        // truncate time to have only last dur seconds
+        if originalDur > dur {
+            tstart = tend - dur * speedX
+        }
         
         print("dtnow: ", dtnow)
         print("ntime: ", ntime)
@@ -126,9 +137,8 @@ extension Run_Chirp {
             imageList.append(UIImage(cgImage: result!))
         }
         
-        let timePerImage = dtnow / speedX
         
-        return UIImage.animatedImage(with: imageList, duration: ntime * timePerImage)!
+        return UIImage.animatedImage(with: imageList, duration: dur)!
 
 
         
