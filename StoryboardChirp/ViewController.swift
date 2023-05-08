@@ -169,7 +169,6 @@ class ViewController: UIViewController, ChartViewDelegate {
         mass2Label.text = "\(round(mass2Slider.value * 100) / 100.0)"
     }
     
-    
     @IBAction func initializePress(_ sender: Any) {
         let m1 = Double(mass1Slider.value)
         let m2 = Double(mass2Slider.value)

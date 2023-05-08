@@ -32,7 +32,6 @@ extension ViewController {
         
         chartView.data = data
         
-        
         chartView.xAxis.labelPosition = .bottom
         chartView.xAxis.axisLineColor = NSUIColor.lightGray
         chartView.xAxis.labelTextColor = .lightGray

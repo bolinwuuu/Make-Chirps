@@ -12,6 +12,7 @@ import AVFoundation
 import Accelerate
 
 extension ViewController {
+    
     @IBAction func freqButtonPress(_ sender: Any) {
         removeViews()
         
