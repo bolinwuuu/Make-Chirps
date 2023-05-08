@@ -13,8 +13,8 @@ import Accelerate
 
 extension ViewController {
     
-    
     @IBAction func audioButtonPress(_ sender: Any) {
+        checkMassChange()
 //        removeViews()
 //
 //        playButton.isHidden = false

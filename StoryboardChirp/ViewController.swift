@@ -169,6 +169,21 @@ class ViewController: UIViewController, ChartViewDelegate {
         mass2Label.text = "\(round(mass2Slider.value * 100) / 100.0)"
     }
     
+    func checkMassChange() {
+        if (mass1 != Double(mass1Slider.value) || mass2 != Double(mass2Slider.value)) {
+            mass1 = Double(mass1Slider.value)
+            mass2 = Double(mass2Slider.value)
+            removeViews()
+            
+            testChirp.changeMasses(mass1: mass1, mass2: mass2)
+    //        testSpect.refresh(run_chirp: &testChirp)
+    //        spectUIIm = testSpect.genSpectrogram()
+            
+            animInit()
+            audioInit()
+            print("Re-initialize!")
+        }
+    }
     
     @IBAction func initializePress(_ sender: Any) {
         let m1 = Double(mass1Slider.value)

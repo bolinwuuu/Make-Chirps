@@ -13,8 +13,8 @@ import Accelerate
 
 extension ViewController {
     
-    
     @IBAction func waveformButtonPress(_ sender: Any) {
+        checkMassChange()
         removeViews()
         
 //        chartView = LineChartView()

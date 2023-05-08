@@ -13,8 +13,8 @@ import Accelerate
 
 extension ViewController {
     
-    
     @IBAction func spectroButtonPress(_ sender: Any) {
+        checkMassChange()
         removeViews()
         
         testChirp.initSpectrogram()

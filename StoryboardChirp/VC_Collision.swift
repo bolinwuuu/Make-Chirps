@@ -13,8 +13,8 @@ import Accelerate
 
 extension ViewController {
     
-    
     @IBAction func animButtonPress(_ sender: Any) {
+        checkMassChange()
         removeViews()
         
         // Update animationdownSample according to speed slider
