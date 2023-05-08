@@ -13,6 +13,7 @@ import Accelerate
 
 extension ViewController {
     
+    
     @IBAction func spectroButtonPress(_ sender: Any) {
         removeViews()
         

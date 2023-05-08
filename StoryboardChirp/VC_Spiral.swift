@@ -13,6 +13,7 @@ import Accelerate
 
 extension ViewController {
     
+    
     @IBAction func spiralButtonPress(_ sender: Any) {
         removeViews()
         
