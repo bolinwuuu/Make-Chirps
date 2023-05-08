@@ -25,7 +25,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var speedLabel: UILabel!
     
-    @IBOutlet weak var intializeButton: UIButton!
+//    @IBOutlet weak var intializeButton: UIButton!
     
     @IBOutlet weak var waveformButton: UIButton!
     
@@ -39,7 +39,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var spiralButton: UIButton!
     
-    @IBOutlet weak var playButton: UIButton!
+//    @IBOutlet weak var playButton: UIButton!
     
     var windowFrame: UIView = UIView()
     
@@ -135,8 +135,8 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         uiview.isHidden = true
         
-        playButton.isHidden = true
-        playButton.isEnabled = false
+//        playButton.isHidden = true
+//        playButton.isEnabled = false
         
         body1.isHidden = true
         body2.isHidden = true
@@ -185,27 +185,27 @@ class ViewController: UIViewController, ChartViewDelegate {
         }
     }
     
-    @IBAction func initializePress(_ sender: Any) {
-        let m1 = Double(mass1Slider.value)
-        let m2 = Double(mass2Slider.value)
-        
-        removeViews()
-        
-        testChirp.changeMasses(mass1: m1, mass2: m2)
-//        testSpect.refresh(run_chirp: &testChirp)
-//        spectUIIm = testSpect.genSpectrogram()
-        
-        animInit()
-        audioInit()
-        
-//        initPress = true
-    }
-    
-    
-    @IBAction func playButtonPress(_ sender: Any) {
-        audioPlayer?.currentTime = 0
-        audioPlayer?.play()
-    }
+//    @IBAction func initializePress(_ sender: Any) {
+//        let m1 = Double(mass1Slider.value)
+//        let m2 = Double(mass2Slider.value)
+//
+//        removeViews()
+//
+//        testChirp.changeMasses(mass1: m1, mass2: m2)
+////        testSpect.refresh(run_chirp: &testChirp)
+////        spectUIIm = testSpect.genSpectrogram()
+//
+//        animInit()
+//        audioInit()
+//
+////        initPress = true
+//    }
+//
+//
+//    @IBAction func playButtonPress(_ sender: Any) {
+//        audioPlayer?.currentTime = 0
+//        audioPlayer?.play()
+//    }
     
     @IBAction func speedSliderChange(_ sender: Any) {
         speedLabel.text = "x \(round(speedSlider.value * 100) / 100.0)"
@@ -214,8 +214,8 @@ class ViewController: UIViewController, ChartViewDelegate {
     func removeViews() {
         self.uiview.removeFromSuperview()
         self.chartView.removeFromSuperview()
-        playButton.isHidden = true
-        playButton.isEnabled = false
+//        playButton.isHidden = true
+//        playButton.isEnabled = false
         
         self.body1.removeFromSuperview()
         self.body2.removeFromSuperview()
