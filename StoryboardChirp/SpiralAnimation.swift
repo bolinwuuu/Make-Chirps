@@ -67,8 +67,15 @@ extension Run_Chirp {
         }()
         
         // only keep the last dur seconds
-        let dur: Double = 10
+        var dur: Double = 10
         let originalDur = (tend - tstart) / speedX
+        print("original duration: ", originalDur)
+        
+        // truncate time to have only last dur seconds
+        if originalDur > dur {
+            tstart = tend - dur * speedX
+        }
+        dur = min(dur, originalDur)
         
 //        let ntime: Double = 800
 //        let dtnow = (tend - tstart) / ntime
@@ -77,10 +84,7 @@ extension Run_Chirp {
         let timePerImage = dtnow / speedX
         
         
-        // truncate time to have only last dur seconds
-        if originalDur > dur {
-            tstart = tend - dur * speedX
-        }
+        
         
         print("dtnow: ", dtnow)
         print("ntime: ", ntime)
