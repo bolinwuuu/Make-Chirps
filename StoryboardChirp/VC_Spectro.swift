@@ -17,6 +17,13 @@ extension ViewController {
         checkMassChange()
         removeViews()
         
+        xAxisLabel.isHidden = false
+        yAxisLabel.isHidden = false
+        
+        xAxisLabel.text = "Time (s)"
+        yAxisLabel.text = "Frequency (Hz)"
+        
+        
         testChirp.initSpectrogram()
         let spectUIIm = testChirp.genSpectrogram()
 

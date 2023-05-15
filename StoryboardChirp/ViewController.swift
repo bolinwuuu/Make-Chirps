@@ -25,6 +25,10 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var speedLabel: UILabel!
     
+    @IBOutlet weak var xAxisLabel: UILabel!
+    
+    @IBOutlet weak var yAxisLabel: UILabel!
+    
 //    @IBOutlet weak var intializeButton: UIButton!
     
     @IBOutlet weak var waveformButton: UIButton!
@@ -49,6 +53,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     var frameProp = 0.65
     
+    // rectangle frame, used by spectrogram
     var frameRect: CGRect!
     
     var audioPlayer: AVAudioPlayer?
@@ -158,6 +163,25 @@ class ViewController: UIViewController, ChartViewDelegate {
                                            height: window_h))
         windowFrame.layer.borderWidth = 8
         windowFrame.layer.borderColor = UIColor.black.cgColor
+        
+        let axisLabel_w = 350
+        let axisLabel_h = 34
+        xAxisLabel.frame = CGRect(x: (Int(self.view.frame.size.width) - axisLabel_w) / 2,
+                                  y: Int(centerFromTop + window_h / 2),
+                                  width: axisLabel_w,
+                                  height: axisLabel_h)
+        xAxisLabel.textAlignment = .center
+        
+        yAxisLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+        yAxisLabel.frame = CGRect(x: Int(window_x) - axisLabel_h / 2 - 20,
+                                  y: Int(centerFromTop) - axisLabel_w / 2,
+                                  width: axisLabel_h,
+                                  height: axisLabel_w)
+        yAxisLabel.textAlignment = .center
+        
+        
+        xAxisLabel.isHidden = true
+        yAxisLabel.isHidden = true
         view.addSubview(windowFrame)
     }
 
@@ -221,6 +245,8 @@ class ViewController: UIViewController, ChartViewDelegate {
         self.body2.removeFromSuperview()
         body1.isHidden = true
         body2.isHidden = true
+        xAxisLabel.isHidden = true
+        yAxisLabel.isHidden = true
     }
 }
 

@@ -17,6 +17,12 @@ extension ViewController {
         checkMassChange()
         removeViews()
         
+        xAxisLabel.isHidden = false
+        yAxisLabel.isHidden = false
+        
+        xAxisLabel.text = "Time (s)"
+        yAxisLabel.text = "Frequency (Hz)"
+        
 //        chartView = LineChartView()
         
         chartView.frame = frameRect
@@ -26,7 +32,7 @@ extension ViewController {
         let set = LineChartDataSet(entries: testChirp.freqDataEntries())
         set.drawCirclesEnabled = false
         set.colors = [NSUIColor](repeating: .systemBlue, count: set.colors.count)
-        set.lineWidth = 30
+        set.lineWidth = 5
         
         let data = LineChartData(dataSet: set)
         data.setDrawValues(false)

@@ -18,6 +18,11 @@ extension ViewController {
         removeViews()
         
 //        chartView = LineChartView()
+        xAxisLabel.isHidden = false
+        yAxisLabel.isHidden = false
+        
+        xAxisLabel.text = "Time (s)"
+        yAxisLabel.text = "Gravitational Wave Strain"
         
         chartView.frame = frameRect
         
@@ -26,7 +31,7 @@ extension ViewController {
         let set = LineChartDataSet(entries: testChirp.waveformDataEntries())
         set.drawCirclesEnabled = false
         set.colors = [NSUIColor](repeating: .systemBlue, count: set.colors.count)
-        set.lineWidth = 30
+        set.lineWidth = 5
         
         let data = LineChartData(dataSet: set)
         data.setDrawValues(false)
