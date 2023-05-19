@@ -195,7 +195,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         let set = LineChartDataSet(entries: testChirp.waveformDataEntries())
         set.drawCirclesEnabled = false
         set.colors = [NSUIColor](repeating: .systemBlue, count: set.colors.count)
-        set.lineWidth = 30
+        set.lineWidth = 5
         
         let data = LineChartData(dataSet: set)
         data.setDrawValues(false)
@@ -230,7 +230,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         let set = LineChartDataSet(entries: testChirp.freqDataEntries())
         set.drawCirclesEnabled = false
         set.colors = [NSUIColor](repeating: .systemBlue, count: set.colors.count)
-        set.lineWidth = 30
+        set.lineWidth = 10
         
         let data = LineChartData(dataSet: set)
         data.setDrawValues(false)
