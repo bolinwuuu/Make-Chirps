@@ -26,6 +26,11 @@ struct Coords {
     }
 }
 
+// For interpolation of frequency
+struct Point {
+    let x: Double
+    let y: Double
+}
 
 class Run_Chirp {
     
@@ -308,15 +313,75 @@ class Run_Chirp {
         
         
         
-//        //Adjustments for Ringdown
-//        var quasi = computeFinalOrbitalAngularMomentum(M1: m1, M2: m2);
-//        h = appendRingDownandNormalWaveForm(h: h, quasi: quasi)
-//        //t = [];
-//        var tmax = Double(h.count) * dt
-//        t = stride(from: 0.0, through: tmax, by: dt).map { $0 }
+
+        //Adjustments for Ringdown ---------------------------
+        
+        // Wavelength
+        var quasi = computeFinalOrbitalAngularMomentum(M1: m1, M2: m2);
+        h = appendRingDownandNormalWaveForm(h: h, quasi: quasi)
+        //t = [];
+        var tmax = Double(h.count) * dt
+        t = stride(from: 0.0, through: tmax, by: dt).map { $0 }
+
         
         max_h = vDSP.maximum(h)
         
+        // Frequency Ringdown
+        
+        var freq_last_index = freq.count - 1;
+        var last_value_freq = freq[freq_last_index]
+        var i = freq_last_index;
+        
+        //Making frequency graph same length as wavelength
+        while i < h.count {
+            freq.append(last_value_freq)
+            i = i + 1;
+        }
+        
+        //Interpolation
+        var qnmfreq = returnQNMFreq(M1: m1, M2: m2)
+        
+        //starting index for interpolation
+        freq_last_index = freq.firstIndex(of: last_value_freq)!;
+        
+        //difference between last evolving frequency and end of frequency array
+        var difference = (freq.count - 1) - freq_last_index;
+        var half_difference = Int(ceil(Double(difference) / 2));
+        
+        
+        
+      //  for i in freq_last_index...(freq.count - 1) {
+      //      freq[i] = 0;
+    //    }
+        
+        //THIS is likely causing the spike.
+        freq[half_difference + freq_last_index] = qnmfreq
+        
+        for i in (half_difference + freq_last_index)...(freq.count - 1){
+            freq[i] = qnmfreq
+        }
+        
+        
+        
+        // Exponential decay of frequency
+        // Constant of decay mathces amplitude
+        // freq = B + (A-B) * exp
+        
+        
+        var startIndex = freq_last_index
+        var endIndex = freq.count-1
+        var differenceIndexes = endIndex - startIndex
+    //    let smoothArray = createSmoothArray(inputArray: freq, numPoints: differenceIndexes, startIndex: startIndex, endIndex: endIndex)
+    gaussianDecay(arr: &freq, startIndex: startIndex, qnmfreq: qnmfreq)
+        
+        
+     // interpolateArray(frequencyArray: &freq, mergerIndex: startIndex, stableIndex: (startndex + half_difference)
+     // freq = smoothArray;
+        
+        
+        //END Adjustments for Ringdown --------------------------------
+        print("qnm_freq: ", qnmfreq)
+        print("merger freq: ", last_value_freq)
         print("t size: ", t.count)
         print("amp size: ", amp.count)
         print("phi size: ", phi.count)
@@ -337,6 +402,133 @@ class Run_Chirp {
 //            return ret;
 //        }
 //    }
+    
+    // Cubic Hermite Spline Interpolation
+    
+    func applyExponentialDecay(arr: inout [Double], startIndex: Int, qnmfreq: Double) {
+        let x_1 = startIndex
+        let x_2 = arr.count-1
+        let a: Double = arr[startIndex] // - qnmfreq // starting value minus asymptotic value
+        let b: Double = -log(0.5) / Double(x_2 - x_1) // rate of decay
+        let c: Double = qnmfreq // asymptotic value
+
+        for i in x_1...x_2 {
+            let x = i-x_1
+            arr[i] = c + (a-c) * exp(-b * Double(x))
+        }
+    }
+    
+    func gaussianDecay(arr: inout [Double], startIndex: Int, qnmfreq: Double) {
+        
+        let x_1 = startIndex
+        let x_2 = arr.count-1
+        
+        let initial_slope = ( arr[x_1] - arr[x_1-1])
+        
+        var next_slope = initial_slope / 1.5 // was 4
+        var j = x_1 + 1
+        
+        while next_slope > 0.01 { //was 0.1
+            arr[j] = arr[j-1] + next_slope
+            next_slope = next_slope / 1.5 // was 4
+            j = j + 1
+        } // at the end, the value at index j will have not been altered yet.
+        
+        let sigma = 65;
+        let minVal = qnmfreq;
+        let mu = j-1
+        let maxVal = arr[j-1]
+        
+        for i in (j-1)...x_2 {
+            let x = i
+            
+            arr[i] = ( Double(maxVal - minVal) * exp( Double(-(x - mu) * (x - mu)) / Double(2 * sigma * sigma))) + minVal
+            
+         //   (arr[j-1] - qnmfreq) * exp (-(x-(j-1)) / (2 * (pow(0.65, 2))) )
+        }
+        
+    }
+        func applyDecayingBellCurveAtIndex(arr: inout [Double], peakIndex: Int, sigma: Double, maxVal: Double, minVal: Double) {
+            guard peakIndex >= 0 && peakIndex < arr.count else {
+                print("Invalid peakIndex")
+                return
+            }
+            
+            let mu = arr[peakIndex]
+            
+            for i in 0..<arr.count {
+                let x = arr[i]
+                if x < mu {
+                    arr[i] = maxVal
+                } else {
+                    arr[i] = ((maxVal - minVal) * exp(-(x - mu) * (x - mu) / (2 * sigma * sigma))) + minVal
+                }
+            }
+        }
+        
+        
+
+    
+    func interpolateFrequency(mergerIndex: Int, stableIndex: Int, mergerFrequency: Double, stableFrequency: Double, index: Int) -> Double {
+        let lambda = -log((stableFrequency - mergerFrequency) / mergerFrequency) / Double(stableIndex - mergerIndex)
+        let frequency = mergerFrequency * exp(-lambda * Double(index - mergerIndex)) + stableFrequency
+        return frequency
+    }
+
+    func interpolateArray(frequencyArray: inout [Double], mergerIndex: Int, stableIndex: Int) {
+        let mergerFrequency = frequencyArray[mergerIndex]
+        let stableFrequency = frequencyArray[stableIndex]
+        for i in mergerIndex...stableIndex {
+            frequencyArray[i] = interpolateFrequency(mergerIndex: mergerIndex, stableIndex: stableIndex, mergerFrequency: mergerFrequency, stableFrequency: stableFrequency, index: i)
+        }
+    }
+
+    func cubicHermiteSplineInterpolation(p0: Point, p1: Point, m0: Double, m1: Double, t: Double) -> Double {
+        let t2 = t * t
+        let t3 = t2 * t
+        
+        let h00 = 2 * t3 - 3 * t2 + 1
+        let h10 = t3 - 2 * t2 + t
+        let h01 = -2 * t3 + 3 * t2
+        let h11 = t3 - t2
+        
+        return h00 * p0.y + h10 * m0 + h01 * p1.y + h11 * m1
+    }
+
+    func createSmoothArray(inputArray: [Double], numPoints: Int, startIndex: Int, endIndex: Int) -> [Double] {
+        var smoothArray = inputArray
+        let n = inputArray.count
+        
+        if startIndex >= endIndex || endIndex >= n {
+            return inputArray
+        }
+        
+        let p0 = Point(x: Double(startIndex), y: inputArray[startIndex])
+        let p1 = Point(x: Double(endIndex), y: inputArray[endIndex])
+        
+        let m0: Double
+        if startIndex == 0 {
+            m0 = 0
+        } else {
+            m0 = (inputArray[startIndex + 1] - inputArray[startIndex - 1]) / (2)
+        }
+        
+        let m1: Double
+        if endIndex == n - 1 {
+            m1 = 0
+        } else {
+            m1 = (inputArray[endIndex + 1] - inputArray[endIndex - 1]) / (2)
+        }
+        
+        for j in 0...numPoints {
+            let t = Double(j) / Double(numPoints)
+            let interpolatedValue = cubicHermiteSplineInterpolation(p0: p0, p1: p1, m0: m0, m1: m1, t: t)
+            smoothArray[startIndex + j] = interpolatedValue
+        }
+
+        return smoothArray
+    }
+
     
     func genWaveform() -> [Coords] {
         var cd = [Coords](repeating: Coords(x_in: 0, y_in: 0), count: self.h.count)
@@ -527,6 +719,15 @@ class Run_Chirp {
     }
     
     //Function to return an array of double values that model the ringdown waveform
+    
+    func generateSigmoidLogicCurveFrequency(final_freq: Double, starting_freq: Double) -> [Double] {
+        
+        
+        
+        return [1.0]
+    }
+    
+    
     func computeFinalOrbitalAngularMomentum(M1: Double, M2: Double) -> [Double] {
          // Physical constants
          let G = 6.67e-11
@@ -598,6 +799,70 @@ class Run_Chirp {
         
         return quasi; //pl
      }
+    
+    
+    func returnQNMFreq(M1: Double, M2: Double) -> Double   {
+        // Physical constants
+        let G = 6.67e-11
+        let c = 2.998e8
+        let Msun = 2.0e30
+        let factor = (G * Msun / pow(c, 3))
+        
+        // Masses of initial stars (solar mass units)
+        //let M1 = 30.0
+        //let M2 = 30.0
+        
+        // Compute final black hole mass (neglecting ~5% GW energy loss) and nu parameter
+        let Mfinal = M1 + M2
+        let nu = M1 * M2 / pow(Mfinal, 2)
+        
+        print("Starting with M1=\(M1), M2=\(M2) --> Mfinal=\(Mfinal) and nu=\(nu)")
+        
+        // Starting guess for af
+        var af = nu * 0.66 / 0.25
+        var aflast = 0.0
+        
+        // Iteratively improve estimate (assume prograde orbit for risco)
+        var niter = 0
+        
+        while abs(af - aflast) > 0.00001 && niter <= 50 {
+            aflast = af
+            niter += 1
+            let Z1 = 1 + pow((1 - pow(af, 2)), 1.0 / 3.0) * (pow((1 + af), 1.0 / 3.0) + pow((1 - af), 1.0 / 3.0))
+            let Z2 = sqrt(3 * pow(af, 2) + pow(Z1, 2))
+            let risco = 3 + Z2 - sqrt((3 - Z1) * (3 + Z1 + 2 * Z2))
+            let Lorb = nu * (pow(risco, 2) - 2 * af * sqrt(risco) + pow(af, 2)) / pow(risco, 0.75) / (pow(risco, 1.5) - 3 * sqrt(risco) + 2 * af).squareRoot()
+            af = Lorb
+            print("niter=\(niter): af=\(aflast) gives Z1=\(Z1), Z2=\(Z2), risco=\(risco) and new af=\(af)")
+            af = Lorb
+        }
+        
+        // Values for dominant (m=2) mode column in Andersson table 17.1:
+        let af_table = [0.0, 0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70, 0.80, 0.90, 0.99]
+        let omega_real_table = [0.37367, 0.38702, 0.40215, 0.41953, 0.43984, 0.46412, 0.49405, 0.53260, 0.58602, 0.67163, 0.87086]
+        let omega_imag_table = [0.08896, 0.08871, 0.08831, 0.08773, 0.08688, 0.08564, 0.08377, 0.08079, 0.07563, 0.06486, 0.02951]
+        
+        let omega_real = interpolate(af_table, omega_real_table, af)
+        let omega_imag = interpolate(af_table, omega_imag_table, af)
+        
+        let QNM_freq = omega_real / (2 * Double.pi) / (factor * Mfinal)
+        let QNM_tau = factor * Mfinal / omega_imag
+        
+        let R1 = (2 * G * M1 * Msun / pow(c, 2))
+        let R2 = (2 * G * M2 * Msun / pow(c, 2))
+        let ftouch = 2 * (1 / (2 * Double.pi)) * pow((G * (M1 + M2) * Msun / pow((R1 + R2), 3)), 1 / 2)
+        
+        print("Interpolated real/imag omega values: \(omega_real) -\(omega_imag) i\n --> QNM freq = \(QNM_freq) Hz, tau = \(QNM_tau) s (merger orbital freq = \(ftouch) Hz)")
+        
+        
+        var tmax = 5 * QNM_tau;
+        var dt: Double
+        dt = 10.0 / 48000.0 ;
+        var t = stride(from: 0.0, through: tmax, by: dt).map { $0 }
+        
+        return QNM_freq;
+    }
+        
     
     // Function to find the last sample of waveform and append the ringdown to it with a scalar
     func appendRingDownandNormalWaveForm(h: [Double], quasi: [Double]) -> [Double] {
