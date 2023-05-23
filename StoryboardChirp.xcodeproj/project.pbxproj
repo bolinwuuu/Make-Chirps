@@ -24,6 +24,12 @@
 		1429A3D3298433EC00F919F8 /* FreqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3D2298433EC00F919F8 /* FreqViewController.swift */; };
 		1429A3D52984340700F919F8 /* SpectrogramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3D42984340700F919F8 /* SpectrogramViewController.swift */; };
 		1429A3D7298463AC00F919F8 /* Spectrogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3D6298463AC00F919F8 /* Spectrogram.swift */; };
+		144A28BA2A089B9F00BBB6D1 /* VC_Spectro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144A28B92A089B9F00BBB6D1 /* VC_Spectro.swift */; };
+		144A28BC2A089BE800BBB6D1 /* VC_Waveform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144A28BB2A089BE800BBB6D1 /* VC_Waveform.swift */; };
+		144A28BE2A089C1700BBB6D1 /* VC_Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144A28BD2A089C1700BBB6D1 /* VC_Frequency.swift */; };
+		144A28C02A089C8400BBB6D1 /* VC_Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144A28BF2A089C8400BBB6D1 /* VC_Audio.swift */; };
+		144A28C22A089D2A00BBB6D1 /* VC_Collision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144A28C12A089D2A00BBB6D1 /* VC_Collision.swift */; };
+		144A28C42A089D9900BBB6D1 /* VC_Spiral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144A28C32A089D9900BBB6D1 /* VC_Spiral.swift */; };
 		1462249129ABFB6300DDF1E9 /* SpiralAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1462249029ABFB6300DDF1E9 /* SpiralAnimation.swift */; };
 		14D2EA6E29AD5E7E001E6226 /* SpiralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D2EA6D29AD5E7E001E6226 /* SpiralViewController.swift */; };
 		62AD7610B71025A4077B45C9 /* Pods_StoryboardChirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */; };
@@ -69,6 +75,12 @@
 		1429A3D2298433EC00F919F8 /* FreqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreqViewController.swift; sourceTree = "<group>"; };
 		1429A3D42984340700F919F8 /* SpectrogramViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectrogramViewController.swift; sourceTree = "<group>"; };
 		1429A3D6298463AC00F919F8 /* Spectrogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spectrogram.swift; sourceTree = "<group>"; };
+		144A28B92A089B9F00BBB6D1 /* VC_Spectro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Spectro.swift; sourceTree = "<group>"; };
+		144A28BB2A089BE800BBB6D1 /* VC_Waveform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Waveform.swift; sourceTree = "<group>"; };
+		144A28BD2A089C1700BBB6D1 /* VC_Frequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Frequency.swift; sourceTree = "<group>"; };
+		144A28BF2A089C8400BBB6D1 /* VC_Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Audio.swift; sourceTree = "<group>"; };
+		144A28C12A089D2A00BBB6D1 /* VC_Collision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Collision.swift; sourceTree = "<group>"; };
+		144A28C32A089D9900BBB6D1 /* VC_Spiral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Spiral.swift; sourceTree = "<group>"; };
 		1462249029ABFB6300DDF1E9 /* SpiralAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralAnimation.swift; sourceTree = "<group>"; };
 		14D2EA6D29AD5E7E001E6226 /* SpiralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralViewController.swift; sourceTree = "<group>"; };
 		5566186B885D36136704E55C /* Pods-StoryboardChirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardChirp.debug.xcconfig"; path = "Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +158,12 @@
 				1462249029ABFB6300DDF1E9 /* SpiralAnimation.swift */,
 				14D2EA6D29AD5E7E001E6226 /* SpiralViewController.swift */,
 				7607C37D29B29B4B00DEF8DA /* Storyboard_All_In_One.storyboard */,
+				144A28BB2A089BE800BBB6D1 /* VC_Waveform.swift */,
+				144A28BD2A089C1700BBB6D1 /* VC_Frequency.swift */,
+				144A28B92A089B9F00BBB6D1 /* VC_Spectro.swift */,
+				144A28BF2A089C8400BBB6D1 /* VC_Audio.swift */,
+				144A28C12A089D2A00BBB6D1 /* VC_Collision.swift */,
+				144A28C32A089D9900BBB6D1 /* VC_Spiral.swift */,
 			);
 			path = StoryboardChirp;
 			sourceTree = "<group>";
@@ -361,9 +379,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1429A3D52984340700F919F8 /* SpectrogramViewController.swift in Sources */,
+				144A28C02A089C8400BBB6D1 /* VC_Audio.swift in Sources */,
 				1429A3CD29842E9B00F919F8 /* run_chirp.swift in Sources */,
+				144A28C22A089D2A00BBB6D1 /* VC_Collision.swift in Sources */,
+				144A28BC2A089BE800BBB6D1 /* VC_Waveform.swift in Sources */,
+				144A28C42A089D9900BBB6D1 /* VC_Spiral.swift in Sources */,
 				1429A3A129842E0700F919F8 /* ViewController.swift in Sources */,
+				144A28BA2A089B9F00BBB6D1 /* VC_Spectro.swift in Sources */,
 				1429A3CF29842EF000F919F8 /* ColorTable.swift in Sources */,
+				144A28BE2A089C1700BBB6D1 /* VC_Frequency.swift in Sources */,
 				1429A3D1298433D500F919F8 /* WaveformViewController.swift in Sources */,
 				1429A3D3298433EC00F919F8 /* FreqViewController.swift in Sources */,
 				14D2EA6E29AD5E7E001E6226 /* SpiralViewController.swift in Sources */,
@@ -550,6 +574,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BXSG6Y285R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StoryboardChirp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -579,6 +604,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BXSG6Y285R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StoryboardChirp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

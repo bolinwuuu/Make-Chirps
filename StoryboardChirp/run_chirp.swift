@@ -313,6 +313,7 @@ class Run_Chirp {
         
         
         
+
         //Adjustments for Ringdown ---------------------------
         
         // Wavelength
@@ -321,6 +322,7 @@ class Run_Chirp {
         //t = [];
         var tmax = Double(h.count) * dt
         t = stride(from: 0.0, through: tmax, by: dt).map { $0 }
+
         
         max_h = vDSP.maximum(h)
         
