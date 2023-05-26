@@ -233,7 +233,7 @@ class Run_Chirp {
 
         sampleN = floor(fsamp*upperT)
 
-        t = Array(stride(from: 0, through: sampleN-1, by: 1))
+        t = Array(stride(from: 0, to: sampleN, by: 1))
         t = vDSP.multiply(dt, t)
 
         // Determine frequency (and then time) when Schwarzchild radii touch
@@ -315,13 +315,14 @@ class Run_Chirp {
         
 
         //Adjustments for Ringdown ---------------------------
-        
+        print("BEFORE h size: \(h.count)")
         // Wavelength
         var quasi = computeFinalOrbitalAngularMomentum(M1: m1, M2: m2);
         h = appendRingDownandNormalWaveForm(h: h, quasi: quasi)
         //t = [];
-        var tmax = Double(h.count) * dt
-        t = stride(from: 0.0, through: tmax, by: dt).map { $0 }
+//        var tmax = Double(h.count) * dt
+//        t = stride(from: 0.0, to: tmax, by: dt).map { $0 }
+        t = Array(t[0..<h.count])
 
         
         max_h = vDSP.maximum(h)
@@ -332,11 +333,16 @@ class Run_Chirp {
         var last_value_freq = freq[freq_last_index]
         var i = freq_last_index;
         
+        print("BEFORE freq size: ", freq.count)
         //Making frequency graph same length as wavelength
-        while i < h.count {
-            freq.append(last_value_freq)
-            i = i + 1;
-        }
+//        while i < h.count {
+//            freq.append(last_value_freq)
+//            i = i + 1;
+//        }
+        freq = freq + Array(repeating: last_value_freq, count: max(0, h.count - freq.count))
+        
+        print("NOW h size: ", h.count)
+        print("NOW freq size: ", freq.count)
         
         //Interpolation
         var qnmfreq = returnQNMFreq(M1: m1, M2: m2)
@@ -380,12 +386,13 @@ class Run_Chirp {
         
         
         //END Adjustments for Ringdown --------------------------------
-        print("qnm_freq: ", qnmfreq)
-        print("merger freq: ", last_value_freq)
-        print("t size: ", t.count)
-        print("amp size: ", amp.count)
-        print("phi size: ", phi.count)
-        print("freq size: ", freq.count)
+//        print("qnm_freq: ", qnmfreq)
+//        print("merger freq: ", last_value_freq)
+//        print("t size: ", t.count)
+//        print("h size: ", h.count)
+//        print("amp size: ", amp.count)
+//        print("phi size: ", phi.count)
+//        print("freq size: ", freq.count)
     }
     
     
@@ -833,7 +840,7 @@ class Run_Chirp {
             let risco = 3 + Z2 - sqrt((3 - Z1) * (3 + Z1 + 2 * Z2))
             let Lorb = nu * (pow(risco, 2) - 2 * af * sqrt(risco) + pow(af, 2)) / pow(risco, 0.75) / (pow(risco, 1.5) - 3 * sqrt(risco) + 2 * af).squareRoot()
             af = Lorb
-            print("niter=\(niter): af=\(aflast) gives Z1=\(Z1), Z2=\(Z2), risco=\(risco) and new af=\(af)")
+//            print("niter=\(niter): af=\(aflast) gives Z1=\(Z1), Z2=\(Z2), risco=\(risco) and new af=\(af)")
             af = Lorb
         }
         
@@ -852,13 +859,15 @@ class Run_Chirp {
         let R2 = (2 * G * M2 * Msun / pow(c, 2))
         let ftouch = 2 * (1 / (2 * Double.pi)) * pow((G * (M1 + M2) * Msun / pow((R1 + R2), 3)), 1 / 2)
         
-        print("Interpolated real/imag omega values: \(omega_real) -\(omega_imag) i\n --> QNM freq = \(QNM_freq) Hz, tau = \(QNM_tau) s (merger orbital freq = \(ftouch) Hz)")
+//        print("Interpolated real/imag omega values: \(omega_real) -\(omega_imag) i\n --> QNM freq = \(QNM_freq) Hz, tau = \(QNM_tau) s (merger orbital freq = \(ftouch) Hz)")
         
         
         var tmax = 5 * QNM_tau;
         var dt: Double
         dt = 10.0 / 48000.0 ;
+//        print("tmax: \(tmax)")
         var t = stride(from: 0.0, through: tmax, by: dt).map { $0 }
+//        print("FAKE t size: \(t.count)")
         
         return QNM_freq;
     }
@@ -874,9 +883,10 @@ class Run_Chirp {
         
         var quasi: [Double] = quasi;
             
-        for i in 0...(quasi.count - 1){
-            quasi[i] = scalarForRingdown * quasi[i];
-        }
+//        for i in 0...(quasi.count - 1){
+//            quasi[i] = scalarForRingdown * quasi[i];
+//        }
+        vDSP.multiply(scalarForRingdown, quasi, result: &quasi)
         
         //find index of element that is closest to one
         var closestIndex: Int?
@@ -889,20 +899,21 @@ class Run_Chirp {
         
         let closestValuetoOne = h[closestIndex!];
         
-        var conjoinedArray: [Double] = [];
+//        var conjoinedArray: [Double] = [];
         
-        for i in 0...maxindex {
-            conjoinedArray.append(h[i])
-        }
+//        for i in 0...maxindex {
+//            conjoinedArray.append(h[i])
+//        }
+//
+//        for i in 0...(quasi.count-1){
+//            conjoinedArray.append(quasi[i])
+//        }
         
-        for i in 0...(quasi.count-1){
-            conjoinedArray.append(quasi[i])
-        }
+        return Array(h[0...maxindex] + quasi[0..<quasi.count])
         
         
         
-        
-        return conjoinedArray;
+//        return conjoinedArray;
         
     }
      
