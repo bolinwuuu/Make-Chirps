@@ -36,8 +36,22 @@ class WaveformViewController: UIViewController, ChartViewDelegate {
         waveformChart.delegate = self
         
         waveformChart.frame = CGRect(x: 0, y: 0,
-                                   width: self.view.frame.size.width * 3 / 4,
-                                   height: self.view.frame.size.width * 3 / 4)
+                                   width: self.view.frame.size.width * 4 / 16, // was 3/4 for this line and next
+                                   height: self.view.frame.size.width * 4 / 16)
+        
+        
+       
+
+        
+        
+        waveformChart.xAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 15.0)!
+              //  waveformChart.chartXaxis
+        
+        
+        waveformChart.leftAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 15.0)!
+
+        
+        
         
         waveformChart.center = view.center
         
@@ -56,10 +70,12 @@ class WaveformViewController: UIViewController, ChartViewDelegate {
         
         waveformChart.xAxis.labelPosition = .bottom
         waveformChart.xAxis.axisLineColor = NSUIColor.lightGray
-        waveformChart.xAxis.labelTextColor = .lightGray
+        waveformChart.xAxis.labelTextColor = .black
+        //waveformChart.xAxis.description = "Test"
+        //waveformChart. = "Test title"
         
         waveformChart.leftAxis.axisLineColor = NSUIColor.lightGray
-        waveformChart.leftAxis.labelTextColor = .lightGray
+        waveformChart.leftAxis.labelTextColor = .black
         
         
 //        spiralChart.xAxis.drawGridLinesEnabled = false

@@ -174,9 +174,7 @@ class Run_Chirp {
     func changeMasses(mass1: Double, mass2: Double) {
         m1 = mass1
         m2 = mass2
-        
-        
-        
+
         // Implied chirp mass (governs frequency and amplitude evolution)
         // (PPNP text right after Eqn 74)
           
@@ -320,7 +318,7 @@ class Run_Chirp {
         h = appendRingDownandNormalWaveForm(h: h, quasi: quasi)
         //t = [];
         var tmax = Double(h.count) * dt
-        t = stride(from: 0.0, through: tmax, by: dt).map { $0 }
+        t = stride(from: 0.0, to: tmax, by: dt).map { $0 }
         
         max_h = vDSP.maximum(h)
         
@@ -331,13 +329,14 @@ class Run_Chirp {
         var i = freq_last_index;
         
         //Making frequency graph same length as wavelength
+        
         while i < h.count {
             freq.append(last_value_freq)
             i = i + 1;
         }
         
         //Interpolation
-        var qnmfreq = returnQNMFreq(M1: m1, M2: m2)
+        var qnmfreq = returnQNMFreq(M1: m1, M2: m2)[0]
         
         //starting index for interpolation
         freq_last_index = freq.firstIndex(of: last_value_freq)!;
@@ -369,21 +368,37 @@ class Run_Chirp {
         var startIndex = freq_last_index
         var endIndex = freq.count-1
         var differenceIndexes = endIndex - startIndex
-    //    let smoothArray = createSmoothArray(inputArray: freq, numPoints: differenceIndexes, startIndex: startIndex, endIndex: endIndex)
-    gaussianDecay(arr: &freq, startIndex: startIndex, qnmfreq: qnmfreq)
+
+        let qnmtau = returnQNMFreq(M1: m1, M2: m2)[1]
+        var sigmatime = qnmtau
+        gaussianDecay(arr: &freq, startIndex: startIndex, qnmfreq: qnmfreq, sigmatime: sigmatime)
+ //   applyExponentialDecay(arr: &freq, startIndex: startIndex, qnmfreq: qnmfreq)
         
         
      // interpolateArray(frequencyArray: &freq, mergerIndex: startIndex, stableIndex: (startndex + half_difference)
      // freq = smoothArray;
         
         
+        if freq.count < h.count {
+            let difference = h.count - freq.count
+            h = h.dropLast(difference)
+        }
+        else if h.count < freq.count {
+            let difference = freq.count - h.count
+            freq = freq.dropLast(difference)
+        }
+        
+        
         //END Adjustments for Ringdown --------------------------------
+        print("chirp mass",mchirp)
+        print("qnm_tau: ",qnmtau)
         print("qnm_freq: ", qnmfreq)
         print("merger freq: ", last_value_freq)
         print("t size: ", t.count)
         print("amp size: ", amp.count)
         print("phi size: ", phi.count)
         print("freq size: ", freq.count)
+        print("h size: ",h.count)
     }
     
     
@@ -416,23 +431,24 @@ class Run_Chirp {
         }
     }
     
-    func gaussianDecay(arr: inout [Double], startIndex: Int, qnmfreq: Double) {
+    func gaussianDecay(arr: inout [Double], startIndex: Int, qnmfreq: Double, sigmatime: Double) {
         
         let x_1 = startIndex
         let x_2 = arr.count-1
         
         let initial_slope = ( arr[x_1] - arr[x_1-1])
         
-        var next_slope = initial_slope / 1.5 // was 4
+        var next_slope = initial_slope / 10.0 // was 4
         var j = x_1 + 1
         
         while next_slope > 0.01 { //was 0.1
             arr[j] = arr[j-1] + next_slope
-            next_slope = next_slope / 1.5 // was 4
+            next_slope = next_slope / 10.0 // was 4
             j = j + 1
         } // at the end, the value at index j will have not been altered yet.
         
-        let sigma = 65;
+        // let sigma = 35; // should scale with ringdown exponential decay sigma, that value or less
+        var sigma = (sigmatime * 4800.0) / 3.0
         let minVal = qnmfreq;
         let mu = j-1
         let maxVal = arr[j-1]
@@ -610,6 +626,10 @@ class Run_Chirp {
     
     func getM2() -> Double {
         return m2
+    }
+    
+    func getChirpMass() -> Double {
+        return (pow((m1*m2),(3/5))/pow((m1+m2),(1/5)))
     }
     
     func getR1() -> Double {
@@ -799,7 +819,7 @@ class Run_Chirp {
      }
     
     
-    func returnQNMFreq(M1: Double, M2: Double) -> Double   {
+    func returnQNMFreq(M1: Double, M2: Double) -> [Double]   {
         // Physical constants
         let G = 6.67e-11
         let c = 2.998e8
@@ -858,7 +878,7 @@ class Run_Chirp {
         dt = 10.0 / 48000.0 ;
         var t = stride(from: 0.0, through: tmax, by: dt).map { $0 }
         
-        return QNM_freq;
+        return [QNM_freq,QNM_tau];
     }
         
     

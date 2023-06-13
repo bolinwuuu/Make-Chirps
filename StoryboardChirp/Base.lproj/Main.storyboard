@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jjg-Qm-ZGM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jjg-Qm-ZGM">
     <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -235,7 +235,7 @@
             </objects>
             <point key="canvasLocation" x="210.79136690647485" y="993.96984924623121"/>
         </scene>
-        <!--Initialize-->
+        <!--View Controller-->
         <scene sceneID="8FQ-fh-T5P">
             <objects>
                 <viewController id="dCC-hP-mkN" customClass="ViewController" customModule="StoryboardChirp" customModuleProvider="target" sceneMemberID="viewController">
@@ -427,7 +427,7 @@
                         <viewLayoutGuide key="safeArea" id="YnS-1K-rlp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Initialize" id="4Q8-XO-oIw"/>
+                    <navigationItem key="navigationItem" id="4Q8-XO-oIw"/>
                     <connections>
                         <outlet property="animButton" destination="8az-5Z-Qlq" id="rae-j8-dOp"/>
                         <outlet property="audioButton" destination="47P-Is-PLO" id="L34-ap-irz"/>

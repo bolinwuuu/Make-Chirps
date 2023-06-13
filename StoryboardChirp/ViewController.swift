@@ -47,9 +47,10 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     var chartView = LineChartView()
     
-    var frameProp = 0.65
+    var frameProp = 0.75
     
     var frameRect: CGRect!
+    var frameRect2: CGRect!
     
     var audioPlayer: AVAudioPlayer?
     
@@ -128,7 +129,13 @@ class ViewController: UIViewController, ChartViewDelegate {
         let frameRect_x: Double = self.view.frame.size.width * (1 - frameProp) / 2
         let frameRect_y: Double = centerFromTop - frameRect_h / 2
         
+        // For use by wavelength and frequency
         frameRect = CGRect(x: frameRect_x,
+                           y: frameRect_y,
+                           width: frameRect_w * (10/11),
+                           height: frameRect_h * (10/11))
+        
+        frameRect2 = CGRect(x: frameRect_x,
                            y: frameRect_y,
                            width: frameRect_w,
                            height: frameRect_h)
@@ -155,7 +162,7 @@ class ViewController: UIViewController, ChartViewDelegate {
                                            y: window_y,
                                            width: window_w,
                                            height: window_h))
-        windowFrame.layer.borderWidth = 8
+        windowFrame.layer.borderWidth = 2
         windowFrame.layer.borderColor = UIColor.black.cgColor
         view.addSubview(windowFrame)
     }
@@ -190,12 +197,12 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         chartView.frame = frameRect
         
-        view.addSubview(chartView)
+        view.addSubview(chartView) // was view.addSubview
         
         let set = LineChartDataSet(entries: testChirp.waveformDataEntries())
         set.drawCirclesEnabled = false
         set.colors = [NSUIColor](repeating: .systemBlue, count: set.colors.count)
-        set.lineWidth = 5
+        set.lineWidth = testChirp.getChirpMass() / 3.7
         
         let data = LineChartData(dataSet: set)
         data.setDrawValues(false)
@@ -205,10 +212,14 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         chartView.xAxis.labelPosition = .bottom
         chartView.xAxis.axisLineColor = NSUIColor.lightGray
-        chartView.xAxis.labelTextColor = .lightGray
+        chartView.xAxis.labelTextColor = .black
+        chartView.xAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
+        
+        
+        chartView.leftAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
         
         chartView.leftAxis.axisLineColor = NSUIColor.lightGray
-        chartView.leftAxis.labelTextColor = .lightGray
+        chartView.leftAxis.labelTextColor = .black
 
         chartView.rightAxis.drawAxisLineEnabled = false
         chartView.rightAxis.drawLabelsEnabled = false
@@ -216,6 +227,35 @@ class ViewController: UIViewController, ChartViewDelegate {
         chartView.legend.enabled = false
         
         chartView.animate(xAxisDuration: 2.5)
+        
+        chartView.center = windowFrame.center
+        
+        let xAxisLabel = UILabel()
+                xAxisLabel.text = "Time (seconds)"
+                xAxisLabel.textAlignment = .center
+                xAxisLabel.translatesAutoresizingMaskIntoConstraints = false
+                windowFrame.addSubview(xAxisLabel)
+                
+                let yAxisLabel = UILabel()
+                yAxisLabel.text = "Gravitational Wave Strain"
+                yAxisLabel.textAlignment = .center
+                yAxisLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+                yAxisLabel.translatesAutoresizingMaskIntoConstraints = false
+                windowFrame.addSubview(yAxisLabel)
+        
+        //xAxisLabel.center = chartView.center
+        //yAxisLabel.center = chartView.center
+        
+        NSLayoutConstraint.activate([
+                // X axis label constraints
+                xAxisLabel.bottomAnchor.constraint(equalTo: windowFrame.bottomAnchor, constant: -14),
+                xAxisLabel.centerXAnchor.constraint(equalTo: windowFrame.centerXAnchor),
+
+                // Y axis label constraints
+                yAxisLabel.leadingAnchor.constraint(equalTo: windowFrame.leadingAnchor, constant: -60),
+                yAxisLabel.centerYAnchor.constraint(equalTo: windowFrame.centerYAnchor, constant: -33)
+            ])
+
     }
     
     @IBAction func freqButtonPress(_ sender: Any) {
@@ -250,7 +290,37 @@ class ViewController: UIViewController, ChartViewDelegate {
 //
         chartView.legend.enabled = false
         
+        chartView.center = windowFrame.center
+
+        
         chartView.animate(xAxisDuration: 2.5)
+        
+        let xAxisLabel = UILabel()
+                xAxisLabel.text = "Time (seconds)"
+                xAxisLabel.textAlignment = .center
+                xAxisLabel.translatesAutoresizingMaskIntoConstraints = false
+                windowFrame.addSubview(xAxisLabel)
+                
+                let yAxisLabel = UILabel()
+                yAxisLabel.text = "Frequency (Hz)"
+                yAxisLabel.textAlignment = .center
+                yAxisLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+                yAxisLabel.translatesAutoresizingMaskIntoConstraints = false
+                windowFrame.addSubview(yAxisLabel)
+        
+        //xAxisLabel.center = chartView.center
+        //yAxisLabel.center = chartView.center
+        
+        NSLayoutConstraint.activate([
+                // X axis label constraints
+                xAxisLabel.bottomAnchor.constraint(equalTo: windowFrame.bottomAnchor, constant: -14),
+                xAxisLabel.centerXAnchor.constraint(equalTo: windowFrame.centerXAnchor),
+
+                // Y axis label constraints
+                yAxisLabel.leadingAnchor.constraint(equalTo: windowFrame.leadingAnchor, constant: -35),
+                yAxisLabel.centerYAnchor.constraint(equalTo: windowFrame.centerYAnchor, constant: -23)
+            ])
+
     }
     
     
@@ -260,13 +330,41 @@ class ViewController: UIViewController, ChartViewDelegate {
         testChirp.initSpectrogram()
         let spectUIIm = testChirp.genSpectrogram()
 
-        uiview = UIView(frame: frameRect)
+        uiview = UIView(frame: frameRect) // was frameRect
 
         uiview = UIImageView(image: spectUIIm)
-        uiview.frame = frameRect
+        uiview.frame = frameRect // was frameRect
+        uiview.center = windowFrame.center // new
 
         
         view.addSubview(uiview)
+        
+        
+        let xAxisLabel = UILabel()
+                xAxisLabel.text = "Time (seconds)"
+                xAxisLabel.textAlignment = .center
+                xAxisLabel.translatesAutoresizingMaskIntoConstraints = false
+                windowFrame.addSubview(xAxisLabel)
+                
+                let yAxisLabel = UILabel()
+                yAxisLabel.text = "Frequency (Hz)"
+                yAxisLabel.textAlignment = .center
+                yAxisLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+                yAxisLabel.translatesAutoresizingMaskIntoConstraints = false
+                windowFrame.addSubview(yAxisLabel)
+        
+        //xAxisLabel.center = chartView.center
+        //yAxisLabel.center = chartView.center
+        
+        NSLayoutConstraint.activate([
+                // X axis label constraints
+                xAxisLabel.bottomAnchor.constraint(equalTo: windowFrame.bottomAnchor, constant: -14),
+                xAxisLabel.centerXAnchor.constraint(equalTo: windowFrame.centerXAnchor),
+
+                // Y axis label constraints
+                yAxisLabel.leadingAnchor.constraint(equalTo: windowFrame.leadingAnchor, constant: -35),
+                yAxisLabel.centerYAnchor.constraint(equalTo: windowFrame.centerYAnchor, constant: -23)
+            ])
     }
     
     @IBAction func audioButtonPress(_ sender: Any) {
@@ -332,6 +430,32 @@ class ViewController: UIViewController, ChartViewDelegate {
         print("radius1: ", radius1)
         print("radius2: ", radius2)
         print("radius sum: ", radius1 + radius2)
+        
+        //Ratio of the radius of mass1 to the window frame to calculate the scaled width of windowFrame
+        let ratio = (Float(self.view.frame.size.width) * 0.77) / Float(radius1)
+        print("ratio of window frame width to radius1: ",ratio)
+        
+        
+        let lengthof_windowframe_km = Float(ratio) * Float(radius1) * 4
+        
+        
+        
+        let xAxisLabel = UILabel()
+                xAxisLabel.text = "Width of Frame: \(lengthof_windowframe_km) km"
+                xAxisLabel.textAlignment = .center
+                xAxisLabel.translatesAutoresizingMaskIntoConstraints = false
+                windowFrame.addSubview(xAxisLabel)
+                
+        NSLayoutConstraint.activate([
+                // X axis label constraints
+                xAxisLabel.bottomAnchor.constraint(equalTo: windowFrame.bottomAnchor, constant: -14),
+                xAxisLabel.centerXAnchor.constraint(equalTo: windowFrame.centerXAnchor),
+
+
+            ])
+        
+        
+        
         
         //let animationdownSample = 8
         
@@ -485,8 +609,24 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         uiview = UIImageView(image: spiralUIIm)
         uiview.frame = frameRect
+        uiview.center = windowFrame.center //new 
 
         displayWithTime(duration: Double(spiralUIIm.duration))
+        
+        let xAxisLabel = UILabel()
+                xAxisLabel.text = "Width of Frame: about 2500 km"
+                xAxisLabel.textAlignment = .center
+                xAxisLabel.translatesAutoresizingMaskIntoConstraints = false
+                windowFrame.addSubview(xAxisLabel)
+                
+        NSLayoutConstraint.activate([
+                // X axis label constraints
+                xAxisLabel.bottomAnchor.constraint(equalTo: windowFrame.bottomAnchor, constant: -14),
+                xAxisLabel.centerXAnchor.constraint(equalTo: windowFrame.centerXAnchor),
+
+
+            ])
+        
         
     }
     
@@ -504,8 +644,15 @@ class ViewController: UIViewController, ChartViewDelegate {
     }
     
     func removeViews() {
+        // view.subviews.forEach({ $0.removeFromSuperview() })
         self.uiview.removeFromSuperview()
         self.chartView.removeFromSuperview()
+        
+        for subview in windowFrame.subviews {
+            subview.removeFromSuperview()
+        }
+
+        
         playButton.isHidden = true
         playButton.isEnabled = false
         
