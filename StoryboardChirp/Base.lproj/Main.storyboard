@@ -488,14 +488,6 @@
                                     <segue destination="Igl-uR-AEG" kind="show" id="KFU-CH-2o4"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Some descriptive text of waveform. " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="M0P-NU-ZbJ">
-                                <rect key="frame" x="503" y="556" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mb5-4n-tP6">
                                 <rect key="frame" x="743" y="824" width="50" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -551,7 +543,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Gravitational Wave" id="4Q8-XO-oIw"/>
                     <connections>
-                        <outlet property="AnnotationTextView" destination="M0P-NU-ZbJ" id="jMI-Tb-7Jn"/>
                         <outlet property="animButton" destination="8az-5Z-Qlq" id="rae-j8-dOp"/>
                         <outlet property="audioButton" destination="47P-Is-PLO" id="L34-ap-irz"/>
                         <outlet property="freqButton" destination="xH2-Ru-DwP" id="xX0-K9-bEC"/>
@@ -771,9 +762,6 @@
     </scenes>
     <resources>
         <image name="questionmark.circle" catalog="system" width="128" height="123"/>
-        <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

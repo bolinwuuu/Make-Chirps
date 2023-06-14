@@ -49,7 +49,6 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var freqInfo: UIButton!
     
-    @IBOutlet weak var AnnotationTextView: UITextView!
     //    @IBOutlet weak var playButton: UIButton!
     
     var windowFrame: UIView = UIView()
@@ -259,80 +258,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         xAxisLabel.isHidden = true
         yAxisLabel.isHidden = true
     }
-//
-//    @IBAction func waveformInfoPress(_ sender: Any) {
-//        showAnno(item: 0)
-//    }
-//
-//    @IBAction func freqInfoPress(_ sender: Any) {
-//        showAnno(item: 1)
-//    }
-//
-//    @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
-////        print("screen tapped!!")
-//
-//        checkAndHideAnno()
-//    }
-//
-//    func showAnno(item: Int) {
-//
-//        var button_x: CGFloat = 0
-//        var button_y: CGFloat = 0
-//        let frame_w: CGFloat = 240
-//        let frame_h: CGFloat = 128
-//
-//        switch item {
-//        case 0:
-//            AnnotationTextView.text = String(repeating: "Some descriptive text for waveform plot.\n", count: 10)
-//            button_x = waveformInfo.frame.minX
-//            button_y = waveformInfo.frame.minY
-//
-//        case 1:
-//            AnnotationTextView.text = String(repeating: "Some descriptive text for frequency plot.\n", count: 10)
-//            button_x = freqInfo.frame.minX
-//            button_y = freqInfo.frame.minY
-//
-//        default:
-//            print("default case")
-//        }
-//
-////        AnnotationTextView.center = CGPoint(x: button_x - frame_w / 2, y: button_y - frame_h / 2)
-//
-//
-//        AnnotationTextView.isHidden = false
-//        self.view.bringSubviewToFront(AnnotationTextView)
-//
-//        // Set the initial size and scale of the callout view
-//        AnnotationTextView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-//        AnnotationTextView.frame.origin = CGPoint(x: button_x, y: button_y)
-//
-//        // Perform the magnification animation
-//        UIView.animate(withDuration: 0.3, animations: {
-//            self.AnnotationTextView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-//            self.AnnotationTextView.frame.origin = CGPoint(x: button_x - frame_w,
-//                                                           y: button_y - frame_h)
-//        })
-//    }
-//
-//    func checkAndHideAnno() {
-//        let origin_x = self.AnnotationTextView.frame.minX
-//        let origin_y = self.AnnotationTextView.frame.minY
-//        let frame_w = self.AnnotationTextView.frame.size.width
-//        let frame_h = self.AnnotationTextView.frame.size.height
-//
-//        // Check if the callout view is visible
-//        if !AnnotationTextView.isHidden {
-//            // Perform the shrinking animation
-//            UIView.animate(withDuration: 0.3, animations: {
-//                self.AnnotationTextView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-//                self.AnnotationTextView.frame.origin = CGPoint(x: origin_x + frame_w,
-//                                                               y: origin_y + frame_h)
-//            }, completion: { _ in
-//                // Hide the callout view after the animation completes
-//                self.AnnotationTextView.isHidden = true
-//            })
-//        }
-//    }
+
 
 }
 
