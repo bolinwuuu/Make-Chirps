@@ -314,78 +314,78 @@ class Run_Chirp {
         
         
 
-        //Adjustments for Ringdown ---------------------------
-        print("BEFORE h size: \(h.count)")
-        // Wavelength
-        var quasi = computeFinalOrbitalAngularMomentum(M1: m1, M2: m2);
-        h = appendRingDownandNormalWaveForm(h: h, quasi: quasi)
-        //t = [];
-//        var tmax = Double(h.count) * dt
-//        t = stride(from: 0.0, to: tmax, by: dt).map { $0 }
-        t = Array(t[0..<h.count])
-
-        
-        max_h = vDSP.maximum(h)
-        
-        // Frequency Ringdown
-        
-        var freq_last_index = freq.count - 1;
-        var last_value_freq = freq[freq_last_index]
-        var i = freq_last_index;
-        
-        print("BEFORE freq size: ", freq.count)
-        //Making frequency graph same length as wavelength
-//        while i < h.count {
-//            freq.append(last_value_freq)
-//            i = i + 1;
+//        //Adjustments for Ringdown ---------------------------
+//        print("BEFORE h size: \(h.count)")
+//        // Wavelength
+//        var quasi = computeFinalOrbitalAngularMomentum(M1: m1, M2: m2);
+//        h = appendRingDownandNormalWaveForm(h: h, quasi: quasi)
+//        //t = [];
+////        var tmax = Double(h.count) * dt
+////        t = stride(from: 0.0, to: tmax, by: dt).map { $0 }
+//        t = Array(t[0..<h.count])
+//
+//
+//        max_h = vDSP.maximum(h)
+//
+//        // Frequency Ringdown
+//
+//        var freq_last_index = freq.count - 1;
+//        var last_value_freq = freq[freq_last_index]
+//        var i = freq_last_index;
+//
+//        print("BEFORE freq size: ", freq.count)
+//        //Making frequency graph same length as wavelength
+////        while i < h.count {
+////            freq.append(last_value_freq)
+////            i = i + 1;
+////        }
+//        freq = freq + Array(repeating: last_value_freq, count: max(0, h.count - freq.count))
+//
+//        print("NOW h size: ", h.count)
+//        print("NOW freq size: ", freq.count)
+//
+//        //Interpolation
+//        var qnmfreq = returnQNMFreq(M1: m1, M2: m2)
+//
+//        //starting index for interpolation
+//        freq_last_index = freq.firstIndex(of: last_value_freq)!;
+//
+//        //difference between last evolving frequency and end of frequency array
+//        var difference = (freq.count - 1) - freq_last_index;
+//        var half_difference = Int(ceil(Double(difference) / 2));
+//
+//
+//
+//      //  for i in freq_last_index...(freq.count - 1) {
+//      //      freq[i] = 0;
+//    //    }
+//
+//        //THIS is likely causing the spike.
+//        freq[half_difference + freq_last_index] = qnmfreq
+//
+//        for i in (half_difference + freq_last_index)...(freq.count - 1){
+//            freq[i] = qnmfreq
 //        }
-        freq = freq + Array(repeating: last_value_freq, count: max(0, h.count - freq.count))
-        
-        print("NOW h size: ", h.count)
-        print("NOW freq size: ", freq.count)
-        
-        //Interpolation
-        var qnmfreq = returnQNMFreq(M1: m1, M2: m2)
-        
-        //starting index for interpolation
-        freq_last_index = freq.firstIndex(of: last_value_freq)!;
-        
-        //difference between last evolving frequency and end of frequency array
-        var difference = (freq.count - 1) - freq_last_index;
-        var half_difference = Int(ceil(Double(difference) / 2));
-        
-        
-        
-      //  for i in freq_last_index...(freq.count - 1) {
-      //      freq[i] = 0;
-    //    }
-        
-        //THIS is likely causing the spike.
-        freq[half_difference + freq_last_index] = qnmfreq
-        
-        for i in (half_difference + freq_last_index)...(freq.count - 1){
-            freq[i] = qnmfreq
-        }
-        
-        
-        
-        // Exponential decay of frequency
-        // Constant of decay mathces amplitude
-        // freq = B + (A-B) * exp
-        
-        
-        var startIndex = freq_last_index
-        var endIndex = freq.count-1
-        var differenceIndexes = endIndex - startIndex
-    //    let smoothArray = createSmoothArray(inputArray: freq, numPoints: differenceIndexes, startIndex: startIndex, endIndex: endIndex)
-    gaussianDecay(arr: &freq, startIndex: startIndex, qnmfreq: qnmfreq)
-        
-        
-     // interpolateArray(frequencyArray: &freq, mergerIndex: startIndex, stableIndex: (startndex + half_difference)
-     // freq = smoothArray;
-        
-        
-        //END Adjustments for Ringdown --------------------------------
+//
+//
+//
+//        // Exponential decay of frequency
+//        // Constant of decay mathces amplitude
+//        // freq = B + (A-B) * exp
+//
+//
+//        var startIndex = freq_last_index
+//        var endIndex = freq.count-1
+//        var differenceIndexes = endIndex - startIndex
+//    //    let smoothArray = createSmoothArray(inputArray: freq, numPoints: differenceIndexes, startIndex: startIndex, endIndex: endIndex)
+//    gaussianDecay(arr: &freq, startIndex: startIndex, qnmfreq: qnmfreq)
+//
+//
+//     // interpolateArray(frequencyArray: &freq, mergerIndex: startIndex, stableIndex: (startndex + half_difference)
+//     // freq = smoothArray;
+//
+//
+//        //END Adjustments for Ringdown --------------------------------
 //        print("qnm_freq: ", qnmfreq)
 //        print("merger freq: ", last_value_freq)
 //        print("t size: ", t.count)

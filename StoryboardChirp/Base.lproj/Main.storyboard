@@ -49,6 +49,56 @@
             </objects>
             <point key="canvasLocation" x="-2401.4388489208636" y="993.96984924623121"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="5Wl-0H-UrR">
+            <objects>
+                <viewController id="Igl-uR-AEG" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FkW-hu-IWd">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some descriptive text of waveform plot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZk-QJ-Uc2">
+                                <rect key="frame" x="94" y="188" width="297" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vMe-eQ-TCv"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hsc-XH-Cyt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5lW-pG-NZg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2401" y="1695"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lNS-bM-Vhe">
+            <objects>
+                <viewController id="pwQ-x3-AOb" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PFc-vp-Vfy">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some descriptive text of frequency plot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZK-RQ-qFV">
+                                <rect key="frame" x="53" y="179" width="300" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zmP-Dk-523"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bC7-8W-lmA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XLF-oN-SIk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1712.2302158273383" y="1694.9748743718594"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="c0K-5q-uie">
             <objects>
@@ -429,15 +479,83 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVv-He-6HF">
+                                <rect key="frame" x="743" y="761" width="50" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                <buttonConfiguration key="configuration" style="plain" image="questionmark.circle" catalog="system"/>
+                                <connections>
+                                    <segue destination="Igl-uR-AEG" kind="show" id="KFU-CH-2o4"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Some descriptive text of waveform. " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="M0P-NU-ZbJ">
+                                <rect key="frame" x="503" y="556" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mb5-4n-tP6">
+                                <rect key="frame" x="743" y="824" width="50" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <segue destination="pwQ-x3-AOb" kind="show" id="HoV-YE-ra3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k5a-kr-6Q6">
+                                <rect key="frame" x="743" y="888" width="50" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <segue destination="fqx-Yt-w0n" kind="show" id="Zdh-JA-syL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kw2-IA-om1">
+                                <rect key="frame" x="743" y="951" width="50" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <segue destination="VxI-YG-2td" kind="show" id="9tl-Oi-qdX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4k-81-AWX">
+                                <rect key="frame" x="743" y="1014" width="50" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <segue destination="Gmu-88-G3B" kind="show" id="MzU-LA-Rtv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztS-4n-lCD">
+                                <rect key="frame" x="743" y="1077" width="50" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <segue destination="0tq-Ew-Exi" kind="show" id="1tA-GN-159"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YnS-1K-rlp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="mKA-QQ-KCf" appends="YES" id="Jn1-2c-jsI"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Gravitational Wave" id="4Q8-XO-oIw"/>
                     <connections>
+                        <outlet property="AnnotationTextView" destination="M0P-NU-ZbJ" id="jMI-Tb-7Jn"/>
                         <outlet property="animButton" destination="8az-5Z-Qlq" id="rae-j8-dOp"/>
                         <outlet property="audioButton" destination="47P-Is-PLO" id="L34-ap-irz"/>
                         <outlet property="freqButton" destination="xH2-Ru-DwP" id="xX0-K9-bEC"/>
+                        <outlet property="freqInfo" destination="mb5-4n-tP6" id="skv-rv-kxP"/>
                         <outlet property="mass1Label" destination="HtK-TU-NWc" id="vtK-wY-HVI"/>
                         <outlet property="mass1Slider" destination="Qbm-Ur-5kE" id="r2O-MV-cxn"/>
                         <outlet property="mass2Label" destination="Ylh-nj-m8s" id="pOd-Y7-bAu"/>
@@ -447,11 +565,17 @@
                         <outlet property="speedSlider" destination="zrA-71-aY4" id="xk3-Gc-AoI"/>
                         <outlet property="spiralButton" destination="e3j-XR-l3h" id="zse-gR-ctk"/>
                         <outlet property="waveformButton" destination="hYR-Pw-iFM" id="1Wi-yt-KQA"/>
+                        <outlet property="waveformInfo" destination="bVv-He-6HF" id="iqd-l0-Ck9"/>
                         <outlet property="xAxisLabel" destination="AZp-pz-bOf" id="sVx-sd-5DM"/>
                         <outlet property="yAxisLabel" destination="vRq-xP-Yf8" id="6No-Na-9X6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wbf-Xm-pRr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="mKA-QQ-KCf">
+                    <connections>
+                        <action selector="screenTapped:" destination="dCC-hP-mkN" id="BQs-Gl-1DN"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-3044.6043165467627" y="993.96984924623121"/>
         </scene>
@@ -544,10 +668,120 @@
             </objects>
             <point key="canvasLocation" x="844.60431654676267" y="993.96984924623121"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="7IM-30-I15">
+            <objects>
+                <viewController id="fqx-Yt-w0n" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TXw-3R-OfZ">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some descriptive text of spectrogram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAM-ag-gp9">
+                                <rect key="frame" x="94" y="188" width="287" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xQq-Iz-X70"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="a0m-vo-yUc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sGb-Vq-o7b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1071" y="1695"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="keC-j9-rtO">
+            <objects>
+                <viewController id="VxI-YG-2td" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tLX-WR-Kkb">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some descriptive text of audio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvb-bf-2HZ">
+                                <rect key="frame" x="94" y="188" width="231" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mnx-lk-0RU"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="eef-Tn-jAn"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FbY-Yg-3oa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-422" y="1695"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="YrK-iU-Wfh">
+            <objects>
+                <viewController id="Gmu-88-G3B" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CkK-8e-maZ">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some descriptive text of collision animation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhI-Ae-xaQ">
+                                <rect key="frame" x="94" y="188" width="330" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="MZV-Gf-805"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="K3O-dz-ND0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fWE-Su-eW2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="211" y="1695"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="iWt-SH-hWz">
+            <objects>
+                <viewController id="0tq-Ew-Exi" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JgX-XL-8ZF">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some descriptive text of spiral animation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NB-LR-XZi">
+                                <rect key="frame" x="94" y="188" width="309" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qZ2-SE-FDy"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="97O-gM-szs"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LWW-hO-Vql" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="845" y="1695"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="questionmark.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
