@@ -191,8 +191,6 @@ class ViewController: UIViewController, ChartViewDelegate {
         yAxisLabel.isHidden = true
         view.addSubview(windowFrame)
         
-        AnnotationTextView.isHidden = true
-//        AnnotationTextView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
     }
 
     @IBAction func mass1Change(_ sender: Any) {
