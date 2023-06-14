@@ -200,6 +200,21 @@ class ViewController: UIViewController, ChartViewDelegate {
         mass2Label.text = "\(round(mass2Slider.value * 100) / 100.0)"
     }
     
+    func checkMassChange() {
+            if (mass1 != Double(mass1Slider.value) || mass2 != Double(mass2Slider.value)) {
+                mass1 = Double(mass1Slider.value)
+                mass2 = Double(mass2Slider.value)
+                removeViews()
+                testChirp.changeMasses(mass1: mass1, mass2: mass2)
+        //        testSpect.refresh(run_chirp: &testChirp)
+        //        spectUIIm = testSpect.genSpectrogram()
+                
+                animInit()
+                audioInit()
+                print("Re-initialize!")
+            }
+        }
+    
     @IBAction func initializePress(_ sender: Any) {
         let m1 = Double(mass1Slider.value)
         let m2 = Double(mass2Slider.value)
@@ -214,7 +229,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         
 //        initPress = true
     }
-    
+   /*
     @IBAction func waveformButtonPress(_ sender: Any) {
         removeViews()
         
@@ -282,7 +297,9 @@ class ViewController: UIViewController, ChartViewDelegate {
             ])
 
     }
+    */
     
+    /*
     @IBAction func freqButtonPress(_ sender: Any) {
         removeViews()
         
@@ -347,8 +364,8 @@ class ViewController: UIViewController, ChartViewDelegate {
             ])
 
     }
-    
-    
+    */
+    /*
     @IBAction func spectroButtonPress(_ sender: Any) {
         removeViews()
         
@@ -391,6 +408,8 @@ class ViewController: UIViewController, ChartViewDelegate {
                 yAxisLabel.centerYAnchor.constraint(equalTo: windowFrame.centerYAnchor, constant: -23)
             ])
     }
+    */
+    /*
     
     @IBAction func audioButtonPress(_ sender: Any) {
         removeViews()
@@ -408,17 +427,21 @@ class ViewController: UIViewController, ChartViewDelegate {
             print("Could not intitialize AVAudioPlayer with the file")
         }
     }
+    */
     
-    
+    /*
     @IBAction func playButtonPress(_ sender: Any) {
         audioPlayer?.currentTime = 0
         audioPlayer?.play()
     }
+    */
     
+    /*
     @IBAction func speedSliderChange(_ sender: Any) {
         speedLabel.text = "x \(round(speedSlider.value * 100) / 100.0)"
     }
-    
+    */
+    /*
     @IBAction func animButtonPress(_ sender: Any) {
         removeViews()
         
@@ -620,7 +643,8 @@ class ViewController: UIViewController, ChartViewDelegate {
 //        }
         
     }
-    
+     */
+    /*
     @IBAction func spiralButtonPress(_ sender: Any) {
         removeViews()
         
@@ -654,7 +678,8 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         
     }
-    
+    */
+    /*
     func displayWithTime(duration: Double) {
 //        self.view.bringSubviewToFront(spiralView)
 //        self.uiview.removeFromSuperview()
@@ -667,19 +692,29 @@ class ViewController: UIViewController, ChartViewDelegate {
             
         }
     }
-    
+    */
     func removeViews() {
         // view.subviews.forEach({ $0.removeFromSuperview() })
+        print("CALLING removeViews()")
+        print("uiview before removing: \(uiview)")
+
         self.uiview.removeFromSuperview()
+        // uiview.removeFromSuperview()
+        // uiview = nil // TESTING
+        uiview.isHidden = true
         self.chartView.removeFromSuperview()
         
         for subview in windowFrame.subviews {
             subview.removeFromSuperview()
         }
+        
+        print("uiview after removing: \(uiview)")
 
         
-        playButton.isHidden = true
-        playButton.isEnabled = false
+        
+        
+      //  playButton.isHidden = true
+      //  playButton.isEnabled = false
         
         self.body1.removeFromSuperview()
         self.body2.removeFromSuperview()

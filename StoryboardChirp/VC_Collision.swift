@@ -51,6 +51,30 @@ extension ViewController {
         print("radius2: ", radius2)
         print("radius sum: ", radius1 + radius2)
         
+        //Ratio of the radius of mass1 to the window frame to calculate the scaled width of windowFrame
+        let ratio = (Float(self.view.frame.size.width) * 0.77) / Float(radius1)
+        print("ratio of window frame width to radius1: ",ratio)
+        
+        
+        let lengthof_windowframe_km = Float(ratio) * Float(radius1) * 4
+        
+        
+        
+        let xAxisLabel = UILabel()
+                xAxisLabel.text = "Width of Frame: \(lengthof_windowframe_km) km"
+                xAxisLabel.textAlignment = .center
+                xAxisLabel.translatesAutoresizingMaskIntoConstraints = false
+                windowFrame.addSubview(xAxisLabel)
+                
+        NSLayoutConstraint.activate([
+                // X axis label constraints
+                xAxisLabel.bottomAnchor.constraint(equalTo: windowFrame.bottomAnchor, constant: -14),
+                xAxisLabel.centerXAnchor.constraint(equalTo: windowFrame.centerXAnchor),
+
+
+            ])
+        
+        
         //let animationdownSample = 8
         
         var phi1: Double = 0.0
