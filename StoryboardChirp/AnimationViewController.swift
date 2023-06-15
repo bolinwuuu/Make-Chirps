@@ -115,6 +115,8 @@ class AnimationViewController: UIViewController {
         let radius1 = Int(testChirp.getR1() / 1000)
         let radius2 = Int(testChirp.getR2() / 1000)
         
+        
+        
         // Initialize the celestial bodies as circular views
         body1 = UIView(frame: CGRect(x: 0, y: 0, width: radius1 * 2, height: radius1 * 2))
         body1.layer.cornerRadius = CGFloat(radius1)

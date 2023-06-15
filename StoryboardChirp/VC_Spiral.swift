@@ -27,6 +27,21 @@ extension ViewController {
         
         uiview = UIImageView(image: spiralUIIm)
         uiview.frame = frameRect
+        uiview.center = windowFrame.center
+        
+        let xAxisLabel = UILabel()
+                xAxisLabel.text = "Width of Frame: about 2500 km"
+                xAxisLabel.textAlignment = .center
+                xAxisLabel.translatesAutoresizingMaskIntoConstraints = false
+                windowFrame.addSubview(xAxisLabel)
+                
+        NSLayoutConstraint.activate([
+                // X axis label constraints
+                xAxisLabel.bottomAnchor.constraint(equalTo: windowFrame.bottomAnchor, constant: -14),
+                xAxisLabel.centerXAnchor.constraint(equalTo: windowFrame.centerXAnchor),
+
+
+            ])
         
         print("spiral duration: ", spiralUIIm.duration)
         displaySpiralWithTime(duration: Double(spiralUIIm.duration))

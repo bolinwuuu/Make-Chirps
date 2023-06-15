@@ -57,10 +57,11 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     var chartView = LineChartView()
     
-    var frameProp = 0.65
+    var frameProp = 0.75
     
     // rectangle frame, used by spectrogram
     var frameRect: CGRect!
+    var frameRect2: CGRect!
     
     var audioPlayer: AVAudioPlayer?
     
@@ -140,7 +141,13 @@ class ViewController: UIViewController, ChartViewDelegate {
         let frameRect_x: Double = self.view.frame.size.width * (1 - frameProp) / 2
         let frameRect_y: Double = centerFromTop - frameRect_h / 2
         
+        // For use by wavelength and frequency
         frameRect = CGRect(x: frameRect_x,
+                           y: frameRect_y,
+                           width: frameRect_w * (10/11),
+                           height: frameRect_h * (10/11))
+        
+        frameRect2 = CGRect(x: frameRect_x,
                            y: frameRect_y,
                            width: frameRect_w,
                            height: frameRect_h)
@@ -168,7 +175,7 @@ class ViewController: UIViewController, ChartViewDelegate {
                                            y: window_y,
                                            width: window_w,
                                            height: window_h))
-        windowFrame.layer.borderWidth = 8
+        windowFrame.layer.borderWidth = 2
         windowFrame.layer.borderColor = UIColor.black.cgColor
         
         let axisLabel_w = 350
@@ -201,53 +208,50 @@ class ViewController: UIViewController, ChartViewDelegate {
         mass2Label.text = "\(round(mass2Slider.value * 100) / 100.0)"
     }
     
-    
+
     func checkMassChange() {
-        if (mass1 != Double(mass1Slider.value) || mass2 != Double(mass2Slider.value)) {
-            mass1 = Double(mass1Slider.value)
-            mass2 = Double(mass2Slider.value)
-            removeViews()
-            testChirp.changeMasses(mass1: mass1, mass2: mass2)
-    //        testSpect.refresh(run_chirp: &testChirp)
-    //        spectUIIm = testSpect.genSpectrogram()
-            
-            animInit()
-            audioInit()
-            print("Re-initialize!")
+            if (mass1 != Double(mass1Slider.value) || mass2 != Double(mass2Slider.value)) {
+                mass1 = Double(mass1Slider.value)
+                mass2 = Double(mass2Slider.value)
+                removeViews()
+                testChirp.changeMasses(mass1: mass1, mass2: mass2)
+        //        testSpect.refresh(run_chirp: &testChirp)
+        //        spectUIIm = testSpect.genSpectrogram()
+                
+                animInit()
+                audioInit()
+                print("Re-initialize!")
+            }
         }
-    }
     
-//    @IBAction func initializePress(_ sender: Any) {
-//        let m1 = Double(mass1Slider.value)
-//        let m2 = Double(mass2Slider.value)
-//
-//        removeViews()
-//
-//        testChirp.changeMasses(mass1: m1, mass2: m2)
-////        testSpect.refresh(run_chirp: &testChirp)
-////        spectUIIm = testSpect.genSpectrogram()
-//
-//        animInit()
-//        audioInit()
-//
-////        initPress = true
-//    }
-//
-//
-//    @IBAction func playButtonPress(_ sender: Any) {
-//        audioPlayer?.currentTime = 0
-//        audioPlayer?.play()
-//    }
-    
+
     @IBAction func speedSliderChange(_ sender: Any) {
         speedLabel.text = "x \(round(speedSlider.value * 100) / 100.0)"
     }
     
+    
     func removeViews() {
+        // view.subviews.forEach({ $0.removeFromSuperview() })
+        print("CALLING removeViews()")
+        print("uiview before removing: \(uiview)")
+
         self.uiview.removeFromSuperview()
+        // uiview.removeFromSuperview()
+        // uiview = nil // TESTING
+        uiview.isHidden = true
         self.chartView.removeFromSuperview()
-//        playButton.isHidden = true
-//        playButton.isEnabled = false
+        
+        for subview in windowFrame.subviews {
+            subview.removeFromSuperview()
+        }
+        
+        print("uiview after removing: \(uiview)")
+
+        
+        
+        
+      //  playButton.isHidden = true
+      //  playButton.isEnabled = false
         
         self.body1.removeFromSuperview()
         self.body2.removeFromSuperview()
