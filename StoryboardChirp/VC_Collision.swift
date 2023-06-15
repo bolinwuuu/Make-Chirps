@@ -61,7 +61,7 @@ extension ViewController {
         
         
         let xAxisLabel = UILabel()
-                xAxisLabel.text = "Width of Frame: \(lengthof_windowframe_km) km"
+                xAxisLabel.text = "Width of Frame: about 2500 km"
                 xAxisLabel.textAlignment = .center
                 xAxisLabel.translatesAutoresizingMaskIntoConstraints = false
                 windowFrame.addSubview(xAxisLabel)
