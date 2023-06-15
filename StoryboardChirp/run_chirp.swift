@@ -375,10 +375,10 @@ class Run_Chirp {
         let qnmtau = returnQNMFreq(M1: m1, M2: m2)[1]
         var sigmatime = qnmtau
         gaussianDecay(arr: &freq, startIndex: startIndex, qnmfreq: qnmfreq, sigmatime: sigmatime)
- //   applyExponentialDecay(arr: &freq, startIndex: startIndex, qnmfreq: qnmfreq)
+ 
         
         
-     // interpolateArray(frequencyArray: &freq, mergerIndex: startIndex, stableIndex: (startndex + half_difference)
+    
      // freq = smoothArray;
         
         
@@ -420,21 +420,6 @@ class Run_Chirp {
 //        }
 //    }
     
-    // Cubic Hermite Spline Interpolation
-    
-    func applyExponentialDecay(arr: inout [Double], startIndex: Int, qnmfreq: Double) {
-        let x_1 = startIndex
-        let x_2 = arr.count-1
-        let a: Double = arr[startIndex] // - qnmfreq // starting value minus asymptotic value
-        let b: Double = -log(0.5) / Double(x_2 - x_1) // rate of decay
-        let c: Double = qnmfreq // asymptotic value
-
-        for i in x_1...x_2 {
-            let x = i-x_1
-            arr[i] = c + (a-c) * exp(-b * Double(x))
-        }
-    }
-    
     func gaussianDecay(arr: inout [Double], startIndex: Int, qnmfreq: Double, sigmatime: Double) {
         
         let x_1 = startIndex
@@ -452,7 +437,7 @@ class Run_Chirp {
         } // at the end, the value at index j will have not been altered yet.
         
         // let sigma = 35; // should scale with ringdown exponential decay sigma, that value or less
-        var sigma = (sigmatime * 4800.0) / 3.0
+        var sigma = (sigmatime * 4800.0) / 2.0
         let minVal = qnmfreq;
         let mu = j-1
         let maxVal = arr[j-1]
@@ -484,24 +469,9 @@ class Run_Chirp {
             }
         }
         
-        
 
-    
-    func interpolateFrequency(mergerIndex: Int, stableIndex: Int, mergerFrequency: Double, stableFrequency: Double, index: Int) -> Double {
-        let lambda = -log((stableFrequency - mergerFrequency) / mergerFrequency) / Double(stableIndex - mergerIndex)
-        let frequency = mergerFrequency * exp(-lambda * Double(index - mergerIndex)) + stableFrequency
-        return frequency
-    }
 
-    func interpolateArray(frequencyArray: inout [Double], mergerIndex: Int, stableIndex: Int) {
-        let mergerFrequency = frequencyArray[mergerIndex]
-        let stableFrequency = frequencyArray[stableIndex]
-        for i in mergerIndex...stableIndex {
-            frequencyArray[i] = interpolateFrequency(mergerIndex: mergerIndex, stableIndex: stableIndex, mergerFrequency: mergerFrequency, stableFrequency: stableFrequency, index: i)
-        }
-    }
-
-    func cubicHermiteSplineInterpolation(p0: Point, p1: Point, m0: Double, m1: Double, t: Double) -> Double {
+    /*func cubicHermiteSplineInterpolation(p0: Point, p1: Point, m0: Double, m1: Double, t: Double) -> Double {
         let t2 = t * t
         let t3 = t2 * t
         
@@ -512,8 +482,8 @@ class Run_Chirp {
         
         return h00 * p0.y + h10 * m0 + h01 * p1.y + h11 * m1
     }
-
-    func createSmoothArray(inputArray: [Double], numPoints: Int, startIndex: Int, endIndex: Int) -> [Double] {
+*/
+   /* func createSmoothArray(inputArray: [Double], numPoints: Int, startIndex: Int, endIndex: Int) -> [Double] {
         var smoothArray = inputArray
         let n = inputArray.count
         
@@ -546,7 +516,7 @@ class Run_Chirp {
 
         return smoothArray
     }
-
+*/
     
     func genWaveform() -> [Coords] {
         var cd = [Coords](repeating: Coords(x_in: 0, y_in: 0), count: self.h.count)
@@ -739,16 +709,6 @@ class Run_Chirp {
         }
         return h_flt
     }
-    
-    //Function to return an array of double values that model the ringdown waveform
-    
-    func generateSigmoidLogicCurveFrequency(final_freq: Double, starting_freq: Double) -> [Double] {
-        
-        
-        
-        return [1.0]
-    }
-    
     
     func computeFinalOrbitalAngularMomentum(M1: Double, M2: Double) -> [Double] {
          // Physical constants

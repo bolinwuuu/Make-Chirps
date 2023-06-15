@@ -35,7 +35,7 @@ extension ViewController {
         let set = LineChartDataSet(entries: testChirp.freqDataEntries())
         set.drawCirclesEnabled = false
         set.colors = [NSUIColor](repeating: .systemBlue, count: set.colors.count)
-        set.lineWidth = 5
+        set.lineWidth = 10
         
         let data = LineChartData(dataSet: set)
         data.setDrawValues(false)
