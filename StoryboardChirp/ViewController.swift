@@ -23,6 +23,10 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var mass2Label: UILabel!
     
+    @IBOutlet weak var mass1TextField: UITextField!
+    
+    @IBOutlet weak var mass2TextField: UITextField!
+    
     @IBOutlet weak var speedLabel: UILabel!
     
     @IBOutlet weak var xAxisLabel: UILabel!
@@ -201,14 +205,100 @@ class ViewController: UIViewController, ChartViewDelegate {
     }
 
     @IBAction func mass1Change(_ sender: Any) {
-        mass1Label.text = "\(round(mass1Slider.value * 100) / 100.0)"
+        mass1Label.text = "\(roundToTwoDecimalPlaces(num: Double(mass1Slider.value)))"
+        mass1TextField.text = "\(roundToTwoDecimalPlaces(num: Double(mass1Slider.value)))"
     }
     
     @IBAction func mass2Change(_ sender: Any) {
-        mass2Label.text = "\(round(mass2Slider.value * 100) / 100.0)"
+        mass2Label.text = "\(roundToTwoDecimalPlaces(num: Double(mass2Slider.value)))"
     }
     
+    @IBAction func mass1TextChange(_ sender: Any) {
+        if (!isDecimalNumber(str: mass1TextField.text!)) {
+            // input is not a number
+            print("input is not a number!")
+            mass1TextField.text = String(roundToTwoDecimalPlaces(num: Double(mass1Slider.value)))
+            
+            let alertController = UIAlertController(title: "Invalid Input", message: "Please enter a valid number.", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(OKAction)
 
+            present(alertController, animated: true)
+            
+        } else if (Double(mass1TextField.text!)! < 1.4) {
+            // input is smaller than min value
+            mass1TextField.text = "1.4"
+            
+            let alertController = UIAlertController(title: "Invalid Input", message: "Please enter a number larger than 1.4.", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(OKAction)
+
+            present(alertController, animated: true)
+        } else if (Double(mass1TextField.text!)! > 100) {
+            // input is larger than max value
+            mass1TextField.text = "100.0"
+            
+            let alertController = UIAlertController(title: "Invalid Input", message: "Please enter a number smaller than 100.", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(OKAction)
+
+            present(alertController, animated: true)
+        }
+        
+        let roundedValue = roundToTwoDecimalPlaces(num: Double(mass1TextField.text!)!)
+        mass1TextField.text = String(roundedValue)
+        mass1Slider.value = Float(roundedValue)
+    }
+    
+    @IBAction func mass2TextChange(_ sender: Any) {
+        if (!isDecimalNumber(str: mass2TextField.text!)) {
+            // input is not a number
+            print("input is not a number!")
+            mass2TextField.text = String(roundToTwoDecimalPlaces(num: Double(mass2Slider.value)))
+            
+            let alertController = UIAlertController(title: "Invalid Input", message: "Please enter a valid number.", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(OKAction)
+
+            present(alertController, animated: true)
+            
+        } else if (Double(mass2TextField.text!)! < 1.4) {
+            // input is smaller than min value
+            mass2TextField.text = "1.4"
+            
+            let alertController = UIAlertController(title: "Invalid Input", message: "Please enter a number larger than 1.4.", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(OKAction)
+
+            present(alertController, animated: true)
+        } else if (Double(mass2TextField.text!)! > 100) {
+            // input is larger than max value
+            mass2TextField.text = "100.0"
+            
+            let alertController = UIAlertController(title: "Invalid Input", message: "Please enter a number smaller than 100.", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(OKAction)
+
+            present(alertController, animated: true)
+        }
+        
+        let roundedValue = roundToTwoDecimalPlaces(num: Double(mass2TextField.text!)!)
+        mass2TextField.text = String(roundedValue)
+        mass2Slider.value = Float(roundedValue)
+    }
+    
+    
+    func roundToTwoDecimalPlaces(num: Double) -> Double {
+        return round(num * 100) / 100.0
+    }
+    
+    func isDecimalNumber(str: String) -> Bool {
+//        return CharacterSet(charactersIn: str).isSubset(of: CharacterSet.decimalDigits)
+        return str.range(
+                         of: "^[0-9]+[.]?[0-9]*$", // 1
+                         options: .regularExpression) != nil
+    }
+    
     func checkMassChange() {
             if (mass1 != Double(mass1Slider.value) || mass2 != Double(mass2Slider.value)) {
                 mass1 = Double(mass1Slider.value)

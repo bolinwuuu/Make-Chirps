@@ -166,8 +166,10 @@ extension ViewController {
         print("lastSamp: ", lastSamp)
         print("animationDownSample: ", animationdownSample)
         
-        vDSP.fill(&self.freq[self.lastSamp + 1...lastPossIndex],
-                  with: testChirp.extendedFreq())
+        if (self.lastSamp < lastPossIndex) {
+            vDSP.fill(&self.freq[self.lastSamp + 1...lastPossIndex],
+                      with: testChirp.extendedFreq())
+        }
         
         
         let temp_coeff = pow(G * (mass1 + mass2) * msun / pow(Double.pi, 2), 1/3)
