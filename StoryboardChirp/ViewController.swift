@@ -19,9 +19,9 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var speedSlider: UISlider!
     
-    @IBOutlet weak var mass1Label: UILabel!
-    
-    @IBOutlet weak var mass2Label: UILabel!
+//    @IBOutlet weak var mass1Label: UILabel!
+//
+//    @IBOutlet weak var mass2Label: UILabel!
     
     @IBOutlet weak var mass1TextField: UITextField!
     
@@ -205,12 +205,12 @@ class ViewController: UIViewController, ChartViewDelegate {
     }
 
     @IBAction func mass1Change(_ sender: Any) {
-        mass1Label.text = "\(roundToTwoDecimalPlaces(num: Double(mass1Slider.value)))"
+//        mass1Label.text = "\(roundToTwoDecimalPlaces(num: Double(mass1Slider.value)))"
         mass1TextField.text = "\(roundToTwoDecimalPlaces(num: Double(mass1Slider.value)))"
     }
     
     @IBAction func mass2Change(_ sender: Any) {
-        mass2Label.text = "\(roundToTwoDecimalPlaces(num: Double(mass2Slider.value)))"
+//        mass2Label.text = "\(roundToTwoDecimalPlaces(num: Double(mass2Slider.value)))"
     }
     
     @IBAction func mass1TextChange(_ sender: Any) {
@@ -322,8 +322,8 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     func removeViews() {
         // view.subviews.forEach({ $0.removeFromSuperview() })
-        print("CALLING removeViews()")
-        print("uiview before removing: \(uiview)")
+//        print("CALLING removeViews()")
+//        print("uiview before removing: \(uiview)")
 
         self.uiview.removeFromSuperview()
         // uiview.removeFromSuperview()
@@ -335,7 +335,7 @@ class ViewController: UIViewController, ChartViewDelegate {
             subview.removeFromSuperview()
         }
         
-        print("uiview after removing: \(uiview)")
+//        print("uiview after removing: \(uiview)")
 
         
         
