@@ -581,6 +581,8 @@
                         <outlet property="mass1TextField" destination="kZq-8H-pud" id="Cuv-dD-9XW"/>
                         <outlet property="mass2Slider" destination="77g-eT-1Ti" id="OS1-g5-Yye"/>
                         <outlet property="mass2TextField" destination="pSo-Kf-DUQ" id="d3T-er-YyA"/>
+                        <outlet property="navigationBar" destination="4Q8-XO-oIw" id="WvQ-lB-iSL"/>
+                        <outlet property="scrollView" destination="xgf-aV-9Rc" id="WTR-Pg-nXw"/>
                         <outlet property="spectroButton" destination="L0G-tM-J0M" id="SZl-p2-C3X"/>
                         <outlet property="speedLabel" destination="Gga-0I-cfK" id="Srf-SM-fih"/>
                         <outlet property="speedSlider" destination="zrA-71-aY4" id="xk3-Gc-AoI"/>

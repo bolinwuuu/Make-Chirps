@@ -13,8 +13,13 @@ import Accelerate
 
 class ViewController: UIViewController, ChartViewDelegate {
 
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     // the view embeded in the scrollView, containing all items
     @IBOutlet weak var contentView: UIView!
+    
+    @IBOutlet weak var navigationBar: UINavigationItem!
     
     @IBOutlet weak var mass1Slider: UISlider!
     
@@ -71,6 +76,8 @@ class ViewController: UIViewController, ChartViewDelegate {
     var frameRect2: CGRect!
     
     var audioPlayer: AVAudioPlayer?
+    
+    let navigationBarHeight: Double = 120
     
     //------------------------------------------------------//
     //            Collsion Animation Variables              //
@@ -205,10 +212,13 @@ class ViewController: UIViewController, ChartViewDelegate {
         yAxisLabel.isHidden = true
 //        view.addSubview(windowFrame)
         contentView.addSubview(windowFrame)
-        windowFrame.center = CGPoint(x: contentView.bounds.midX, y: centerFromTop - 150) // 150 is arbitrary, adjustments for embedding windowFrame in contentView
-        print("contentView top: \(contentView.bounds.midY)")
-        print("contentView bottom: \(contentView.bounds.maxY)")
-        print("center from top: \(centerFromTop)")
+        windowFrame.center = CGPoint(x: contentView.bounds.midX, y: centerFromTop - navigationBarHeight)
+
+        scrollView.isScrollEnabled = false
+        
+        // for automatically scrolling up when the keyboard appears
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
         
     }
 
@@ -360,7 +370,28 @@ class ViewController: UIViewController, ChartViewDelegate {
         yAxisLabel.isHidden = true
     }
 
-    
+    @objc func keyboardWillShow(notification:NSNotification) {
+        
+        scrollView.isScrollEnabled = true
+        
+        guard let userInfo = notification.userInfo else { return }
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height + 20
+        scrollView.contentInset = contentInset
+    }
+
+    @objc func keyboardWillHide(notification:NSNotification) {
+
+//        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+//        scrollView.contentInset = contentInset
+
+        scrollView.setContentOffset(CGPoint(x: 0, y: -navigationBarHeight), animated: true)
+        
+        scrollView.isScrollEnabled = false
+    }
 
 }
 
