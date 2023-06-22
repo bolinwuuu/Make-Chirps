@@ -28,9 +28,11 @@ extension ViewController {
 //        chartView = LineChartView()
         
         chartView.frame = frameRect
-        chartView.center   = windowFrame.center
+//        chartView.center   = windowFrame.center
+        chartView.center = CGPoint(x: windowFrame.bounds.midX, y: windowFrame.bounds.midY) // set the center to the center of windowFrame
         
-        view.addSubview(chartView)
+//        view.addSubview(chartView)
+        windowFrame.addSubview(chartView)
         
         let set = LineChartDataSet(entries: testChirp.freqDataEntries())
         set.drawCirclesEnabled = false

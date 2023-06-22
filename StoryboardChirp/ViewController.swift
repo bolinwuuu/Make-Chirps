@@ -13,6 +13,9 @@ import Accelerate
 
 class ViewController: UIViewController, ChartViewDelegate {
 
+    // the view embeded in the scrollView, containing all items
+    @IBOutlet weak var contentView: UIView!
+    
     @IBOutlet weak var mass1Slider: UISlider!
     
     @IBOutlet weak var mass2Slider: UISlider!
@@ -200,7 +203,12 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         xAxisLabel.isHidden = true
         yAxisLabel.isHidden = true
-        view.addSubview(windowFrame)
+//        view.addSubview(windowFrame)
+        contentView.addSubview(windowFrame)
+        windowFrame.center = CGPoint(x: contentView.bounds.midX, y: centerFromTop - 150) // 150 is arbitrary, adjustments for embedding windowFrame in contentView
+        print("contentView top: \(contentView.bounds.midY)")
+        print("contentView bottom: \(contentView.bounds.maxY)")
+        print("center from top: \(centerFromTop)")
         
     }
 

@@ -26,7 +26,8 @@ extension ViewController {
         
         chartView.frame = frameRect
         
-        view.addSubview(chartView)
+//        view.addSubview(chartView)
+        windowFrame.addSubview(chartView)
         
         let set = LineChartDataSet(entries: testChirp.waveformDataEntries())
         set.drawCirclesEnabled = false
@@ -36,7 +37,8 @@ extension ViewController {
         let data = LineChartData(dataSet: set)
         data.setDrawValues(false)
         
-        chartView.center = windowFrame.center
+//        chartView.center = windowFrame.center
+        chartView.center = CGPoint(x: windowFrame.bounds.midX, y: windowFrame.bounds.midY) // set the center to the center of windowFrame
         
         let xAxisLabel = UILabel()
                 xAxisLabel.text = "Time (seconds)"
