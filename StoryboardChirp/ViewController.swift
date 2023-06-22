@@ -211,6 +211,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     @IBAction func mass2Change(_ sender: Any) {
 //        mass2Label.text = "\(roundToTwoDecimalPlaces(num: Double(mass2Slider.value)))"
+        mass2TextField.text = "\(roundToTwoDecimalPlaces(num: Double(mass2Slider.value)))"
     }
     
     @IBAction func mass1TextChange(_ sender: Any) {
