@@ -33,7 +33,6 @@
 		1462249129ABFB6300DDF1E9 /* SpiralAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1462249029ABFB6300DDF1E9 /* SpiralAnimation.swift */; };
 		14D2EA6E29AD5E7E001E6226 /* SpiralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D2EA6D29AD5E7E001E6226 /* SpiralViewController.swift */; };
 		62AD7610B71025A4077B45C9 /* Pods_StoryboardChirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */; };
-		7607C37E29B29B4B00DEF8DA /* Storyboard_All_In_One.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7607C37D29B29B4B00DEF8DA /* Storyboard_All_In_One.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +84,6 @@
 		14D2EA6D29AD5E7E001E6226 /* SpiralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralViewController.swift; sourceTree = "<group>"; };
 		5566186B885D36136704E55C /* Pods-StoryboardChirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardChirp.debug.xcconfig"; path = "Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp.debug.xcconfig"; sourceTree = "<group>"; };
 		658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoryboardChirp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7607C37D29B29B4B00DEF8DA /* Storyboard_All_In_One.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard_All_In_One.storyboard; sourceTree = "<group>"; };
 		F26AE5C897BB6A27C5898720 /* Pods-StoryboardChirp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardChirp.release.xcconfig"; path = "Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,7 +155,6 @@
 				1429A3D42984340700F919F8 /* SpectrogramViewController.swift */,
 				1462249029ABFB6300DDF1E9 /* SpiralAnimation.swift */,
 				14D2EA6D29AD5E7E001E6226 /* SpiralViewController.swift */,
-				7607C37D29B29B4B00DEF8DA /* Storyboard_All_In_One.storyboard */,
 				144A28BB2A089BE800BBB6D1 /* VC_Waveform.swift */,
 				144A28BD2A089C1700BBB6D1 /* VC_Frequency.swift */,
 				144A28B92A089B9F00BBB6D1 /* VC_Spectro.swift */,
@@ -310,7 +307,6 @@
 			files = (
 				1429A3A929842E0900F919F8 /* LaunchScreen.storyboard in Resources */,
 				1429A3A629842E0900F919F8 /* Assets.xcassets in Resources */,
-				7607C37E29B29B4B00DEF8DA /* Storyboard_All_In_One.storyboard in Resources */,
 				1429A3A429842E0700F919F8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -392,6 +392,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         scrollView.isScrollEnabled = false
     }
+    
 
 }
 
