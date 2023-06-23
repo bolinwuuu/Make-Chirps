@@ -25,10 +25,10 @@ extension ViewController {
         xAxisLabel.text = "Time (s)"
         yAxisLabel.text = "Frequency (Hz)"
         
-        uiview.center = windowFrame.center // new
+//        uiview.center = windowFrame.center // new
 
         
-        view.addSubview(uiview)
+//        view.addSubview(uiview)
         
         
         let xAxisLabel = UILabel()
@@ -61,15 +61,20 @@ extension ViewController {
         testChirp.initSpectrogram()
         let spectUIIm = testChirp.genSpectrogram()
 
-        // uiview = UIView(frame: frameRect) // This may be redundant as well ? 
+        // uiview = UIView(frame: frameRect) // This may be redundant as well ?
 
         uiview = UIImageView(image: spectUIIm)
         uiview.frame = frameRect // TESTING if this is the cause of the bug.
         
-        uiview.center = windowFrame.center // new Kurt 14.06 
+//        uiview.center = windowFrame.center // new Kurt 14.06
 
         
-        view.addSubview(uiview)
-        //windowFrame.addSubview(uiview)
+//        view.addSubview(uiview)
+        
+        windowFrame.addSubview(uiview) // embed the spectrogram in windowFrame
+
+        uiview.center = CGPoint(x: windowFrame.bounds.midX, y: windowFrame.bounds.midY) // set the center to the center of windowFrame
+    
+
     }
 }

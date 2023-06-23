@@ -27,7 +27,8 @@ extension ViewController {
         
         uiview = UIImageView(image: spiralUIIm)
         uiview.frame = frameRect
-        uiview.center = windowFrame.center
+//        uiview.center = windowFrame.center
+        uiview.center = CGPoint(x: windowFrame.bounds.midX, y: windowFrame.bounds.midY) // set the center to the center of windowFrame
         
         let xAxisLabel = UILabel()
                 xAxisLabel.text = "Width of Frame: about 2500 km"
@@ -52,7 +53,8 @@ extension ViewController {
     func displaySpiralWithTime(duration: Double) {
 //        self.view.bringSubviewToFront(spiralView)
 //        self.uiview.removeFromSuperview()
-        view.addSubview(uiview)
+//        view.addSubview(uiview)
+        windowFrame.addSubview(uiview)
         
         UIView.animate(withDuration: 0, delay: duration, animations: {
             self.uiview.alpha = 0

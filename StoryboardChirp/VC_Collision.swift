@@ -37,14 +37,16 @@ extension ViewController {
         body1 = UIView(frame: CGRect(x: 0, y: 0, width: radius1 * 2, height: radius1 * 2))
         body1.layer.cornerRadius = CGFloat(radius1)
         body1.backgroundColor = .blue
-        view.addSubview(body1)
-        view.sendSubviewToBack(body1)
+//        view.addSubview(body1)
+//        view.sendSubviewToBack(body1)
+        windowFrame.addSubview(body1)
         
         body2 = UIView(frame: CGRect(x: 0, y: 0, width: radius2 * 2, height: radius2 * 2))
         body2.layer.cornerRadius = CGFloat(radius2)
         body2.backgroundColor = .red
-        view.addSubview(body2)
-        view.sendSubviewToBack(body2)
+//        view.addSubview(body2)
+//        view.sendSubviewToBack(body2)
+        windowFrame.addSubview(body2)
         
         
         print("radius1: ", radius1)
@@ -129,11 +131,11 @@ extension ViewController {
             
             
             // Update the positions of the views that represent the celestial bodies on the screen
-//            self?.body1.center = CGPoint(x: self!.view.bounds.midX + CGFloat(self?.x1 ?? 0.0), y: self!.view.bounds.midY + CGFloat(self?.y1 ?? 0.0))
-//            self?.body2.center = CGPoint(x: self!.view.bounds.midX + CGFloat(self?.x2 ?? 0.0), y: self!.view.bounds.midY + CGFloat(self?.y2 ?? 0.0))
             
-            self?.body1.center = CGPoint(x: self!.view.bounds.midX + CGFloat(self?.x1 ?? 0.0), y: self!.centerFromTop + CGFloat(self?.y1 ?? 0.0))
-            self?.body2.center = CGPoint(x: self!.view.bounds.midX + CGFloat(self?.x2 ?? 0.0), y: self!.centerFromTop + CGFloat(self?.y2 ?? 0.0))
+//            self?.body1.center = CGPoint(x: self!.view.bounds.midX + CGFloat(self?.x1 ?? 0.0), y: self!.centerFromTop + CGFloat(self?.y1 ?? 0.0))
+//            self?.body2.center = CGPoint(x: self!.view.bounds.midX + CGFloat(self?.x2 ?? 0.0), y: self!.centerFromTop + CGFloat(self?.y2 ?? 0.0))
+            self?.body1.center = CGPoint(x: self!.windowFrame.bounds.midX + CGFloat(self!.x1), y: self!.windowFrame.bounds.midY + CGFloat(self!.y1))
+            self?.body2.center = CGPoint(x: self!.windowFrame.bounds.midX + CGFloat(self!.x2), y: self!.windowFrame.bounds.midY + CGFloat(self!.y2))
             
             
             samp += self!.animationdownSample
@@ -166,8 +168,10 @@ extension ViewController {
         print("lastSamp: ", lastSamp)
         print("animationDownSample: ", animationdownSample)
         
-        vDSP.fill(&self.freq[self.lastSamp + 1...lastPossIndex],
-                  with: testChirp.extendedFreq())
+        if (self.lastSamp < lastPossIndex) {
+            vDSP.fill(&self.freq[self.lastSamp + 1...lastPossIndex],
+                      with: testChirp.extendedFreq())
+        }
         
         
         let temp_coeff = pow(G * (mass1 + mass2) * msun / pow(Double.pi, 2), 1/3)
