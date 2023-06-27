@@ -82,7 +82,9 @@ extension ViewController {
         var phi1: Double = 0.0
         var phi2: Double = Double.pi
         
-        var samp: Int = 1
+        // make the animation start at the last 10 seconds
+        var samp: Int = max(1, lastSamp - Int(10 / 0.01) * animationdownSample)
+        print("animation starts at index \(samp)")
 
         
         let dt = testChirp.getDT()
