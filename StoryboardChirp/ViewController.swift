@@ -123,6 +123,8 @@ class ViewController: UIViewController, ChartViewDelegate {
     var initPress: [Int: Bool] = [:]
     var initPressCount = 0
     
+    var timer: Timer?
+    
     let centerFromTop: Double = 400
     
 //    var x1Pos: [Double] = []
@@ -323,6 +325,10 @@ class ViewController: UIViewController, ChartViewDelegate {
                 mass1 = Double(mass1Slider.value)
                 mass2 = Double(mass2Slider.value)
                 removeViews()
+                
+                // invalidate the timer if it's working
+                timer?.invalidate()
+                
                 testChirp.changeMasses(mass1: mass1, mass2: mass2)
         //        testSpect.refresh(run_chirp: &testChirp)
         //        spectUIIm = testSpect.genSpectrogram()

@@ -87,7 +87,7 @@ extension ViewController {
         
         let dt = testChirp.getDT()
         
-        var timer: Timer!
+//        var timer: Timer!
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] _ in
                 
@@ -99,7 +99,7 @@ extension ViewController {
                 //print("collide!")
                 print("current samp: ", samp)
                 print("final Dist: ", self!.a[samp] / self!.scaleDown)
-                timer.invalidate()
+                self!.timer?.invalidate()
                 
                 self!.initPress.removeValue(forKey: currInitCount)
                 
