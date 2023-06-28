@@ -2,7 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jjg-Qm-ZGM">
     <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -102,16 +103,9 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgf-aV-9Rc">
                                 <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jcM-cK-Dqf" userLabel="contentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="834" height="1800"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jcM-cK-Dqf" userLabel="contentView">
+                                        <rect key="frame" x="0.0" y="74" width="834" height="1800"/>
                                         <subviews>
-                                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.050000000000000003" minValue="0.01" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zrA-71-aY4">
-                                                <rect key="frame" x="36" y="937" width="330" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="speedSliderChange:" destination="dCC-hP-mkN" eventType="valueChanged" id="ZQq-dc-7Tt"/>
-                                                </connections>
-                                            </slider>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47P-Is-PLO">
                                                 <rect key="frame" x="544" y="812" width="210" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -182,13 +176,6 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mass 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxb-mU-qVF">
-                                                <rect key="frame" x="147" y="749" width="91" height="79"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kw2-IA-om1">
                                                 <rect key="frame" x="754" y="823" width="50" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -198,20 +185,6 @@
                                                     <segue destination="VxI-YG-2td" kind="show" id="9tl-Oi-qdX"/>
                                                 </connections>
                                             </button>
-                                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="1.3999999999999999" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Qbm-Ur-5kE">
-                                                <rect key="frame" x="29" y="670" width="330" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="mass1Change:" destination="dCC-hP-mkN" eventType="valueChanged" id="DcQ-Ky-8vZ"/>
-                                                </connections>
-                                            </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mass 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V61-P9-Xmj">
-                                                <rect key="frame" x="147" y="613" width="91" height="79"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3j-XR-l3h">
                                                 <rect key="frame" x="544" y="938" width="210" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -230,13 +203,6 @@
                                                     <action selector="spiralButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="2gA-nE-DUO"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="x 0.05" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gga-0I-cfK">
-                                                <rect key="frame" x="147" y="958" width="78" height="43"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="y-axis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRq-xP-Yf8">
                                                 <rect key="frame" x="77" y="252" width="74" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -271,13 +237,6 @@
                                                     <action selector="spectroButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="fJ1-7k-Wum"/>
                                                 </connections>
                                             </button>
-                                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="1.3999999999999999" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="77g-eT-1Ti">
-                                                <rect key="frame" x="36" y="805" width="330" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="mass2Change:" destination="dCC-hP-mkN" eventType="valueChanged" id="evE-Bm-6fz"/>
-                                                </connections>
-                                            </slider>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztS-4n-lCD">
                                                 <rect key="frame" x="754" y="949" width="50" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -287,16 +246,82 @@
                                                     <segue destination="0tq-Ew-Exi" kind="show" id="1tA-GN-159"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="20" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pSo-Kf-DUQ">
-                                                <rect key="frame" x="122" y="837" width="140" height="42"/>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iJI-aa-z2T" userLabel="sliderRegionView">
+                                                <rect key="frame" x="0.0" y="613" width="418" height="380"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                                <connections>
-                                                    <action selector="mass1TextChange:" destination="dCC-hP-mkN" eventType="editingDidEnd" id="eRh-n0-aNW"/>
-                                                    <action selector="mass2TextChange:" destination="dCC-hP-mkN" eventType="editingDidEnd" id="7Ed-vo-9M5"/>
-                                                </connections>
-                                            </textField>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="20" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pSo-Kf-DUQ">
+                                                        <rect key="frame" x="137" y="203" width="140" height="42"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                        <connections>
+                                                            <action selector="mass1TextChange:" destination="dCC-hP-mkN" eventType="editingDidEnd" id="eRh-n0-aNW"/>
+                                                            <action selector="mass2TextChange:" destination="dCC-hP-mkN" eventType="editingDidEnd" id="7Ed-vo-9M5"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.050000000000000003" minValue="0.01" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zrA-71-aY4">
+                                                        <rect key="frame" x="44" y="293" width="330" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <connections>
+                                                            <action selector="speedSliderChange:" destination="dCC-hP-mkN" eventType="valueChanged" id="ZQq-dc-7Tt"/>
+                                                        </connections>
+                                                    </slider>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="animation speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKz-qw-phG">
+                                                        <rect key="frame" x="98" y="257" width="192" height="37"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mass 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxb-mU-qVF">
+                                                        <rect key="frame" x="162" y="134" width="91" height="42"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mass 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V61-P9-Xmj">
+                                                        <rect key="frame" x="162" y="17" width="91" height="42"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="20" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kZq-8H-pud">
+                                                        <rect key="frame" x="137" y="84" width="140" height="42"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                        <connections>
+                                                            <action selector="mass1TextChange:" destination="dCC-hP-mkN" eventType="editingDidEnd" id="an6-kV-Cin"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="1.3999999999999999" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="77g-eT-1Ti">
+                                                        <rect key="frame" x="44" y="170" width="330" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <connections>
+                                                            <action selector="mass2Change:" destination="dCC-hP-mkN" eventType="valueChanged" id="evE-Bm-6fz"/>
+                                                        </connections>
+                                                    </slider>
+                                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="1.3999999999999999" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Qbm-Ur-5kE">
+                                                        <rect key="frame" x="44" y="52" width="330" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <connections>
+                                                            <action selector="mass1Change:" destination="dCC-hP-mkN" eventType="valueChanged" id="DcQ-Ky-8vZ"/>
+                                                        </connections>
+                                                    </slider>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" x 0.05" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gga-0I-cfK">
+                                                        <rect key="frame" x="137" y="327" width="140" height="42"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8az-5Z-Qlq">
                                                 <rect key="frame" x="544" y="875" width="210" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -315,22 +340,6 @@
                                                     <action selector="animButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="RhG-Ev-wsI"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="animation speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKz-qw-phG">
-                                                <rect key="frame" x="90" y="901" width="192" height="37"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="20" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kZq-8H-pud">
-                                                <rect key="frame" x="122" y="702" width="140" height="42"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                                <connections>
-                                                    <action selector="mass1TextChange:" destination="dCC-hP-mkN" eventType="editingDidEnd" id="an6-kV-Cin"/>
-                                                </connections>
-                                            </textField>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYR-Pw-iFM">
                                                 <rect key="frame" x="544" y="623" width="210" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -347,6 +356,19 @@
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="waveformButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="AMO-m2-oNs"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndd-i0-fmD">
+                                                <rect key="frame" x="759" y="123" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Button">
+                                                    <imageReference key="image" image="sun.max.circle" catalog="system" symbolScale="large"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                                                </state>
+                                                <buttonConfiguration key="configuration" style="plain" image="sun.max.circle" catalog="system"/>
+                                                <connections>
+                                                    <action selector="colorThemeButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="3PA-Mp-Ng4"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -379,6 +401,7 @@
                     <connections>
                         <outlet property="animButton" destination="8az-5Z-Qlq" id="rae-j8-dOp"/>
                         <outlet property="audioButton" destination="47P-Is-PLO" id="L34-ap-irz"/>
+                        <outlet property="colorThemeButton" destination="Ndd-i0-fmD" id="uDl-Pe-mEn"/>
                         <outlet property="contentView" destination="jcM-cK-Dqf" id="PAy-AD-hjX"/>
                         <outlet property="freqButton" destination="xH2-Ru-DwP" id="xX0-K9-bEC"/>
                         <outlet property="freqInfo" destination="mb5-4n-tP6" id="skv-rv-kxP"/>
@@ -388,6 +411,7 @@
                         <outlet property="mass2TextField" destination="pSo-Kf-DUQ" id="d3T-er-YyA"/>
                         <outlet property="navigationBar" destination="4Q8-XO-oIw" id="WvQ-lB-iSL"/>
                         <outlet property="scrollView" destination="xgf-aV-9Rc" id="WTR-Pg-nXw"/>
+                        <outlet property="sliderRegionView" destination="iJI-aa-z2T" id="C4s-A2-qmH"/>
                         <outlet property="spectroButton" destination="L0G-tM-J0M" id="SZl-p2-C3X"/>
                         <outlet property="speedLabel" destination="Gga-0I-cfK" id="Srf-SM-fih"/>
                         <outlet property="speedSlider" destination="zrA-71-aY4" id="xk3-Gc-AoI"/>
@@ -537,6 +561,7 @@
     <resources>
         <image name="doc" width="128" height="128"/>
         <image name="questionmark.circle" catalog="system" width="128" height="123"/>
+        <image name="sun.max.circle" catalog="system" width="128" height="123"/>
         <image name="terminal.fill" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

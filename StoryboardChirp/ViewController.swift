@@ -19,6 +19,11 @@ class ViewController: UIViewController, ChartViewDelegate {
     // the view embeded in the scrollView, containing all items
     @IBOutlet weak var contentView: UIView!
     
+    // the view containing the sliders and text fields
+    @IBOutlet weak var sliderRegionView: UIView!
+    
+    @IBOutlet weak var colorThemeButton: UIButton!
+    
     @IBOutlet weak var navigationBar: UINavigationItem!
     
     @IBOutlet weak var mass1Slider: UISlider!
@@ -78,6 +83,15 @@ class ViewController: UIViewController, ChartViewDelegate {
     var audioPlayer: AVAudioPlayer?
     
     let navigationBarHeight: Double = 120
+    
+    // value that colorThemeButton controls
+    var isLightTheme: Bool = true
+    
+    // UIImage for light theme button
+    var lightThemeImage: UIImage!
+    
+    // UIImage for dark theme button
+    var darkThemeImage: UIImage!
     
     //------------------------------------------------------//
     //            Collsion Animation Variables              //
@@ -191,8 +205,10 @@ class ViewController: UIViewController, ChartViewDelegate {
                                            y: window_y,
                                            width: window_w,
                                            height: window_h))
-        windowFrame.layer.borderWidth = 2
+        windowFrame.layer.borderWidth = 10
         windowFrame.layer.borderColor = UIColor.black.cgColor
+        windowFrame.layer.cornerRadius = 50
+        windowFrame.backgroundColor = UIColor.white
         
         let axisLabel_w = 350
         let axisLabel_h = 34
@@ -222,6 +238,17 @@ class ViewController: UIViewController, ChartViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
         
+        sliderRegionView.layer.cornerRadius = 30
+        
+        let colorThemeButtonConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .bold, scale: .large)
+        
+        lightThemeImage = UIImage(systemName: "sun.max.circle", withConfiguration: colorThemeButtonConfig)
+        
+        darkThemeImage = UIImage(systemName: "moon.circle", withConfiguration: colorThemeButtonConfig)
+        
+        colorThemeButton.setImage(lightThemeImage, for: .normal)
+        
+
     }
 
     @IBAction func mass1Change(_ sender: Any) {
@@ -341,7 +368,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     
 
     @IBAction func speedSliderChange(_ sender: Any) {
-        speedLabel.text = "x \(round(speedSlider.value * 100) / 100.0)"
+        speedLabel.text = " x \(round(speedSlider.value * 100) / 100.0)"
     }
     
     
@@ -375,6 +402,39 @@ class ViewController: UIViewController, ChartViewDelegate {
         xAxisLabel.isHidden = true
         yAxisLabel.isHidden = true
     }
+    
+    @IBAction func colorThemeButtonPress(_ sender: Any) {
+        if (isLightTheme) {
+            colorThemeButton.setImage(darkThemeImage, for: .normal)
+            setDarkTheme()
+            print("image set to moon")
+        } else {
+            colorThemeButton.setImage(lightThemeImage, for: .normal)
+            setLightTheme()
+            print("image set to sun")
+        }
+        isLightTheme = !isLightTheme
+        print("color theme button pressed, light theme is \(isLightTheme)")
+    }
+    
+    func setDarkTheme() {
+        let darkPurple = UIColor(red: 40/255, green: 25/255, blue: 90/255, alpha: 1.0)
+        let lightPurple = UIColor(red: 75/255, green: 50/255, blue: 130/255, alpha: 1.0)
+        view.backgroundColor = darkPurple
+        contentView.backgroundColor = darkPurple
+        sliderRegionView.backgroundColor = lightPurple
+        
+        colorThemeButton.tintColor = UIColor.white
+    }
+    
+    func setLightTheme() {
+        view.backgroundColor = UIColor.white
+        contentView.backgroundColor = UIColor.white
+        sliderRegionView.backgroundColor = UIColor.white
+        
+        colorThemeButton.tintColor = UIColor.systemBlue
+    }
+    
 
     @objc func keyboardWillShow(notification:NSNotification) {
         
