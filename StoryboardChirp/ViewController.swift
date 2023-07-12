@@ -430,9 +430,11 @@ class ViewController: UIViewController, ChartViewDelegate {
         let lightPurple = UIColor(red: 75/255, green: 50/255, blue: 130/255, alpha: 1.0)
 //        view.backgroundColor = darkPurple
 //        contentView.backgroundColor = darkPurple
+        let translucentGray = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
         view.backgroundColor = UIColor.clear
         contentView.backgroundColor = UIColor.clear
-        sliderRegionView.backgroundColor = lightPurple
+        sliderRegionView.backgroundColor = translucentGray
+        windowFrame.backgroundColor = UIColor.white
         
         setBackgroundImageView()
         
