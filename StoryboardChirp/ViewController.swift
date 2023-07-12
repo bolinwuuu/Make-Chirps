@@ -154,7 +154,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     var scaleDown: Double = 4000
     
-    
+    var backgroundImageView: UIImageView!
     
     //        Collsion Animation Variables ends             //
     //------------------------------------------------------//
@@ -230,7 +230,8 @@ class ViewController: UIViewController, ChartViewDelegate {
         yAxisLabel.isHidden = true
 //        view.addSubview(windowFrame)
         contentView.addSubview(windowFrame)
-        windowFrame.center = CGPoint(x: contentView.bounds.midX, y: centerFromTop - navigationBarHeight)
+//        windowFrame.center = CGPoint(x: contentView.bounds.midX, y: centerFromTop - navigationBarHeight)
+        windowFrame.center = CGPoint(x: contentView.bounds.midX, y: centerFromTop)
 
         scrollView.isScrollEnabled = false
         
@@ -247,6 +248,13 @@ class ViewController: UIViewController, ChartViewDelegate {
         darkThemeImage = UIImage(systemName: "moon.circle", withConfiguration: colorThemeButtonConfig)
         
         colorThemeButton.setImage(lightThemeImage, for: .normal)
+        
+        // add blank background image view
+        backgroundImageView = UIImageView(frame: UIScreen.main.bounds)
+        self.view.insertSubview(backgroundImageView, at: 0)
+        self.view.sendSubviewToBack(backgroundImageView)
+        
+        setLightTheme()
         
 
     }
@@ -420,9 +428,13 @@ class ViewController: UIViewController, ChartViewDelegate {
     func setDarkTheme() {
         let darkPurple = UIColor(red: 40/255, green: 25/255, blue: 90/255, alpha: 1.0)
         let lightPurple = UIColor(red: 75/255, green: 50/255, blue: 130/255, alpha: 1.0)
-        view.backgroundColor = darkPurple
-        contentView.backgroundColor = darkPurple
+//        view.backgroundColor = darkPurple
+//        contentView.backgroundColor = darkPurple
+        view.backgroundColor = UIColor.clear
+        contentView.backgroundColor = UIColor.clear
         sliderRegionView.backgroundColor = lightPurple
+        
+        setBackgroundImageView()
         
         colorThemeButton.tintColor = UIColor.white
     }
@@ -430,7 +442,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     func setLightTheme() {
         view.backgroundColor = UIColor.white
         contentView.backgroundColor = UIColor.white
-        sliderRegionView.backgroundColor = UIColor.white
+        sliderRegionView.backgroundColor = UIColor.systemGray5
         
         colorThemeButton.tintColor = UIColor.systemBlue
     }
@@ -447,6 +459,13 @@ class ViewController: UIViewController, ChartViewDelegate {
         var contentInset:UIEdgeInsets = self.scrollView.contentInset
         contentInset.bottom = keyboardFrame.size.height + 20
         scrollView.contentInset = contentInset
+    }
+    
+    func setBackgroundImageView() {
+
+        backgroundImageView.image = UIImage(named: "gw_artist_image.jpeg")
+        backgroundImageView.contentMode =  UIView.ContentMode.scaleAspectFill
+
     }
 
     @objc func keyboardWillHide(notification:NSNotification) {

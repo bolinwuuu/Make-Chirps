@@ -24,6 +24,7 @@
 		1429A3D3298433EC00F919F8 /* FreqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3D2298433EC00F919F8 /* FreqViewController.swift */; };
 		1429A3D52984340700F919F8 /* SpectrogramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3D42984340700F919F8 /* SpectrogramViewController.swift */; };
 		1429A3D7298463AC00F919F8 /* Spectrogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429A3D6298463AC00F919F8 /* Spectrogram.swift */; };
+		1440AC562A5EADE700A04665 /* gw_artist_image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1440AC552A5EADE600A04665 /* gw_artist_image.jpeg */; };
 		144A28BA2A089B9F00BBB6D1 /* VC_Spectro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144A28B92A089B9F00BBB6D1 /* VC_Spectro.swift */; };
 		144A28BC2A089BE800BBB6D1 /* VC_Waveform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144A28BB2A089BE800BBB6D1 /* VC_Waveform.swift */; };
 		144A28BE2A089C1700BBB6D1 /* VC_Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144A28BD2A089C1700BBB6D1 /* VC_Frequency.swift */; };
@@ -74,6 +75,7 @@
 		1429A3D2298433EC00F919F8 /* FreqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreqViewController.swift; sourceTree = "<group>"; };
 		1429A3D42984340700F919F8 /* SpectrogramViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectrogramViewController.swift; sourceTree = "<group>"; };
 		1429A3D6298463AC00F919F8 /* Spectrogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spectrogram.swift; sourceTree = "<group>"; };
+		1440AC552A5EADE600A04665 /* gw_artist_image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gw_artist_image.jpeg; sourceTree = "<group>"; };
 		144A28B92A089B9F00BBB6D1 /* VC_Spectro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Spectro.swift; sourceTree = "<group>"; };
 		144A28BB2A089BE800BBB6D1 /* VC_Waveform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Waveform.swift; sourceTree = "<group>"; };
 		144A28BD2A089C1700BBB6D1 /* VC_Frequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Frequency.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				1429A3A029842E0700F919F8 /* ViewController.swift */,
 				1429A3A229842E0700F919F8 /* Main.storyboard */,
 				1429A3A529842E0900F919F8 /* Assets.xcassets */,
+				1440AC552A5EADE600A04665 /* gw_artist_image.jpeg */,
 				1429A3A729842E0900F919F8 /* LaunchScreen.storyboard */,
 				1429A3AA29842E0900F919F8 /* Info.plist */,
 				1429A3CC29842E9B00F919F8 /* run_chirp.swift */,
@@ -307,6 +310,7 @@
 			files = (
 				1429A3A929842E0900F919F8 /* LaunchScreen.storyboard in Resources */,
 				1429A3A629842E0900F919F8 /* Assets.xcassets in Resources */,
+				1440AC562A5EADE700A04665 /* gw_artist_image.jpeg in Resources */,
 				1429A3A429842E0700F919F8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
