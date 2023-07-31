@@ -90,6 +90,7 @@ extension ViewController {
         if (mass1 == 1.4 && mass2 == 1.4) {
             lastSamp -= 1
             print("brutal solution triggered! New lastSamp: \(lastSamp)")
+            
         }
         
         let dt = testChirp.getDT()
