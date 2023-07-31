@@ -110,15 +110,8 @@
                                                 <rect key="frame" x="544" y="946" width="210" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Audio">
-                                                            <attributes>
-                                                                <font key="NSFont" size="22" name="Helvetica"/>
-                                                                <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <buttonConfiguration key="configuration" style="filled" title="Audio">
+                                                    <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="22"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="audioButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="qlq-4h-hSq"/>
@@ -137,15 +130,8 @@
                                                 <rect key="frame" x="544" y="820" width="210" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Frequency">
-                                                            <attributes>
-                                                                <font key="NSFont" size="22" name="Helvetica"/>
-                                                                <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <buttonConfiguration key="configuration" style="filled" title="Frequency">
+                                                    <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="22"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="freqButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="F1H-Gg-5mr"/>
@@ -189,15 +175,8 @@
                                                 <rect key="frame" x="544" y="1072" width="210" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Spiral Animation">
-                                                            <attributes>
-                                                                <font key="NSFont" size="22" name="Helvetica"/>
-                                                                <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <buttonConfiguration key="configuration" style="filled" title="Spiral Animation">
+                                                    <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="22"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="spiralButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="2gA-nE-DUO"/>
@@ -223,15 +202,8 @@
                                                 <rect key="frame" x="544" y="883" width="210" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Spectrogram">
-                                                            <attributes>
-                                                                <font key="NSFont" size="22" name="Helvetica"/>
-                                                                <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <buttonConfiguration key="configuration" style="filled" title="Spectrogram">
+                                                    <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="22"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="spectroButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="fJ1-7k-Wum"/>
@@ -247,7 +219,7 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iJI-aa-z2T" userLabel="sliderRegionView">
-                                                <rect key="frame" x="0.0" y="747" width="418" height="380"/>
+                                                <rect key="frame" x="21" y="747" width="418" height="380"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="20" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pSo-Kf-DUQ">
@@ -268,7 +240,7 @@
                                                         </connections>
                                                     </slider>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="animation speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKz-qw-phG">
-                                                        <rect key="frame" x="98" y="257" width="192" height="37"/>
+                                                        <rect key="frame" x="111" y="257" width="192" height="37"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                                         <nil key="textColor"/>
@@ -326,15 +298,8 @@
                                                 <rect key="frame" x="544" y="1009" width="210" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Collision Animation">
-                                                            <attributes>
-                                                                <font key="NSFont" size="22" name="Helvetica"/>
-                                                                <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <buttonConfiguration key="configuration" style="filled" title="Collision Animation">
+                                                    <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="22"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="animButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="RhG-Ev-wsI"/>
@@ -344,15 +309,8 @@
                                                 <rect key="frame" x="544" y="757" width="210" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Waveform">
-                                                            <attributes>
-                                                                <font key="NSFont" size="22" name="Helvetica"/>
-                                                                <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <buttonConfiguration key="configuration" style="filled" title="Waveform">
+                                                    <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="22"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="waveformButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="AMO-m2-oNs"/>
@@ -400,22 +358,29 @@
                     <navigationItem key="navigationItem" id="4Q8-XO-oIw"/>
                     <connections>
                         <outlet property="animButton" destination="8az-5Z-Qlq" id="rae-j8-dOp"/>
+                        <outlet property="animInfo" destination="a4k-81-AWX" id="tSE-ZE-mt7"/>
+                        <outlet property="animationSpeedTitle" destination="BKz-qw-phG" id="p81-gl-JU1"/>
                         <outlet property="audioButton" destination="47P-Is-PLO" id="L34-ap-irz"/>
+                        <outlet property="audioInfo" destination="Kw2-IA-om1" id="ogC-pg-zGG"/>
                         <outlet property="colorThemeButton" destination="Ndd-i0-fmD" id="uDl-Pe-mEn"/>
                         <outlet property="contentView" destination="jcM-cK-Dqf" id="PAy-AD-hjX"/>
                         <outlet property="freqButton" destination="xH2-Ru-DwP" id="xX0-K9-bEC"/>
                         <outlet property="freqInfo" destination="mb5-4n-tP6" id="skv-rv-kxP"/>
                         <outlet property="mass1Slider" destination="Qbm-Ur-5kE" id="r2O-MV-cxn"/>
                         <outlet property="mass1TextField" destination="kZq-8H-pud" id="Cuv-dD-9XW"/>
+                        <outlet property="mass1Title" destination="V61-P9-Xmj" id="iHF-Rz-LiX"/>
                         <outlet property="mass2Slider" destination="77g-eT-1Ti" id="OS1-g5-Yye"/>
                         <outlet property="mass2TextField" destination="pSo-Kf-DUQ" id="d3T-er-YyA"/>
+                        <outlet property="mass2Title" destination="gxb-mU-qVF" id="OVh-bA-ndA"/>
                         <outlet property="navigationBar" destination="4Q8-XO-oIw" id="WvQ-lB-iSL"/>
                         <outlet property="scrollView" destination="xgf-aV-9Rc" id="WTR-Pg-nXw"/>
                         <outlet property="sliderRegionView" destination="iJI-aa-z2T" id="C4s-A2-qmH"/>
                         <outlet property="spectroButton" destination="L0G-tM-J0M" id="SZl-p2-C3X"/>
+                        <outlet property="spectroInfo" destination="k5a-kr-6Q6" id="eLE-mn-37A"/>
                         <outlet property="speedLabel" destination="Gga-0I-cfK" id="Srf-SM-fih"/>
                         <outlet property="speedSlider" destination="zrA-71-aY4" id="xk3-Gc-AoI"/>
                         <outlet property="spiralButton" destination="e3j-XR-l3h" id="zse-gR-ctk"/>
+                        <outlet property="spiralInfo" destination="ztS-4n-lCD" id="08g-FN-wiC"/>
                         <outlet property="waveformButton" destination="hYR-Pw-iFM" id="1Wi-yt-KQA"/>
                         <outlet property="waveformInfo" destination="bVv-He-6HF" id="iqd-l0-Ck9"/>
                         <outlet property="xAxisLabel" destination="AZp-pz-bOf" id="sVx-sd-5DM"/>

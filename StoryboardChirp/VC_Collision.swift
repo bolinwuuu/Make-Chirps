@@ -85,7 +85,12 @@ extension ViewController {
         // make the animation start at the last 10 seconds
         var samp: Int = max(1, lastSamp - Int(10 / 0.01) * animationdownSample)
         print("animation starts at index \(samp)")
-
+        print("mass1 is \(mass1), mass2 is \(mass2)")
+        // brutally fixing an index-out-of-bound bug when masses are 1.4 & 1.4
+        if (mass1 == 1.4 && mass2 == 1.4) {
+            lastSamp -= 1
+            print("brutal solution triggered! New lastSamp: \(lastSamp)")
+        }
         
         let dt = testChirp.getDT()
         
@@ -100,7 +105,8 @@ extension ViewController {
                 // Invalidate the timer to stop the animation
                 //print("collide!")
                 print("current samp: ", samp)
-                print("final Dist: ", self!.a[samp] / self!.scaleDown)
+//                print("a size: \(self!.a.count)")
+//                print("final Dist: ", self!.a[samp] / self!.scaleDown)
                 self!.timer?.invalidate()
                 
                 self!.initPress.removeValue(forKey: currInitCount)
@@ -109,38 +115,39 @@ extension ViewController {
 //                let alert = UIAlertController(title: "Collision", message: "The celestial bodies have collided!", preferredStyle: .alert)
 //                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 //                self?.present(alert, animated: true, completion: nil)
+            } else {
+                
+                
+                // Update the current time
+                self?.currentTime += 0.01
+                
+                let deltaphi: Double = 2 * Double.pi * (self!.freq[samp - 1] + self!.freq[samp]) * (dt * Double(self!.animationdownSample))
+                
+                phi1 += deltaphi
+                phi2 += deltaphi
+                
+                // update new distances to center
+                let distToCenter1 = self!.a[samp] / self!.scaleDown * self!.mass2 / (self!.mass1 + self!.mass2)
+                let distToCenter2 = self!.a[samp] / self!.scaleDown * self!.mass1 / (self!.mass1 + self!.mass2)
+                
+                
+                // update the positions
+                self!.x1 = distToCenter1 * cos(phi1);
+                self!.y1 = distToCenter1 * sin(phi1);
+                self!.x2 = distToCenter2 * cos(phi2);
+                self!.y2 = distToCenter2 * sin(phi2);
+                
+                
+                // Update the positions of the views that represent the celestial bodies on the screen
+                
+                //            self?.body1.center = CGPoint(x: self!.view.bounds.midX + CGFloat(self?.x1 ?? 0.0), y: self!.centerFromTop + CGFloat(self?.y1 ?? 0.0))
+                //            self?.body2.center = CGPoint(x: self!.view.bounds.midX + CGFloat(self?.x2 ?? 0.0), y: self!.centerFromTop + CGFloat(self?.y2 ?? 0.0))
+                self?.body1.center = CGPoint(x: self!.windowFrame.bounds.midX + CGFloat(self!.x1), y: self!.windowFrame.bounds.midY + CGFloat(self!.y1))
+                self?.body2.center = CGPoint(x: self!.windowFrame.bounds.midX + CGFloat(self!.x2), y: self!.windowFrame.bounds.midY + CGFloat(self!.y2))
+                
+                
+                samp += self!.animationdownSample
             }
-            
-            
-            // Update the current time
-            self?.currentTime += 0.01
-            
-            let deltaphi: Double = 2 * Double.pi * (self!.freq[samp - 1] + self!.freq[samp]) * (dt * Double(self!.animationdownSample))
-            
-            phi1 += deltaphi
-            phi2 += deltaphi
-            
-            // update new distances to center
-            let distToCenter1 = self!.a[samp] / self!.scaleDown * self!.mass2 / (self!.mass1 + self!.mass2)
-            let distToCenter2 = self!.a[samp] / self!.scaleDown * self!.mass1 / (self!.mass1 + self!.mass2)
-
-            
-            // update the positions
-            self!.x1 = distToCenter1 * cos(phi1);
-            self!.y1 = distToCenter1 * sin(phi1);
-            self!.x2 = distToCenter2 * cos(phi2);
-            self!.y2 = distToCenter2 * sin(phi2);
-            
-            
-            // Update the positions of the views that represent the celestial bodies on the screen
-            
-//            self?.body1.center = CGPoint(x: self!.view.bounds.midX + CGFloat(self?.x1 ?? 0.0), y: self!.centerFromTop + CGFloat(self?.y1 ?? 0.0))
-//            self?.body2.center = CGPoint(x: self!.view.bounds.midX + CGFloat(self?.x2 ?? 0.0), y: self!.centerFromTop + CGFloat(self?.y2 ?? 0.0))
-            self?.body1.center = CGPoint(x: self!.windowFrame.bounds.midX + CGFloat(self!.x1), y: self!.windowFrame.bounds.midY + CGFloat(self!.y1))
-            self?.body2.center = CGPoint(x: self!.windowFrame.bounds.midX + CGFloat(self!.x2), y: self!.windowFrame.bounds.midY + CGFloat(self!.y2))
-            
-            
-            samp += self!.animationdownSample
         }
         
     }

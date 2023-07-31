@@ -36,6 +36,12 @@ class ViewController: UIViewController, ChartViewDelegate {
 //
 //    @IBOutlet weak var mass2Label: UILabel!
     
+    @IBOutlet weak var mass1Title: UILabel!
+    
+    @IBOutlet weak var mass2Title: UILabel!
+    
+    @IBOutlet weak var animationSpeedTitle: UILabel!
+    
     @IBOutlet weak var mass1TextField: UITextField!
     
     @IBOutlet weak var mass2TextField: UITextField!
@@ -65,6 +71,14 @@ class ViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var waveformInfo: UIButton!
     
     @IBOutlet weak var freqInfo: UIButton!
+    
+    @IBOutlet weak var spectroInfo: UIButton!
+    
+    @IBOutlet weak var audioInfo: UIButton!
+    
+    @IBOutlet weak var animInfo: UIButton!
+    
+    @IBOutlet weak var spiralInfo: UIButton!
     
     //    @IBOutlet weak var playButton: UIButton!
     
@@ -256,7 +270,24 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         setLightTheme()
         
-
+        setupButtons()
+        
+    }
+    
+    func setupButtons() {
+        for bttn in [waveformButton, freqButton, spectroButton, audioButton, animButton, spiralButton] {
+            // set title font size
+            bttn?.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+            
+            // set up shadows
+            bttn?.layer.shadowColor = UIColor.black.cgColor
+            bttn?.layer.shadowOffset = CGSize(width: 0, height: 4)
+            bttn?.layer.shadowOpacity = 1.0
+            bttn?.layer.shadowRadius = 2.0
+            bttn?.layer.masksToBounds = false
+            bttn?.layer.cornerRadius = 4.0
+        }
+        
     }
 
     @IBAction func mass1Change(_ sender: Any) {
@@ -357,8 +388,8 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     func checkMassChange() {
             if (mass1 != Double(mass1Slider.value) || mass2 != Double(mass2Slider.value)) {
-                mass1 = Double(mass1Slider.value)
-                mass2 = Double(mass2Slider.value)
+                mass1 = roundToTwoDecimalPlaces(num: Double(mass1Slider.value))
+                mass2 = roundToTwoDecimalPlaces(num: Double(mass2Slider.value))
                 removeViews()
                 
                 // invalidate the timer if it's working
@@ -412,7 +443,8 @@ class ViewController: UIViewController, ChartViewDelegate {
     }
     
     @IBAction func colorThemeButtonPress(_ sender: Any) {
-        if (isLightTheme) {
+        isLightTheme = !isLightTheme
+        if (!isLightTheme) {
             colorThemeButton.setImage(darkThemeImage, for: .normal)
             setDarkTheme()
             print("image set to moon")
@@ -421,7 +453,6 @@ class ViewController: UIViewController, ChartViewDelegate {
             setLightTheme()
             print("image set to sun")
         }
-        isLightTheme = !isLightTheme
         print("color theme button pressed, light theme is \(isLightTheme)")
     }
     
@@ -430,25 +461,96 @@ class ViewController: UIViewController, ChartViewDelegate {
         let lightPurple = UIColor(red: 75/255, green: 50/255, blue: 130/255, alpha: 1.0)
 //        view.backgroundColor = darkPurple
 //        contentView.backgroundColor = darkPurple
-        let translucentGray = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
-        view.backgroundColor = UIColor.clear
-        contentView.backgroundColor = UIColor.clear
-        sliderRegionView.backgroundColor = translucentGray
-        windowFrame.backgroundColor = UIColor.white
+        let translucentGray = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
+        let translucentDarkGray = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.85)
+        view.backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        
+        // slider region
+        sliderRegionView.backgroundColor = translucentDarkGray
+        
+        mass1Title.textColor = .white
+        mass2Title.textColor = .white
+        animationSpeedTitle.textColor = .white
+        
+        for txtfld in [mass1TextField, mass2TextField] {
+            txtfld?.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
+            txtfld?.textColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        }
+        
+        speedLabel.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
+        speedLabel.textColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        
+        // slider region ends
+        
+        windowFrame.backgroundColor = translucentGray
+        
+
+        changeThemeButton()
+
         
         setBackgroundImageView()
         
-        colorThemeButton.tintColor = UIColor.white
+        colorThemeButton.tintColor = .white
     }
     
     func setLightTheme() {
-        view.backgroundColor = UIColor.white
-        contentView.backgroundColor = UIColor.white
-        sliderRegionView.backgroundColor = UIColor.systemGray5
+        view.backgroundColor = .white
+        contentView.backgroundColor = .white
+        
+        // slider region
+        sliderRegionView.backgroundColor = .systemGray5
+        
+        mass1Title.textColor = .black
+        mass2Title.textColor = .black
+        animationSpeedTitle.textColor = .black
+        
+        for txtfld in [mass1TextField, mass2TextField] {
+            txtfld?.backgroundColor = .white
+            txtfld?.textColor = .black
+        }
+        speedLabel.backgroundColor = .white
+        speedLabel.textColor = .black
+        // slider region ends
+        
+        changeThemeButton()
         
         colorThemeButton.tintColor = UIColor.systemBlue
     }
     
+    func changeThemeButton() {
+        var buttonBackground: UIColor!
+        var buttonForeground: UIColor!
+        var infoTint: UIColor!
+        
+        if isLightTheme {
+            buttonBackground = .systemBlue
+            buttonForeground = .white
+            infoTint = .darkGray
+        } else {
+            buttonBackground = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+            buttonForeground = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
+            
+//            buttonBackground = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+//            buttonForeground = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+            
+            infoTint = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
+        }
+        
+        for bttn in [waveformButton, freqButton, spectroButton, audioButton, animButton, spiralButton] {
+            bttn?.configuration?.baseBackgroundColor = buttonBackground
+            bttn?.configuration?.baseForegroundColor = buttonForeground
+        }
+        
+        for infobttn in [waveformInfo, freqInfo, spectroInfo, audioInfo, animInfo, spiralInfo] {
+            infobttn?.tintColor = infoTint
+        }
+        
+    }
+    
+//    func changeThemeSliderRegion() {
+//
+//    }
 
     @objc func keyboardWillShow(notification:NSNotification) {
         
@@ -465,7 +567,8 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     func setBackgroundImageView() {
 
-        backgroundImageView.image = UIImage(named: "gw_artist_image.jpeg")
+//        backgroundImageView.image = UIImage(named: "gw_artist_image.jpeg")
+        backgroundImageView.image = UIImage(named: "panorama_edited.png")
         backgroundImageView.contentMode =  UIView.ContentMode.scaleAspectFill
 
     }
