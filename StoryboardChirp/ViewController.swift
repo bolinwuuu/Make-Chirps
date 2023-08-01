@@ -484,6 +484,9 @@ class ViewController: UIViewController, ChartViewDelegate {
         speedLabel.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
         speedLabel.textColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
         
+        for slider in [mass1Slider, mass2Slider, speedSlider] {
+            slider?.tintColor = .systemBlue
+        }
         // slider region ends
         
         windowFrame.backgroundColor = translucentGray
@@ -528,6 +531,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         let panelPurple = UIColor(red: 45/255, green: 20/255, blue: 100/255, alpha: 1)
         let textfieldPurple = UIColor(red: 95/255, green: 70/255, blue: 150/255, alpha: 1)
         let buttonPink = UIColor(red: 200/255, green: 170/255, blue: 220/255, alpha: 1)
+        let buttonYellow = UIColor(red: 255/255, green: 210/255, blue: 100/255, alpha: 1)
 
         view.backgroundColor = darkPurple
         contentView.backgroundColor = darkPurple
@@ -545,6 +549,10 @@ class ViewController: UIViewController, ChartViewDelegate {
         }
         speedLabel.backgroundColor = textfieldPurple
         speedLabel.textColor = .white
+        
+        for slider in [mass1Slider, mass2Slider, speedSlider] {
+            slider?.tintColor = buttonYellow
+        }
         // slider region ends
         
         windowFrame.backgroundColor = .white
