@@ -549,6 +549,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         windowFrame.backgroundColor = .white
         
+        
         changeThemeButton()
         
         colorThemeButton.tintColor = UIColor.systemBlue
