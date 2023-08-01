@@ -463,11 +463,14 @@ class ViewController: UIViewController, ChartViewDelegate {
 //        contentView.backgroundColor = darkPurple
         let translucentGray = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
         let translucentDarkGray = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.85)
+//        let translucentPurple = UIColor(red: 35/255, green: 10/255, blue: 115/255, alpha: 0.7)
+        let translucentPurple = UIColor(red: 120/255, green: 100/255, blue: 180/255, alpha: 1)
         view.backgroundColor = .clear
         contentView.backgroundColor = .clear
         
         // slider region
         sliderRegionView.backgroundColor = translucentDarkGray
+//        sliderRegionView.backgroundColor = translucentPurple
         
         mass1Title.textColor = .white
         mass2Title.textColor = .white
@@ -495,23 +498,56 @@ class ViewController: UIViewController, ChartViewDelegate {
     }
     
     func setLightTheme() {
-        view.backgroundColor = .white
-        contentView.backgroundColor = .white
+//        // white theme
+//        view.backgroundColor = .white
+//        contentView.backgroundColor = .white
+//
+//        // slider region
+//        sliderRegionView.backgroundColor = .systemGray5
+//
+//        mass1Title.textColor = .black
+//        mass2Title.textColor = .black
+//        animationSpeedTitle.textColor = .black
+//
+//        for txtfld in [mass1TextField, mass2TextField] {
+//            txtfld?.backgroundColor = .white
+//            txtfld?.textColor = .black
+//        }
+//        speedLabel.backgroundColor = .white
+//        speedLabel.textColor = .black
+//        // slider region ends
+//
+//        changeThemeButton()
+//
+//        colorThemeButton.tintColor = UIColor.systemBlue
+//        // white theme END
+        
+        
+        // purple theme
+        let darkPurple = UIColor(red: 20/255, green: 10/255, blue: 60/255, alpha: 1)
+        let panelPurple = UIColor(red: 45/255, green: 20/255, blue: 100/255, alpha: 1)
+        let textfieldPurple = UIColor(red: 95/255, green: 70/255, blue: 150/255, alpha: 1)
+        let buttonPink = UIColor(red: 200/255, green: 170/255, blue: 220/255, alpha: 1)
+
+        view.backgroundColor = darkPurple
+        contentView.backgroundColor = darkPurple
         
         // slider region
-        sliderRegionView.backgroundColor = .systemGray5
+        sliderRegionView.backgroundColor = panelPurple
         
-        mass1Title.textColor = .black
-        mass2Title.textColor = .black
-        animationSpeedTitle.textColor = .black
+        mass1Title.textColor = .white
+        mass2Title.textColor = .white
+        animationSpeedTitle.textColor = .white
         
         for txtfld in [mass1TextField, mass2TextField] {
-            txtfld?.backgroundColor = .white
-            txtfld?.textColor = .black
+            txtfld?.backgroundColor = textfieldPurple
+            txtfld?.textColor = .white
         }
-        speedLabel.backgroundColor = .white
-        speedLabel.textColor = .black
+        speedLabel.backgroundColor = textfieldPurple
+        speedLabel.textColor = .white
         // slider region ends
+        
+        windowFrame.backgroundColor = .white
         
         changeThemeButton()
         
@@ -524,9 +560,20 @@ class ViewController: UIViewController, ChartViewDelegate {
         var infoTint: UIColor!
         
         if isLightTheme {
+            // white theme
             buttonBackground = .systemBlue
             buttonForeground = .white
             infoTint = .darkGray
+            // white theme END
+            
+            // purple theme
+            let darkPurple = UIColor(red: 20/255, green: 10/255, blue: 60/255, alpha: 1)
+            let buttonPink = UIColor(red: 200/255, green: 170/255, blue: 220/255, alpha: 1)
+            let buttonYellow = UIColor(red: 255/255, green: 210/255, blue: 100/255, alpha: 1)
+            buttonBackground = buttonYellow
+            buttonForeground = darkPurple
+            infoTint = .lightGray
+            // purple theme END
         } else {
             buttonBackground = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
             buttonForeground = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
@@ -568,6 +615,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     func setBackgroundImageView() {
 
 //        backgroundImageView.image = UIImage(named: "gw_artist_image.jpeg")
+//        backgroundImageView.image = UIImage(named: "gw_spiral_purple.jpeg")
         backgroundImageView.image = UIImage(named: "panorama_edited.png")
         backgroundImageView.contentMode =  UIView.ContentMode.scaleAspectFill
 
