@@ -41,16 +41,16 @@ class SpiralViewController: UIViewController {
                                          width: self.view.frame.size.width * frameScale,
                                          height: self.view.frame.size.width * frameScale))
         
-        spiralView = UIImageView(image: spiralUIIm)
-        spiralView.frame = CGRect(x: 0, y: 0,
-                                 width: self.view.frame.size.width * frameScale,
-                                 height: self.view.frame.size.width * frameScale)
-
-        
-        spiralView.center = view.center
-        
-        
-        displayWithTime(duration: Double(spiralUIIm.duration))
+//        spiralView = UIImageView(image: spiralUIIm)
+//        spiralView.frame = CGRect(x: 0, y: 0,
+//                                 width: self.view.frame.size.width * frameScale,
+//                                 height: self.view.frame.size.width * frameScale)
+//
+//        
+//        spiralView.center = view.center
+//        
+//        
+//        displayWithTime(duration: Double(spiralUIIm.duration))
     }
     
     func displayWithTime(duration: Double) {

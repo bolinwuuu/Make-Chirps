@@ -86,6 +86,8 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     var uiview: UIView = UIView()
     
+    var spiralview: UIImageView = UIImageView()
+    
     var chartView = LineChartView()
     
     var frameProp = 0.75
@@ -420,6 +422,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         // uiview.removeFromSuperview()
         // uiview = nil // TESTING
         uiview.isHidden = true
+        spiralview.isHidden = true
         self.chartView.removeFromSuperview()
         
         for subview in windowFrame.subviews {
@@ -625,7 +628,8 @@ class ViewController: UIViewController, ChartViewDelegate {
 
 //        backgroundImageView.image = UIImage(named: "gw_artist_image.jpeg")
 //        backgroundImageView.image = UIImage(named: "gw_spiral_purple.jpeg")
-        backgroundImageView.image = UIImage(named: "panorama_edited.png")
+//        backgroundImageView.image = UIImage(named: "gw_spiral_bw.jpeg")
+        backgroundImageView.image = UIImage(named: "Panorama_edited2.png")
         backgroundImageView.contentMode =  UIView.ContentMode.scaleAspectFill
 
     }

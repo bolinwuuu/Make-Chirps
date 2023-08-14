@@ -33,12 +33,12 @@ extension Run_Chirp {
     }
     
     
-    func genSpiralAnimation(speedX: Double) -> UIImage {
+    func genSpiralAnimation(speedX: Double) -> ([UIImage], Double) {
 //        let nrow = 150
 //        var heightD: [Double] = spiral_test()
-        
-        var tstart: Double = t[0] + sqrt(2) * halfwindow / c
-        let tend: Double = t[freq.count - 1]
+        let timeToReachCorner:Double = t[0] + sqrt(2) * halfwindow / c
+        var tstart: Double = timeToReachCorner
+        var tend: Double = t[freq.count - 1]
         
         var imageList: [UIImage] = []
         
@@ -66,6 +66,9 @@ extension Run_Chirp {
             return buffer
         }()
         
+        // extend the animation until the spiral disappear
+        tend += timeToReachCorner
+        
         // only keep the last dur seconds
         var dur: Double = 10
         let originalDur = (tend - tstart) / speedX
@@ -84,8 +87,8 @@ extension Run_Chirp {
         let timePerImage = dtnow / speedX
         
         
-        
-        
+        print("tstart: \(tstart)")
+        print("tend: \(tend)")
         print("dtnow: ", dtnow)
         print("ntime: ", ntime)
         
@@ -141,68 +144,11 @@ extension Run_Chirp {
             imageList.append(UIImage(cgImage: result!))
         }
         
-        
-        return UIImage.animatedImage(with: imageList, duration: dur)!
+        return (imageList, dur)
+//        return UIImage.animatedImage(with: imageList, duration: dur)!
 
-
-        
-//        var tnow = tstart
-//
-//        var heightD: [Double] = heightAt(tnow: tnow)
-//
-////        var hret: [Float] = [Float](repeating: 0, count: hretD.count)
-//
-////        hret = vDSP.convertElements(of: hretD, to: &hret)
-//        var height = vDSP.doubleToFloat(heightD)
-//
-//        let maxFreqVal = vDSP.maximum(height)
-//        let minFreqVal = vDSP.minimum(height)
-//        let maxFloat = maxFreqVal * 1.5
-//        let minFloat = minFreqVal
-//
-//
-//
-//        //let maxFloats: [Float] = [255, maxFloat, maxFloat, maxFloat]
-//        //let minFloats: [Float] = [255, 0, 0, 0]
-//        let maxFloats: [Float] = [255, maxFloat, maxFloat, maxFloat]
-//        let minFloats: [Float] = [255, minFloat, minFloat, minFloat]
-//
-//        height.withUnsafeMutableBufferPointer {
-//            var planarImageBuffer = vImage_Buffer(
-//                data: $0.baseAddress!,
-//                height: vImagePixelCount(nrow),
-//                width: vImagePixelCount(nrow),
-//                rowBytes: (nrow) * MemoryLayout<Float>.stride)
-//
-//            vImageConvert_PlanarFToARGB8888(
-//                &planarImageBuffer,
-//                &planarImageBuffer,
-//                &planarImageBuffer,
-//                &planarImageBuffer,
-//                &rgbImageBuffer,
-//                maxFloats,
-//                minFloats,
-//                vImage_Flags(kvImageNoFlags))
-//        }
-//
-//        vImageTableLookUp_ARGB8888(
-//            &rgbImageBuffer,
-//            &rgbImageBuffer,
-//            nil,
-//            &redTable,
-//            &greenTable,
-//            &blueTable,
-//            vImage_Flags(kvImageNoFlags))
-//
-//        let result = try? rgbImageBuffer.createCGImage(format: rgbImageFormat)
-//        //let result = try? rgbImageBuffer.createCGImage(format: rgbImageFormat)
-//
-//
-//        //let success = saveImage(image: UIImage(cgImage: result!))
-//        //print(success)
-//        return UIImage(cgImage: result!)
     }
-    
+        
     func heightAt(tnow: Double) -> [Double]{
         var tret = vDSP.add(tnow, tret_grid)
         
@@ -217,17 +163,17 @@ extension Run_Chirp {
 //                    vDSP_Length(h.count))
         
         
-
+        let timeToReachCorner:Double = t[0] + sqrt(2) * halfwindow / c
         
         var phiret = [Double](repeating: 0, count: tret.count)
-        vDSP_vlintD(phi,
+        vDSP_vlintD(phi + [Double](repeating: 0, count: Int(timeToReachCorner * fsamp)),
                     tret, vDSP_Stride(1),
                     &phiret, vDSP_Stride(1),
                     vDSP_Length(tret.count),
                     vDSP_Length(phi.count))
         
         var ampret = [Double](repeating: 0, count: tret.count)
-        vDSP_vlintD(amp,
+        vDSP_vlintD(amp + [Double](repeating: 0, count: Int(timeToReachCorner * fsamp)),
                     tret, vDSP_Stride(1),
                     &ampret, vDSP_Stride(1),
                     vDSP_Length(tret.count),

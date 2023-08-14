@@ -390,6 +390,24 @@ class Run_Chirp {
             freq = freq.dropLast(difference)
         }
         
+        if amp.count < freq.count {
+            // extending amp and phi correspondingly
+            print("extend amp & phi")
+            var ampExt = Array(t[amp.count..<freq.count])
+            vDSP.multiply(-1, ampExt, result: &ampExt)
+            vDSP.add(tau, ampExt, result: &ampExt)
+            ampExt = ampExt.map { (pow($0, -1/4)) }
+            vDSP.multiply(hcoeff * hscale, ampExt, result: &ampExt)
+            amp = amp + ampExt
+            
+            var phiExt = [Double](repeating: 0, count: freq.count - phi.count)
+            phiExt[0] = phi.last!
+            for index in 1..<phiExt.count {
+                phiExt[index] = phiExt[index - 1] + freq[index + phi.count]
+            }
+            vDSP.multiply(2 * Double.pi * dt, phiExt, result: &phiExt)
+            phi = phi + phiExt
+        }
         
         //END Adjustments for Ringdown --------------------------------
         print("chirp mass",mchirp)
