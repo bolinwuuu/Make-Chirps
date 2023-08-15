@@ -26,6 +26,8 @@ extension ViewController {
 //        uiview = UIView(frame: frameRect)
         
         let imList = spiralUIIm.0
+        print("imList size: \(imList.count)")
+        
         let dur = spiralUIIm.1
         spiralview.animationImages = imList
         spiralview.animationDuration = dur

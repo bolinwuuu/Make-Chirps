@@ -26,7 +26,7 @@ extension Run_Chirp {
         let dist_grid = vForce.sqrt(vDSP.add(vDSP.square(x_grid), vDSP.square(y_grid)))
         
         tret_grid = vDSP.multiply(-1/c, dist_grid)
-//        print("tret_grid size: ", tret_grid.count)
+        print("tret_grid size: \(tret_grid.count)")
         
         // 2 * atan(y/x)
         arctan_2 = vDSP.multiply(2, vForce.atan2(x: x_grid, y: y_grid))
@@ -94,6 +94,10 @@ extension Run_Chirp {
         
         for tnow in stride(from: tstart, through: tend, by: dtnow) {
             let heightD: [Double] = heightAt(tnow: tnow)
+            if (Array(heightD[0..<20]).allSatisfy{$0 == 0.0}) {
+                dur = (tnow - tstart) / speedX
+                break
+            }
             
     //        var hret: [Float] = [Float](repeating: 0, count: hretD.count)
             
@@ -143,7 +147,10 @@ extension Run_Chirp {
 
             imageList.append(UIImage(cgImage: result!))
         }
-        
+//        for tidx in stride(from: tend - 10*dtnow, through: tend, by: dtnow) {
+//            print(heightAt(tnow: tidx)[1...50])
+//        }
+//        print(heightAt(tnow: tend)[1...50])
         return (imageList, dur)
 //        return UIImage.animatedImage(with: imageList, duration: dur)!
 
