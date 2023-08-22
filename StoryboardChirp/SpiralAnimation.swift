@@ -96,6 +96,7 @@ extension Run_Chirp {
             let heightD: [Double] = heightAt(tnow: tnow)
             if (Array(heightD[0..<20]).allSatisfy{$0 == 0.0}) {
                 dur = (tnow - tstart) / speedX
+                print(heightAt(tnow: tnow - dtnow)[0..<50])
                 break
             }
             
@@ -104,10 +105,12 @@ extension Run_Chirp {
     //        hret = vDSP.convertElements(of: hretD, to: &hret)
             var height = vDSP.doubleToFloat(heightD)
             
-            let maxFreqVal = vDSP.maximum(height)
-            let minFreqVal = vDSP.minimum(height)
+//            let maxFreqVal = vDSP.maximum(height)
+//            let minFreqVal = vDSP.minimum(height)
+            let maxFreqVal = Float(max_h)
+            let minFreqVal = Float(min_h)
             let maxFloat = maxFreqVal * 1.5
-            let minFloat = minFreqVal
+            let minFloat = minFreqVal * 0.6
             
             
             

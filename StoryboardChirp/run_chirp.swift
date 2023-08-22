@@ -64,6 +64,8 @@ class Run_Chirp {
     
     // max value of h
     var max_h: Double = 0
+    // min value of h
+    var min_h: Double = 0
     
     // sample frequency
     var fsamp: Double = 0
@@ -323,6 +325,7 @@ class Run_Chirp {
 
         
         max_h = vDSP.maximum(h)
+        min_h = vDSP.minimum(h)
         
         // Frequency Ringdown
         
@@ -390,6 +393,7 @@ class Run_Chirp {
             freq = freq.dropLast(difference)
         }
         
+        // pad amp and phi with zero if their sizes are smaller than freq's
         if amp.count < freq.count {
 //            // extending amp and phi correspondingly
 //            print("extend amp & phi")

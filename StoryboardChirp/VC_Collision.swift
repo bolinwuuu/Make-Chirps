@@ -53,13 +53,14 @@ extension ViewController {
         print("radius2: ", radius2)
         print("radius sum: ", radius1 + radius2)
         
-        //Ratio of the radius of mass1 to the window frame to calculate the scaled width of windowFrame
-        let ratio = (Float(self.view.frame.size.width) * 0.77) / Float(radius1)
-        print("ratio of window frame width to radius1: ",ratio)
+//        //Ratio of the radius of mass1 to the window frame to calculate the scaled width of windowFrame
+//        let ratio = (Float(self.view.frame.size.width) * 0.77) / Float(radius1)
+//        print("ratio of window frame width to radius1: ",ratio)
+//
+//
+//        let lengthof_windowframe_km = Float(ratio) * Float(radius1) * 4
         
-        
-        let lengthof_windowframe_km = Float(ratio) * Float(radius1) * 4
-        
+        let lengthof_windowframe_km = Int(windowFrame.frame.width * scaleDown)
         
         
         let xAxisLabel = UILabel()
@@ -164,6 +165,16 @@ extension ViewController {
         
         mass1 = testChirp.getM1()
         mass2 = testChirp.getM2()
+        
+        // adjust scaleDown according to masses
+        if mass1 + mass2 < 40 {
+            print("small masses, less scale down")
+            scaleDown = 2000
+        } else {
+            print("large masses, more scale down")
+            scaleDown = 4000
+        }
+        
         self.lastSamp = Int(testChirp.getLastSample())
         
         self.freq = testChirp.getFreq()

@@ -466,14 +466,15 @@ class ViewController: UIViewController, ChartViewDelegate {
 //        contentView.backgroundColor = darkPurple
         let translucentGray = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
         let translucentDarkGray = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.85)
+        let opaqueDarkGray = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
 //        let translucentPurple = UIColor(red: 35/255, green: 10/255, blue: 115/255, alpha: 0.7)
         let translucentPurple = UIColor(red: 120/255, green: 100/255, blue: 180/255, alpha: 1)
         view.backgroundColor = .clear
         contentView.backgroundColor = .clear
         
         // slider region
-        sliderRegionView.backgroundColor = translucentDarkGray
-//        sliderRegionView.backgroundColor = translucentPurple
+//        sliderRegionView.backgroundColor = translucentDarkGray
+        sliderRegionView.backgroundColor = opaqueDarkGray
         
         mass1Title.textColor = .white
         mass2Title.textColor = .white
@@ -492,7 +493,8 @@ class ViewController: UIViewController, ChartViewDelegate {
         }
         // slider region ends
         
-        windowFrame.backgroundColor = translucentGray
+//        windowFrame.backgroundColor = translucentGray
+        windowFrame.backgroundColor = .white
         
 
         changeThemeButton()
