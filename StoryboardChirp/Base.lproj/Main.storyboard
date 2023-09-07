@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jjg-Qm-ZGM">
     <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -95,10 +95,24 @@
             </objects>
             <point key="canvasLocation" x="211" y="327"/>
         </scene>
-        <!--View Controller-->
+        <!--Info PageVC-->
         <scene sceneID="QSl-lf-8PF">
             <objects>
-                <viewController id="b8a-pA-cFh" sceneMemberID="viewController">
+                <viewController id="b8a-pA-cFh" customClass="InfoPageVC" customModule="StoryboardChirp" customModuleProvider="target" sceneMemberID="viewController">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="OYu-sU-dTL">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M72-uI-2bU">
+                                <rect key="frame" x="0.0" y="-124.60323886629385" width="834" height="1194"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1pS-Hb-Lts"/>
+                        <viewLayoutGuide key="contentLayoutGuide" id="SZy-gO-fsz"/>
+                        <viewLayoutGuide key="frameLayoutGuide" id="VBY-U5-WIR"/>
+                    </scrollView>
                     <navigationItem key="navigationItem" id="qpk-Ea-yla"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m17-A0-ZdR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
