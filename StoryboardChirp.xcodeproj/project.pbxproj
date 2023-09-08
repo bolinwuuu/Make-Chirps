@@ -44,9 +44,10 @@
 		14F0A8FC2A82B63600F2CF65 /* Panorama_edited2.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F0A8FB2A82B63600F2CF65 /* Panorama_edited2.png */; };
 		62AD7610B71025A4077B45C9 /* Pods_StoryboardChirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */; };
 		76606A4D2AA99BFC00F4F993 /* info.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 76606A4C2AA99BFB00F4F993 /* info.pdf */; };
-		76606A4F2AA99FBB00F4F993 /* InfoPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76606A4E2AA99FBB00F4F993 /* InfoPageVC.swift */; };
+		76606A4F2AA99FBB00F4F993 /* VC_InfoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76606A4E2AA99FBB00F4F993 /* VC_InfoPage.swift */; };
 		76606A512AA9A4F700F4F993 /* Acknowledgements.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 76606A502AA9A4F600F4F993 /* Acknowledgements.pdf */; };
-		76606A532AA9ADAD00F4F993 /* infotest.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 76606A522AA9ADAD00F4F993 /* infotest.pdf */; };
+		76606A552AAA2FC600F4F993 /* VC_Acknowledgements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76606A542AAA2FC600F4F993 /* VC_Acknowledgements.swift */; };
+		76606A572AAA318F00F4F993 /* infotest.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 76606A562AAA318F00F4F993 /* infotest.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,9 +110,10 @@
 		5566186B885D36136704E55C /* Pods-StoryboardChirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardChirp.debug.xcconfig"; path = "Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp.debug.xcconfig"; sourceTree = "<group>"; };
 		658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoryboardChirp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76606A4C2AA99BFB00F4F993 /* info.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = info.pdf; path = ../../../Downloads/info.pdf; sourceTree = "<group>"; };
-		76606A4E2AA99FBB00F4F993 /* InfoPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPageVC.swift; sourceTree = "<group>"; };
+		76606A4E2AA99FBB00F4F993 /* VC_InfoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_InfoPage.swift; sourceTree = "<group>"; };
 		76606A502AA9A4F600F4F993 /* Acknowledgements.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Acknowledgements.pdf; path = ../../../Desktop/Acknowledgements.pdf; sourceTree = "<group>"; };
-		76606A522AA9ADAD00F4F993 /* infotest.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = infotest.pdf; path = ../../../Downloads/infotest.pdf; sourceTree = "<group>"; };
+		76606A542AAA2FC600F4F993 /* VC_Acknowledgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Acknowledgements.swift; sourceTree = "<group>"; };
+		76606A562AAA318F00F4F993 /* infotest.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = infotest.pdf; path = ../../../Downloads/infotest.pdf; sourceTree = "<group>"; };
 		F26AE5C897BB6A27C5898720 /* Pods-StoryboardChirp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardChirp.release.xcconfig"; path = "Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,13 +176,13 @@
 				1440AC552A5EADE600A04665 /* gw_artist_image.jpeg */,
 				1471D20F2A7825AA006DECDB /* sonify6_lg.jpg */,
 				76606A4C2AA99BFB00F4F993 /* info.pdf */,
+				76606A562AAA318F00F4F993 /* infotest.pdf */,
 				1471D2112A7825F1006DECDB /* perseus_lg.jpg */,
 				1471D2132A7826E4006DECDB /* gw190521.jpg */,
 				1471D2152A782828006DECDB /* Panorama.jpg */,
 				1471D2172A782F01006DECDB /* panorama_edited.jpg */,
 				76606A502AA9A4F600F4F993 /* Acknowledgements.pdf */,
 				1471D2192A783097006DECDB /* panorama_edited.png */,
-				76606A522AA9ADAD00F4F993 /* infotest.pdf */,
 				14F0A8FB2A82B63600F2CF65 /* Panorama_edited2.png */,
 				1471D21B2A797D6C006DECDB /* gw_spiral_purple.jpeg */,
 				1471D21D2A7991A1006DECDB /* gw_spiral_bw.jpeg */,
@@ -194,7 +196,8 @@
 				1427180229969F2D006CE66D /* AudioViewController.swift */,
 				1429A3D2298433EC00F919F8 /* FreqViewController.swift */,
 				1429A3D42984340700F919F8 /* SpectrogramViewController.swift */,
-				76606A4E2AA99FBB00F4F993 /* InfoPageVC.swift */,
+				76606A4E2AA99FBB00F4F993 /* VC_InfoPage.swift */,
+				76606A542AAA2FC600F4F993 /* VC_Acknowledgements.swift */,
 				1462249029ABFB6300DDF1E9 /* SpiralAnimation.swift */,
 				14D2EA6D29AD5E7E001E6226 /* SpiralViewController.swift */,
 				144A28BB2A089BE800BBB6D1 /* VC_Waveform.swift */,
@@ -347,9 +350,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76606A532AA9ADAD00F4F993 /* infotest.pdf in Resources */,
 				1471D2102A7825AA006DECDB /* sonify6_lg.jpg in Resources */,
 				1471D21E2A7991A1006DECDB /* gw_spiral_bw.jpeg in Resources */,
+				76606A572AAA318F00F4F993 /* infotest.pdf in Resources */,
 				1471D21A2A783097006DECDB /* panorama_edited.png in Resources */,
 				1429A3A929842E0900F919F8 /* LaunchScreen.storyboard in Resources */,
 				1471D2162A782828006DECDB /* Panorama.jpg in Resources */,
@@ -437,6 +440,7 @@
 				144A28C42A089D9900BBB6D1 /* VC_Spiral.swift in Sources */,
 				1429A3A129842E0700F919F8 /* ViewController.swift in Sources */,
 				144A28BA2A089B9F00BBB6D1 /* VC_Spectro.swift in Sources */,
+				76606A552AAA2FC600F4F993 /* VC_Acknowledgements.swift in Sources */,
 				1429A3CF29842EF000F919F8 /* ColorTable.swift in Sources */,
 				144A28BE2A089C1700BBB6D1 /* VC_Frequency.swift in Sources */,
 				1429A3D1298433D500F919F8 /* WaveformViewController.swift in Sources */,
@@ -446,7 +450,7 @@
 				1462249129ABFB6300DDF1E9 /* SpiralAnimation.swift in Sources */,
 				1404292B298D6716000AAD9C /* AnimationViewController.swift in Sources */,
 				1427180329969F2D006CE66D /* AudioViewController.swift in Sources */,
-				76606A4F2AA99FBB00F4F993 /* InfoPageVC.swift in Sources */,
+				76606A4F2AA99FBB00F4F993 /* VC_InfoPage.swift in Sources */,
 				1429A39F29842E0700F919F8 /* SceneDelegate.swift in Sources */,
 				1429A3D7298463AC00F919F8 /* Spectrogram.swift in Sources */,
 			);

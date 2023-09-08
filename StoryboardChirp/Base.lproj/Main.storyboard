@@ -66,7 +66,13 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fOS-kB-kqQ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="cHB-1J-AWp" kind="relationship" relationship="viewControllers" id="8xd-PY-AJu"/>
@@ -82,7 +88,7 @@
         <scene sceneID="9iv-Zm-wzZ">
             <objects>
                 <navigationController id="HVk-Ff-g17" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Information" image="doc" id="QU8-5A-d5H"/>
+                    <tabBarItem key="tabBarItem" title="Information" image="info.circle" catalog="system" id="QU8-5A-d5H"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="bE8-OW-3vG">
                         <rect key="frame" x="0.0" y="24" width="834" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -104,7 +110,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M72-uI-2bU">
-                                <rect key="frame" x="0.0" y="-124.60323886629385" width="834" height="1194"/>
+                                <rect key="frame" x="0.0" y="-126" width="834" height="1194"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -422,7 +428,15 @@
         <scene sceneID="XJL-IC-WOh">
             <objects>
                 <navigationController id="cHB-1J-AWp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Simulations" image="terminal.fill" catalog="system" id="apv-ic-7LC"/>
+                    <tabBarItem key="tabBarItem" title="Simulations" id="apv-ic-7LC">
+                        <imageReference key="image" image="terminal.fill" catalog="system" symbolScale="medium"/>
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="WK8-dm-dnm">
                         <rect key="frame" x="0.0" y="24" width="834" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -439,7 +453,7 @@
         <scene sceneID="PG2-es-in2">
             <objects>
                 <navigationController id="VLW-Zk-YKm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Credits" id="u3j-1O-lYe"/>
+                    <tabBarItem key="tabBarItem" title="Credits" image="person.3" catalog="system" id="u3j-1O-lYe"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="qkU-MR-Y4z">
                         <rect key="frame" x="0.0" y="24" width="834" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -452,21 +466,29 @@
             </objects>
             <point key="canvasLocation" x="845" y="327"/>
         </scene>
-        <!--View Controller-->
+        <!--Acknowledgements-->
         <scene sceneID="cTw-eF-OnQ">
             <objects>
-                <viewController id="rrA-W0-tbe" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="BqR-Is-Rt0">
+                <viewController id="rrA-W0-tbe" customClass="VC_Acknowledgements" customModule="StoryboardChirp" customModuleProvider="target" sceneMemberID="viewController">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="3Bd-ko-CgZ">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="oxT-Lw-oOW"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ga-lm-Rsp">
+                                <rect key="frame" x="0.0" y="-126" width="834" height="1130"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bAi-4V-4im"/>
+                        <viewLayoutGuide key="contentLayoutGuide" id="W5m-8J-Qeh"/>
+                        <viewLayoutGuide key="frameLayoutGuide" id="cpd-dI-Pbh"/>
+                    </scrollView>
                     <navigationItem key="navigationItem" id="OB0-57-m9d"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c2M-1j-EnD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="888" y="1042"/>
+            <point key="canvasLocation" x="887.76978417266196" y="1041.7085427135678"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="7IM-30-I15">
@@ -570,7 +592,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="doc" width="128" height="128"/>
+        <image name="info.circle" catalog="system" width="128" height="123"/>
+        <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="questionmark.circle" catalog="system" width="128" height="123"/>
         <image name="sun.max.circle" catalog="system" width="128" height="123"/>
         <image name="terminal.fill" catalog="system" width="128" height="93"/>
