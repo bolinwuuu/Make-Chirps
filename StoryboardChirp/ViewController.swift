@@ -94,7 +94,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     // rectangle frame, used by spectrogram
     var frameRect: CGRect!
-    var frameRect2: CGRect!
+//    var frameRect2: CGRect!
     
     var audioPlayer: AVAudioPlayer?
     
@@ -155,7 +155,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     var timer: Timer?
     
-    let centerFromTop: Double = 400
+    var centerFromTop: Double = 400
     
 //    var x1Pos: [Double] = []
 //    var y1Pos: [Double] = []
@@ -180,11 +180,12 @@ class ViewController: UIViewController, ChartViewDelegate {
         super.viewDidLoad()
         
 //        self.view.addGestureRecognizer(tapGesture)
-
+        centerFromTop = self.view.frame.height / 3
         
-        let frameRect_w: Double = self.view.frame.size.width * frameProp
-        let frameRect_h: Double = self.view.frame.size.width * frameProp
-        let frameRect_x: Double = self.view.frame.size.width * (1 - frameProp) / 2
+        let frameRect_w: Double = self.view.frame.width * frameProp
+        let frameRect_h: Double = self.view.frame.width * frameProp
+//        let frameRect_x: Double = self.view.frame.width * (1 - frameProp) / 2
+        let frameRect_x: Double = (self.view.frame.width - frameRect_w) / 2
         let frameRect_y: Double = centerFromTop - frameRect_h / 2
         
         // For use by wavelength and frequency
@@ -193,10 +194,11 @@ class ViewController: UIViewController, ChartViewDelegate {
                            width: frameRect_w * (10/11),
                            height: frameRect_h * (10/11))
         
-        frameRect2 = CGRect(x: frameRect_x,
-                           y: frameRect_y,
-                           width: frameRect_w,
-                           height: frameRect_h)
+        
+//        frameRect2 = CGRect(x: frameRect_x,
+//                           y: frameRect_y,
+//                           width: frameRect_w,
+//                           height: frameRect_h)
         
         uiview.isHidden = true
         
@@ -212,9 +214,10 @@ class ViewController: UIViewController, ChartViewDelegate {
 //        windowFrame
         let windowProp = frameProp + 0.02
         
-        let window_w: Double = self.view.frame.size.width * windowProp
-        let window_h: Double = self.view.frame.size.width * windowProp
-        let window_x: Double = self.view.frame.size.width * (1 - windowProp) / 2
+        let window_w: Double = self.view.frame.width * windowProp
+        let window_h: Double = self.view.frame.width * windowProp
+//        let window_x: Double = self.view.frame.width * (1 - windowProp) / 2
+        let window_x: Double = (self.view.frame.width - window_w) / 2
         let window_y: Double = centerFromTop - window_h / 2
         
         windowFrame = UIView(frame: CGRect(x: window_x,
@@ -228,7 +231,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         let axisLabel_w = 350
         let axisLabel_h = 34
-        xAxisLabel.frame = CGRect(x: (Int(self.view.frame.size.width) - axisLabel_w) / 2,
+        xAxisLabel.frame = CGRect(x: (Int(self.view.frame.width) - axisLabel_w) / 2,
                                   y: Int(centerFromTop + window_h / 2),
                                   width: axisLabel_w,
                                   height: axisLabel_h)
@@ -246,8 +249,8 @@ class ViewController: UIViewController, ChartViewDelegate {
         yAxisLabel.isHidden = true
 //        view.addSubview(windowFrame)
         contentView.addSubview(windowFrame)
-//        windowFrame.center = CGPoint(x: contentView.bounds.midX, y: centerFromTop - navigationBarHeight)
-        windowFrame.center = CGPoint(x: contentView.bounds.midX, y: centerFromTop)
+
+//        windowFrame.center = CGPoint(x: contentView.bounds.midX, y: centerFromTop)
 
         scrollView.isScrollEnabled = false
         
@@ -273,6 +276,42 @@ class ViewController: UIViewController, ChartViewDelegate {
         setLightTheme()
         
         setupButtons()
+        
+        // adjust view frames
+        sliderRegionView.frame = CGRect(origin: CGPoint(x: windowFrame.frame.origin.x,
+                                                        y: windowFrame.frame.maxY),
+                                        size: sliderRegionView.frame.size)
+        colorThemeButton.center = CGPoint(x: windowFrame.frame.maxX + 40,
+                                          y: windowFrame.frame.minY + 100)
+        
+        let buttonLeftPadding: CGFloat = 20
+        var buttonUpperPadding: CGFloat = (sliderRegionView.frame.height - 6 * waveformButton.frame.height) / 5
+        var buttonFrameY: CGFloat = sliderRegionView.frame.origin.y
+        for bttn in [waveformButton, freqButton, spectroButton,
+                     audioButton, animButton, spiralButton] {
+            bttn!.frame = CGRect(origin: CGPoint(x: sliderRegionView.frame.maxX + buttonLeftPadding,
+                                                y: buttonFrameY),
+                                size: bttn!.frame.size)
+            buttonFrameY += bttn!.frame.height + buttonUpperPadding
+        }
+        
+        let infoLeftPadding: CGFloat = 20
+        let infoCenterDist: CGFloat = waveformButton.frame.height + buttonUpperPadding
+        var infoCenterY: CGFloat = waveformButton.center.y
+        for infobttn in [waveformInfo, freqInfo, spectroInfo,
+                         audioInfo, animInfo, spiralInfo] {
+            infobttn!.center = CGPoint(x: waveformButton.frame.maxX + infoLeftPadding,
+                                       y: infoCenterY)
+            infoCenterY += infoCenterDist
+        }
+//        waveformButton.frame = CGRect(origin: CGPoint(x: sliderRegionView.frame.maxX + buttonLeftPadding,
+//                                                      y: sliderRegionView.frame.origin.y),
+//                                      size: waveformButton.frame.size)
+        
+        print("self.view.height: \(self.view.frame.height)")
+        print("self.view.width: \(self.view.frame.width)")
+        print("windowframe.frame: \(windowFrame.frame)")
+        print("sliderregion.frame: \(sliderRegionView.frame)")
         
     }
     

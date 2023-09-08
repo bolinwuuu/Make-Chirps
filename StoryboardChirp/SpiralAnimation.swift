@@ -107,8 +107,10 @@ extension Run_Chirp {
             
 //            let maxFreqVal = vDSP.maximum(height)
 //            let minFreqVal = vDSP.minimum(height)
-            let maxFreqVal = Float(max_h)
-            let minFreqVal = Float(min_h)
+//            let maxFreqVal = Float(max_h)
+//            let minFreqVal = Float(min_h)
+            let maxFreqVal = max(abs(Float(max_h)), abs(Float(min_h)))
+            let minFreqVal = -maxFreqVal
             let maxFloat = maxFreqVal * 1.5
             let minFloat = minFreqVal * 0.6
             
