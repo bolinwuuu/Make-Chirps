@@ -43,11 +43,11 @@
 		14D2EA6E29AD5E7E001E6226 /* SpiralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D2EA6D29AD5E7E001E6226 /* SpiralViewController.swift */; };
 		14F0A8FC2A82B63600F2CF65 /* Panorama_edited2.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F0A8FB2A82B63600F2CF65 /* Panorama_edited2.png */; };
 		62AD7610B71025A4077B45C9 /* Pods_StoryboardChirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */; };
-		76606A4D2AA99BFC00F4F993 /* info.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 76606A4C2AA99BFB00F4F993 /* info.pdf */; };
+		761045D32AABB9DA00E67C3B /* Acknowledgements.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 761045D22AABB9DA00E67C3B /* Acknowledgements.pdf */; };
+		761045D62AABB9E800E67C3B /* infotest.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 761045D42AABB9E800E67C3B /* infotest.pdf */; };
+		761045D72AABB9E800E67C3B /* info.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 761045D52AABB9E800E67C3B /* info.pdf */; };
 		76606A4F2AA99FBB00F4F993 /* VC_InfoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76606A4E2AA99FBB00F4F993 /* VC_InfoPage.swift */; };
-		76606A512AA9A4F700F4F993 /* Acknowledgements.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 76606A502AA9A4F600F4F993 /* Acknowledgements.pdf */; };
 		76606A552AAA2FC600F4F993 /* VC_Acknowledgements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76606A542AAA2FC600F4F993 /* VC_Acknowledgements.swift */; };
-		76606A572AAA318F00F4F993 /* infotest.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 76606A562AAA318F00F4F993 /* infotest.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,11 +109,11 @@
 		14F0A8FB2A82B63600F2CF65 /* Panorama_edited2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Panorama_edited2.png; sourceTree = "<group>"; };
 		5566186B885D36136704E55C /* Pods-StoryboardChirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardChirp.debug.xcconfig"; path = "Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp.debug.xcconfig"; sourceTree = "<group>"; };
 		658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoryboardChirp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		76606A4C2AA99BFB00F4F993 /* info.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = info.pdf; path = ../../../Downloads/info.pdf; sourceTree = "<group>"; };
+		761045D22AABB9DA00E67C3B /* Acknowledgements.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Acknowledgements.pdf; sourceTree = "<group>"; };
+		761045D42AABB9E800E67C3B /* infotest.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = infotest.pdf; sourceTree = "<group>"; };
+		761045D52AABB9E800E67C3B /* info.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = info.pdf; sourceTree = "<group>"; };
 		76606A4E2AA99FBB00F4F993 /* VC_InfoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_InfoPage.swift; sourceTree = "<group>"; };
-		76606A502AA9A4F600F4F993 /* Acknowledgements.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Acknowledgements.pdf; path = ../../../Desktop/Acknowledgements.pdf; sourceTree = "<group>"; };
 		76606A542AAA2FC600F4F993 /* VC_Acknowledgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Acknowledgements.swift; sourceTree = "<group>"; };
-		76606A562AAA318F00F4F993 /* infotest.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = infotest.pdf; path = ../../../Downloads/infotest.pdf; sourceTree = "<group>"; };
 		F26AE5C897BB6A27C5898720 /* Pods-StoryboardChirp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardChirp.release.xcconfig"; path = "Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,15 +173,15 @@
 				1429A3A029842E0700F919F8 /* ViewController.swift */,
 				1429A3A229842E0700F919F8 /* Main.storyboard */,
 				1429A3A529842E0900F919F8 /* Assets.xcassets */,
+				761045D52AABB9E800E67C3B /* info.pdf */,
+				761045D42AABB9E800E67C3B /* infotest.pdf */,
 				1440AC552A5EADE600A04665 /* gw_artist_image.jpeg */,
 				1471D20F2A7825AA006DECDB /* sonify6_lg.jpg */,
-				76606A4C2AA99BFB00F4F993 /* info.pdf */,
-				76606A562AAA318F00F4F993 /* infotest.pdf */,
 				1471D2112A7825F1006DECDB /* perseus_lg.jpg */,
 				1471D2132A7826E4006DECDB /* gw190521.jpg */,
+				761045D22AABB9DA00E67C3B /* Acknowledgements.pdf */,
 				1471D2152A782828006DECDB /* Panorama.jpg */,
 				1471D2172A782F01006DECDB /* panorama_edited.jpg */,
-				76606A502AA9A4F600F4F993 /* Acknowledgements.pdf */,
 				1471D2192A783097006DECDB /* panorama_edited.png */,
 				14F0A8FB2A82B63600F2CF65 /* Panorama_edited2.png */,
 				1471D21B2A797D6C006DECDB /* gw_spiral_purple.jpeg */,
@@ -352,8 +352,9 @@
 			files = (
 				1471D2102A7825AA006DECDB /* sonify6_lg.jpg in Resources */,
 				1471D21E2A7991A1006DECDB /* gw_spiral_bw.jpeg in Resources */,
-				76606A572AAA318F00F4F993 /* infotest.pdf in Resources */,
 				1471D21A2A783097006DECDB /* panorama_edited.png in Resources */,
+				761045D32AABB9DA00E67C3B /* Acknowledgements.pdf in Resources */,
+				761045D62AABB9E800E67C3B /* infotest.pdf in Resources */,
 				1429A3A929842E0900F919F8 /* LaunchScreen.storyboard in Resources */,
 				1471D2162A782828006DECDB /* Panorama.jpg in Resources */,
 				1471D2122A7825F1006DECDB /* perseus_lg.jpg in Resources */,
@@ -361,10 +362,9 @@
 				1429A3A629842E0900F919F8 /* Assets.xcassets in Resources */,
 				1471D2142A7826E4006DECDB /* gw190521.jpg in Resources */,
 				1471D21C2A797D6C006DECDB /* gw_spiral_purple.jpeg in Resources */,
+				761045D72AABB9E800E67C3B /* info.pdf in Resources */,
 				1440AC562A5EADE700A04665 /* gw_artist_image.jpeg in Resources */,
 				1429A3A429842E0700F919F8 /* Main.storyboard in Resources */,
-				76606A4D2AA99BFC00F4F993 /* info.pdf in Resources */,
-				76606A512AA9A4F700F4F993 /* Acknowledgements.pdf in Resources */,
 				1471D2182A782F01006DECDB /* panorama_edited.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
