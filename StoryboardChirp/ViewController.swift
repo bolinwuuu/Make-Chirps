@@ -277,10 +277,14 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         setupButtons()
         
+        // ---------------------------------------------------------------------
         // adjust view frames
+        
         sliderRegionView.frame = CGRect(origin: CGPoint(x: windowFrame.frame.origin.x,
                                                         y: windowFrame.frame.maxY),
-                                        size: sliderRegionView.frame.size)
+//                                        size: sliderRegionView.frame.size)
+                                        size: CGSize(width: windowFrame.frame.width - waveformButton.frame.width - waveformInfo.frame.width,
+                                                     height: sliderRegionView.frame.height))
         colorThemeButton.center = CGPoint(x: windowFrame.frame.maxX + 40,
                                           y: windowFrame.frame.minY + 100)
         
@@ -313,6 +317,13 @@ class ViewController: UIViewController, ChartViewDelegate {
         print("windowframe.frame: \(windowFrame.frame)")
         print("sliderregion.frame: \(sliderRegionView.frame)")
         
+//        if UIDevice.current.userInterfaceIdiom == .pad {
+//
+//        } else if UIDevice.current.userInterfaceIdiom == .phone {
+//
+//        }
+        // END adjust view frames
+        // ---------------------------------------------------------------------
     }
     
     func setupButtons() {
