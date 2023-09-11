@@ -182,6 +182,8 @@ class ViewController: UIViewController, ChartViewDelegate {
 //        self.view.addGestureRecognizer(tapGesture)
         centerFromTop = self.view.frame.height / 3
         
+        frameProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.75 : 0.9
+        
         let frameRect_w: Double = self.view.frame.width * frameProp
         let frameRect_h: Double = self.view.frame.width * frameProp
 //        let frameRect_x: Double = self.view.frame.width * (1 - frameProp) / 2
@@ -280,25 +282,83 @@ class ViewController: UIViewController, ChartViewDelegate {
         // ---------------------------------------------------------------------
         // adjust view frames
         
+        // adjust slider region view
         sliderRegionView.frame = CGRect(origin: CGPoint(x: windowFrame.frame.origin.x,
                                                         y: windowFrame.frame.maxY),
-//                                        size: sliderRegionView.frame.size)
-                                        size: CGSize(width: windowFrame.frame.width - waveformButton.frame.width - waveformInfo.frame.width,
-                                                     height: sliderRegionView.frame.height))
+                                        size: CGSize(width: windowFrame.frame.width * 2 / 3,
+                                                     height: self.view.frame.maxY - windowFrame.frame.maxY - (self.tabBarController?.tabBar.frame.height)!))
+        
+        // adjust the sliders
+        let sliderPadding: CGFloat = 0.05
+        let sliderW = sliderRegionView.frame.width * 0.8
+        let sliderH = sliderRegionView.frame.height / 13 // not working
+        let sliderOriX = sliderRegionView.frame.width * 0.1
+        var sliderOriY = sliderRegionView.frame.height * sliderPadding + sliderRegionView.frame.height * (1 - 2 * sliderPadding) / 6 - sliderH
+        let sliderSize = CGSize(width: sliderW,
+                                 height: sliderH)
+        for sld in [mass1Slider, mass2Slider, speedSlider] {
+            sld!.frame = CGRect(origin: CGPoint(x: sliderOriX,
+                                                y: sliderOriY),
+                                size: sliderSize)
+//            sld!.thumb
+            sliderOriY += sliderRegionView.frame.height * (1 - 2 * sliderPadding) / 3
+        }
+        print("slider frame: \(mass1Slider.frame)")
+        print("slider width: \(mass1Slider.frame.width)")
+        print("slider height: \(mass1Slider.frame.height)")
+        
+        // adjust the labels in slider region
+        let massLabelH = sliderRegionView.frame.height / 10
+        let massLabelW = massLabelH * 5
+        let massLabelCenterX = mass1Slider.center.x
+        var massLabelCenterY = mass1Slider.frame.origin.y - massLabelH / 2
+        let massLabelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 27 : 18
+        for masslbl in [mass1Title, mass2Title, animationSpeedTitle] {
+            masslbl!.font = masslbl!.font.withSize(massLabelFontSize)
+            masslbl!.frame.size = CGSize(width: massLabelW, height: massLabelH)
+            masslbl!.center = CGPoint(x: massLabelCenterX, y: massLabelCenterY)
+            massLabelCenterY += sliderRegionView.frame.height * (1 - 2 * sliderPadding) / 3
+        }
+        print("mass label frame: \(animationSpeedTitle.frame)")
+        
+        // adjust the textfields in slider region
+        let textFieldH = massLabelH
+        let textFieldW = textFieldH * 3
+        let textFieldCenterX = massLabelCenterX
+        var textFieldCenterY = mass1Slider.frame.maxY + textFieldH / 2
+        let textFieldFontSize = massLabelFontSize
+        for txtfld in [mass1TextField, mass2TextField, speedLabel] {
+//            txtfld!.font = txtfld!.font.withSize(textFieldFontSize)
+            txtfld!.frame.size = CGSize(width: textFieldW, height: textFieldH)
+            txtfld!.center = CGPoint(x: textFieldCenterX, y: textFieldCenterY)
+            textFieldCenterY += sliderRegionView.frame.height * (1 - 2 * sliderPadding) / 3
+        }
+        mass1TextField.font = mass1TextField.font?.withSize(textFieldFontSize)
+        mass2TextField.font = mass2TextField.font?.withSize(textFieldFontSize)
+        speedLabel.font = speedLabel.font?.withSize(textFieldFontSize)
+        print("text field frame: \(mass1TextField.frame)")
+        
+        // adjust color theme button
         colorThemeButton.center = CGPoint(x: windowFrame.frame.maxX + 40,
                                           y: windowFrame.frame.minY + 100)
         
-        let buttonLeftPadding: CGFloat = 20
-        var buttonUpperPadding: CGFloat = (sliderRegionView.frame.height - 6 * waveformButton.frame.height) / 5
+        // adjust functional buttons
+        let buttonH = sliderRegionView.frame.height / 1.3 / 6
+        let buttonW = buttonH * 3.8
+        let buttonLeftPadding: CGFloat = windowFrame.frame.width / 32
+        var buttonUpperPadding: CGFloat = (sliderRegionView.frame.height - 6 * buttonH) / 5
         var buttonFrameY: CGFloat = sliderRegionView.frame.origin.y
+        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 22 : 13
         for bttn in [waveformButton, freqButton, spectroButton,
                      audioButton, animButton, spiralButton] {
+            bttn!.titleLabel?.font = bttn!.titleLabel?.font.withSize(buttonFontSize)
             bttn!.frame = CGRect(origin: CGPoint(x: sliderRegionView.frame.maxX + buttonLeftPadding,
                                                 y: buttonFrameY),
-                                size: bttn!.frame.size)
+                                size: CGSize(width: buttonW, height: buttonH))
             buttonFrameY += bttn!.frame.height + buttonUpperPadding
         }
         
+        // adjust info buttons
         let infoLeftPadding: CGFloat = 20
         let infoCenterDist: CGFloat = waveformButton.frame.height + buttonUpperPadding
         var infoCenterY: CGFloat = waveformButton.center.y
@@ -308,6 +368,7 @@ class ViewController: UIViewController, ChartViewDelegate {
                                        y: infoCenterY)
             infoCenterY += infoCenterDist
         }
+        print("button frame: \(waveformButton.frame)")
 //        waveformButton.frame = CGRect(origin: CGPoint(x: sliderRegionView.frame.maxX + buttonLeftPadding,
 //                                                      y: sliderRegionView.frame.origin.y),
 //                                      size: waveformButton.frame.size)
@@ -329,7 +390,8 @@ class ViewController: UIViewController, ChartViewDelegate {
     func setupButtons() {
         for bttn in [waveformButton, freqButton, spectroButton, audioButton, animButton, spiralButton] {
             // set title font size
-            bttn?.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+            let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 22 : 13
+            bttn?.titleLabel?.font = bttn?.titleLabel?.font.withSize(buttonFontSize)
             
             // set up shadows
             bttn?.layer.shadowColor = UIColor.black.cgColor
