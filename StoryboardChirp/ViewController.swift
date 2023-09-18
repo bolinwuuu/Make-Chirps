@@ -339,19 +339,19 @@ class ViewController: UIViewController, ChartViewDelegate {
         print("text field frame: \(mass1TextField.frame)")
         
         // adjust color theme button
-        colorThemeButton.center = CGPoint(x: windowFrame.frame.maxX + 40,
+        colorThemeButton.center = CGPoint(x: windowFrame.frame.maxX + 10,
                                           y: windowFrame.frame.minY + 100)
         
         // adjust functional buttons
         let buttonH = sliderRegionView.frame.height / 1.3 / 6
-        let buttonW = buttonH * 3.8
         let buttonLeftPadding: CGFloat = windowFrame.frame.width / 32
+        let buttonW = windowFrame.frame.width - sliderRegionView.frame.width - buttonLeftPadding
         var buttonUpperPadding: CGFloat = (sliderRegionView.frame.height - 6 * buttonH) / 5
         var buttonFrameY: CGFloat = sliderRegionView.frame.origin.y
         let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 22 : 13
         for bttn in [waveformButton, freqButton, spectroButton,
                      audioButton, animButton, spiralButton] {
-            bttn!.titleLabel?.font = bttn!.titleLabel?.font.withSize(buttonFontSize)
+            bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
             bttn!.frame = CGRect(origin: CGPoint(x: sliderRegionView.frame.maxX + buttonLeftPadding,
                                                 y: buttonFrameY),
                                 size: CGSize(width: buttonW, height: buttonH))
@@ -359,7 +359,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         }
         
         // adjust info buttons
-        let infoLeftPadding: CGFloat = 20
+        let infoLeftPadding: CGFloat = buttonLeftPadding / 2
         let infoCenterDist: CGFloat = waveformButton.frame.height + buttonUpperPadding
         var infoCenterY: CGFloat = waveformButton.center.y
         for infobttn in [waveformInfo, freqInfo, spectroInfo,
@@ -388,11 +388,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     }
     
     func setupButtons() {
-        for bttn in [waveformButton, freqButton, spectroButton, audioButton, animButton, spiralButton] {
-            // set title font size
-            let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 22 : 13
-            bttn?.titleLabel?.font = bttn?.titleLabel?.font.withSize(buttonFontSize)
-            
+        for bttn in [waveformButton, freqButton, spectroButton, audioButton, animButton, spiralButton] {            
             // set up shadows
             bttn?.layer.shadowColor = UIColor.black.cgColor
             bttn?.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -618,31 +614,6 @@ class ViewController: UIViewController, ChartViewDelegate {
     }
     
     func setLightTheme() {
-//        // white theme
-//        view.backgroundColor = .white
-//        contentView.backgroundColor = .white
-//
-//        // slider region
-//        sliderRegionView.backgroundColor = .systemGray5
-//
-//        mass1Title.textColor = .black
-//        mass2Title.textColor = .black
-//        animationSpeedTitle.textColor = .black
-//
-//        for txtfld in [mass1TextField, mass2TextField] {
-//            txtfld?.backgroundColor = .white
-//            txtfld?.textColor = .black
-//        }
-//        speedLabel.backgroundColor = .white
-//        speedLabel.textColor = .black
-//        // slider region ends
-//
-//        changeThemeButton()
-//
-//        colorThemeButton.tintColor = UIColor.systemBlue
-//        // white theme END
-        
-        
         // purple theme
         let darkPurple = UIColor(red: 20/255, green: 10/255, blue: 60/255, alpha: 1)
         let panelPurple = UIColor(red: 45/255, green: 20/255, blue: 100/255, alpha: 1)
