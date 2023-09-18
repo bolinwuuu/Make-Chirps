@@ -190,7 +190,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         let frameRect_x: Double = (self.view.frame.width - frameRect_w) / 2
         let frameRect_y: Double = centerFromTop - frameRect_h / 2
         
-        // For use by wavelength and frequency
+        // frame for displaying wavelength, frequency and spiral animation
         frameRect = CGRect(x: frameRect_x,
                            y: frameRect_y,
                            width: frameRect_w * (10/11),
@@ -214,7 +214,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         audioInit()
         
 //        windowFrame
-        let windowProp = frameProp + 0.02
+        let windowProp = frameProp * 1.02
         
         let window_w: Double = self.view.frame.width * windowProp
         let window_h: Double = self.view.frame.width * windowProp
@@ -226,9 +226,9 @@ class ViewController: UIViewController, ChartViewDelegate {
                                            y: window_y,
                                            width: window_w,
                                            height: window_h))
-        windowFrame.layer.borderWidth = 10
+        windowFrame.layer.borderWidth = window_w / 64
         windowFrame.layer.borderColor = UIColor.black.cgColor
-        windowFrame.layer.cornerRadius = 50
+        windowFrame.layer.cornerRadius = window_w / 13
         windowFrame.backgroundColor = UIColor.white
         
         let axisLabel_w = 350
@@ -260,7 +260,13 @@ class ViewController: UIViewController, ChartViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
         
-        sliderRegionView.layer.cornerRadius = 30
+        //Looks for single or multiple taps.
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+        
+//        sliderRegionView.layer.cornerRadius = 30
         
         let colorThemeButtonConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .bold, scale: .large)
         
@@ -287,6 +293,7 @@ class ViewController: UIViewController, ChartViewDelegate {
                                                         y: windowFrame.frame.maxY),
                                         size: CGSize(width: windowFrame.frame.width * 2 / 3,
                                                      height: self.view.frame.maxY - windowFrame.frame.maxY - (self.tabBarController?.tabBar.frame.height)!))
+        sliderRegionView.layer.cornerRadius = sliderRegionView.frame.height / 14
         
         // adjust the sliders
         let sliderPadding: CGFloat = 0.05
@@ -345,13 +352,14 @@ class ViewController: UIViewController, ChartViewDelegate {
         // adjust functional buttons
         let buttonH = sliderRegionView.frame.height / 1.3 / 6
         let buttonLeftPadding: CGFloat = windowFrame.frame.width / 32
-        let buttonW = windowFrame.frame.width - sliderRegionView.frame.width - buttonLeftPadding
+        let buttonW = (windowFrame.frame.width - sliderRegionView.frame.width - buttonLeftPadding) * 0.95
         var buttonUpperPadding: CGFloat = (sliderRegionView.frame.height - 6 * buttonH) / 5
         var buttonFrameY: CGFloat = sliderRegionView.frame.origin.y
-        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 22 : 13
+        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
         for bttn in [waveformButton, freqButton, spectroButton,
                      audioButton, animButton, spiralButton] {
             bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
+            bttn!.configuration?.titleAlignment = .center
             bttn!.frame = CGRect(origin: CGPoint(x: sliderRegionView.frame.maxX + buttonLeftPadding,
                                                 y: buttonFrameY),
                                 size: CGSize(width: buttonW, height: buttonH))
@@ -359,15 +367,20 @@ class ViewController: UIViewController, ChartViewDelegate {
         }
         
         // adjust info buttons
-        let infoLeftPadding: CGFloat = buttonLeftPadding / 2
+        let infoSize = waveformButton.frame.height / 2
+        let infoLeftPadding: CGFloat = buttonLeftPadding
         let infoCenterDist: CGFloat = waveformButton.frame.height + buttonUpperPadding
         var infoCenterY: CGFloat = waveformButton.center.y
+        let infoConfig = UIImage.SymbolConfiguration(pointSize: infoSize, weight: .medium, scale: .small)
+        let infoImage = UIImage(systemName: "info.circle", withConfiguration: infoConfig)
         for infobttn in [waveformInfo, freqInfo, spectroInfo,
                          audioInfo, animInfo, spiralInfo] {
+            infobttn!.setImage(infoImage, for: .normal)
             infobttn!.center = CGPoint(x: waveformButton.frame.maxX + infoLeftPadding,
                                        y: infoCenterY)
             infoCenterY += infoCenterDist
         }
+//        waveformInfo.image
         print("button frame: \(waveformButton.frame)")
 //        waveformButton.frame = CGRect(origin: CGPoint(x: sliderRegionView.frame.maxX + buttonLeftPadding,
 //                                                      y: sliderRegionView.frame.origin.y),
@@ -376,6 +389,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         print("self.view.height: \(self.view.frame.height)")
         print("self.view.width: \(self.view.frame.width)")
         print("windowframe.frame: \(windowFrame.frame)")
+        print("uiview.frame: \(uiview.frame)")
         print("sliderregion.frame: \(sliderRegionView.frame)")
         
 //        if UIDevice.current.userInterfaceIdiom == .pad {
@@ -568,15 +582,17 @@ class ViewController: UIViewController, ChartViewDelegate {
     }
     
     func setDarkTheme() {
-        let darkPurple = UIColor(red: 40/255, green: 25/255, blue: 90/255, alpha: 1.0)
-        let lightPurple = UIColor(red: 75/255, green: 50/255, blue: 130/255, alpha: 1.0)
-//        view.backgroundColor = darkPurple
-//        contentView.backgroundColor = darkPurple
-        let translucentGray = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
-        let translucentDarkGray = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.85)
+//        let darkPurple = UIColor(red: 40/255, green: 25/255, blue: 90/255, alpha: 1.0)
+//        let lightPurple = UIColor(red: 75/255, green: 50/255, blue: 130/255, alpha: 1.0)
+////        view.backgroundColor = darkPurple
+////        contentView.backgroundColor = darkPurple
+//        let translucentGray = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
+//        let translucentDarkGray = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.85)
         let opaqueDarkGray = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
 //        let translucentPurple = UIColor(red: 35/255, green: 10/255, blue: 115/255, alpha: 0.7)
-        let translucentPurple = UIColor(red: 120/255, green: 100/255, blue: 180/255, alpha: 1)
+//        let translucentPurple = UIColor(red: 120/255, green: 100/255, blue: 180/255, alpha: 1)
+//        let lightOrange = UIColor(red: 220/255, green: 130/255, blue: 100/255, alpha: 1)
+//        let darkOrange = UIColor(red: 215/255, green: 95/255, blue: 30/255, alpha: 1)
         view.backgroundColor = .clear
         contentView.backgroundColor = .clear
         
@@ -654,6 +670,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     func changeThemeButton() {
         var buttonBackground: UIColor!
         var buttonForeground: UIColor!
+        var buttonShadow: UIColor!
         var infoTint: UIColor!
         
         if isLightTheme {
@@ -669,12 +686,17 @@ class ViewController: UIViewController, ChartViewDelegate {
             let buttonYellow = UIColor(red: 255/255, green: 210/255, blue: 100/255, alpha: 1)
             buttonBackground = buttonYellow
             buttonForeground = darkPurple
+            buttonShadow = .black
             infoTint = .lightGray
             // purple theme END
         } else {
-            buttonBackground = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
-            buttonForeground = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
-            
+            let lightOrange = UIColor(red: 255/255, green: 120/255, blue: 40/255, alpha: 1)
+            let darkOrange = UIColor(red: 225/255, green: 85/255, blue: 0/255, alpha: 1)
+//            let darkGray = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+//            let lightGray = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
+            buttonBackground = lightOrange
+            buttonForeground = .white
+            buttonShadow = darkOrange
 //            buttonBackground = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
 //            buttonForeground = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
             
@@ -684,6 +706,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         for bttn in [waveformButton, freqButton, spectroButton, audioButton, animButton, spiralButton] {
             bttn?.configuration?.baseBackgroundColor = buttonBackground
             bttn?.configuration?.baseForegroundColor = buttonForeground
+            bttn?.layer.shadowColor = buttonShadow.cgColor
         }
         
         for infobttn in [waveformInfo, freqInfo, spectroInfo, audioInfo, animInfo, spiralInfo] {
@@ -727,6 +750,11 @@ class ViewController: UIViewController, ChartViewDelegate {
         scrollView.setContentOffset(CGPoint(x: 0, y: -navigationBarHeight), animated: true)
         
         scrollView.isScrollEnabled = false
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
 
