@@ -101,13 +101,15 @@ class ViewController: UIViewController, ChartViewDelegate {
     let navigationBarHeight: Double = 120
     
     // value that colorThemeButton controls
-    var isLightTheme: Bool = true
+    var isLightTheme: Bool = false
     
     // UIImage for light theme button
     var lightThemeImage: UIImage!
     
     // UIImage for dark theme button
     var darkThemeImage: UIImage!
+    
+    var orientationChanged: Bool = false
     
     //------------------------------------------------------//
     //            Collsion Animation Variables              //
@@ -179,28 +181,8 @@ class ViewController: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.view.addGestureRecognizer(tapGesture)
-        centerFromTop = self.view.frame.height / 3
-        
-        frameProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.75 : 0.9
-        
-        let frameRect_w: Double = self.view.frame.width * frameProp
-        let frameRect_h: Double = self.view.frame.width * frameProp
-//        let frameRect_x: Double = self.view.frame.width * (1 - frameProp) / 2
-        let frameRect_x: Double = (self.view.frame.width - frameRect_w) / 2
-        let frameRect_y: Double = centerFromTop - frameRect_h / 2
-        
-        // frame for displaying wavelength, frequency and spiral animation
-        frameRect = CGRect(x: frameRect_x,
-                           y: frameRect_y,
-                           width: frameRect_w * (10/11),
-                           height: frameRect_h * (10/11))
-        
-        
-//        frameRect2 = CGRect(x: frameRect_x,
-//                           y: frameRect_y,
-//                           width: frameRect_w,
-//                           height: frameRect_h)
+        adjustUIAccordingToOrientation()
+        contentView.addSubview(windowFrame)
         
         uiview.isHidden = true
         
@@ -212,47 +194,6 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         animInit()
         audioInit()
-        
-//        windowFrame
-        let windowProp = frameProp * 1.02
-        
-        let window_w: Double = self.view.frame.width * windowProp
-        let window_h: Double = self.view.frame.width * windowProp
-//        let window_x: Double = self.view.frame.width * (1 - windowProp) / 2
-        let window_x: Double = (self.view.frame.width - window_w) / 2
-        let window_y: Double = centerFromTop - window_h / 2
-        
-        windowFrame = UIView(frame: CGRect(x: window_x,
-                                           y: window_y,
-                                           width: window_w,
-                                           height: window_h))
-        windowFrame.layer.borderWidth = window_w / 64
-        windowFrame.layer.borderColor = UIColor.black.cgColor
-        windowFrame.layer.cornerRadius = window_w / 13
-        windowFrame.backgroundColor = UIColor.white
-        
-        let axisLabel_w = 350
-        let axisLabel_h = 34
-        xAxisLabel.frame = CGRect(x: (Int(self.view.frame.width) - axisLabel_w) / 2,
-                                  y: Int(centerFromTop + window_h / 2),
-                                  width: axisLabel_w,
-                                  height: axisLabel_h)
-        xAxisLabel.textAlignment = .center
-        
-        yAxisLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
-        yAxisLabel.frame = CGRect(x: Int(window_x) - axisLabel_h / 2 - 20,
-                                  y: Int(centerFromTop) - axisLabel_w / 2,
-                                  width: axisLabel_h,
-                                  height: axisLabel_w)
-        yAxisLabel.textAlignment = .center
-        
-        
-        xAxisLabel.isHidden = true
-        yAxisLabel.isHidden = true
-//        view.addSubview(windowFrame)
-        contentView.addSubview(windowFrame)
-
-//        windowFrame.center = CGPoint(x: contentView.bounds.midX, y: centerFromTop)
 
         scrollView.isScrollEnabled = false
         
@@ -281,124 +222,25 @@ class ViewController: UIViewController, ChartViewDelegate {
         self.view.insertSubview(backgroundImageView, at: 0)
         self.view.sendSubviewToBack(backgroundImageView)
         
-        setLightTheme()
+        setDarkTheme()
         
         setupButtons()
         
-        // ---------------------------------------------------------------------
-        // adjust view frames
         
-        // adjust slider region view
-        sliderRegionView.frame = CGRect(origin: CGPoint(x: windowFrame.frame.origin.x,
-                                                        y: windowFrame.frame.maxY),
-                                        size: CGSize(width: windowFrame.frame.width * 2 / 3,
-                                                     height: self.view.frame.maxY - windowFrame.frame.maxY - (self.tabBarController?.tabBar.frame.height)!))
-        sliderRegionView.layer.cornerRadius = sliderRegionView.frame.height / 14
-        
-        // adjust the sliders
-        let sliderPadding: CGFloat = 0.05
-        let sliderW = sliderRegionView.frame.width * 0.8
-        let sliderH = sliderRegionView.frame.height / 13 // not working
-        let sliderOriX = sliderRegionView.frame.width * 0.1
-        var sliderOriY = sliderRegionView.frame.height * sliderPadding + sliderRegionView.frame.height * (1 - 2 * sliderPadding) / 6 - sliderH
-        let sliderSize = CGSize(width: sliderW,
-                                 height: sliderH)
-        for sld in [mass1Slider, mass2Slider, speedSlider] {
-            sld!.frame = CGRect(origin: CGPoint(x: sliderOriX,
-                                                y: sliderOriY),
-                                size: sliderSize)
-//            sld!.thumb
-            sliderOriY += sliderRegionView.frame.height * (1 - 2 * sliderPadding) / 3
+    }
+    
+    override func viewWillTransition(to size: CGSize, 
+                                     with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        orientationChanged = true
+    }
+    
+    override func viewDidLayoutSubviews() {
+        if orientationChanged {
+            adjustUIAccordingToOrientation()
+            
+            orientationChanged = false
         }
-        print("slider frame: \(mass1Slider.frame)")
-        print("slider width: \(mass1Slider.frame.width)")
-        print("slider height: \(mass1Slider.frame.height)")
-        
-        // adjust the labels in slider region
-        let massLabelH = sliderRegionView.frame.height / 10
-        let massLabelW = massLabelH * 5
-        let massLabelCenterX = mass1Slider.center.x
-        var massLabelCenterY = mass1Slider.frame.origin.y - massLabelH / 2
-        let massLabelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 27 : 18
-        for masslbl in [mass1Title, mass2Title, animationSpeedTitle] {
-            masslbl!.font = masslbl!.font.withSize(massLabelFontSize)
-            masslbl!.frame.size = CGSize(width: massLabelW, height: massLabelH)
-            masslbl!.center = CGPoint(x: massLabelCenterX, y: massLabelCenterY)
-            massLabelCenterY += sliderRegionView.frame.height * (1 - 2 * sliderPadding) / 3
-        }
-        print("mass label frame: \(animationSpeedTitle.frame)")
-        
-        // adjust the textfields in slider region
-        let textFieldH = massLabelH
-        let textFieldW = textFieldH * 3
-        let textFieldCenterX = massLabelCenterX
-        var textFieldCenterY = mass1Slider.frame.maxY + textFieldH / 2
-        let textFieldFontSize = massLabelFontSize
-        for txtfld in [mass1TextField, mass2TextField, speedLabel] {
-//            txtfld!.font = txtfld!.font.withSize(textFieldFontSize)
-            txtfld!.frame.size = CGSize(width: textFieldW, height: textFieldH)
-            txtfld!.center = CGPoint(x: textFieldCenterX, y: textFieldCenterY)
-            textFieldCenterY += sliderRegionView.frame.height * (1 - 2 * sliderPadding) / 3
-        }
-        mass1TextField.font = mass1TextField.font?.withSize(textFieldFontSize)
-        mass2TextField.font = mass2TextField.font?.withSize(textFieldFontSize)
-        speedLabel.font = speedLabel.font?.withSize(textFieldFontSize)
-        print("text field frame: \(mass1TextField.frame)")
-        
-        // adjust color theme button
-        colorThemeButton.center = CGPoint(x: windowFrame.frame.maxX + 10,
-                                          y: windowFrame.frame.minY + 100)
-        
-        // adjust functional buttons
-        let buttonH = sliderRegionView.frame.height / 1.3 / 6
-        let buttonLeftPadding: CGFloat = windowFrame.frame.width / 32
-        let buttonW = (windowFrame.frame.width - sliderRegionView.frame.width - buttonLeftPadding) * 0.95
-        var buttonUpperPadding: CGFloat = (sliderRegionView.frame.height - 6 * buttonH) / 5
-        var buttonFrameY: CGFloat = sliderRegionView.frame.origin.y
-        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
-        for bttn in [waveformButton, freqButton, spectroButton,
-                     audioButton, animButton, spiralButton] {
-            bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
-            bttn!.configuration?.titleAlignment = .center
-            bttn!.frame = CGRect(origin: CGPoint(x: sliderRegionView.frame.maxX + buttonLeftPadding,
-                                                y: buttonFrameY),
-                                size: CGSize(width: buttonW, height: buttonH))
-            buttonFrameY += bttn!.frame.height + buttonUpperPadding
-        }
-        
-        // adjust info buttons
-        let infoSize = waveformButton.frame.height / 2
-        let infoLeftPadding: CGFloat = buttonLeftPadding
-        let infoCenterDist: CGFloat = waveformButton.frame.height + buttonUpperPadding
-        var infoCenterY: CGFloat = waveformButton.center.y
-        let infoConfig = UIImage.SymbolConfiguration(pointSize: infoSize, weight: .medium, scale: .small)
-        let infoImage = UIImage(systemName: "info.circle", withConfiguration: infoConfig)
-        for infobttn in [waveformInfo, freqInfo, spectroInfo,
-                         audioInfo, animInfo, spiralInfo] {
-            infobttn!.setImage(infoImage, for: .normal)
-            infobttn!.center = CGPoint(x: waveformButton.frame.maxX + infoLeftPadding,
-                                       y: infoCenterY)
-            infoCenterY += infoCenterDist
-        }
-//        waveformInfo.image
-        print("button frame: \(waveformButton.frame)")
-//        waveformButton.frame = CGRect(origin: CGPoint(x: sliderRegionView.frame.maxX + buttonLeftPadding,
-//                                                      y: sliderRegionView.frame.origin.y),
-//                                      size: waveformButton.frame.size)
-        
-        print("self.view.height: \(self.view.frame.height)")
-        print("self.view.width: \(self.view.frame.width)")
-        print("windowframe.frame: \(windowFrame.frame)")
-        print("uiview.frame: \(uiview.frame)")
-        print("sliderregion.frame: \(sliderRegionView.frame)")
-        
-//        if UIDevice.current.userInterfaceIdiom == .pad {
-//
-//        } else if UIDevice.current.userInterfaceIdiom == .phone {
-//
-//        }
-        // END adjust view frames
-        // ---------------------------------------------------------------------
     }
     
     func setupButtons() {
@@ -545,7 +387,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         // uiview = nil // TESTING
         uiview.isHidden = true
         spiralview.isHidden = true
-        self.chartView.removeFromSuperview()
+        chartView.removeFromSuperview()
         
         for subview in windowFrame.subviews {
             subview.removeFromSuperview()

@@ -25,9 +25,11 @@ extension ViewController {
         // yAxisLabel.text = "Gravitational Wave Strain"
         
         chartView.frame = frameRect
+        print("chartView frame: \(chartView.frame)")
         
 //        view.addSubview(chartView)
         windowFrame.addSubview(chartView)
+//        chartView.isHidden = false
         
         let set = LineChartDataSet(entries: testChirp.waveformDataEntries())
         set.drawCirclesEnabled = false
@@ -39,6 +41,7 @@ extension ViewController {
         
 //        chartView.center = windowFrame.center
         chartView.center = CGPoint(x: windowFrame.bounds.midX, y: windowFrame.bounds.midY) // set the center to the center of windowFrame
+        print("chartView center: \(chartView.center)")
         
         let xAxisLabel = UILabel()
                 xAxisLabel.text = "Time (seconds)"
@@ -82,5 +85,9 @@ extension ViewController {
         chartView.legend.enabled = false
         
         chartView.animate(xAxisDuration: 2.5)
+//        print("chartView frame: \(chartView.frame)")
+        print("frameRect: \(frameRect)")
+        print("windowFrame: \(windowFrame.frame)")
+        
     }
 }

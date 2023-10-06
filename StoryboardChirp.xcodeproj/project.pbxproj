@@ -41,6 +41,7 @@
 		1471D21C2A797D6C006DECDB /* gw_spiral_purple.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1471D21B2A797D6C006DECDB /* gw_spiral_purple.jpeg */; };
 		1471D21E2A7991A1006DECDB /* gw_spiral_bw.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1471D21D2A7991A1006DECDB /* gw_spiral_bw.jpeg */; };
 		14D2EA6E29AD5E7E001E6226 /* SpiralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D2EA6D29AD5E7E001E6226 /* SpiralViewController.swift */; };
+		14E803502AD082D600996E28 /* UIAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E8034F2AD082D600996E28 /* UIAdjustment.swift */; };
 		14F0A8FC2A82B63600F2CF65 /* Panorama_edited2.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F0A8FB2A82B63600F2CF65 /* Panorama_edited2.png */; };
 		62AD7610B71025A4077B45C9 /* Pods_StoryboardChirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */; };
 		761045D32AABB9DA00E67C3B /* Acknowledgements.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 761045D22AABB9DA00E67C3B /* Acknowledgements.pdf */; };
@@ -106,6 +107,7 @@
 		1471D21B2A797D6C006DECDB /* gw_spiral_purple.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gw_spiral_purple.jpeg; sourceTree = "<group>"; };
 		1471D21D2A7991A1006DECDB /* gw_spiral_bw.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gw_spiral_bw.jpeg; sourceTree = "<group>"; };
 		14D2EA6D29AD5E7E001E6226 /* SpiralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralViewController.swift; sourceTree = "<group>"; };
+		14E8034F2AD082D600996E28 /* UIAdjustment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAdjustment.swift; sourceTree = "<group>"; };
 		14F0A8FB2A82B63600F2CF65 /* Panorama_edited2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Panorama_edited2.png; sourceTree = "<group>"; };
 		5566186B885D36136704E55C /* Pods-StoryboardChirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardChirp.debug.xcconfig"; path = "Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp.debug.xcconfig"; sourceTree = "<group>"; };
 		658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoryboardChirp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +208,7 @@
 				144A28BF2A089C8400BBB6D1 /* VC_Audio.swift */,
 				144A28C12A089D2A00BBB6D1 /* VC_Collision.swift */,
 				144A28C32A089D9900BBB6D1 /* VC_Spiral.swift */,
+				14E8034F2AD082D600996E28 /* UIAdjustment.swift */,
 			);
 			path = StoryboardChirp;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				144A28C22A089D2A00BBB6D1 /* VC_Collision.swift in Sources */,
 				144A28BC2A089BE800BBB6D1 /* VC_Waveform.swift in Sources */,
 				144A28C42A089D9900BBB6D1 /* VC_Spiral.swift in Sources */,
+				14E803502AD082D600996E28 /* UIAdjustment.swift in Sources */,
 				1429A3A129842E0700F919F8 /* ViewController.swift in Sources */,
 				144A28BA2A089B9F00BBB6D1 /* VC_Spectro.swift in Sources */,
 				76606A552AAA2FC600F4F993 /* VC_Acknowledgements.swift in Sources */,
