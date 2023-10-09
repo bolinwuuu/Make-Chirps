@@ -61,12 +61,46 @@ extension ViewController {
         // adjust slider region view
         adjustSliderRegionViewPortrait()
 
+        // adjust the sliders
+        let sliderPadding: CGFloat = 0.05
+        adjustSlidersPortrait(sliderPadding: sliderPadding)
+
+        // adjust the labels in slider region
+        let massLabelH = sliderRegionView.frame.height / 10
+        let massLabelW = massLabelH * 6
+        let massLabelCenterX = mass1Slider.center.x
+        var massLabelCenterY = mass1Slider.frame.origin.y - massLabelH / 2
+        let massLabelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 27 : 18
+        adjustSliderLabelsPortrait(sliderPadding: sliderPadding,
+                                   massLabelH: massLabelH,
+                                   massLabelW: massLabelW,
+                                   massLabelCenterX: massLabelCenterX,
+                                   massLabelCenterY: massLabelCenterY,
+                                   massLabelFontSize: massLabelFontSize)
+
+        // adjust the textfields in slider region
+        adjustSliderTextFieldPortrait(sliderPadding: sliderPadding,
+                                      massLabelH: massLabelH,
+                                      massLabelW: massLabelW,
+                                      massLabelCenterX: massLabelCenterX,
+                                      massLabelFontSize: massLabelFontSize)
+
         // adjust color theme button
         colorThemeButton.center = CGPoint(x: windowFrame.frame.maxX + 10,
                                           y: windowFrame.frame.minY + 100)
 
-        // adjust functional and info buttons
-        adjustButtonsPortrait()
+        // adjust functional buttons
+        let buttonH = sliderRegionView.frame.height / 1.3 / 6
+        let buttonLeftPadding: CGFloat = windowFrame.frame.width / 32
+        var buttonUpperPadding: CGFloat = (sliderRegionView.frame.height - 6 * buttonH) / 5
+        adjustFunctionalButtonsPortrait(buttonH: buttonH,
+                                        buttonLeftPadding: buttonLeftPadding,
+                                        buttonUpperPadding: buttonUpperPadding)
+
+
+        // adjust info buttons
+        adjustInfoButtonsPortrait(buttonLeftPadding: buttonLeftPadding,
+                                  buttonUpperPadding: buttonUpperPadding)
 
         print("self.view.frame: \(self.view.frame)")
         print("self.view.frame.maxY: \(self.view.frame.maxY)")
@@ -90,19 +124,7 @@ extension ViewController {
     func landscapeUI() {
         // adjust windowFrame
         let window_frame = adjustFrameRectAndWindowFrameLanscape()
-        let window_w = window_frame[0]
-        let window_h = window_frame[1]
-        let window_x = window_frame[2]
-
-        // adjust axis labels
-        adjustAxisLabelsLandscape(window_w: window_w, window_h: window_h, window_x: window_x)
-
-        // adjust slider region view
         adjustSliderRegionViewLandscape()
-        
-        // adjust functinoal and info buttons
-        adjustButtonsLandscape()
-        
         print("self.view.frame: \(self.view.frame)")
         print("self.view.frame.maxY: \(self.view.frame.maxY)")
         print("UIScreen.main.bound: \(UIScreen.main.bounds)")
@@ -114,8 +136,6 @@ extension ViewController {
         print("windowframe.frame.maxY: \(windowFrame.frame.maxY)")
         print("sliderregion.frame: \(sliderRegionView.frame)")
         print("uiview.frame: \(uiview.frame)")
-        print("functional buttons frame: \(waveformButton.frame)")
-        
     }
     
     func adjustFrameRectAndWindowFramePortrait() -> [Double] {
@@ -178,30 +198,6 @@ extension ViewController {
                                         size: CGSize(width: windowFrame.frame.width * 2 / 3,
                                                      height: UIScreen.main.bounds.height - windowFrame.frame.maxY - (self.tabBarController?.tabBar.frame.height)!))
         sliderRegionView.layer.cornerRadius = sliderRegionView.frame.height / 14
-        
-        // adjust the sliders
-        let sliderPadding: CGFloat = 0.05
-        adjustSlidersPortrait(sliderPadding: sliderPadding)
-
-        // adjust the labels in slider region
-        let massLabelH = sliderRegionView.frame.height / 10
-        let massLabelW = massLabelH * 6
-        let massLabelCenterX = mass1Slider.center.x
-        var massLabelCenterY = mass1Slider.frame.origin.y - massLabelH / 2
-        let massLabelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 27 : 18
-        adjustSliderLabelsPortrait(sliderPadding: sliderPadding,
-                                   massLabelH: massLabelH,
-                                   massLabelW: massLabelW,
-                                   massLabelCenterX: massLabelCenterX,
-                                   massLabelCenterY: massLabelCenterY,
-                                   massLabelFontSize: massLabelFontSize)
-
-        // adjust the textfields in slider region
-        adjustSliderTextFieldPortrait(sliderPadding: sliderPadding,
-                                      massLabelH: massLabelH,
-                                      massLabelW: massLabelW,
-                                      massLabelCenterX: massLabelCenterX,
-                                      massLabelFontSize: massLabelFontSize)
     }
     
     func adjustSlidersPortrait(sliderPadding: CGFloat) {
@@ -262,25 +258,13 @@ extension ViewController {
         speedLabel.font = speedLabel.font?.withSize(textFieldFontSize)
     }
     
-    func adjustButtonsPortrait() {
-        let buttonH = sliderRegionView.frame.height / 1.3 / 6
-        let buttonLeftPadding: CGFloat = windowFrame.frame.width / 32
-        var buttonUpperPadding: CGFloat = (sliderRegionView.frame.height - 6 * buttonH) / 5
-        
-        // adjust functional buttons
-        adjustFunctionalButtonsPortrait(buttonH: buttonH,
-                                        buttonLeftPadding: buttonLeftPadding,
-                                        buttonUpperPadding: buttonUpperPadding)
-
-        // adjust info buttons
-        adjustInfoButtonsPortrait(buttonLeftPadding: buttonLeftPadding,
-                                  buttonUpperPadding: buttonUpperPadding)
-    }
-    
     func adjustFunctionalButtonsPortrait(buttonH: CGFloat,
                                          buttonLeftPadding: CGFloat,
                                          buttonUpperPadding: CGFloat) {
+//        let buttonH = sliderRegionView.frame.height / 1.3 / 6
+//        let buttonLeftPadding: CGFloat = windowFrame.frame.width / 32
         let buttonW = (windowFrame.frame.width - sliderRegionView.frame.width - buttonLeftPadding) * 0.95
+//        var buttonUpperPadding: CGFloat = (sliderRegionView.frame.height - 6 * buttonH) / 5
         var buttonFrameY: CGFloat = sliderRegionView.frame.origin.y
         let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
         for bttn in [waveformButton, freqButton, spectroButton,
@@ -312,7 +296,7 @@ extension ViewController {
     }
     
     func adjustFrameRectAndWindowFrameLanscape() -> [Double]{
-        centerFromTop = UIDevice.current.userInterfaceIdiom == .pad ? UIScreen.main.bounds.width / 3 : UIScreen.main.bounds.width / 4.5
+        centerFromTop = UIScreen.main.bounds.width / 3
         
         frameProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.75 : 0.9
         
@@ -349,111 +333,10 @@ extension ViewController {
     }
     
     func adjustSliderRegionViewLandscape() {
-        let navigationBarH = self.navigationController?.navigationBar.frame.height
-        print("navigation bar height: \(navigationBarH)")
-        let padH = ((UIScreen.main.bounds.maxX - windowFrame.frame.maxX) * 3 / 5)
-        let phoneH = ((UIScreen.main.bounds.maxX - windowFrame.frame.maxX - navigationBarH!) * 3 / 5)
-        let sliderRegionViewH = UIDevice.current.userInterfaceIdiom == .pad ? padH : phoneH
         sliderRegionView.frame = CGRect(origin: CGPoint(x: windowFrame.frame.maxX,
                                                         y: windowFrame.frame.origin.y),
-                                        size: CGSize(width: sliderRegionViewH,
+                                        size: CGSize(width: windowFrame.frame.width * 2 / 3,
                                                      height: windowFrame.frame.height))
         sliderRegionView.layer.cornerRadius = sliderRegionView.frame.height / 14
-        
-        // adjust the sliders
-        let sliderPadding: CGFloat = 0.05
-        adjustSlidersLandscape(sliderPadding: sliderPadding)
-
-        // adjust the labels in slider region
-        let massLabelH = sliderRegionView.frame.height / 10
-        let massLabelW = massLabelH * 6
-        let massLabelCenterX = mass1Slider.center.x
-        var massLabelCenterY = mass1Slider.frame.origin.y - massLabelH / 2
-        let massLabelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 27 : 18
-        adjustSliderLabelsLandscape(sliderPadding: sliderPadding,
-                                   massLabelH: massLabelH,
-                                   massLabelW: massLabelW,
-                                   massLabelCenterX: massLabelCenterX,
-                                   massLabelCenterY: massLabelCenterY,
-                                   massLabelFontSize: massLabelFontSize)
-
-        // adjust the textfields in slider region
-        adjustSliderTextFieldLandscape(sliderPadding: sliderPadding,
-                                      massLabelH: massLabelH,
-                                      massLabelW: massLabelW,
-                                      massLabelCenterX: massLabelCenterX,
-                                      massLabelFontSize: massLabelFontSize)
-    }
-    
-    func adjustAxisLabelsLandscape(window_w: Double, window_h: Double, window_x: Double) {
-        adjustAxisLabelsPortrait(window_w: window_w, window_h: window_h, window_x: window_x)
-    }
-    
-    func adjustSlidersLandscape(sliderPadding: CGFloat) {
-//        let sliderPadding: CGFloat = 0.05
-        adjustSlidersPortrait(sliderPadding: sliderPadding)
-    }
-    
-    func adjustSliderLabelsLandscape(sliderPadding: CGFloat,
-                                        massLabelH: CGFloat,
-                                        massLabelW: CGFloat,
-                                        massLabelCenterX: CGFloat,
-                                        massLabelCenterY: CGFloat,
-                                        massLabelFontSize: CGFloat) {
-        adjustSliderLabelsPortrait(sliderPadding: sliderPadding,
-                                   massLabelH: massLabelH,
-                                   massLabelW: massLabelW,
-                                   massLabelCenterX: massLabelCenterX,
-                                   massLabelCenterY: massLabelCenterY,
-                                   massLabelFontSize: massLabelFontSize)
-    }
-    
-    func adjustSliderTextFieldLandscape(sliderPadding: CGFloat,
-                                       massLabelH: CGFloat,
-                                       massLabelW: CGFloat,
-                                       massLabelCenterX: CGFloat,
-                                       massLabelFontSize: CGFloat) {
-        adjustSliderTextFieldPortrait(sliderPadding: sliderPadding,
-                                      massLabelH: massLabelH,
-                                      massLabelW: massLabelW,
-                                      massLabelCenterX: massLabelCenterX,
-                                      massLabelFontSize: massLabelFontSize)
-    }
-    
-    func adjustButtonsLandscape() {
-        // adjust functional buttons
-        let buttonH = sliderRegionView.frame.height / 1.3 / 6
-        let buttonLeftPadding: CGFloat = windowFrame.frame.width / 32
-        var buttonUpperPadding: CGFloat = (sliderRegionView.frame.height - 6 * buttonH) / 5
-        adjustFunctionalButtonsLandscape(buttonH: buttonH,
-                                        buttonLeftPadding: buttonLeftPadding,
-                                        buttonUpperPadding: buttonUpperPadding)
-        
-        // adjust info buttons
-        adjustInfoButtonsLandscape(buttonLeftPadding: buttonLeftPadding,
-                                  buttonUpperPadding: buttonUpperPadding)
-    }
-    
-    func adjustFunctionalButtonsLandscape(buttonH: CGFloat,
-                                          buttonLeftPadding: CGFloat,
-                                          buttonUpperPadding: CGFloat) {
-//        let buttonW = (windowFrame.frame.width - sliderRegionView.frame.width - buttonLeftPadding) * 0.95
-        let buttonW = (UIScreen.main.bounds.maxX - sliderRegionView.frame.maxX - buttonLeftPadding) * 0.95 - waveformInfo.frame.width
-        var buttonFrameY: CGFloat = sliderRegionView.frame.origin.y
-        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
-        for bttn in [waveformButton, freqButton, spectroButton,
-                     audioButton, animButton, spiralButton] {
-            bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
-            bttn!.configuration?.titleAlignment = .center
-            bttn!.frame = CGRect(origin: CGPoint(x: sliderRegionView.frame.maxX + buttonLeftPadding,
-                                                y: buttonFrameY),
-                                size: CGSize(width: buttonW, height: buttonH))
-            buttonFrameY += bttn!.frame.height + buttonUpperPadding
-        }
-    }
-    
-    func adjustInfoButtonsLandscape(buttonLeftPadding: CGFloat,
-                                   buttonUpperPadding: CGFloat) {
-        adjustInfoButtonsPortrait(buttonLeftPadding: buttonLeftPadding, buttonUpperPadding: buttonUpperPadding)
     }
 }

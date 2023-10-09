@@ -54,7 +54,7 @@ class InfoPageVC: UIViewController, WKUIDelegate {
 
       override func viewDidLoad() {
           super.viewDidLoad()
-          
+          self.navigationController?.navigationBar.isHidden = true
           let myURL = URL(string:"https://chirp-dev.kurtb.net")
           let myRequest = URLRequest(url: myURL!)
           webView.load(myRequest)
