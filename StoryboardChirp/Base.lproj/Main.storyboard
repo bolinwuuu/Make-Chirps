@@ -593,7 +593,6 @@
     <resources>
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="person.3" catalog="system" width="128" height="66"/>
-<<<<<<< Updated upstream
 =======
         <image name="questionmark.circle" catalog="system" width="128" height="123"/>
 >>>>>>> Stashed changes
