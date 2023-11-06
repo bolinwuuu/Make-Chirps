@@ -13,7 +13,7 @@ import Accelerate
 extension ViewController {
     
     func adjustUIAccordingToOrientation() {
-        contentView.frame.size.width = self.view.frame.width
+        contentView.frame.size.width = UIScreen.main.bounds.width
         backgroundImageView.frame = UIScreen.main.bounds
         backgroundImageView.contentMode =  UIView.ContentMode.scaleAspectFill
         let deviceOrientation = UIApplication.shared.connectedScenes
@@ -73,7 +73,7 @@ extension ViewController {
         print("UIScreen.main.bound: \(UIScreen.main.bounds)")
         print("contentView.frame: \(contentView.frame)")
         print("backgroundimageview.frame: \(backgroundImageView.frame)")
-        print("frameRec: \(frameRect)")
+        print("frameRec: \(String(describing: frameRect))")
         print("windowframe.frame: \(windowFrame.frame)")
         print("windowframe.frame.maxY: \(windowFrame.frame.maxY)")
         print("sliderregion.frame: \(sliderRegionView.frame)")
@@ -109,19 +109,19 @@ extension ViewController {
         print("centerFromTop: \(centerFromTop)")
         print("contentView.frame: \(contentView.frame)")
         print("backgroundimageview.frame: \(backgroundImageView.frame)")
-        print("frameRec: \(frameRect)")
+        print("frameRec: \(String(describing: frameRect))")
         print("windowframe.frame: \(windowFrame.frame)")
         print("windowframe.frame.maxY: \(windowFrame.frame.maxY)")
         print("sliderregion.frame: \(sliderRegionView.frame)")
         print("uiview.frame: \(uiview.frame)")
         print("functional buttons frame: \(waveformButton.frame)")
-        
+        print("toolbar height: \((self.tabBarController?.tabBar.frame.height)!)")
     }
     
     func adjustFrameRectAndWindowFramePortrait() -> [Double] {
         centerFromTop = UIScreen.main.bounds.height / 3
         
-        frameProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.75 : 0.9
+        frameProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.75 : 0.8
         
         let frameRect_w: Double = self.view.frame.width * frameProp
         let frameRect_h: Double = frameRect_w
@@ -187,7 +187,7 @@ extension ViewController {
         let massLabelH = sliderRegionView.frame.height / 10
         let massLabelW = massLabelH * 6
         let massLabelCenterX = mass1Slider.center.x
-        var massLabelCenterY = mass1Slider.frame.origin.y - massLabelH / 2
+        let massLabelCenterY = mass1Slider.frame.origin.y - massLabelH / 2
         let massLabelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 27 : 18
         adjustSliderLabelsPortrait(sliderPadding: sliderPadding,
                                    massLabelH: massLabelH,
@@ -265,7 +265,7 @@ extension ViewController {
     func adjustButtonsPortrait() {
         let buttonH = sliderRegionView.frame.height / 1.3 / 6
         let buttonLeftPadding: CGFloat = windowFrame.frame.width / 32
-        var buttonUpperPadding: CGFloat = (sliderRegionView.frame.height - 6 * buttonH) / 5
+        let buttonUpperPadding: CGFloat = (sliderRegionView.frame.height - 6 * buttonH) / 5
         
         // adjust functional buttons
         adjustFunctionalButtonsPortrait(buttonH: buttonH,
@@ -316,7 +316,7 @@ extension ViewController {
     func adjustFrameRectAndWindowFrameLanscape() -> [Double]{
         centerFromTop = UIDevice.current.userInterfaceIdiom == .pad ? UIScreen.main.bounds.width / 3 : UIScreen.main.bounds.width / 4.5
         
-        frameProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.75 : 0.9
+        frameProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.75 : 0.8
         
         let frameRect_h: Double = UIScreen.main.bounds.height * frameProp
         let frameRect_w: Double = frameRect_h
@@ -334,7 +334,9 @@ extension ViewController {
         let window_h: Double = UIScreen.main.bounds.height * windowProp
         let window_w: Double = window_h
 //        let window_x: Double = self.view.frame.width * (1 - windowProp) / 2
-        let window_y: Double = (UIScreen.main.bounds.height - window_h) / 2
+        let window_y_pad = (UIScreen.main.bounds.height - window_h) / 2
+        let window_y_phone = UIScreen.main.bounds.height - window_h - (self.tabBarController?.tabBar.frame.height)!
+        let window_y: Double = UIDevice.current.userInterfaceIdiom == .pad ? window_y_pad : window_y_phone
         let window_x: Double = centerFromTop - window_w / 2
 //        let window_y: Double = centerFromTop - window_h / 2
         
@@ -351,10 +353,11 @@ extension ViewController {
     }
     
     func adjustSliderRegionViewLandscape() {
-        let navigationBarH = self.navigationController?.navigationBar.frame.height
-        print("navigation bar height: \(navigationBarH)")
+//        let navigationBarH = (self.navigationController?.navigationBar.frame.height ?? 0)
+        let navigationBarH = UIScreen.main.bounds.maxX * 0.13
+        print("navigation bar height: \(String(describing: navigationBarH))")
         let padH = ((UIScreen.main.bounds.maxX - windowFrame.frame.maxX) * 3 / 5)
-        let phoneH = ((UIScreen.main.bounds.maxX - windowFrame.frame.maxX - navigationBarH!) * 3 / 5)
+        let phoneH = ((UIScreen.main.bounds.maxX - windowFrame.frame.maxX - navigationBarH) * 4 / 7)
         let sliderRegionViewH = UIDevice.current.userInterfaceIdiom == .pad ? padH : phoneH
         sliderRegionView.frame = CGRect(origin: CGPoint(x: windowFrame.frame.maxX,
                                                         y: windowFrame.frame.origin.y),
@@ -370,7 +373,7 @@ extension ViewController {
         let massLabelH = sliderRegionView.frame.height / 10
         let massLabelW = massLabelH * 6
         let massLabelCenterX = mass1Slider.center.x
-        var massLabelCenterY = mass1Slider.frame.origin.y - massLabelH / 2
+        let massLabelCenterY = mass1Slider.frame.origin.y - massLabelH / 2
         let massLabelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 27 : 18
         adjustSliderLabelsLandscape(sliderPadding: sliderPadding,
                                    massLabelH: massLabelH,
@@ -426,7 +429,7 @@ extension ViewController {
         // adjust functional buttons
         let buttonH = sliderRegionView.frame.height / 1.3 / 6
         let buttonLeftPadding: CGFloat = windowFrame.frame.width / 32
-        var buttonUpperPadding: CGFloat = (sliderRegionView.frame.height - 6 * buttonH) / 5
+        let buttonUpperPadding: CGFloat = (sliderRegionView.frame.height - 6 * buttonH) / 5
         adjustFunctionalButtonsLandscape(buttonH: buttonH,
                                         buttonLeftPadding: buttonLeftPadding,
                                         buttonUpperPadding: buttonUpperPadding)
@@ -439,8 +442,11 @@ extension ViewController {
     func adjustFunctionalButtonsLandscape(buttonH: CGFloat,
                                           buttonLeftPadding: CGFloat,
                                           buttonUpperPadding: CGFloat) {
-//        let buttonW = (windowFrame.frame.width - sliderRegionView.frame.width - buttonLeftPadding) * 0.95
-        let buttonW = (UIScreen.main.bounds.maxX - sliderRegionView.frame.maxX - buttonLeftPadding) * 0.95 - waveformInfo.frame.width
+//        let navigationBarH = (self.navigationController?.navigationBar.frame.height ?? 0)
+        let navigationBarH = UIScreen.main.bounds.maxX * 0.13
+        let buttonWPad = (UIScreen.main.bounds.maxX - sliderRegionView.frame.maxX - buttonLeftPadding) * 0.95 - waveformInfo.frame.width
+        let buttonWPhone = (UIScreen.main.bounds.maxX - navigationBarH - sliderRegionView.frame.maxX - buttonLeftPadding) * 0.95 - waveformInfo.frame.width
+        let buttonW = UIDevice.current.userInterfaceIdiom == .pad ? buttonWPad : buttonWPhone
         var buttonFrameY: CGFloat = sliderRegionView.frame.origin.y
         let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
         for bttn in [waveformButton, freqButton, spectroButton,
