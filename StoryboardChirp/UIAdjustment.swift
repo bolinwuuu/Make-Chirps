@@ -280,6 +280,8 @@ extension ViewController {
     func adjustFunctionalButtonsPortrait(buttonH: CGFloat,
                                          buttonLeftPadding: CGFloat,
                                          buttonUpperPadding: CGFloat) {
+//        let buttonH = sliderRegionView.frame.height / 1.3 / 6
+//        let buttonLeftPadding: CGFloat = windowFrame.frame.width / 32
         let buttonW = (windowFrame.frame.width - sliderRegionView.frame.width - buttonLeftPadding) * 0.95
         var buttonFrameY: CGFloat = sliderRegionView.frame.origin.y
         let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
