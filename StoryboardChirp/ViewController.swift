@@ -117,6 +117,8 @@ class ViewController: UIViewController, ChartViewDelegate {
     // Declare properties for the two celestial bodies
     var body1: UIView = UIView()
     var body2: UIView = UIView()
+    var concentric1: UIView = UIView()
+    var concentric2: UIView = UIView()
     
     // Declare constants for the masses of the two celestial bodies
     var mass1: Double = 0
@@ -601,4 +603,5 @@ class ViewController: UIViewController, ChartViewDelegate {
     
 
 }
+
 

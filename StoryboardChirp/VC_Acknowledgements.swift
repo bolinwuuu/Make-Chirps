@@ -8,39 +8,26 @@
 import Foundation
 import UIKit
 import PDFKit
+import WebKit
 
-class VC_Acknowledgements: UIViewController {
-    let pdfview = PDFView()
+class VC_Acknowledgements: UIViewController, WKUIDelegate {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.addSubview(pdfview)
-        // credit to iOS Academy, https://www.youtube.com/watch?v=GaNYWnlV3R4
-        guard let infoPdfURL = Bundle.main.url(forResource: "Acknowledgements", withExtension: "pdf") else {
-            return
-        }
-        guard let pdfDoc = PDFDocument(url: infoPdfURL) else {
-            return
-        }
-        // pdfview.document = PDFDocument()
-        pdfview.pageShadowsEnabled = false
-        pdfview.document = pdfDoc
-        
-        let imageView = UIImageView(frame: self.view.bounds)
-        imageView.image = UIImage(named: "gw_spiral_bw.jpeg") // Use your image name
-        imageView.contentMode = .scaleAspectFill // Adjust as required
-        self.view.addSubview(imageView)
+    var webView: WKWebView!
+      
+      override func loadView() {
+          let webConfiguration = WKWebViewConfiguration()
+          webView = WKWebView(frame: .zero, configuration: webConfiguration)
+          webView.uiDelegate = self
+          view = webView
+      }
 
-        self.view.sendSubviewToBack(imageView)
-        pdfview.pageBreakMargins = UIEdgeInsets.zero
+
+      override func viewDidLoad() {
+          super.viewDidLoad()
+          self.navigationController?.navigationBar.isHidden = true
+          let myURL = URL(string:"https://chirp-dev.kurtb.net/acknowledgements.html")
+          let myRequest = URLRequest(url: myURL!)
+          webView.load(myRequest)
+      }
         
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        pdfview.frame = view.bounds
-        pdfview.backgroundColor = UIColor.clear
-        pdfview.scaleFactor = 1.4
-        pdfview.pageBreakMargins = UIEdgeInsets.zero
-    }
 }

@@ -29,17 +29,26 @@ extension ViewController {
         
         body1.isHidden = false
         body2.isHidden = false
+        concentric1.isHidden = false; concentric2.isHidden = false;
         
+        // radius units; METERS / Scaledown ; "Scaledown Units"
         let radius1 = Int(testChirp.getR1() / scaleDown)
         let radius2 = Int(testChirp.getR2() / scaleDown)
+        
+       
+        
         
         // Initialize the celestial bodies as circular views
         body1 = UIView(frame: CGRect(x: 0, y: 0, width: radius1 * 2, height: radius1 * 2))
         body1.layer.cornerRadius = CGFloat(radius1)
         body1.backgroundColor = .blue
-//        view.addSubview(body1)
+        
+        
+        
+        //        view.addSubview(body1)
 //        view.sendSubviewToBack(body1)
         windowFrame.addSubview(body1)
+        
         
         body2 = UIView(frame: CGRect(x: 0, y: 0, width: radius2 * 2, height: radius2 * 2))
         body2.layer.cornerRadius = CGFloat(radius2)
@@ -59,8 +68,59 @@ extension ViewController {
 //
 //
 //        let lengthof_windowframe_km = Float(ratio) * Float(radius1) * 4
+        var concen1radius = Int(0)
+        var concen2radius = Int(0)
+        concentric1.isHidden = true
+        concentric2.isHidden = true
         
-        let lengthof_windowframe_km = Int(windowFrame.frame.width * scaleDown)
+        var ratioradii = Double(radius1) / Double(radius2)
+        var ratioradiiinv = Double(radius2) / Double(radius1)
+        
+        if ratioradii <= Double(1.0/4.0) {
+            concentric1.isHidden = false
+            concen1radius = radius1 * 6
+            if ratioradii < 1.0/8.0 {
+                concen1radius = radius1 * 10
+            }
+            if ratioradii < 1.0/15.0{
+                concen1radius = radius1*20
+            }
+        }
+        
+        if ratioradiiinv <= Double(1.0/4.0) {
+            concentric2.isHidden = false
+            concen2radius = radius2 * 6
+            if ratioradiiinv < 1.0/8.0 {
+                concen2radius = radius2 * 10
+            }
+            if ratioradiiinv < 1.0/15.0{
+                concen2radius = radius2 * 20
+            }
+        }
+        
+        
+        
+        
+        concentric1 = UIView(frame: CGRect(x: 0, y: 0, width: concen1radius, height: concen1radius))
+        concentric1.backgroundColor = .clear
+        concentric1.layer.cornerRadius=CGFloat(concen1radius / 2)
+        concentric1.layer.borderWidth = 3
+        concentric1.layer.borderColor = .init(red: 0, green: 0, blue: 1, alpha: 0.8)
+       
+        
+        concentric2 = UIView(frame: CGRect(x: 0, y: 0, width: concen2radius, height: concen2radius))
+        concentric2.backgroundColor = .clear
+        concentric2.layer.cornerRadius=CGFloat(concen2radius / 2)
+        concentric2.layer.borderWidth = 3
+        concentric2.layer.borderColor = .init(red: 1, green: 0, blue: 0, alpha: 0.8)
+        
+        windowFrame.addSubview(concentric2)
+        windowFrame.addSubview(concentric1)
+        
+
+        
+        let lengthof_windowframe_km = Int(windowFrame.frame.width * scaleDown) / 1000
+        // added /1000
         
         
         let xAxisLabel = UILabel()
@@ -145,7 +205,12 @@ extension ViewController {
                 //            self?.body1.center = CGPoint(x: self!.view.bounds.midX + CGFloat(self?.x1 ?? 0.0), y: self!.centerFromTop + CGFloat(self?.y1 ?? 0.0))
                 //            self?.body2.center = CGPoint(x: self!.view.bounds.midX + CGFloat(self?.x2 ?? 0.0), y: self!.centerFromTop + CGFloat(self?.y2 ?? 0.0))
                 self?.body1.center = CGPoint(x: self!.windowFrame.bounds.midX + CGFloat(self!.x1), y: self!.windowFrame.bounds.midY + CGFloat(self!.y1))
+                self?.concentric1.center = CGPoint(x: self!.windowFrame.bounds.midX + CGFloat(self!.x1), y: self!.windowFrame.bounds.midY + CGFloat(self!.y1))
+                
+                
                 self?.body2.center = CGPoint(x: self!.windowFrame.bounds.midX + CGFloat(self!.x2), y: self!.windowFrame.bounds.midY + CGFloat(self!.y2))
+                self?.concentric2.center = CGPoint(x: self!.windowFrame.bounds.midX + CGFloat(self!.x2), y: self!.windowFrame.bounds.midY + CGFloat(self!.y2))
+
                 
                 
                 samp += self!.animationdownSample
@@ -167,13 +232,34 @@ extension ViewController {
         mass2 = testChirp.getM2()
         
         // adjust scaleDown according to masses
-        if mass1 + mass2 < 40 {
+        
+        
+         var massSum = Double(mass1 + mass2)
+        
+        
+        // A more discrete scaleDown in order to make it easier to see smaller mass star collisions. Large difference in the individual masses still makes it difficult. Need to point to really small masses
+        if mass1 + mass2 < 15{
+           scaleDown = 850
+        }
+        else if massSum >= 15 && massSum < 30 {
             print("small masses, less scale down")
+            scaleDown = 1500
+        }
+        else if massSum >= 30 && massSum < 50{
             scaleDown = 2000
-        } else {
+        }
+        else if massSum >= 50 && massSum < 100{
+            scaleDown = 3300
+        }
+        else {
             print("large masses, more scale down")
             scaleDown = 4000
         }
+         
+        massSum = Double(mass1 + mass2)
+      //  scaleDown = 1500
+        print("scaledown factor: \(scaleDown)")
+
         
         self.lastSamp = Int(testChirp.getLastSample())
         
