@@ -145,11 +145,12 @@ extension ViewController {
         var phi2: Double = Double.pi
         
         // make the animation start at the last 10 seconds
-        var samp: Int = max(1, lastSamp - Int(10.0 / 0.01) * animationdownSample)
+        var samp: Int = max(1, lastSamp - Int(10.0 / 0.01) /* animationdownSample*/)
         print("animation starts at index \(samp)")
         print("mass1 is \(mass1), mass2 is \(mass2)")
         // brutally fixing an index-out-of-bound bug when masses are 1.4 & 1.4
         if (mass1 == 1.4 && mass2 == 1.4) {
+           // print ("old lastsamp: \(lastSamp)")
             lastSamp -= 1
             print("brutal solution triggered! New lastSamp: \(lastSamp)")
             
