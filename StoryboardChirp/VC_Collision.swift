@@ -20,6 +20,7 @@ extension ViewController {
         // Update animationdownSample according to speed slider
         let speedX = Double(speedSlider.value)
         animationdownSample = Int(ceil(0.01 * speedX / testChirp.getDT()))
+        // animationdownSample = 1
         
         animInit()
         
@@ -29,7 +30,7 @@ extension ViewController {
         
         body1.isHidden = false
         body2.isHidden = false
-        concentric1.isHidden = false; concentric2.isHidden = false;
+        
         
         // radius units; METERS / Scaledown ; "Scaledown Units"
         let radius1 = Int(testChirp.getR1() / scaleDown)
@@ -144,7 +145,7 @@ extension ViewController {
         var phi2: Double = Double.pi
         
         // make the animation start at the last 10 seconds
-        var samp: Int = max(1, lastSamp - Int(10 / 0.01) * animationdownSample)
+        var samp: Int = max(1, lastSamp - Int(10.0 / 0.01) * animationdownSample)
         print("animation starts at index \(samp)")
         print("mass1 is \(mass1), mass2 is \(mass2)")
         // brutally fixing an index-out-of-bound bug when masses are 1.4 & 1.4
@@ -206,8 +207,6 @@ extension ViewController {
                 //            self?.body2.center = CGPoint(x: self!.view.bounds.midX + CGFloat(self?.x2 ?? 0.0), y: self!.centerFromTop + CGFloat(self?.y2 ?? 0.0))
                 self?.body1.center = CGPoint(x: self!.windowFrame.bounds.midX + CGFloat(self!.x1), y: self!.windowFrame.bounds.midY + CGFloat(self!.y1))
                 self?.concentric1.center = CGPoint(x: self!.windowFrame.bounds.midX + CGFloat(self!.x1), y: self!.windowFrame.bounds.midY + CGFloat(self!.y1))
-                
-                
                 self?.body2.center = CGPoint(x: self!.windowFrame.bounds.midX + CGFloat(self!.x2), y: self!.windowFrame.bounds.midY + CGFloat(self!.y2))
                 self?.concentric2.center = CGPoint(x: self!.windowFrame.bounds.midX + CGFloat(self!.x2), y: self!.windowFrame.bounds.midY + CGFloat(self!.y2))
 
@@ -231,12 +230,10 @@ extension ViewController {
         mass1 = testChirp.getM1()
         mass2 = testChirp.getM2()
         
-        // adjust scaleDown according to masses
+     
         
         
-         var massSum = Double(mass1 + mass2)
-        
-        
+        var massSum = Double(mass1 + mass2)
         // A more discrete scaleDown in order to make it easier to see smaller mass star collisions. Large difference in the individual masses still makes it difficult. Need to point to really small masses
         if mass1 + mass2 < 15{
            scaleDown = 850
@@ -256,7 +253,6 @@ extension ViewController {
             scaleDown = 4000
         }
          
-        massSum = Double(mass1 + mass2)
       //  scaleDown = 1500
         print("scaledown factor: \(scaleDown)")
 

@@ -152,7 +152,7 @@ class ViewController: UIViewController, ChartViewDelegate {
 //    var vy2: Double!
     
     // Animation downSample factor
-    var animationdownSample: Int = 8
+    var animationdownSample: Int = 100
     
     var initPress: [Int: Bool] = [:]
     var initPressCount = 0
