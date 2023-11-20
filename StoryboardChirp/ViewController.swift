@@ -591,7 +591,7 @@ class ViewController: UIViewController, ChartViewDelegate {
 //        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
 //        scrollView.contentInset = contentInset
 
-        scrollView.setContentOffset(CGPoint(x: 0, y: -navigationBarHeight), animated: true)
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         
         scrollView.isScrollEnabled = false
     }
