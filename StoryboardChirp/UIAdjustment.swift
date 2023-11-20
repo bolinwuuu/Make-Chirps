@@ -116,6 +116,7 @@ extension ViewController {
         print("uiview.frame: \(uiview.frame)")
         print("functional buttons frame: \(waveformButton.frame)")
         print("toolbar height: \((self.tabBarController?.tabBar.frame.height)!)")
+        print("func button corner radius: \(waveformButton.layer.cornerRadius)")
     }
     
     func adjustFrameRectAndWindowFramePortrait() -> [Double] {
@@ -284,14 +285,15 @@ extension ViewController {
 //        let buttonLeftPadding: CGFloat = windowFrame.frame.width / 32
         let buttonW = (windowFrame.frame.width - sliderRegionView.frame.width - buttonLeftPadding) * 0.95
         var buttonFrameY: CGFloat = sliderRegionView.frame.origin.y
-        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
+//        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
         for bttn in [waveformButton, freqButton, spectroButton,
                      audioButton, animButton, spiralButton] {
-            bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
-            bttn!.configuration?.titleAlignment = .center
+//            bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
+//            bttn!.configuration?.titleAlignment = .center
             bttn!.frame = CGRect(origin: CGPoint(x: sliderRegionView.frame.maxX + buttonLeftPadding,
                                                 y: buttonFrameY),
                                 size: CGSize(width: buttonW, height: buttonH))
+            bttn?.layer.shadowOffset = CGSize(width: 0, height: buttonH / 8)
             buttonFrameY += bttn!.frame.height + buttonUpperPadding
         }
     }
@@ -448,14 +450,16 @@ extension ViewController {
         let buttonWPhone = (UIScreen.main.bounds.maxX - navigationBarH - sliderRegionView.frame.maxX - buttonLeftPadding) * 0.95 - waveformInfo.frame.width
         let buttonW = UIDevice.current.userInterfaceIdiom == .pad ? buttonWPad : buttonWPhone
         var buttonFrameY: CGFloat = sliderRegionView.frame.origin.y
-        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
+//        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
         for bttn in [waveformButton, freqButton, spectroButton,
                      audioButton, animButton, spiralButton] {
-            bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
-            bttn!.configuration?.titleAlignment = .center
+//            bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
+//            bttn!.configuration?.titleAlignment = .center
             bttn!.frame = CGRect(origin: CGPoint(x: sliderRegionView.frame.maxX + buttonLeftPadding,
                                                 y: buttonFrameY),
                                 size: CGSize(width: buttonW, height: buttonH))
+            
+            bttn?.layer.shadowOffset = CGSize(width: 0, height: buttonH / 8)
             buttonFrameY += bttn!.frame.height + buttonUpperPadding
         }
     }
