@@ -154,9 +154,6 @@ class ViewController: UIViewController, ChartViewDelegate {
     // Animation downSample factor
     var animationdownSample: Int = 100
     
-    var initPress: [Int: Bool] = [:]
-    var initPressCount = 0
-    
     var timer: Timer?
     
     var centerFromTop: Double = 400

@@ -24,7 +24,6 @@ extension ViewController {
         
         animInit()
         
-        let currInitCount = initPressCount
         
 //        let scaleDown: Double = 4000
         
@@ -162,10 +161,9 @@ extension ViewController {
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] _ in
                 
-//            print(self!.initPress)
             
             // Check if the celestial bodies have collided
-            if (samp > self!.lastSamp || (self!.initPress[currInitCount])!) {
+            if (samp > self!.lastSamp) {
                 // Invalidate the timer to stop the animation
                 //print("collide!")
                 print("current samp: ", samp)
@@ -175,12 +173,8 @@ extension ViewController {
 //                print("final Dist: ", self!.a[samp] / self!.scaleDown)
                 self!.timer?.invalidate()
                 
-                self!.initPress.removeValue(forKey: currInitCount)
                 
-                // Display an alert indicating that the celestial bodies have collided
-//                let alert = UIAlertController(title: "Collision", message: "The celestial bodies have collided!", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//                self?.present(alert, animated: true, completion: nil)
+
             } else {
                 
                 
@@ -226,14 +220,11 @@ extension ViewController {
         
         // Initialize the constants for the masses of the celestial bodies and the initial distance between them
         
-        initPress[initPressCount] = true
-        initPressCount += 1
-        initPress[initPressCount] = false
         
         mass1 = testChirp.getM1()
         mass2 = testChirp.getM2()
         
-     
+        timer?.invalidate()
         
         
         var massSum = Double(mass1 + mass2)
@@ -288,39 +279,6 @@ extension ViewController {
         
         print("initialDist: ", initialDistance)
         
-        // Initialize the positions and velocities of the celestial bodies
-//        x1 = initialDistance * mass2 / (mass1 + mass2)
-//        y1 = 0.0
-//        x2 = -initialDistance * mass1 / (mass1 + mass2)
-//        y2 = 0.0
-//        vx1 = 0.0
-//        vy1 = 0.0
-//        vx2 = 0.0
-//        vy2 = 0.0
-        
-//        self.x1Pos = [Double](repeating: 0, count: freqCount)
-//        self.y1Pos = [Double](repeating: 0, count: freqCount)
-//        self.x2Pos = [Double](repeating: 0, count: freqCount)
-//        self.y2Pos = [Double](repeating: 0, count: freqCount)
-//        self.phi1 = [Double](repeating: 0, count: freqCount)
-//        self.phi2 = [Double](repeating: 0, count: freqCount)
-//        self.distToCenter1 = [Double](repeating: 0, count: freqCount)
-//        self.distToCenter2 = [Double](repeating: 0, count: freqCount)
-//
-//        distToCenter1 = vDSP.multiply(self.mass2 / (self.mass1 + self.mass2) / self.scaleDown, self.a)
-//        distToCenter1 = vDSP.multiply(self.mass1 / (self.mass1 + self.mass2) / self.scaleDown, self.a)
-//
-//        self.phi1[0] = 0
-//        self.phi2[0] = Double.pi
-//
-//
-//        let dt = testChirp.getDT()
-//
-//        for i in 1...freqCount - 1 {
-//            let deltaphi: Double = 2 * Double.pi * (self.freq[i - 1] + self.freq[i]) * dt
-//            self.phi1[i] = self.phi1[i - 1] + deltaphi
-//            self.phi2[i] = self.phi2[i - 1] + deltaphi
-//        }
         
     }
 }
