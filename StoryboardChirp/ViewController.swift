@@ -111,6 +111,9 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     var orientationChanged: Bool = false
     
+    let PADBUTTONFONTSIZE: CGFloat = 17
+    let PHONEBUTTONFONTSIZE: CGFloat = 12
+    
     //------------------------------------------------------//
     //            Collsion Animation Variables              //
     
@@ -182,6 +185,8 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         setBackgroundImageView()
         
+        setupButtons()
+        
         adjustUIAccordingToOrientation()
         contentView.addSubview(windowFrame)
         
@@ -220,9 +225,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         setDarkTheme()
         
-        setupButtons()
-        
-        
+//        setupButtons()
     }
     
     override func viewWillTransition(to size: CGSize, 
@@ -232,6 +235,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         if orientationChanged {
             adjustUIAccordingToOrientation()
             
@@ -240,7 +244,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     }
     
     func setupButtons() {
-        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
+//        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
         for bttn in [waveformButton, freqButton, spectroButton, audioButton, animButton, spiralButton] {
             // set up shadows
             let darkOrange = UIColor(red: 175/255, green: 55/255, blue: 0/255, alpha: 1)
@@ -252,11 +256,7 @@ class ViewController: UIViewController, ChartViewDelegate {
             bttn?.layer.masksToBounds = false
             bttn?.layer.cornerRadius = 4.0
             bttn?.configuration?.cornerStyle = .large
-            bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
-//            bttn?.titleLabel?.adjustsFontSizeToFitWidth = true
-//            bttn?.titleLabel?.lineBreakMode = .byClipping
-//            bttn?.titleLabel?.minimumScaleFactor = 0.5
-//            bttn?.titleLabel?.adjustsFontForContentSizeCategory = true
+//            bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
         }
         
     }

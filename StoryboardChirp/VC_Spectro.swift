@@ -15,7 +15,7 @@ extension ViewController {
     
     @IBAction func spectroButtonPress(_ sender: Any) {
         checkMassChange()
-       self.uiview.removeFromSuperview()
+        self.uiview.removeFromSuperview()
 
         removeViews()
         

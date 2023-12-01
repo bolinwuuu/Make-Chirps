@@ -78,7 +78,9 @@ extension ViewController {
         print("windowframe.frame.maxY: \(windowFrame.frame.maxY)")
         print("sliderregion.frame: \(sliderRegionView.frame)")
         print("uiview.frame: \(uiview.frame)")
-        
+        print("functional buttons frame: \(waveformButton.frame)")
+        print("spectrogram button numberOfLines: \(spectroButton.titleLabel?.numberOfLines)")
+        print("spectrogram button adjustsFontSize: \(spectroButton.titleLabel?.adjustsFontSizeToFitWidth)")
 
 //        if UIDevice.current.userInterfaceIdiom == .pad {
 //
@@ -117,6 +119,8 @@ extension ViewController {
         print("functional buttons frame: \(waveformButton.frame)")
         print("toolbar height: \((self.tabBarController?.tabBar.frame.height)!)")
         print("func button corner radius: \(waveformButton.layer.cornerRadius)")
+        print("collision button numberOfLines: \(animButton.titleLabel?.numberOfLines)")
+        print("collision button adjustsFontSize: \(animButton.titleLabel?.adjustsFontSizeToFitWidth)")
     }
     
     func adjustFrameRectAndWindowFramePortrait() -> [Double] {
@@ -270,7 +274,7 @@ extension ViewController {
         
         // adjust functional buttons
         adjustFunctionalButtonsPortrait(buttonH: buttonH,
-                                        buttonLeftPadding: buttonLeftPadding,
+                                        buttonLeftPadding: buttonLeftPadding / 2,
                                         buttonUpperPadding: buttonUpperPadding)
 
         // adjust info buttons
@@ -285,17 +289,25 @@ extension ViewController {
 //        let buttonLeftPadding: CGFloat = windowFrame.frame.width / 32
         let buttonW = (windowFrame.frame.width - sliderRegionView.frame.width - buttonLeftPadding) * 0.95
         var buttonFrameY: CGFloat = sliderRegionView.frame.origin.y
-//        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
+        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? PADBUTTONFONTSIZE : PHONEBUTTONFONTSIZE
+//        let buttonFontSize: CGFloat = 18
         for bttn in [waveformButton, freqButton, spectroButton,
                      audioButton, animButton, spiralButton] {
-//            bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
+            bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
 //            bttn!.configuration?.titleAlignment = .center
             bttn!.frame = CGRect(origin: CGPoint(x: sliderRegionView.frame.maxX + buttonLeftPadding,
                                                 y: buttonFrameY),
                                 size: CGSize(width: buttonW, height: buttonH))
             bttn?.layer.shadowOffset = CGSize(width: 0, height: buttonH / 8)
             buttonFrameY += bttn!.frame.height + buttonUpperPadding
+            
+            bttn?.titleLabel?.numberOfLines = 1
+            bttn?.titleLabel?.adjustsFontSizeToFitWidth = true
+            bttn?.titleLabel?.lineBreakMode = .byClipping
+            bttn?.titleLabel?.textAlignment = .center
         }
+        animButton.titleLabel?.numberOfLines = 2
+        spiralButton.titleLabel?.numberOfLines = 2
     }
     
     func adjustInfoButtonsPortrait(buttonLeftPadding: CGFloat,
@@ -433,7 +445,7 @@ extension ViewController {
         let buttonLeftPadding: CGFloat = windowFrame.frame.width / 32
         let buttonUpperPadding: CGFloat = (sliderRegionView.frame.height - 6 * buttonH) / 5
         adjustFunctionalButtonsLandscape(buttonH: buttonH,
-                                        buttonLeftPadding: buttonLeftPadding,
+                                        buttonLeftPadding: buttonLeftPadding / 2,
                                         buttonUpperPadding: buttonUpperPadding)
         
         // adjust info buttons
@@ -450,10 +462,11 @@ extension ViewController {
         let buttonWPhone = (UIScreen.main.bounds.maxX - navigationBarH - sliderRegionView.frame.maxX - buttonLeftPadding) * 0.95 - waveformInfo.frame.width
         let buttonW = UIDevice.current.userInterfaceIdiom == .pad ? buttonWPad : buttonWPhone
         var buttonFrameY: CGFloat = sliderRegionView.frame.origin.y
-//        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
+        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? PADBUTTONFONTSIZE : PHONEBUTTONFONTSIZE
+//        let buttonFontSize: CGFloat = 18
         for bttn in [waveformButton, freqButton, spectroButton,
                      audioButton, animButton, spiralButton] {
-//            bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
+            bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
 //            bttn!.configuration?.titleAlignment = .center
             bttn!.frame = CGRect(origin: CGPoint(x: sliderRegionView.frame.maxX + buttonLeftPadding,
                                                 y: buttonFrameY),
@@ -461,7 +474,19 @@ extension ViewController {
             
             bttn?.layer.shadowOffset = CGSize(width: 0, height: buttonH / 8)
             buttonFrameY += bttn!.frame.height + buttonUpperPadding
+            
+            bttn?.titleLabel?.numberOfLines = 1
+            bttn?.titleLabel?.adjustsFontSizeToFitWidth = true
+            bttn?.titleLabel?.lineBreakMode = .byClipping
+            bttn?.titleLabel?.textAlignment = .center
+            bttn?.titleLabel?.minimumScaleFactor = 0.5
         }
+        animButton.titleLabel?.numberOfLines = 2
+        spiralButton.titleLabel?.numberOfLines = 2
+//        
+//        spectroButton.titleLabel?.numberOfLines = 1
+//        spectroButton.titleLabel?.adjustsFontSizeToFitWidth = true
+//        spectroButton.titleLabel?.lineBreakMode = .byClipping
     }
     
     func adjustInfoButtonsLandscape(buttonLeftPadding: CGFloat,
