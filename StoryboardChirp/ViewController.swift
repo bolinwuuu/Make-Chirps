@@ -26,11 +26,18 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var navigationBar: UINavigationItem!
     
-    @IBOutlet weak var mass1Slider: UISlider!
+//    @IBOutlet weak var mass1Slider: UISlider!
+//    
+//    @IBOutlet weak var mass2Slider: UISlider!
+//    
+//    @IBOutlet weak var speedSlider: UISlider!
     
-    @IBOutlet weak var mass2Slider: UISlider!
+    var mass1Slider: CustomSlider!
     
-    @IBOutlet weak var speedSlider: UISlider!
+    var mass2Slider: CustomSlider!
+    
+    var speedSlider: CustomSlider!
+
     
 //    @IBOutlet weak var mass1Label: UILabel!
 //
@@ -183,6 +190,32 @@ class ViewController: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mass1Slider = CustomSlider(frame: CGRect())
+        mass2Slider = CustomSlider(frame: CGRect())
+        speedSlider = CustomSlider(frame: CGRect())
+        
+        mass1Slider.addTarget(self, action: #selector(self.mass1Change(_:)), for: .valueChanged)
+        mass2Slider.addTarget(self, action: #selector(self.mass2Change(_:)), for: .valueChanged)
+        speedSlider.addTarget(self, action: #selector(self.speedSliderChange(_:)), for: .valueChanged)
+        
+        sliderRegionView.addSubview(mass1Slider)
+        sliderRegionView.addSubview(mass2Slider)
+        sliderRegionView.addSubview(speedSlider)
+        
+        mass1Slider.maximumValue = 100
+        mass1Slider.minimumValue = 1.4
+        mass2Slider.maximumValue = 100
+        mass2Slider.minimumValue = 1.4
+        speedSlider.maximumValue = 1
+        speedSlider.minimumValue = 0.01
+        
+//        mass1Slider.value = 20
+//        mass2Slider.value = 20
+//        speedSlider.value = 0.05
+        mass1Slider.changeSliderValue(value: 20.0)
+        mass2Slider.changeSliderValue(value: 20.0)
+        speedSlider.changeSliderValue(value: 0.05)
+        
         setBackgroundImageView()
         
         setupButtons()
@@ -305,7 +338,8 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         let roundedValue = roundToTwoDecimalPlaces(num: Double(mass1TextField.text!)!)
         mass1TextField.text = String(roundedValue)
-        mass1Slider.value = Float(roundedValue)
+//        mass1Slider.value = Float(roundedValue)
+        mass1Slider.changeSliderValue(value: Float(roundedValue))
     }
     
     @IBAction func mass2TextChange(_ sender: Any) {
@@ -342,7 +376,8 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         let roundedValue = roundToTwoDecimalPlaces(num: Double(mass2TextField.text!)!)
         mass2TextField.text = String(roundedValue)
-        mass2Slider.value = Float(roundedValue)
+//        mass2Slider.value = Float(roundedValue)
+        mass2Slider.changeSliderValue(value: Float(roundedValue))
     }
     
     

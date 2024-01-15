@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jjg-Qm-ZGM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jjg-Qm-ZGM">
     <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -264,13 +264,6 @@
                                                             <action selector="mass2TextChange:" destination="dCC-hP-mkN" eventType="editingDidEnd" id="7Ed-vo-9M5"/>
                                                         </connections>
                                                     </textField>
-                                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.050000000000000003" minValue="0.01" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zrA-71-aY4">
-                                                        <rect key="frame" x="40" y="293" width="330" height="30"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <connections>
-                                                            <action selector="speedSliderChange:" destination="dCC-hP-mkN" eventType="valueChanged" id="ZQq-dc-7Tt"/>
-                                                        </connections>
-                                                    </slider>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Animation Speed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKz-qw-phG">
                                                         <rect key="frame" x="107" y="257" width="199" height="37"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -301,20 +294,6 @@
                                                             <action selector="mass1TextChange:" destination="dCC-hP-mkN" eventType="editingDidEnd" id="an6-kV-Cin"/>
                                                         </connections>
                                                     </textField>
-                                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="1.3999999999999999" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="77g-eT-1Ti">
-                                                        <rect key="frame" x="40" y="170" width="330" height="30"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <connections>
-                                                            <action selector="mass2Change:" destination="dCC-hP-mkN" eventType="valueChanged" id="evE-Bm-6fz"/>
-                                                        </connections>
-                                                    </slider>
-                                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="1.3999999999999999" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Qbm-Ur-5kE">
-                                                        <rect key="frame" x="40" y="52" width="330" height="30"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <connections>
-                                                            <action selector="mass1Change:" destination="dCC-hP-mkN" eventType="valueChanged" id="DcQ-Ky-8vZ"/>
-                                                        </connections>
-                                                    </slider>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" x 0.05" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gga-0I-cfK">
                                                         <rect key="frame" x="133" y="327" width="140" height="42"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -398,10 +377,8 @@
                         <outlet property="contentView" destination="jcM-cK-Dqf" id="PAy-AD-hjX"/>
                         <outlet property="freqButton" destination="xH2-Ru-DwP" id="xX0-K9-bEC"/>
                         <outlet property="freqInfo" destination="mb5-4n-tP6" id="skv-rv-kxP"/>
-                        <outlet property="mass1Slider" destination="Qbm-Ur-5kE" id="r2O-MV-cxn"/>
                         <outlet property="mass1TextField" destination="kZq-8H-pud" id="Cuv-dD-9XW"/>
                         <outlet property="mass1Title" destination="V61-P9-Xmj" id="iHF-Rz-LiX"/>
-                        <outlet property="mass2Slider" destination="77g-eT-1Ti" id="OS1-g5-Yye"/>
                         <outlet property="mass2TextField" destination="pSo-Kf-DUQ" id="d3T-er-YyA"/>
                         <outlet property="mass2Title" destination="gxb-mU-qVF" id="OVh-bA-ndA"/>
                         <outlet property="navigationBar" destination="4Q8-XO-oIw" id="WvQ-lB-iSL"/>
@@ -410,7 +387,6 @@
                         <outlet property="spectroButton" destination="L0G-tM-J0M" id="SZl-p2-C3X"/>
                         <outlet property="spectroInfo" destination="k5a-kr-6Q6" id="eLE-mn-37A"/>
                         <outlet property="speedLabel" destination="Gga-0I-cfK" id="Srf-SM-fih"/>
-                        <outlet property="speedSlider" destination="zrA-71-aY4" id="xk3-Gc-AoI"/>
                         <outlet property="spiralButton" destination="e3j-XR-l3h" id="zse-gR-ctk"/>
                         <outlet property="spiralInfo" destination="ztS-4n-lCD" id="08g-FN-wiC"/>
                         <outlet property="waveformButton" destination="hYR-Pw-iFM" id="1Wi-yt-KQA"/>
@@ -593,9 +569,6 @@
     <resources>
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="person.3" catalog="system" width="128" height="66"/>
-=======
-        <image name="questionmark.circle" catalog="system" width="128" height="123"/>
->>>>>>> Stashed changes
         <image name="sun.max.circle" catalog="system" width="128" height="123"/>
         <image name="terminal.fill" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
