@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Waveform-->
         <scene sceneID="5Wl-0H-UrR">
             <objects>
                 <viewController id="Igl-uR-AEG" sceneMemberID="viewController">
@@ -18,9 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1124"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some descriptive text of waveform plot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZk-QJ-Uc2">
-                                <rect key="frame" x="94" y="188" width="297" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZk-QJ-Uc2">
+                                <rect key="frame" x="38" y="183" width="329" height="21"/>
+                                <mutableString key="text">This graph shows the strength of the oscillating gravitational wave in arbitrary units (vertical axis) versus time in seconds (horizontal axis). One sees an amplitude (maximum absolute value) that increases toward the right, representing the final moments of the inspiralling and eventually merging compact stars (black holes or neutron stars). The oscillations also get closer together in time near the end, indicating the frequency of the signal is rising. The very last part of the graph shows the ringdown oscillation of the final black hole created by the merger as it "shakes off" excess energy and angular momentum.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -28,14 +28,19 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vMe-eQ-TCv"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="vMe-eQ-TCv" firstAttribute="top" secondItem="tZk-QJ-Uc2" secondAttribute="top" constant="5" id="H7I-Pp-QRF"/>
+                            <constraint firstItem="tZk-QJ-Uc2" firstAttribute="leading" secondItem="vMe-eQ-TCv" secondAttribute="leading" constant="25" id="cKY-RK-ke1"/>
+                            <constraint firstItem="tZk-QJ-Uc2" firstAttribute="centerX" secondItem="vMe-eQ-TCv" secondAttribute="centerX" id="df5-Ql-Xus"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="hsc-XH-Cyt"/>
+                    <navigationItem key="navigationItem" title="Waveform" id="hsc-XH-Cyt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5lW-pG-NZg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2401" y="1695"/>
+            <point key="canvasLocation" x="-2401.4388489208636" y="1694.9748743718594"/>
         </scene>
-        <!--View Controller-->
+        <!--Frequency-->
         <scene sceneID="lNS-bM-Vhe">
             <objects>
                 <viewController id="pwQ-x3-AOb" sceneMemberID="viewController">
@@ -43,9 +48,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1124"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some descriptive text of frequency plot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZK-RQ-qFV">
-                                <rect key="frame" x="53" y="179" width="300" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZK-RQ-qFV">
+                                <rect key="frame" x="25" y="131" width="329" height="21"/>
+                                <mutableString key="text">This graph shows the frequency (Hz or cycles/second on the vertical axis) versus time in seconds (horizontal axis). The frequency increases toward the right, representing the final moments of the inspiralling and eventually merging compact stars (black holes or neutron stars). As the stars get closer and closer together, they orbit each other faster and faster. The very last part of the graph shows the frequency of the ringdown oscillation of the final black hole created by the merger as it "shakes off" excess energy and angular momentum. </mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -53,8 +58,13 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zmP-Dk-523"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="yZK-RQ-qFV" firstAttribute="top" secondItem="zmP-Dk-523" secondAttribute="top" constant="5" id="RZa-ax-IEx"/>
+                            <constraint firstItem="yZK-RQ-qFV" firstAttribute="centerX" secondItem="zmP-Dk-523" secondAttribute="centerX" id="cMY-jl-Kx2"/>
+                            <constraint firstItem="yZK-RQ-qFV" firstAttribute="leading" secondItem="zmP-Dk-523" secondAttribute="leading" constant="25" id="jei-g8-W1P"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="bC7-8W-lmA"/>
+                    <navigationItem key="navigationItem" title="Frequency" id="bC7-8W-lmA"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XLF-oN-SIk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -302,6 +312,33 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0n-EH-ihT">
+                                                        <rect key="frame" x="278" y="88" width="50" height="34"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="questionmark.circle" catalog="system"/>
+                                                        <connections>
+                                                            <segue destination="XHO-fC-KM7" kind="show" id="Is2-yj-ArV"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7k1-rq-BOx">
+                                                        <rect key="frame" x="278" y="207" width="50" height="34"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="questionmark.circle" catalog="system"/>
+                                                        <connections>
+                                                            <segue destination="3Of-E1-vSd" kind="show" id="EW8-8r-Jez"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CF7-N4-Nuw">
+                                                        <rect key="frame" x="278" y="335" width="50" height="34"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="questionmark.circle" catalog="system"/>
+                                                        <connections>
+                                                            <segue destination="uvW-l8-uLB" kind="show" id="CHp-Th-tTv"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                             </view>
@@ -377,8 +414,10 @@
                         <outlet property="contentView" destination="jcM-cK-Dqf" id="PAy-AD-hjX"/>
                         <outlet property="freqButton" destination="xH2-Ru-DwP" id="xX0-K9-bEC"/>
                         <outlet property="freqInfo" destination="mb5-4n-tP6" id="skv-rv-kxP"/>
+                        <outlet property="mass1Info" destination="n0n-EH-ihT" id="F0b-Qg-Z6x"/>
                         <outlet property="mass1TextField" destination="kZq-8H-pud" id="Cuv-dD-9XW"/>
                         <outlet property="mass1Title" destination="V61-P9-Xmj" id="iHF-Rz-LiX"/>
+                        <outlet property="mass2Info" destination="7k1-rq-BOx" id="P1C-Se-dFq"/>
                         <outlet property="mass2TextField" destination="pSo-Kf-DUQ" id="d3T-er-YyA"/>
                         <outlet property="mass2Title" destination="gxb-mU-qVF" id="OVh-bA-ndA"/>
                         <outlet property="navigationBar" destination="4Q8-XO-oIw" id="WvQ-lB-iSL"/>
@@ -386,6 +425,7 @@
                         <outlet property="sliderRegionView" destination="iJI-aa-z2T" id="C4s-A2-qmH"/>
                         <outlet property="spectroButton" destination="L0G-tM-J0M" id="SZl-p2-C3X"/>
                         <outlet property="spectroInfo" destination="k5a-kr-6Q6" id="eLE-mn-37A"/>
+                        <outlet property="speedInfo" destination="CF7-N4-Nuw" id="gKR-7F-Brn"/>
                         <outlet property="speedLabel" destination="Gga-0I-cfK" id="Srf-SM-fih"/>
                         <outlet property="spiralButton" destination="e3j-XR-l3h" id="zse-gR-ctk"/>
                         <outlet property="spiralInfo" destination="ztS-4n-lCD" id="08g-FN-wiC"/>
@@ -465,7 +505,7 @@
             </objects>
             <point key="canvasLocation" x="887.76978417266196" y="1041.7085427135678"/>
         </scene>
-        <!--View Controller-->
+        <!--Spectrogram-->
         <scene sceneID="7IM-30-I15">
             <objects>
                 <viewController id="fqx-Yt-w0n" sceneMemberID="viewController">
@@ -473,9 +513,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1124"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some descriptive text of spectrogram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAM-ag-gp9">
-                                <rect key="frame" x="94" y="188" width="287" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAM-ag-gp9">
+                                <rect key="frame" x="53" y="148" width="3945" height="100"/>
+                                <mutableString key="text">The display shows the intensity of the gravitational wave (energy per time) in color (blue is low intensity, red is high intensity) for different frequencies versus time. Both the intensity and average frequency increase toward the right, representing the final moments of the inspiralling and eventually merging compact stars (black holes or neutron stars). The very last part of the spectrogram shows the ringdown oscillation of the final black hole created by the merger as it "shakes off" excess energy and angular momentum.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -483,14 +523,19 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xQq-Iz-X70"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="cAM-ag-gp9" firstAttribute="centerX" secondItem="xQq-Iz-X70" secondAttribute="centerX" id="AG7-XO-TYj"/>
+                            <constraint firstItem="cAM-ag-gp9" firstAttribute="leading" secondItem="xQq-Iz-X70" secondAttribute="leading" constant="25" id="pfX-Y3-RRY"/>
+                            <constraint firstItem="cAM-ag-gp9" firstAttribute="top" secondItem="xQq-Iz-X70" secondAttribute="top" constant="5" id="uF4-Kd-IL3"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="a0m-vo-yUc"/>
+                    <navigationItem key="navigationItem" title="Spectrogram" id="a0m-vo-yUc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sGb-Vq-o7b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1071" y="1695"/>
         </scene>
-        <!--View Controller-->
+        <!--Audio-->
         <scene sceneID="keC-j9-rtO">
             <objects>
                 <viewController id="VxI-YG-2td" sceneMemberID="viewController">
@@ -498,9 +543,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1124"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some descriptive text of audio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvb-bf-2HZ">
-                                <rect key="frame" x="94" y="188" width="231" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvb-bf-2HZ">
+                                <rect key="frame" x="20" y="120" width="1940" height="100"/>
+                                <string key="text">Clicking this button makes an audible sound corresponding to the waveform created by pressing the top button. One can hear the amplitude and frequency increase with time. Lighter mass combinations have higher pitches than heavier mass combinations.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -508,14 +553,19 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mnx-lk-0RU"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="Zvb-bf-2HZ" firstAttribute="top" secondItem="mnx-lk-0RU" secondAttribute="top" constant="5" id="1Ru-X0-qTD"/>
+                            <constraint firstItem="Zvb-bf-2HZ" firstAttribute="centerX" secondItem="mnx-lk-0RU" secondAttribute="centerX" id="kDy-Ud-l7u"/>
+                            <constraint firstItem="Zvb-bf-2HZ" firstAttribute="leading" secondItem="mnx-lk-0RU" secondAttribute="leading" constant="25" id="sJm-Xw-RdK"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="eef-Tn-jAn"/>
+                    <navigationItem key="navigationItem" title="Audio" id="eef-Tn-jAn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FbY-Yg-3oa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-422" y="1695"/>
         </scene>
-        <!--View Controller-->
+        <!--Star Animation-->
         <scene sceneID="YrK-iU-Wfh">
             <objects>
                 <viewController id="Gmu-88-G3B" sceneMemberID="viewController">
@@ -523,9 +573,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1124"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some descriptive text of collision animation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhI-Ae-xaQ">
-                                <rect key="frame" x="94" y="188" width="330" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhI-Ae-xaQ">
+                                <rect key="frame" x="33" y="148" width="5854" height="100"/>
+                                <mutableString key="text">This display shows blue and red disks corresponding to stars 1 and 2, respectively, orbiting their common center of mass in a spiraling pattern of increasing frequency as the stars lose gravitational wave energy, causing their orbit to shrink. The radius of each disk is proportional to the mass of the star. Depending on one's device, there can be stroboscopic effects in which the stars appear to slow down or even reverse direction, much as wagon wheels in old western movies sometimes appear to rotate backward. When the lighter star is much lighter than the heavier star, its disk becomes too small to be seen easily in comparison, and a larger circle surrounding the dot is included to aid the eye. The speed of the animation can be adjusted by the Animation Speed slider.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -533,14 +583,19 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MZV-Gf-805"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="IhI-Ae-xaQ" firstAttribute="leading" secondItem="MZV-Gf-805" secondAttribute="leading" constant="25" id="4WP-ZL-UST"/>
+                            <constraint firstItem="IhI-Ae-xaQ" firstAttribute="top" secondItem="MZV-Gf-805" secondAttribute="top" constant="5" id="FVm-FW-8Lu"/>
+                            <constraint firstItem="IhI-Ae-xaQ" firstAttribute="centerX" secondItem="MZV-Gf-805" secondAttribute="centerX" id="Orq-hw-Kz6"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="K3O-dz-ND0"/>
+                    <navigationItem key="navigationItem" title="Star Animation" id="K3O-dz-ND0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fWE-Su-eW2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="211" y="1695"/>
         </scene>
-        <!--View Controller-->
+        <!--Spiral Animation-->
         <scene sceneID="iWt-SH-hWz">
             <objects>
                 <viewController id="0tq-Ew-Exi" sceneMemberID="viewController">
@@ -548,9 +603,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1124"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some descriptive text of spiral animation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NB-LR-XZi">
-                                <rect key="frame" x="94" y="188" width="309" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NB-LR-XZi">
+                                <rect key="frame" x="25" y="149" width="784" height="21"/>
+                                <string key="text">This display depicts in color the outgoing spiral gravitational waves emitted by the merging stars. As the frequency of the emitted waves increases, the wavelength (distance between one crest and the next) decreases. Once the stars merge, the intensity of the waves rapidly decreases. </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -558,17 +613,113 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qZ2-SE-FDy"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="1NB-LR-XZi" firstAttribute="leading" secondItem="qZ2-SE-FDy" secondAttribute="leading" constant="25" id="0R3-aU-64J"/>
+                            <constraint firstItem="1NB-LR-XZi" firstAttribute="top" secondItem="qZ2-SE-FDy" secondAttribute="top" constant="5" id="2uz-Kz-tfu"/>
+                            <constraint firstItem="1NB-LR-XZi" firstAttribute="centerX" secondItem="qZ2-SE-FDy" secondAttribute="centerX" id="J0q-Ve-3xk"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="97O-gM-szs"/>
+                    <navigationItem key="navigationItem" title="Spiral Animation" id="97O-gM-szs"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LWW-hO-Vql" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="845" y="1695"/>
         </scene>
+        <!--Mass 1-->
+        <scene sceneID="qnd-ny-YWJ">
+            <objects>
+                <viewController id="XHO-fC-KM7" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uN3-qA-5Od">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1124"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwe-Qx-HhO">
+                                <rect key="frame" x="110" y="177" width="252" height="62"/>
+                                <string key="text">Chooses the mass of Star 1 (shown as blue disk in Star Animation) in units of a solar mass (mass of our own Sun). The lowest value available is 1.4 solar masses, corresponding to the mass of a typical neutron star, and the highest value is 100 solar masses.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Mbd-Ki-gcH"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="vwe-Qx-HhO" firstAttribute="centerX" secondItem="Mbd-Ki-gcH" secondAttribute="centerX" id="2VF-GO-azw"/>
+                            <constraint firstItem="vwe-Qx-HhO" firstAttribute="leading" secondItem="Mbd-Ki-gcH" secondAttribute="leading" constant="25" id="aBS-vd-tTY"/>
+                            <constraint firstItem="vwe-Qx-HhO" firstAttribute="top" secondItem="Mbd-Ki-gcH" secondAttribute="top" constant="5" id="kgJ-pa-X6a"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Mass 1" id="aYs-bo-dmQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CkR-l1-fb7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2401" y="2340"/>
+        </scene>
+        <!--Mass 2-->
+        <scene sceneID="5MG-P6-N2V">
+            <objects>
+                <viewController id="3Of-E1-vSd" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sq8-g2-kbj">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1124"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hok-NW-7cl">
+                                <rect key="frame" x="110" y="177" width="252" height="62"/>
+                                <string key="text">Chooses the mass of Star 2 (shown as red disk in Star Animation) in units of a solar mass (mass of our own Sun). The lowest value available is 1.4 solar masses, corresponding to the mass of a typical neutron star, and the highest value is 100 solar masses.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vcC-ld-4aS"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="hok-NW-7cl" firstAttribute="leading" secondItem="vcC-ld-4aS" secondAttribute="leading" constant="25" id="GMk-vp-ZGC"/>
+                            <constraint firstItem="hok-NW-7cl" firstAttribute="centerX" secondItem="vcC-ld-4aS" secondAttribute="centerX" id="rcH-9I-5mm"/>
+                            <constraint firstItem="hok-NW-7cl" firstAttribute="top" secondItem="vcC-ld-4aS" secondAttribute="top" constant="5" id="wMc-bm-SCY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Mass 2" id="Dt2-yn-to0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Ya-BO-C92" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1712" y="2340"/>
+        </scene>
+        <!--Animation Speed-->
+        <scene sceneID="72o-0z-U32">
+            <objects>
+                <viewController id="uvW-l8-uLB" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5I5-OI-NaW">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1124"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0z-tg-wPh">
+                                <rect key="frame" x="110" y="177" width="252" height="62"/>
+                                <string key="text">Allows adjusting the speed of the display of the Star Animation and the Spiral Animation. For a large range of star mass choices, the detectable wave is very short, less than one second. By lowering the animation speed once can understand better the evolution of the orbits and the emitted waves.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IL9-SQ-22q"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="s0z-tg-wPh" firstAttribute="top" secondItem="IL9-SQ-22q" secondAttribute="top" constant="5" id="4nm-lX-luX"/>
+                            <constraint firstItem="s0z-tg-wPh" firstAttribute="centerX" secondItem="IL9-SQ-22q" secondAttribute="centerX" id="5BE-l0-nzR"/>
+                            <constraint firstItem="s0z-tg-wPh" firstAttribute="leading" secondItem="IL9-SQ-22q" secondAttribute="leading" constant="25" id="aYj-d6-MEn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Animation Speed" id="Pic-QY-IyQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dhY-CB-kx2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1071" y="2340"/>
+        </scene>
     </scenes>
     <resources>
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="person.3" catalog="system" width="128" height="66"/>
+        <image name="questionmark.circle" catalog="system" width="128" height="123"/>
         <image name="sun.max.circle" catalog="system" width="128" height="123"/>
         <image name="terminal.fill" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">

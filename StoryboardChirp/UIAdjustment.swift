@@ -325,6 +325,15 @@ extension ViewController {
                                        y: infoCenterY)
             infoCenterY += infoCenterDist
         }
+        let questionImage = UIImage(systemName: "questionmark.circle", withConfiguration: infoConfig)
+        for questionbttn in [mass1Info, mass2Info, speedInfo] {
+            questionbttn!.setImage(questionImage, for: .normal)
+            questionbttn!.tintColor = .lightGray
+        }
+        mass1Info.center = CGPoint(x: mass1TextField.frame.maxX + infoLeftPadding, y: mass1TextField.center.y)
+        mass2Info.center = CGPoint(x: mass2TextField.frame.maxX + infoLeftPadding, y: mass2TextField.center.y)
+        speedInfo.center = CGPoint(x: speedLabel.frame.maxX + infoLeftPadding, y: speedLabel.center.y)
+        
     }
     
     func adjustFrameRectAndWindowFrameLanscape() -> [Double]{

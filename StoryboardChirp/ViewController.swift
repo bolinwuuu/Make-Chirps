@@ -87,6 +87,12 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var spiralInfo: UIButton!
     
+    @IBOutlet weak var mass1Info: UIButton!
+    
+    @IBOutlet weak var mass2Info: UIButton!
+    
+    @IBOutlet weak var speedInfo: UIButton!
+    
     //    @IBOutlet weak var playButton: UIButton!
     
     var windowFrame: UIView = UIView()
