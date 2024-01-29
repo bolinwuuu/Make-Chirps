@@ -20,7 +20,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZk-QJ-Uc2">
                                 <rect key="frame" x="38" y="183" width="329" height="21"/>
-                                <mutableString key="text">This graph shows the strength of the oscillating gravitational wave in arbitrary units (vertical axis) versus time in seconds (horizontal axis). One sees an amplitude (maximum absolute value) that increases toward the right, representing the final moments of the inspiralling and eventually merging compact stars (black holes or neutron stars). The oscillations also get closer together in time near the end, indicating the frequency of the signal is rising. The very last part of the graph shows the ringdown oscillation of the final black hole created by the merger as it "shakes off" excess energy and angular momentum.</mutableString>
+                                <string key="text">This graph shows the strength of the oscillating gravitational wave in arbitrary units (vertical axis) versus time in seconds (horizontal axis). One sees an amplitude (maximum absolute value) that increases toward the right, representing the final moments of the inspiralling and eventually merging compact stars (black holes or neutron stars). The oscillations also get closer together in time near the end, indicating the frequency of the signal is rising. The very last part of the graph shows the ringdown oscillation of the final black hole created by the merger as it "shakes off" excess energy and angular momentum.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZK-RQ-qFV">
                                 <rect key="frame" x="25" y="131" width="329" height="21"/>
-                                <mutableString key="text">This graph shows the frequency (Hz or cycles/second on the vertical axis) versus time in seconds (horizontal axis). The frequency increases toward the right, representing the final moments of the inspiralling and eventually merging compact stars (black holes or neutron stars). As the stars get closer and closer together, they orbit each other faster and faster. The very last part of the graph shows the frequency of the ringdown oscillation of the final black hole created by the merger as it "shakes off" excess energy and angular momentum. </mutableString>
+                                <string key="text">This graph shows the frequency (Hz or cycles/second on the vertical axis) versus time in seconds (horizontal axis). The frequency increases toward the right, representing the final moments of the inspiralling and eventually merging compact stars (black holes or neutron stars). As the stars get closer and closer together, they orbit each other faster and faster. The very last part of the graph shows the frequency of the ringdown oscillation of the final black hole created by the merger as it "shakes off" excess energy and angular momentum. </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -195,13 +195,6 @@
                                                     <segue destination="Gmu-88-G3B" kind="show" id="MzU-LA-Rtv"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="x-axis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZp-pz-bOf">
-                                                <rect key="frame" x="384" y="720" width="73" height="34"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kw2-IA-om1">
                                                 <rect key="frame" x="729" y="922" width="50" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -222,13 +215,6 @@
                                                     <action selector="spiralButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="2gA-nE-DUO"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="y-axis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRq-xP-Yf8">
-                                                <rect key="frame" x="77" y="386" width="74" height="34"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mb5-4n-tP6">
                                                 <rect key="frame" x="729" y="795" width="50" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -431,8 +417,6 @@
                         <outlet property="spiralInfo" destination="ztS-4n-lCD" id="08g-FN-wiC"/>
                         <outlet property="waveformButton" destination="hYR-Pw-iFM" id="1Wi-yt-KQA"/>
                         <outlet property="waveformInfo" destination="bVv-He-6HF" id="iqd-l0-Ck9"/>
-                        <outlet property="xAxisLabel" destination="AZp-pz-bOf" id="sVx-sd-5DM"/>
-                        <outlet property="yAxisLabel" destination="vRq-xP-Yf8" id="6No-Na-9X6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wbf-Xm-pRr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -515,7 +499,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAM-ag-gp9">
                                 <rect key="frame" x="53" y="148" width="3945" height="100"/>
-                                <mutableString key="text">The display shows the intensity of the gravitational wave (energy per time) in color (blue is low intensity, red is high intensity) for different frequencies versus time. Both the intensity and average frequency increase toward the right, representing the final moments of the inspiralling and eventually merging compact stars (black holes or neutron stars). The very last part of the spectrogram shows the ringdown oscillation of the final black hole created by the merger as it "shakes off" excess energy and angular momentum.</mutableString>
+                                <string key="text">The display shows the intensity of the gravitational wave (energy per time) in color (blue is low intensity, red is high intensity) for different frequencies versus time. Both the intensity and average frequency increase toward the right, representing the final moments of the inspiralling and eventually merging compact stars (black holes or neutron stars). The very last part of the spectrogram shows the ringdown oscillation of the final black hole created by the merger as it "shakes off" excess energy and angular momentum.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -575,7 +559,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhI-Ae-xaQ">
                                 <rect key="frame" x="33" y="148" width="5854" height="100"/>
-                                <mutableString key="text">This display shows blue and red disks corresponding to stars 1 and 2, respectively, orbiting their common center of mass in a spiraling pattern of increasing frequency as the stars lose gravitational wave energy, causing their orbit to shrink. The radius of each disk is proportional to the mass of the star. Depending on one's device, there can be stroboscopic effects in which the stars appear to slow down or even reverse direction, much as wagon wheels in old western movies sometimes appear to rotate backward. When the lighter star is much lighter than the heavier star, its disk becomes too small to be seen easily in comparison, and a larger circle surrounding the dot is included to aid the eye. The speed of the animation can be adjusted by the Animation Speed slider.</mutableString>
+                                <string key="text">This display shows blue and red disks corresponding to stars 1 and 2, respectively, orbiting their common center of mass in a spiraling pattern of increasing frequency as the stars lose gravitational wave energy, causing their orbit to shrink. The radius of each disk is proportional to the mass of the star. Depending on one's device, there can be stroboscopic effects in which the stars appear to slow down or even reverse direction, much as wagon wheels in old western movies sometimes appear to rotate backward. When the lighter star is much lighter than the heavier star, its disk becomes too small to be seen easily in comparison, and a larger circle surrounding the dot is included to aid the eye. The speed of the animation can be adjusted by the Animation Speed slider.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -726,10 +710,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

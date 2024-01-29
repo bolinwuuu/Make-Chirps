@@ -32,8 +32,8 @@ extension ViewController {
         
         
         // radius units; METERS / Scaledown ; "Scaledown Units"
-        let radius1 = Int(testChirp.getR1() / scaleDown)
-        let radius2 = Int(testChirp.getR2() / scaleDown)
+        let radius1 = Int(ceil(testChirp.getR1() / scaleDown))
+        let radius2 = Int(ceil(testChirp.getR2() / scaleDown))
         
        
         
@@ -123,7 +123,7 @@ extension ViewController {
         // added /1000
         
         
-        let xAxisLabel = UILabel()
+//        let xAxisLabel = UILabel()
                 xAxisLabel.text = "Width of Frame: about \(lengthof_windowframe_km) km"
                 xAxisLabel.textAlignment = .center
                 xAxisLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -227,25 +227,28 @@ extension ViewController {
         timer?.invalidate()
         
         
-        var massSum = Double(mass1 + mass2)
+        let massSum = Double(mass1 + mass2)
         // A more discrete scaleDown in order to make it easier to see smaller mass star collisions. Large difference in the individual masses still makes it difficult. Need to point to really small masses
-        if mass1 + mass2 < 15{
-           scaleDown = 850
-        }
-        else if massSum >= 15 && massSum < 30 {
-            print("small masses, less scale down")
-            scaleDown = 1500
-        }
-        else if massSum >= 30 && massSum < 50{
-            scaleDown = 2000
-        }
-        else if massSum >= 50 && massSum < 100{
-            scaleDown = 3300
-        }
-        else {
-            print("large masses, more scale down")
-            scaleDown = 4000
-        }
+//        if mass1 + mass2 < 15{
+//           scaleDown = 850
+//        }
+//        else if massSum >= 15 && massSum < 30 {
+//            print("small masses, less scale down")
+//            scaleDown = 1500
+//        }
+//        else if massSum >= 30 && massSum < 50{
+//            scaleDown = 2000
+//        }
+//        else if massSum >= 50 && massSum < 100{
+//            scaleDown = 3300
+//        }
+//        else {
+//            print("large masses, more scale down")
+//            scaleDown = 4000
+//        }
+        
+        let scaleDownCoefficient = UIDevice.current.userInterfaceIdiom == .pad ? 60.0 : 130.0
+        scaleDown = ceil(massSum / 5) * 5 * scaleDownCoefficient
          
       //  scaleDown = 1500
         print("scaledown factor: \(scaleDown)")

@@ -55,9 +55,9 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var speedLabel: UILabel!
     
-    @IBOutlet weak var xAxisLabel: UILabel!
+    var xAxisLabel = UILabel()
     
-    @IBOutlet weak var yAxisLabel: UILabel!
+    var yAxisLabel = UILabel()
     
 //    @IBOutlet weak var intializeButton: UIButton!
     
@@ -451,8 +451,10 @@ class ViewController: UIViewController, ChartViewDelegate {
         self.body2.removeFromSuperview()
         body1.isHidden = true
         body2.isHidden = true
-        xAxisLabel.isHidden = true
-        yAxisLabel.isHidden = true
+//        xAxisLabel.isHidden = true
+//        yAxisLabel.isHidden = true
+        xAxisLabel.removeFromSuperview()
+        yAxisLabel.removeFromSuperview()
     }
     
     @IBAction func colorThemeButtonPress(_ sender: Any) {

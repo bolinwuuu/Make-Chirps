@@ -45,7 +45,7 @@ extension ViewController {
 ////        uiview.center = windowFrame.center
 //        uiview.center = CGPoint(x: windowFrame.bounds.midX, y: windowFrame.bounds.midY) // set the center to the center of windowFrame
         
-        let xAxisLabel = UILabel()
+//        let xAxisLabel = UILabel()
                 xAxisLabel.text = "Width of Frame: about 2500 km"
                 xAxisLabel.textAlignment = .center
                 xAxisLabel.translatesAutoresizingMaskIntoConstraints = false

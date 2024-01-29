@@ -18,18 +18,16 @@ extension ViewController {
         removeViews()
         
 //        chartView = LineChartView()
-        xAxisLabel.isHidden = true
-        yAxisLabel.isHidden = true
         
        // xAxisLabel.text = "Time (s)"
         // yAxisLabel.text = "Gravitational Wave Strain"
         
         chartView.frame = frameRect
-        print("chartView frame: \(chartView.frame)")
         
 //        view.addSubview(chartView)
         windowFrame.addSubview(chartView)
 //        chartView.isHidden = false
+        print("chartView frame: \(chartView.frame)")
         
         let set = LineChartDataSet(entries: testChirp.waveformDataEntries())
         set.drawCirclesEnabled = false
@@ -43,13 +41,13 @@ extension ViewController {
         chartView.center = CGPoint(x: windowFrame.bounds.midX, y: windowFrame.bounds.midY) // set the center to the center of windowFrame
         print("chartView center: \(chartView.center)")
         
-        let xAxisLabel = UILabel()
+//        let xAxisLabel = UILabel()
                 xAxisLabel.text = "Time (seconds)"
                 xAxisLabel.textAlignment = .center
                 xAxisLabel.translatesAutoresizingMaskIntoConstraints = false
                 windowFrame.addSubview(xAxisLabel)
                 
-                let yAxisLabel = UILabel()
+//                let yAxisLabel = UILabel()
                 yAxisLabel.text = "Gravitational Wave Strain"
                 yAxisLabel.textAlignment = .center
                 yAxisLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)

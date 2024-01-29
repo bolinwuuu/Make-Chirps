@@ -49,13 +49,10 @@ extension ViewController {
     
     func portraitUI() {
         // adjust frameRect & windowFrame
-        let window_frame = adjustFrameRectAndWindowFramePortrait()
-        let window_w = window_frame[0]
-        let window_h = window_frame[1]
-        let window_x = window_frame[2]
+        adjustFrameRectAndWindowFramePortrait()
 
         // adjust axis labels
-        adjustAxisLabelsPortrait(window_w: window_w, window_h: window_h, window_x: window_x)
+        adjustAxisLabelsPortrait()
 
         
         // adjust slider region view
@@ -91,13 +88,10 @@ extension ViewController {
     
     func landscapeUI() {
         // adjust windowFrame
-        let window_frame = adjustFrameRectAndWindowFrameLanscape()
-        let window_w = window_frame[0]
-        let window_h = window_frame[1]
-        let window_x = window_frame[2]
+        adjustFrameRectAndWindowFrameLanscape()
 
         // adjust axis labels
-        adjustAxisLabelsLandscape(window_w: window_w, window_h: window_h, window_x: window_x)
+        adjustAxisLabelsLandscape()
 
         // adjust slider region view
         adjustSliderRegionViewLandscape()
@@ -123,10 +117,10 @@ extension ViewController {
         print("collision button adjustsFontSize: \(animButton.titleLabel?.adjustsFontSizeToFitWidth)")
     }
     
-    func adjustFrameRectAndWindowFramePortrait() -> [Double] {
+    func adjustFrameRectAndWindowFramePortrait() {
         centerFromTop = UIScreen.main.bounds.height / 3
         
-        frameProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.75 : 0.8
+        frameProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.68 : 0.65
         
         let frameRect_w: Double = self.view.frame.width * frameProp
         let frameRect_h: Double = frameRect_w
@@ -137,10 +131,10 @@ extension ViewController {
         // frame for displaying wavelength, frequency and spiral animation
         frameRect = CGRect(x: frameRect_x,
                            y: frameRect_y,
-                           width: frameRect_w * (10/11),
-                           height: frameRect_h * (10/11))
+                           width: frameRect_w,
+                           height: frameRect_h)
         // adjust windowFrame
-        let windowProp = frameProp * 1.02
+        let windowProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.765 : 0.816
         
         let window_w: Double = self.view.frame.width * windowProp
         let window_h: Double = window_w
@@ -156,25 +150,12 @@ extension ViewController {
         
 //        windowFrame.removeFromSuperview()
 //        contentView.addSubview(windowFrame)
-        
-        return [window_w, window_h, window_x]
     }
     
-    func adjustAxisLabelsPortrait(window_w: Double, window_h: Double, window_x: Double) {
-        let axisLabel_w = 350
-        let axisLabel_h = 34
-        xAxisLabel.frame = CGRect(x: (Int(self.view.frame.width) - axisLabel_w) / 2,
-                                  y: Int(centerFromTop + window_h / 2),
-                                  width: axisLabel_w,
-                                  height: axisLabel_h)
-        xAxisLabel.textAlignment = .center
-        
-        yAxisLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
-        yAxisLabel.frame = CGRect(x: Int(window_x) - axisLabel_h / 2 - 20,
-                                  y: Int(centerFromTop) - axisLabel_w / 2,
-                                  width: axisLabel_h,
-                                  height: axisLabel_w)
-        yAxisLabel.textAlignment = .center
+    func adjustAxisLabelsPortrait() {
+        let axisLabelFontSize = UIDevice.current.userInterfaceIdiom == .pad ? 17.0 : 14.0
+        xAxisLabel.font = xAxisLabel.font.withSize(axisLabelFontSize)
+        yAxisLabel.font = yAxisLabel.font.withSize(axisLabelFontSize)
     }
     
     func adjustSliderRegionViewPortrait() {
@@ -336,10 +317,11 @@ extension ViewController {
         
     }
     
-    func adjustFrameRectAndWindowFrameLanscape() -> [Double]{
+    func adjustFrameRectAndWindowFrameLanscape() {
         centerFromTop = UIDevice.current.userInterfaceIdiom == .pad ? UIScreen.main.bounds.width / 3 : UIScreen.main.bounds.width / 4.5
         
-        frameProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.75 : 0.8
+//        frameProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.75 : 0.6
+        frameProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.68 : 0.65
         
         let frameRect_h: Double = UIScreen.main.bounds.height * frameProp
         let frameRect_w: Double = frameRect_h
@@ -349,10 +331,10 @@ extension ViewController {
         // frame for displaying wavelength, frequency and spiral animation
         frameRect = CGRect(x: frameRect_x,
                            y: frameRect_y,
-                           width: frameRect_w * (10/11),
-                           height: frameRect_h * (10/11))
+                           width: frameRect_w,
+                           height: frameRect_h)
         // adjust windowFrame
-        let windowProp = frameProp * 1.02
+        let windowProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.765 : 0.816
         
         let window_h: Double = UIScreen.main.bounds.height * windowProp
         let window_w: Double = window_h
@@ -371,8 +353,6 @@ extension ViewController {
         
 //        windowFrame.removeFromSuperview()
 //        contentView.addSubview(windowFrame)
-        
-        return [window_w, window_h, window_x]
     }
     
     func adjustSliderRegionViewLandscape() {
@@ -413,8 +393,8 @@ extension ViewController {
                                       massLabelFontSize: massLabelFontSize)
     }
     
-    func adjustAxisLabelsLandscape(window_w: Double, window_h: Double, window_x: Double) {
-        adjustAxisLabelsPortrait(window_w: window_w, window_h: window_h, window_x: window_x)
+    func adjustAxisLabelsLandscape() {
+        adjustAxisLabelsPortrait()
     }
     
     func adjustSlidersLandscape(sliderPadding: CGFloat) {

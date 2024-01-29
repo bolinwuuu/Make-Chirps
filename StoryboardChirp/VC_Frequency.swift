@@ -19,11 +19,6 @@ extension ViewController {
         // self.uiview.removeFromSuperview()
 
         uiview.isHidden = false
-        xAxisLabel.isHidden = true
-        yAxisLabel.isHidden = true
-        
-     //   xAxisLabel.text = "Time (s)"
-      //  yAxisLabel.text = "Frequency (Hz)"
         
 //        chartView = LineChartView()
         
@@ -42,13 +37,13 @@ extension ViewController {
         let data = LineChartData(dataSet: set)
         data.setDrawValues(false)
         
-        let xAxisLabel = UILabel()
+//        let xAxisLabel = UILabel()
                 xAxisLabel.text = "Time (seconds)"
                 xAxisLabel.textAlignment = .center
                 xAxisLabel.translatesAutoresizingMaskIntoConstraints = false
                 windowFrame.addSubview(xAxisLabel)
                 
-                let yAxisLabel = UILabel()
+//                let yAxisLabel = UILabel()
                 yAxisLabel.text = "Frequency (Hz)"
                 yAxisLabel.textAlignment = .center
                 yAxisLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)

@@ -19,11 +19,6 @@ extension ViewController {
 
         removeViews()
         
-        xAxisLabel.isHidden = true
-        yAxisLabel.isHidden = true
-        
-        xAxisLabel.text = "Time (s)"
-        yAxisLabel.text = "Frequency (Hz)"
         
 //        uiview.center = windowFrame.center // new
 
@@ -31,13 +26,13 @@ extension ViewController {
 //        view.addSubview(uiview)
         
         
-        let xAxisLabel = UILabel()
+//        let xAxisLabel = UILabel()
                 xAxisLabel.text = "Time (seconds)"
                 xAxisLabel.textAlignment = .center
                 xAxisLabel.translatesAutoresizingMaskIntoConstraints = false
                 windowFrame.addSubview(xAxisLabel)
                 
-                let yAxisLabel = UILabel()
+//                let yAxisLabel = UILabel()
                 yAxisLabel.text = "Frequency (Hz)"
                 yAxisLabel.textAlignment = .center
                 yAxisLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
@@ -74,7 +69,7 @@ extension ViewController {
         windowFrame.addSubview(uiview) // embed the spectrogram in windowFrame
 
         uiview.center = CGPoint(x: windowFrame.bounds.midX, y: windowFrame.bounds.midY) // set the center to the center of windowFrame
-    
+        print("uiview frame: \(uiview.frame)")
 
     }
 }
