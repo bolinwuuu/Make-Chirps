@@ -125,8 +125,8 @@ extension ViewController {
         let frameRect_w: Double = self.view.frame.width * frameProp
         let frameRect_h: Double = frameRect_w
 //        let frameRect_x: Double = self.view.frame.width * (1 - frameProp) / 2
-        let frameRect_x: Double = (self.view.frame.width - frameRect_w) / 2
-        let frameRect_y: Double = centerFromTop - frameRect_h / 2
+        let frameRect_x: Double = (self.view.frame.width - frameRect_w / (10/11)) / 2
+        let frameRect_y: Double = centerFromTop - frameRect_h / (10/11) / 2
         
         // frame for displaying wavelength, frequency and spiral animation
         frameRect = CGRect(x: frameRect_x,
@@ -347,9 +347,9 @@ extension ViewController {
         
         windowFrame.frame = CGRect(x: window_x, y: window_y, width: window_w, height: window_h)
         windowFrame.layer.borderWidth = window_w / 64
-        windowFrame.layer.borderColor = UIColor.black.cgColor
+//        windowFrame.layer.borderColor = UIColor.black.cgColor
         windowFrame.layer.cornerRadius = window_w / 13
-        windowFrame.backgroundColor = UIColor.white
+//        windowFrame.backgroundColor = UIColor.white
         
 //        windowFrame.removeFromSuperview()
 //        contentView.addSubview(windowFrame)

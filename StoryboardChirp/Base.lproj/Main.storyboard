@@ -358,7 +358,9 @@
                                                     <imageReference key="image" image="sun.max.circle" catalog="system" symbolScale="large"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
                                                 </state>
-                                                <buttonConfiguration key="configuration" style="plain" image="sun.max.circle" catalog="system"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="sun.max.circle" catalog="system">
+                                                    <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                                </buttonConfiguration>
                                                 <connections>
                                                     <action selector="colorThemeButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="3PA-Mp-Ng4"/>
                                                 </connections>

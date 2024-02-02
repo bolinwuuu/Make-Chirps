@@ -260,11 +260,13 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         darkThemeImage = UIImage(systemName: "moon.circle", withConfiguration: colorThemeButtonConfig)
         
-        colorThemeButton.setImage(lightThemeImage, for: .normal)
-        
-        setDarkTheme()
-        
 //        setupButtons()
+//        colorThemeButton.tintColor = .systemBackground
+        if isLightTheme {
+            setLightTheme()
+        } else {
+            setDarkTheme()
+        }
     }
     
     override func viewWillTransition(to size: CGSize, 
@@ -460,11 +462,9 @@ class ViewController: UIViewController, ChartViewDelegate {
     @IBAction func colorThemeButtonPress(_ sender: Any) {
         isLightTheme = !isLightTheme
         if (!isLightTheme) {
-            colorThemeButton.setImage(darkThemeImage, for: .normal)
             setDarkTheme()
             print("image set to moon")
         } else {
-            colorThemeButton.setImage(lightThemeImage, for: .normal)
             setLightTheme()
             print("image set to sun")
         }
@@ -472,6 +472,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     }
     
     func setDarkTheme() {
+        colorThemeButton.setImage(darkThemeImage, for: .normal)
 //        let darkPurple = UIColor(red: 40/255, green: 25/255, blue: 90/255, alpha: 1.0)
 //        let lightPurple = UIColor(red: 75/255, green: 50/255, blue: 130/255, alpha: 1.0)
 ////        view.backgroundColor = darkPurple
@@ -502,59 +503,58 @@ class ViewController: UIViewController, ChartViewDelegate {
         speedLabel.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
         speedLabel.textColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
         
-        for slider in [mass1Slider, mass2Slider, speedSlider] {
-            slider?.tintColor = .systemBlue
-        }
+//        for slider in [mass1Slider, mass2Slider, speedSlider] {
+//            slider?.tintColor = .systemBlue
+//        }
         // slider region ends
         
-//        windowFrame.backgroundColor = translucentGray
-        windowFrame.backgroundColor = .white
-        
-
         changeThemeButton()
 
+        windowFrame.layer.borderColor = UIColor.darkGray.cgColor
+        windowFrame.backgroundColor = .black
         
 //        setBackgroundImageView()
         
-        colorThemeButton.tintColor = .white
+//        colorThemeButton.tintColor = .white
     }
     
     func setLightTheme() {
-        // purple theme
-        let darkPurple = UIColor(red: 20/255, green: 10/255, blue: 60/255, alpha: 1)
-        let panelPurple = UIColor(red: 45/255, green: 20/255, blue: 100/255, alpha: 1)
-        let textfieldPurple = UIColor(red: 95/255, green: 70/255, blue: 150/255, alpha: 1)
-        let buttonPink = UIColor(red: 200/255, green: 170/255, blue: 220/255, alpha: 1)
-        let buttonYellow = UIColor(red: 255/255, green: 210/255, blue: 100/255, alpha: 1)
+        colorThemeButton.setImage(lightThemeImage, for: .normal)
 
-        view.backgroundColor = darkPurple
-        contentView.backgroundColor = darkPurple
+//        // purple theme
+//        let darkPurple = UIColor(red: 20/255, green: 10/255, blue: 60/255, alpha: 1)
+//        let panelPurple = UIColor(red: 45/255, green: 20/255, blue: 100/255, alpha: 1)
+//        let textfieldPurple = UIColor(red: 95/255, green: 70/255, blue: 150/255, alpha: 1)
+//        let buttonPink = UIColor(red: 200/255, green: 170/255, blue: 220/255, alpha: 1)
+//        let buttonYellow = UIColor(red: 255/255, green: 210/255, blue: 100/255, alpha: 1)
+//
+//        view.backgroundColor = darkPurple
+//        contentView.backgroundColor = darkPurple
+//        
+//        // slider region
+//        sliderRegionView.backgroundColor = panelPurple
+//        
+//        mass1Title.textColor = .white
+//        mass2Title.textColor = .white
+//        animationSpeedTitle.textColor = .white
+//        
+//        for txtfld in [mass1TextField, mass2TextField] {
+//            txtfld?.backgroundColor = textfieldPurple
+//            txtfld?.textColor = .white
+//        }
+//        speedLabel.backgroundColor = textfieldPurple
+//        speedLabel.textColor = .white
+//        
+////        for slider in [mass1Slider, mass2Slider, speedSlider] {
+////            slider?.tintColor = buttonYellow
+////        }
+//        // slider region ends
+//        changeThemeButton()
         
-        // slider region
-        sliderRegionView.backgroundColor = panelPurple
-        
-        mass1Title.textColor = .white
-        mass2Title.textColor = .white
-        animationSpeedTitle.textColor = .white
-        
-        for txtfld in [mass1TextField, mass2TextField] {
-            txtfld?.backgroundColor = textfieldPurple
-            txtfld?.textColor = .white
-        }
-        speedLabel.backgroundColor = textfieldPurple
-        speedLabel.textColor = .white
-        
-        for slider in [mass1Slider, mass2Slider, speedSlider] {
-            slider?.tintColor = buttonYellow
-        }
-        // slider region ends
-        
+        windowFrame.layer.borderColor = UIColor.black.cgColor
         windowFrame.backgroundColor = .white
         
-        
-        changeThemeButton()
-        
-        colorThemeButton.tintColor = UIColor.systemBlue
+//        colorThemeButton.tintColor = UIColor.systemBlue
     }
     
     func changeThemeButton() {
