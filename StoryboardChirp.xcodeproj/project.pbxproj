@@ -43,6 +43,7 @@
 		761045D32AABB9DA00E67C3B /* Acknowledgements.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 761045D22AABB9DA00E67C3B /* Acknowledgements.pdf */; };
 		761045D62AABB9E800E67C3B /* infotest.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 761045D42AABB9E800E67C3B /* infotest.pdf */; };
 		761045D72AABB9E800E67C3B /* info.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 761045D52AABB9E800E67C3B /* info.pdf */; };
+		76300A0E2B5AFF3A0000415D /* ligohtml in Resources */ = {isa = PBXBuildFile; fileRef = 76300A0D2B5AFF3A0000415D /* ligohtml */; };
 		76606A4F2AA99FBB00F4F993 /* VC_InfoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76606A4E2AA99FBB00F4F993 /* VC_InfoPage.swift */; };
 		76606A552AAA2FC600F4F993 /* VC_Acknowledgements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76606A542AAA2FC600F4F993 /* VC_Acknowledgements.swift */; };
 /* End PBXBuildFile section */
@@ -106,6 +107,7 @@
 		761045D22AABB9DA00E67C3B /* Acknowledgements.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Acknowledgements.pdf; sourceTree = "<group>"; };
 		761045D42AABB9E800E67C3B /* infotest.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = infotest.pdf; sourceTree = "<group>"; };
 		761045D52AABB9E800E67C3B /* info.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = info.pdf; sourceTree = "<group>"; };
+		76300A0D2B5AFF3A0000415D /* ligohtml */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ligohtml; sourceTree = "<group>"; };
 		76606A4E2AA99FBB00F4F993 /* VC_InfoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_InfoPage.swift; sourceTree = "<group>"; };
 		76606A542AAA2FC600F4F993 /* VC_Acknowledgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Acknowledgements.swift; sourceTree = "<group>"; };
 		F26AE5C897BB6A27C5898720 /* Pods-StoryboardChirp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardChirp.release.xcconfig"; path = "Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp.release.xcconfig"; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		1429A39B29842E0700F919F8 /* StoryboardChirp */ = {
 			isa = PBXGroup;
 			children = (
+				76300A0D2B5AFF3A0000415D /* ligohtml */,
 				146A57962B54F7E600D8F43C /* CustomSlider.swift */,
 				146A57972B54F7E600D8F43C /* ThumbView.swift */,
 				1429A39C29842E0700F919F8 /* AppDelegate.swift */,
@@ -347,6 +350,7 @@
 				761045D32AABB9DA00E67C3B /* Acknowledgements.pdf in Resources */,
 				761045D62AABB9E800E67C3B /* infotest.pdf in Resources */,
 				1429A3A929842E0900F919F8 /* LaunchScreen.storyboard in Resources */,
+				76300A0E2B5AFF3A0000415D /* ligohtml in Resources */,
 				1471D2162A782828006DECDB /* Panorama.jpg in Resources */,
 				1471D2122A7825F1006DECDB /* perseus_lg.jpg in Resources */,
 				14F0A8FC2A82B63600F2CF65 /* Panorama_edited2.png in Resources */,
@@ -618,7 +622,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BXSG6Y285R;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StoryboardChirp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Make Chirps";
@@ -648,7 +652,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BXSG6Y285R;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StoryboardChirp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Make Chirps";

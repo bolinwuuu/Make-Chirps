@@ -55,9 +55,14 @@ class InfoPageVC: UIViewController, WKUIDelegate {
       override func viewDidLoad() {
           super.viewDidLoad()
           self.navigationController?.navigationBar.isHidden = true
-          let myURL = URL(string:"https://chirp-dev.kurtb.net")
-          let myRequest = URLRequest(url: myURL!)
-          webView.load(myRequest)
+         // let myURL = URL(string:"https://chirp-dev.kurtb.net")
+          //let myRequest = URLRequest(url: myURL!)
+        //webView.load(myRequest)
+          if let htmlPath = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "ligohtml/html") {
+              let request = URLRequest(url: htmlPath)
+              webView.load(request)
+          }
+
       }
         
     }
