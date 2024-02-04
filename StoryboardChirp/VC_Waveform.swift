@@ -29,9 +29,11 @@ extension ViewController {
 //        chartView.isHidden = false
         print("chartView frame: \(chartView.frame)")
         
+        let orange = UIColor(red: 255/255, green: 120/255, blue: 40/255, alpha: 1)
+        
         let set = LineChartDataSet(entries: testChirp.waveformDataEntries())
         set.drawCirclesEnabled = false
-        set.colors = [NSUIColor](repeating: .systemBlue, count: set.colors.count)
+        set.colors = [NSUIColor](repeating: orange, count: set.colors.count)
         set.lineWidth = testChirp.getChirpMass() / 3.7
         
         let data = LineChartData(dataSet: set)
@@ -72,10 +74,10 @@ extension ViewController {
         
         chartView.xAxis.labelPosition = .bottom
         chartView.xAxis.axisLineColor = NSUIColor.lightGray
-        chartView.xAxis.labelTextColor = .black // new
+        chartView.xAxis.labelTextColor = isLightTheme ? .black : .white // new
         
         chartView.leftAxis.axisLineColor = NSUIColor.lightGray
-        chartView.leftAxis.labelTextColor = .black // new
+        chartView.leftAxis.labelTextColor = isLightTheme ? .black : .white // new
 
         chartView.rightAxis.drawAxisLineEnabled = false
         chartView.rightAxis.drawLabelsEnabled = false

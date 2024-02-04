@@ -196,33 +196,13 @@ class ViewController: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mass1Slider = CustomSlider(frame: CGRect())
-        mass2Slider = CustomSlider(frame: CGRect())
-        speedSlider = CustomSlider(frame: CGRect())
-        
-        mass1Slider.addTarget(self, action: #selector(self.mass1Change(_:)), for: .valueChanged)
-        mass2Slider.addTarget(self, action: #selector(self.mass2Change(_:)), for: .valueChanged)
-        speedSlider.addTarget(self, action: #selector(self.speedSliderChange(_:)), for: .valueChanged)
-        
-        sliderRegionView.addSubview(mass1Slider)
-        sliderRegionView.addSubview(mass2Slider)
-        sliderRegionView.addSubview(speedSlider)
-        
-        mass1Slider.maximumValue = 100
-        mass1Slider.minimumValue = 1.4
-        mass2Slider.maximumValue = 100
-        mass2Slider.minimumValue = 1.4
-        speedSlider.maximumValue = 1
-        speedSlider.minimumValue = 0.01
-        
-//        mass1Slider.value = 20
-//        mass2Slider.value = 20
-//        speedSlider.value = 0.05
-        mass1Slider.changeSliderValue(value: 20.0)
-        mass2Slider.changeSliderValue(value: 20.0)
-        speedSlider.changeSliderValue(value: 0.05)
         
         setBackgroundImageView()
+        
+        view.backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        
+        setupSliderRegion()
         
         setupButtons()
         
@@ -285,12 +265,17 @@ class ViewController: UIViewController, ChartViewDelegate {
     }
     
     func setupButtons() {
-//        let buttonFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
+        let buttonBackground = UIColor(red: 255/255, green: 120/255, blue: 40/255, alpha: 1)
+        let buttonForeground: UIColor = .white
+        let buttonShadow = UIColor(red: 225/255, green: 85/255, blue: 0/255, alpha: 1)
+        let infoTint = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
+        
         for bttn in [waveformButton, freqButton, spectroButton, audioButton, animButton, spiralButton] {
-            // set up shadows
-            let darkOrange = UIColor(red: 175/255, green: 55/255, blue: 0/255, alpha: 1)
-//            bttn?.layer.shadowColor = UIColor.black.cgColor
-            bttn?.layer.shadowColor = darkOrange.cgColor
+            // set up colors
+            bttn?.configuration?.baseBackgroundColor = buttonBackground
+            bttn?.configuration?.baseForegroundColor = buttonForeground
+            bttn?.layer.shadowColor = buttonShadow.cgColor
+            
             bttn?.layer.shadowOffset = CGSize(width: 0, height: (bttn?.frame.height)! / 8)
             bttn?.layer.shadowOpacity = 1.0
             bttn?.layer.shadowRadius = 2.0
@@ -300,6 +285,66 @@ class ViewController: UIViewController, ChartViewDelegate {
 //            bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
         }
         
+        for infobttn in [waveformInfo, freqInfo, spectroInfo, audioInfo, animInfo, spiralInfo] {
+            infobttn?.tintColor = infoTint
+        }
+        
+    }
+    
+    func setupSliderRegion() {
+        let opaqueDarkGray = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
+        
+        // slider region
+        setupSliders()
+//        sliderRegionView.backgroundColor = translucentDarkGray
+        sliderRegionView.backgroundColor = opaqueDarkGray
+        
+        mass1Title.textColor = .white
+        mass2Title.textColor = .white
+        animationSpeedTitle.textColor = .white
+        
+        for txtfld in [mass1TextField, mass2TextField] {
+            txtfld?.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
+            txtfld?.textColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        }
+        
+        speedLabel.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
+        speedLabel.textColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        
+//        for slider in [mass1Slider, mass2Slider, speedSlider] {
+//            slider?.tintColor = .systemBlue
+//        }
+        // slider region ends
+        
+//        changeThemeButton()
+    }
+    
+    func setupSliders() {
+        mass1Slider = CustomSlider(frame: CGRect())
+        mass2Slider = CustomSlider(frame: CGRect())
+        speedSlider = CustomSlider(frame: CGRect())
+        
+        mass1Slider.addTarget(self, action: #selector(self.mass1Change(_:)), for: .valueChanged)
+        mass2Slider.addTarget(self, action: #selector(self.mass2Change(_:)), for: .valueChanged)
+        speedSlider.addTarget(self, action: #selector(self.speedSliderChange(_:)), for: .valueChanged)
+        
+        sliderRegionView.addSubview(mass1Slider)
+        sliderRegionView.addSubview(mass2Slider)
+        sliderRegionView.addSubview(speedSlider)
+        
+        mass1Slider.maximumValue = 100
+        mass1Slider.minimumValue = 1.4
+        mass2Slider.maximumValue = 100
+        mass2Slider.minimumValue = 1.4
+        speedSlider.maximumValue = 1
+        speedSlider.minimumValue = 0.01
+        
+//        mass1Slider.value = 20
+//        mass2Slider.value = 20
+//        speedSlider.value = 0.05
+        mass1Slider.changeSliderValue(value: 20.0)
+        mass2Slider.changeSliderValue(value: 20.0)
+        speedSlider.changeSliderValue(value: 0.05)
     }
 
     @IBAction func mass1Change(_ sender: Any) {
@@ -441,20 +486,10 @@ class ViewController: UIViewController, ChartViewDelegate {
             subview.removeFromSuperview()
         }
         
-//        print("uiview after removing: \(uiview)")
-
-        
-        
-        
-      //  playButton.isHidden = true
-      //  playButton.isEnabled = false
-        
         self.body1.removeFromSuperview()
         self.body2.removeFromSuperview()
         body1.isHidden = true
         body2.isHidden = true
-//        xAxisLabel.isHidden = true
-//        yAxisLabel.isHidden = true
         xAxisLabel.removeFromSuperview()
         yAxisLabel.removeFromSuperview()
     }
@@ -473,141 +508,42 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     func setDarkTheme() {
         colorThemeButton.setImage(darkThemeImage, for: .normal)
-//        let darkPurple = UIColor(red: 40/255, green: 25/255, blue: 90/255, alpha: 1.0)
-//        let lightPurple = UIColor(red: 75/255, green: 50/255, blue: 130/255, alpha: 1.0)
-////        view.backgroundColor = darkPurple
-////        contentView.backgroundColor = darkPurple
-//        let translucentGray = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
-//        let translucentDarkGray = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.85)
-        let opaqueDarkGray = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
-//        let translucentPurple = UIColor(red: 35/255, green: 10/255, blue: 115/255, alpha: 0.7)
-//        let translucentPurple = UIColor(red: 120/255, green: 100/255, blue: 180/255, alpha: 1)
-//        let lightOrange = UIColor(red: 220/255, green: 130/255, blue: 100/255, alpha: 1)
-//        let darkOrange = UIColor(red: 215/255, green: 95/255, blue: 30/255, alpha: 1)
-        view.backgroundColor = .clear
-        contentView.backgroundColor = .clear
-        
-        // slider region
-//        sliderRegionView.backgroundColor = translucentDarkGray
-        sliderRegionView.backgroundColor = opaqueDarkGray
-        
-        mass1Title.textColor = .white
-        mass2Title.textColor = .white
-        animationSpeedTitle.textColor = .white
-        
-        for txtfld in [mass1TextField, mass2TextField] {
-            txtfld?.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
-            txtfld?.textColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
-        }
-        
-        speedLabel.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
-        speedLabel.textColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
-        
-//        for slider in [mass1Slider, mass2Slider, speedSlider] {
-//            slider?.tintColor = .systemBlue
-//        }
-        // slider region ends
-        
-        changeThemeButton()
 
         windowFrame.layer.borderColor = UIColor.darkGray.cgColor
         windowFrame.backgroundColor = .black
         
-//        setBackgroundImageView()
+        xAxisLabel.textColor = .white
+        yAxisLabel.textColor = .white
         
-//        colorThemeButton.tintColor = .white
+        if chartView.isDescendant(of: windowFrame) && chartView.window != nil {
+            print("change chartView color to dark mode")
+            chartView.xAxis.axisLineColor = NSUIColor.white
+            chartView.leftAxis.axisLineColor = NSUIColor.white
+            chartView.xAxis.labelTextColor = .white
+            chartView.leftAxis.labelTextColor = .white
+            chartView.animate(xAxisDuration: 0.01)
+        }
     }
     
     func setLightTheme() {
         colorThemeButton.setImage(lightThemeImage, for: .normal)
-
-//        // purple theme
-//        let darkPurple = UIColor(red: 20/255, green: 10/255, blue: 60/255, alpha: 1)
-//        let panelPurple = UIColor(red: 45/255, green: 20/255, blue: 100/255, alpha: 1)
-//        let textfieldPurple = UIColor(red: 95/255, green: 70/255, blue: 150/255, alpha: 1)
-//        let buttonPink = UIColor(red: 200/255, green: 170/255, blue: 220/255, alpha: 1)
-//        let buttonYellow = UIColor(red: 255/255, green: 210/255, blue: 100/255, alpha: 1)
-//
-//        view.backgroundColor = darkPurple
-//        contentView.backgroundColor = darkPurple
-//        
-//        // slider region
-//        sliderRegionView.backgroundColor = panelPurple
-//        
-//        mass1Title.textColor = .white
-//        mass2Title.textColor = .white
-//        animationSpeedTitle.textColor = .white
-//        
-//        for txtfld in [mass1TextField, mass2TextField] {
-//            txtfld?.backgroundColor = textfieldPurple
-//            txtfld?.textColor = .white
-//        }
-//        speedLabel.backgroundColor = textfieldPurple
-//        speedLabel.textColor = .white
-//        
-////        for slider in [mass1Slider, mass2Slider, speedSlider] {
-////            slider?.tintColor = buttonYellow
-////        }
-//        // slider region ends
-//        changeThemeButton()
         
         windowFrame.layer.borderColor = UIColor.black.cgColor
         windowFrame.backgroundColor = .white
         
-//        colorThemeButton.tintColor = UIColor.systemBlue
+        xAxisLabel.textColor = .black
+        yAxisLabel.textColor = .black
+        
+        if chartView.isDescendant(of: windowFrame) && chartView.window != nil {
+            print("change chartView color to light mode")
+            chartView.xAxis.axisLineColor = NSUIColor.lightGray
+            chartView.leftAxis.axisLineColor = NSUIColor.lightGray
+            chartView.xAxis.labelTextColor = .black
+            chartView.leftAxis.labelTextColor = .black
+            chartView.animate(xAxisDuration: 0.01)
+        }
     }
     
-    func changeThemeButton() {
-        var buttonBackground: UIColor!
-        var buttonForeground: UIColor!
-        var buttonShadow: UIColor!
-        var infoTint: UIColor!
-        
-        if isLightTheme {
-            // white theme
-            buttonBackground = .systemBlue
-            buttonForeground = .white
-            infoTint = .darkGray
-            // white theme END
-            
-            // purple theme
-            let darkPurple = UIColor(red: 20/255, green: 10/255, blue: 60/255, alpha: 1)
-            let buttonPink = UIColor(red: 200/255, green: 170/255, blue: 220/255, alpha: 1)
-            let buttonYellow = UIColor(red: 255/255, green: 210/255, blue: 100/255, alpha: 1)
-            buttonBackground = buttonYellow
-            buttonForeground = darkPurple
-            buttonShadow = .black
-            infoTint = .lightGray
-            // purple theme END
-        } else {
-            let lightOrange = UIColor(red: 255/255, green: 120/255, blue: 40/255, alpha: 1)
-            let darkOrange = UIColor(red: 225/255, green: 85/255, blue: 0/255, alpha: 1)
-//            let darkGray = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
-//            let lightGray = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
-            buttonBackground = lightOrange
-            buttonForeground = .white
-            buttonShadow = darkOrange
-//            buttonBackground = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
-//            buttonForeground = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
-            
-            infoTint = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
-        }
-        
-        for bttn in [waveformButton, freqButton, spectroButton, audioButton, animButton, spiralButton] {
-            bttn?.configuration?.baseBackgroundColor = buttonBackground
-            bttn?.configuration?.baseForegroundColor = buttonForeground
-            bttn?.layer.shadowColor = buttonShadow.cgColor
-        }
-        
-        for infobttn in [waveformInfo, freqInfo, spectroInfo, audioInfo, animInfo, spiralInfo] {
-            infobttn?.tintColor = infoTint
-        }
-        
-    }
-    
-//    func changeThemeSliderRegion() {
-//
-//    }
 
     @objc func keyboardWillShow(notification:NSNotification) {
         

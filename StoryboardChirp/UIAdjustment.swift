@@ -144,9 +144,7 @@ extension ViewController {
         
         windowFrame.frame = CGRect(x: window_x, y: window_y, width: window_w, height: window_h)
         windowFrame.layer.borderWidth = window_w / 64
-        windowFrame.layer.borderColor = UIColor.black.cgColor
         windowFrame.layer.cornerRadius = window_w / 13
-        windowFrame.backgroundColor = UIColor.white
         
 //        windowFrame.removeFromSuperview()
 //        contentView.addSubview(windowFrame)
@@ -347,10 +345,7 @@ extension ViewController {
         
         windowFrame.frame = CGRect(x: window_x, y: window_y, width: window_w, height: window_h)
         windowFrame.layer.borderWidth = window_w / 64
-//        windowFrame.layer.borderColor = UIColor.black.cgColor
         windowFrame.layer.cornerRadius = window_w / 13
-//        windowFrame.backgroundColor = UIColor.white
-        
 //        windowFrame.removeFromSuperview()
 //        contentView.addSubview(windowFrame)
     }
