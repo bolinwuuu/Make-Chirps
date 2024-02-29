@@ -64,6 +64,13 @@ extension ViewController {
 
         // adjust functional and info buttons
         adjustButtonsPortrait()
+        
+        // adjust tutorial button
+        adjustTutorialAndColorThemeButtonsPortrait()
+        
+        if displayingTutorial {
+            adjustTutorialPortrait()
+        }
 
         print("self.view.frame: \(self.view.frame)")
         print("self.view.frame.maxY: \(self.view.frame.maxY)")
@@ -79,11 +86,6 @@ extension ViewController {
         print("spectrogram button numberOfLines: \(spectroButton.titleLabel?.numberOfLines)")
         print("spectrogram button adjustsFontSize: \(spectroButton.titleLabel?.adjustsFontSizeToFitWidth)")
 
-//        if UIDevice.current.userInterfaceIdiom == .pad {
-//
-//        } else if UIDevice.current.userInterfaceIdiom == .phone {
-//
-//        }
     }
     
     func landscapeUI() {
@@ -98,6 +100,13 @@ extension ViewController {
         
         // adjust functinoal and info buttons
         adjustButtonsLandscape()
+        
+        // adjust tutorial button
+        adjustTutorialAndColorThemeButtonsLandscape()
+        
+        if displayingTutorial {
+            adjustTutorialLandscape()
+        }
         
         print("self.view.frame: \(self.view.frame)")
         print("self.view.frame.maxY: \(self.view.frame.maxY)")
@@ -315,6 +324,14 @@ extension ViewController {
         
     }
     
+    func adjustTutorialAndColorThemeButtonsPortrait() {
+        tutorialButton.center = CGPoint(x: (windowFrame.frame.maxX + UIScreen.main.bounds.width) * 0.5,
+                                        y: windowFrame.frame.minY + tutorialButton.frame.height * 0.5)
+
+        colorThemeButton.center = CGPoint(x: tutorialButton.center.x,
+                                          y: tutorialButton.center.y + colorThemeButton.frame.height)
+    }
+    
     func adjustFrameRectAndWindowFrameLanscape() {
         centerFromTop = UIDevice.current.userInterfaceIdiom == .pad ? UIScreen.main.bounds.width / 3 : UIScreen.main.bounds.width / 4.5
         
@@ -477,4 +494,49 @@ extension ViewController {
                                    buttonUpperPadding: CGFloat) {
         adjustInfoButtonsPortrait(buttonLeftPadding: buttonLeftPadding, buttonUpperPadding: buttonUpperPadding)
     }
+    
+    func adjustTutorialAndColorThemeButtonsLandscape() {
+        
+    }
+    
+    func adjustTutorial() {
+        assert(displayingTutorial, "adjustTutorial() called when displayingTutorial == false")
+        let deviceOrientation = UIApplication.shared.connectedScenes
+                                // Keep only the first `UIWindowScene`
+                                .first(where: { $0 is UIWindowScene })
+                                // Get its associated windows
+                                .flatMap({ $0 as? UIWindowScene })?.interfaceOrientation
+
+        switch deviceOrientation {
+        case .portrait:
+            fallthrough
+        case .portraitUpsideDown:
+//            print("\n\nportrait orientation\n\n")
+            adjustTutorialPortrait()
+        case .landscapeLeft:
+            fallthrough
+        case .landscapeRight:
+//            print("\n\nlanscape orientation\n\n")
+            adjustTutorialLandscape()
+        case .unknown:
+            print("unknown orientation")
+        case .none:
+            print("none orientation")
+        @unknown default:
+            print("default orientation")
+        }
+    }
+    
+    func adjustTutorialPortrait() {
+        tutorialView.frame = UIScreen.main.bounds
+        
+        tutorialTitle.center.x = tutorialView.center.x
+        pageDots.center.x = tutorialView.center.x
+        tutorialEndButton.center.x = tutorialView.center.x
+    }
+    
+    func adjustTutorialLandscape() {
+        
+    }
+   
 }

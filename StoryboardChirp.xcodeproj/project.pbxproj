@@ -37,6 +37,7 @@
 		1471D21A2A783097006DECDB /* panorama_edited.png in Resources */ = {isa = PBXBuildFile; fileRef = 1471D2192A783097006DECDB /* panorama_edited.png */; };
 		1471D21C2A797D6C006DECDB /* gw_spiral_purple.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1471D21B2A797D6C006DECDB /* gw_spiral_purple.jpeg */; };
 		1471D21E2A7991A1006DECDB /* gw_spiral_bw.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1471D21D2A7991A1006DECDB /* gw_spiral_bw.jpeg */; };
+		14DAE4662B8FDFD60077F666 /* TutorialFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DAE4652B8FDFD50077F666 /* TutorialFunctions.swift */; };
 		14E803502AD082D600996E28 /* UIAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E8034F2AD082D600996E28 /* UIAdjustment.swift */; };
 		14F0A8FC2A82B63600F2CF65 /* Panorama_edited2.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F0A8FB2A82B63600F2CF65 /* Panorama_edited2.png */; };
 		62AD7610B71025A4077B45C9 /* Pods_StoryboardChirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */; };
@@ -100,6 +101,7 @@
 		1471D2192A783097006DECDB /* panorama_edited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = panorama_edited.png; sourceTree = "<group>"; };
 		1471D21B2A797D6C006DECDB /* gw_spiral_purple.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gw_spiral_purple.jpeg; sourceTree = "<group>"; };
 		1471D21D2A7991A1006DECDB /* gw_spiral_bw.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gw_spiral_bw.jpeg; sourceTree = "<group>"; };
+		14DAE4652B8FDFD50077F666 /* TutorialFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialFunctions.swift; sourceTree = "<group>"; };
 		14E8034F2AD082D600996E28 /* UIAdjustment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAdjustment.swift; sourceTree = "<group>"; };
 		14F0A8FB2A82B63600F2CF65 /* Panorama_edited2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Panorama_edited2.png; sourceTree = "<group>"; };
 		5566186B885D36136704E55C /* Pods-StoryboardChirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardChirp.debug.xcconfig"; path = "Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				144A28C12A089D2A00BBB6D1 /* VC_Collision.swift */,
 				144A28C32A089D9900BBB6D1 /* VC_Spiral.swift */,
 				14E8034F2AD082D600996E28 /* UIAdjustment.swift */,
+				14DAE4652B8FDFD50077F666 /* TutorialFunctions.swift */,
 			);
 			path = StoryboardChirp;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				146A57982B54F7E600D8F43C /* CustomSlider.swift in Sources */,
 				1429A3CD29842E9B00F919F8 /* run_chirp.swift in Sources */,
 				144A28C22A089D2A00BBB6D1 /* VC_Collision.swift in Sources */,
+				14DAE4662B8FDFD60077F666 /* TutorialFunctions.swift in Sources */,
 				144A28BC2A089BE800BBB6D1 /* VC_Waveform.swift in Sources */,
 				144A28C42A089D9900BBB6D1 /* VC_Spiral.swift in Sources */,
 				14E803502AD082D600996E28 /* UIAdjustment.swift in Sources */,
@@ -622,7 +626,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BXSG6Y285R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StoryboardChirp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Make Chirps";
@@ -652,7 +656,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BXSG6Y285R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StoryboardChirp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Make Chirps";

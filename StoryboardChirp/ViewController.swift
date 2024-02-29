@@ -192,10 +192,33 @@ class ViewController: UIViewController, ChartViewDelegate {
     //        Collsion Animation Variables ends             //
     //------------------------------------------------------//
     
+    //------------------------------------------------------//
+    //            Tutorial Variables              //
+    @IBOutlet weak var tutorialView: UIView!
+    
+    @IBOutlet weak var pageDots: UIPageControl!
+    
+    // the Start button that ends the tutorials
+    @IBOutlet weak var tutorialEndButton: UIButton!
+    
+    @IBOutlet weak var tutorialImageView: UIImageView!
+    
+    @IBOutlet weak var tutorialTitle: UILabel!
+    
+    @IBOutlet weak var tutorialButton: UIButton!
+    
+    var currentTutorialPage: Int = 1
+    var totalTutorialPageCount: Int = 3
+    
+    // true if the tutorial pages are displayed on the screen
+    var displayingTutorial = false
+    //        Collsion Animation Variables ends             //
+    //------------------------------------------------------//
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTutorialIfNeeded()
         
         setBackgroundImageView()
         
@@ -234,19 +257,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         
 //        sliderRegionView.layer.cornerRadius = 30
         
-        let colorThemeButtonConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .bold, scale: .large)
-        
-        lightThemeImage = UIImage(systemName: "sun.max.circle", withConfiguration: colorThemeButtonConfig)
-        
-        darkThemeImage = UIImage(systemName: "moon.circle", withConfiguration: colorThemeButtonConfig)
-        
-//        setupButtons()
-//        colorThemeButton.tintColor = .systemBackground
-        if isLightTheme {
-            setLightTheme()
-        } else {
-            setDarkTheme()
-        }
+
     }
     
     override func viewWillTransition(to size: CGSize, 
@@ -265,10 +276,18 @@ class ViewController: UIViewController, ChartViewDelegate {
     }
     
     func setupButtons() {
+        setupFunctionalButtons()
+        
+        setupInfoButtons()
+        
+        setupTutorialAndColorThemeButtons()
+        
+    }
+    
+    func setupFunctionalButtons() {
         let buttonBackground = UIColor(red: 255/255, green: 120/255, blue: 40/255, alpha: 1)
         let buttonForeground: UIColor = .white
         let buttonShadow = UIColor(red: 225/255, green: 85/255, blue: 0/255, alpha: 1)
-        let infoTint = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
         
         for bttn in [waveformButton, freqButton, spectroButton, audioButton, animButton, spiralButton] {
             // set up colors
@@ -284,11 +303,30 @@ class ViewController: UIViewController, ChartViewDelegate {
             bttn?.configuration?.cornerStyle = .large
 //            bttn!.configuration?.attributedTitle?.font = UIFont(name: "Helvetica", size: buttonFontSize)
         }
-        
+    }
+    
+    func setupInfoButtons() {
+        let infoTint = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
         for infobttn in [waveformInfo, freqInfo, spectroInfo, audioInfo, animInfo, spiralInfo] {
             infobttn?.tintColor = infoTint
         }
+    }
+    
+    func setupTutorialAndColorThemeButtons() {
+        let buttonConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .bold, 
+                                                       scale: UIDevice.current.userInterfaceIdiom == .pad ? .large : .medium)
         
+        lightThemeImage = UIImage(systemName: "sun.max.circle", withConfiguration: buttonConfig)
+        
+        darkThemeImage = UIImage(systemName: "moon.circle", withConfiguration: buttonConfig)
+
+        if isLightTheme {
+            setLightTheme()
+        } else {
+            setDarkTheme()
+        }
+        
+        tutorialButton.setImage(UIImage(systemName: "lightbulb.circle", withConfiguration: buttonConfig), for: .normal)
     }
     
     func setupSliderRegion() {
@@ -586,7 +624,6 @@ class ViewController: UIViewController, ChartViewDelegate {
         view.endEditing(true)
     }
     
-
 }
 
 

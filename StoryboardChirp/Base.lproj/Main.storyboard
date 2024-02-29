@@ -365,6 +365,14 @@
                                                     <action selector="colorThemeButtonPress:" destination="dCC-hP-mkN" eventType="touchUpInside" id="3PA-Mp-Ng4"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNI-Kf-2XG">
+                                                <rect key="frame" x="519" y="628" width="50" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="lightbulb.circle" catalog="system">
+                                                    <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                                </buttonConfiguration>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -379,6 +387,45 @@
                                     <constraint firstItem="jcM-cK-Dqf" firstAttribute="leading" secondItem="xgf-aV-9Rc" secondAttribute="leading" id="w2u-58-wqa"/>
                                 </constraints>
                             </scrollView>
+                            <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2lV-RY-okp">
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="600"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jU5-RX-gAA">
+                                        <rect key="frame" x="297" y="169" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="hZn-XV-fhS">
+                                        <rect key="frame" x="359" y="431" width="117" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="pageIndicatorTintColor" systemColor="opaqueSeparatorColor"/>
+                                        <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </pageControl>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eeq-1r-sb2">
+                                        <rect key="frame" x="480" y="305" width="62" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Start">
+                                            <color key="baseForegroundColor" systemColor="systemBlueColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="tutorialEndPressed:" destination="dCC-hP-mkN" eventType="touchUpInside" id="Vid-i0-frh"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tutorial Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCS-ee-fSc">
+                                        <rect key="frame" x="370" y="128" width="94" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="wrH-MT-wNc" appends="YES" id="GAX-r6-lB5"/>
+                                    <outletCollection property="gestureRecognizers" destination="cbj-y8-NmU" appends="YES" id="hmU-7R-PWN"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YnS-1K-rlp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -409,6 +456,7 @@
                         <outlet property="mass2TextField" destination="pSo-Kf-DUQ" id="d3T-er-YyA"/>
                         <outlet property="mass2Title" destination="gxb-mU-qVF" id="OVh-bA-ndA"/>
                         <outlet property="navigationBar" destination="4Q8-XO-oIw" id="WvQ-lB-iSL"/>
+                        <outlet property="pageDots" destination="hZn-XV-fhS" id="PTG-pB-wbc"/>
                         <outlet property="scrollView" destination="xgf-aV-9Rc" id="WTR-Pg-nXw"/>
                         <outlet property="sliderRegionView" destination="iJI-aa-z2T" id="C4s-A2-qmH"/>
                         <outlet property="spectroButton" destination="L0G-tM-J0M" id="SZl-p2-C3X"/>
@@ -417,11 +465,26 @@
                         <outlet property="speedLabel" destination="Gga-0I-cfK" id="Srf-SM-fih"/>
                         <outlet property="spiralButton" destination="e3j-XR-l3h" id="zse-gR-ctk"/>
                         <outlet property="spiralInfo" destination="ztS-4n-lCD" id="08g-FN-wiC"/>
+                        <outlet property="tutorialButton" destination="lNI-Kf-2XG" id="leV-AD-HI4"/>
+                        <outlet property="tutorialEndButton" destination="Eeq-1r-sb2" id="S5i-Mu-WWA"/>
+                        <outlet property="tutorialImageView" destination="jU5-RX-gAA" id="Q2h-6I-bXl"/>
+                        <outlet property="tutorialTitle" destination="KCS-ee-fSc" id="kfR-WY-nVg"/>
+                        <outlet property="tutorialView" destination="2lV-RY-okp" id="Xgy-Aw-K6F"/>
                         <outlet property="waveformButton" destination="hYR-Pw-iFM" id="1Wi-yt-KQA"/>
                         <outlet property="waveformInfo" destination="bVv-He-6HF" id="iqd-l0-Ck9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wbf-Xm-pRr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="wrH-MT-wNc">
+                    <connections>
+                        <action selector="swipeLeft:" destination="dCC-hP-mkN" id="rz7-id-cyA"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="cbj-y8-NmU">
+                    <connections>
+                        <action selector="swipeRight:" destination="dCC-hP-mkN" id="1ay-c6-kmN"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-3044.6043165467627" y="993.96984924623121"/>
         </scene>
@@ -704,18 +767,28 @@
     </scenes>
     <resources>
         <image name="info.circle" catalog="system" width="128" height="123"/>
+        <image name="lightbulb.circle" catalog="system" width="128" height="123"/>
         <image name="person.3" catalog="system" width="128" height="66"/>
         <image name="questionmark.circle" catalog="system" width="128" height="123"/>
         <image name="sun.max.circle" catalog="system" width="128" height="123"/>
         <image name="terminal.fill" catalog="system" width="128" height="93"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
