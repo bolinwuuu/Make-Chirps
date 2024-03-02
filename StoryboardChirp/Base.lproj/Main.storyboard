@@ -372,6 +372,9 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="lightbulb.circle" catalog="system">
                                                     <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="tutorialButtonPressed:" destination="dCC-hP-mkN" eventType="touchUpInside" id="f5x-F5-eJk"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -394,6 +397,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jU5-RX-gAA">
                                         <rect key="frame" x="297" y="169" width="240" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                     </imageView>
                                     <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="hZn-XV-fhS">
                                         <rect key="frame" x="359" y="431" width="117" height="26"/>
@@ -410,6 +414,15 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="tutorialEndPressed:" destination="dCC-hP-mkN" eventType="touchUpInside" id="Vid-i0-frh"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvP-sJ-tO1">
+                                        <rect key="frame" x="388" y="282" width="57" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Skip"/>
+                                        <connections>
+                                            <action selector="tutorialSkipButtonPressed:" destination="dCC-hP-mkN" eventType="touchUpInside" id="NMv-Pd-ciZ"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tutorial Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCS-ee-fSc">
@@ -468,6 +481,7 @@
                         <outlet property="tutorialButton" destination="lNI-Kf-2XG" id="leV-AD-HI4"/>
                         <outlet property="tutorialEndButton" destination="Eeq-1r-sb2" id="S5i-Mu-WWA"/>
                         <outlet property="tutorialImageView" destination="jU5-RX-gAA" id="Q2h-6I-bXl"/>
+                        <outlet property="tutorialSkipButton" destination="zvP-sJ-tO1" id="O4i-ti-hUw"/>
                         <outlet property="tutorialTitle" destination="KCS-ee-fSc" id="kfR-WY-nVg"/>
                         <outlet property="tutorialView" destination="2lV-RY-okp" id="Xgy-Aw-K6F"/>
                         <outlet property="waveformButton" destination="hYR-Pw-iFM" id="1Wi-yt-KQA"/>
@@ -789,6 +803,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

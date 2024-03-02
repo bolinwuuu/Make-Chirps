@@ -20,7 +20,7 @@ extension ViewController {
         if currentTutorialPage < totalTutorialPageCount {
             // show the next page if not at the last page
             currentTutorialPage += 1
-            pageDots.currentPage = currentTutorialPage - 1
+            updateToCurrentTutorial()
         }
     }
     
@@ -33,7 +33,7 @@ extension ViewController {
         if currentTutorialPage > 1 {
             // show the previous page if not at the first page
             currentTutorialPage -= 1
-            pageDots.currentPage = currentTutorialPage - 1
+            updateToCurrentTutorial()
         }
     }
     
@@ -43,36 +43,73 @@ extension ViewController {
 //        UserDefaults.standard.set("Done", forKey: "Tutorial")
     }
     
+    @IBAction func tutorialSkipButtonPressed(_ sender: Any) {
+        removeTutorial()
+    }
+    
+    @IBAction func tutorialButtonPressed(_ sender: Any) {
+        setupTutorial()
+        
+    }
+    
     func setupTutorialIfNeeded() {
         if isFirstTimeUser() {
             setupTutorial()
         }
     }
     
-    // set up tutorial pages for first-time users
-    // (tutorial views already on the screen)
+    // set up tutorial pages
     func setupTutorial() {
         displayingTutorial = true
         
+//        if !displayingViews {
+//            tutorialAddSubviews()
+//        }
+
+        if !tutorialView.isDescendant(of: self.view) {
+            tutorialAddSubviews()
+        }
+        
         totalTutorialPageCount = pageDots.numberOfPages
+//        print("Total tutorial page count: \(totalTutorialPageCount)")
+        
+        currentTutorialPage = 1
+        
+        adjustTutorial()
+        
+        updateToCurrentTutorial()
         
         hideTutorialEndButton()
         
-//        tutorialTitle.centerXAnchor.constraint(equalTo: tutorialView.centerXAnchor).isActive = true
-        
+    }
+    
+    func tutorialAddSubviews() {
+        assert(displayingTutorial, "tutorialAddSubviews() called when displayingTutorial == false")
+//        tutorialView = UIView()
+        self.view.addSubview(tutorialView)
+        tutorialView.addSubview(tutorialTitle)
+//        tutorialTitle.text = "Tutorial Page " + String(currentTutorialPage)
+        tutorialView.addSubview(tutorialImageView)
+        tutorialView.addSubview(tutorialEndButton)
+        tutorialView.addSubview(tutorialSkipButton)
+        tutorialView.addSubview(pageDots)
+//        pageDots.numberOfPages = totalTutorialPageCount
     }
     
     func updateToCurrentTutorial() {
+        assert(displayingTutorial, "updateToCurrentTutorial() called when displayingTutorial == false")
+        tutorialTitle.text = "Tutorial Page " + String(currentTutorialPage)
+        tutorialTitle.sizeToFit()
         pageDots.currentPage = currentTutorialPage - 1
     }
     
     func removeTutorial() {
         displayingTutorial = false
         tutorialView.removeFromSuperview()
-        pageDots.isHidden = true
+//        pageDots.isHidden = true
         hideTutorialEndButton()
-        tutorialImageView.removeFromSuperview()
-        tutorialTitle.isHidden = true
+//        tutorialImageView.removeFromSuperview()
+//        tutorialTitle.isHidden = true
     }
     
     func isFirstTimeUser() -> Bool {

@@ -194,18 +194,20 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     //------------------------------------------------------//
     //            Tutorial Variables              //
-    @IBOutlet weak var tutorialView: UIView!
+    @IBOutlet var tutorialView: UIView!
     
-    @IBOutlet weak var pageDots: UIPageControl!
+    @IBOutlet var pageDots: UIPageControl!
     
     // the Start button that ends the tutorials
-    @IBOutlet weak var tutorialEndButton: UIButton!
+    @IBOutlet var tutorialEndButton: UIButton!
     
-    @IBOutlet weak var tutorialImageView: UIImageView!
+    @IBOutlet var tutorialSkipButton: UIButton!
     
-    @IBOutlet weak var tutorialTitle: UILabel!
+    @IBOutlet var tutorialImageView: UIImageView!
     
-    @IBOutlet weak var tutorialButton: UIButton!
+    @IBOutlet var tutorialTitle: UILabel!
+    
+    @IBOutlet var tutorialButton: UIButton!
     
     var currentTutorialPage: Int = 1
     var totalTutorialPageCount: Int = 3

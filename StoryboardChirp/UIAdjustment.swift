@@ -326,10 +326,10 @@ extension ViewController {
     
     func adjustTutorialAndColorThemeButtonsPortrait() {
         tutorialButton.center = CGPoint(x: (windowFrame.frame.maxX + UIScreen.main.bounds.width) * 0.5,
-                                        y: windowFrame.frame.minY + tutorialButton.frame.height * 0.5)
+                                        y: windowFrame.frame.minY + tutorialButton.frame.height * 2)
 
         colorThemeButton.center = CGPoint(x: tutorialButton.center.x,
-                                          y: tutorialButton.center.y + colorThemeButton.frame.height)
+                                          y: tutorialButton.center.y + colorThemeButton.frame.height * 1.5)
     }
     
     func adjustFrameRectAndWindowFrameLanscape() {
@@ -496,7 +496,13 @@ extension ViewController {
     }
     
     func adjustTutorialAndColorThemeButtonsLandscape() {
-        
+        //        tutorialButton.center = CGPoint(x: (windowFrame.frame.maxX + UIScreen.main.bounds.width) * 0.5,
+        //                                        y: windowFrame.frame.minY + tutorialButton.frame.height * 0.5)
+        tutorialButton.center = CGPoint(x: windowFrame.frame.minX - tutorialButton.frame.width * 0.5,
+                                        y: windowFrame.frame.minY + tutorialButton.frame.height)
+
+        colorThemeButton.center = CGPoint(x: tutorialButton.center.x,
+                                          y: tutorialButton.center.y + colorThemeButton.frame.height * 1.5)
     }
     
     func adjustTutorial() {
@@ -530,13 +536,19 @@ extension ViewController {
     func adjustTutorialPortrait() {
         tutorialView.frame = UIScreen.main.bounds
         
-        tutorialTitle.center.x = tutorialView.center.x
-        pageDots.center.x = tutorialView.center.x
-        tutorialEndButton.center.x = tutorialView.center.x
+        tutorialImageView.center = tutorialView.center
+        tutorialTitle.center = CGPoint(x: tutorialView.center.x, y: tutorialView.frame.height * (1/4))
+        tutorialTitle.font = tutorialTitle.font.withSize(30)
+        tutorialTitle.sizeToFit()
+
+        pageDots.center = CGPoint(x: tutorialView.center.x, y: tutorialView.frame.height * (4/5))
+        tutorialEndButton.center = CGPoint(x: tutorialView.center.x, y: tutorialView.frame.height * (3/4))
+        tutorialSkipButton.center = CGPoint(x: windowFrame.frame.minX / 2, 
+                                            y: tutorialButton.center.y)
     }
     
     func adjustTutorialLandscape() {
-        
+        adjustTutorialPortrait()
     }
    
 }
