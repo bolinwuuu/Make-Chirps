@@ -537,9 +537,9 @@ extension ViewController {
         tutorialView.frame = UIScreen.main.bounds
         
         tutorialImageView.center = tutorialView.center
-        tutorialTitle.center = CGPoint(x: tutorialView.center.x, y: tutorialView.frame.height * (1/4))
         tutorialTitle.font = tutorialTitle.font.withSize(30)
         tutorialTitle.sizeToFit()
+        tutorialTitle.center = CGPoint(x: tutorialView.center.x, y: tutorialView.frame.height * (1/4))
 
         pageDots.center = CGPoint(x: tutorialView.center.x, y: tutorialView.frame.height * (4/5))
         tutorialEndButton.center = CGPoint(x: tutorialView.center.x, y: tutorialView.frame.height * (3/4))

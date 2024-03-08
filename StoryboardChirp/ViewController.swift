@@ -209,11 +209,22 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet var tutorialButton: UIButton!
     
-    var currentTutorialPage: Int = 1
+    var currentTutorialPage: Int = 0
     var totalTutorialPageCount: Int = 3
     
     // true if the tutorial pages are displayed on the screen
     var displayingTutorial = false
+    
+    let TUTORIALTITLE0 = "Welcome to Make Chirps!"
+    let TUTORIALTITLE1 = "Waveform Plot"
+    let TUTORIALTITLE2 = "Frequency Plot"
+    let TUTORIALTITLE3 = "Spectrogram Plot"
+    let TUTORIALTITLE4 = "Audio"
+    let TUTORIALTITLE5 = "Collision Animation"
+    let TUTORIALTITLE6 = "Spiral Animation"
+    let TUTORIALTITLE7 = "Get started!"
+    
+    var tutorialTitleText: [String] = []
     //        Collsion Animation Variables ends             //
     //------------------------------------------------------//
     
