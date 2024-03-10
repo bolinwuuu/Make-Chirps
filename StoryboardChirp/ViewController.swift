@@ -617,7 +617,7 @@ class ViewController: UIViewController, ChartViewDelegate {
 //        backgroundImageView.image = UIImage(named: "gw_artist_image.jpeg")
 //        backgroundImageView.image = UIImage(named: "gw_spiral_purple.jpeg")
 //        backgroundImageView.image = UIImage(named: "gw_spiral_bw.jpeg")
-        backgroundImageView.image = UIImage(named: "Panorama_edited2.png")
+        backgroundImageView.image = UIImage(named: "Panorama")
         backgroundImageView.contentMode =  UIView.ContentMode.scaleAspectFill
 
     }
