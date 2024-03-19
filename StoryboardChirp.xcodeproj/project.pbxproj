@@ -44,6 +44,9 @@
 		761045D32AABB9DA00E67C3B /* Acknowledgements.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 761045D22AABB9DA00E67C3B /* Acknowledgements.pdf */; };
 		761045D62AABB9E800E67C3B /* infotest.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 761045D42AABB9E800E67C3B /* infotest.pdf */; };
 		761045D72AABB9E800E67C3B /* info.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 761045D52AABB9E800E67C3B /* info.pdf */; };
+		761A6AAA2BA93ED900EBBD19 /* SpeechBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A6AA92BA93ED900EBBD19 /* SpeechBubble.swift */; };
+		761F47762BA94FFC00A3940D /* SwiftUIView22.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F47752BA94FFC00A3940D /* SwiftUIView22.swift */; };
+		761F477C2BA9D05000A3940D /* screenshotat.png in Resources */ = {isa = PBXBuildFile; fileRef = 761F477B2BA9D05000A3940D /* screenshotat.png */; };
 		76300A0E2B5AFF3A0000415D /* ligohtml in Resources */ = {isa = PBXBuildFile; fileRef = 76300A0D2B5AFF3A0000415D /* ligohtml */; };
 		76606A4F2AA99FBB00F4F993 /* VC_InfoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76606A4E2AA99FBB00F4F993 /* VC_InfoPage.swift */; };
 		76606A552AAA2FC600F4F993 /* VC_Acknowledgements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76606A542AAA2FC600F4F993 /* VC_Acknowledgements.swift */; };
@@ -109,6 +112,9 @@
 		761045D22AABB9DA00E67C3B /* Acknowledgements.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Acknowledgements.pdf; sourceTree = "<group>"; };
 		761045D42AABB9E800E67C3B /* infotest.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = infotest.pdf; sourceTree = "<group>"; };
 		761045D52AABB9E800E67C3B /* info.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = info.pdf; sourceTree = "<group>"; };
+		761A6AA92BA93ED900EBBD19 /* SpeechBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechBubble.swift; sourceTree = "<group>"; };
+		761F47752BA94FFC00A3940D /* SwiftUIView22.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView22.swift; sourceTree = "<group>"; };
+		761F477B2BA9D05000A3940D /* screenshotat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshotat.png; sourceTree = "<group>"; };
 		76300A0D2B5AFF3A0000415D /* ligohtml */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ligohtml; sourceTree = "<group>"; };
 		76606A4E2AA99FBB00F4F993 /* VC_InfoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_InfoPage.swift; sourceTree = "<group>"; };
 		76606A542AAA2FC600F4F993 /* VC_Acknowledgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Acknowledgements.swift; sourceTree = "<group>"; };
@@ -166,6 +172,8 @@
 		1429A39B29842E0700F919F8 /* StoryboardChirp */ = {
 			isa = PBXGroup;
 			children = (
+				761F477B2BA9D05000A3940D /* screenshotat.png */,
+				761A6AA92BA93ED900EBBD19 /* SpeechBubble.swift */,
 				76300A0D2B5AFF3A0000415D /* ligohtml */,
 				146A57962B54F7E600D8F43C /* CustomSlider.swift */,
 				146A57972B54F7E600D8F43C /* ThumbView.swift */,
@@ -203,6 +211,7 @@
 				144A28C32A089D9900BBB6D1 /* VC_Spiral.swift */,
 				14E8034F2AD082D600996E28 /* UIAdjustment.swift */,
 				14DAE4652B8FDFD50077F666 /* TutorialFunctions.swift */,
+				761F47752BA94FFC00A3940D /* SwiftUIView22.swift */,
 			);
 			path = StoryboardChirp;
 			sourceTree = "<group>";
@@ -347,6 +356,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				761F477C2BA9D05000A3940D /* screenshotat.png in Resources */,
 				1471D2102A7825AA006DECDB /* sonify6_lg.jpg in Resources */,
 				1471D21E2A7991A1006DECDB /* gw_spiral_bw.jpeg in Resources */,
 				1471D21A2A783097006DECDB /* panorama_edited.png in Resources */,
@@ -431,7 +441,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				144A28C02A089C8400BBB6D1 /* VC_Audio.swift in Sources */,
+				761A6AAA2BA93ED900EBBD19 /* SpeechBubble.swift in Sources */,
 				146A57982B54F7E600D8F43C /* CustomSlider.swift in Sources */,
+				761F47762BA94FFC00A3940D /* SwiftUIView22.swift in Sources */,
 				1429A3CD29842E9B00F919F8 /* run_chirp.swift in Sources */,
 				144A28C22A089D2A00BBB6D1 /* VC_Collision.swift in Sources */,
 				14DAE4662B8FDFD60077F666 /* TutorialFunctions.swift in Sources */,
