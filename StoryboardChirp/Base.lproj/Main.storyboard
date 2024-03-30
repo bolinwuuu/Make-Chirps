@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jjg-Qm-ZGM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jjg-Qm-ZGM">
     <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -114,17 +114,138 @@
             </objects>
             <point key="canvasLocation" x="211" y="327"/>
         </scene>
-        <!--Info PageVC-->
+        <!--Info Page-->
         <scene sceneID="QSl-lf-8PF">
             <objects>
-                <viewController id="b8a-pA-cFh" customClass="InfoPageVC" customModule="StoryboardChirp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iR2-XI-4ye">
+                <viewController id="b8a-pA-cFh" customClass="VC_InfoPage" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="Lwb-cG-AVm">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1124"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <viewLayoutGuide key="safeArea" id="twq-sP-ov6"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8US-0g-rct">
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="1124"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="86g-vh-MYs">
+                                        <rect key="frame" x="0.0" y="0.0" width="889" height="6000"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gw_artist_image.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="xlu-B5-mvn">
+                                                <rect key="frame" x="324" y="2075" width="240" height="542"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" Gravitational Waves and LIGO" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mP0-AZ-MmK">
+                                                <rect key="frame" x="266" y="39" width="356" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K0f-vT-rea">
+                                                <rect key="frame" x="175" y="114" width="538" height="250"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                <mutableString key="text">       In the early 20th century, Albert Einstein's special and general theories of relativity caused an upheaval in the world of physics. Newton’s theories were considered well established through experiment, with only minor discrepancies observed, but those discrepancies proved to be valuable clues toward a new theory of reality. Einstein realized that Newton's Laws break down at very high speeds, near the speed of light, and near very massive objects like stars, including our own Sun. His solution revolutionized our understanding of both space and time. </mutableString>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g5H-GT-nxb">
+                                                <rect key="frame" x="175" y="399" width="538" height="231"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                <string key="text">       Surprisingly, some of the implications of his theory were proven to be accurate and useful in the area of satellite communications and GPS technologies. However, many of the implications of these theories of relativity, such as black holes and the bending of light by massive gravitational fields created by such objects as galaxy clusters, generally happen thousands of light years away from us, making predictions difficult to confirm without the help of extremely precise instruments.
+</string>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5gU-Mo-lhn">
+                                                <rect key="frame" x="220" y="946" width="449" height="183.5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                <mutableString key="text">       Experimental data did indeed corroborate the possible emission of gravitational waves through indirect means; for example, the 1993 Nobel Prize in physics was given to Russell A. Hulse and Joseph H. Taylor Jr. "for the discovery of a new type of pulsar, a discovery that has opened up new possibilities for the study of gravitation" because they discovered that the rate of acceleration of orbiting neutron stars matched with the predictions from Einstein’s theory of general relativity, provided that gravitational waves were being omitted, discharging energy with them. However, this was not a direct observation of gravitational waves.</mutableString>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7iH-dd-UGx">
+                                                <rect key="frame" x="220" y="1147" width="449" height="125"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                <string key="text">       LIGO (Laser Interferometer Gravitational-wave Observatory) set out to detect these waves directly. However, these ripples in space-time, just as ripples in water, became weaker and smaller as they spread away from the source of the waves. In this case, the waves of space itself have an amplitude, by the time they reach Earth, of one part in billion-trillion or less.
+</string>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sni-Bd-Guj">
+                                                <rect key="frame" x="220" y="1330" width="449" height="283.5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                <mutableString key="text">       Through the construction of extremely high-precision laser interferometers, whose arms are 4 kilometers long (about 2.5 miles long, see photo), the scientists of LIGO seeked to finally directly measure the effects of gravitational waves directly. Lasers would stretch across one end of each arm to the other and consequently measure the distance between the distance of the arms. When a gravitational wave passes through the interferometer, one would expect the arms to undulate in length, becoming shorter and longer than usual due to the ripples in space time. These fluctuations are tiny, smaller than one thousandth of the diameter of a proton, but they lead to telltale flickers in the output light of the interferometer. LIGO scientists and engineers needed years of design, painstaking construction and careful measurement to be able to differentiate real gravitational waves from light flickers caused by terrestrial disturbances, such as road traffic, earthquakes, and thunderstorms.
+</mutableString>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hcM-Is-zzx">
+                                                <rect key="frame" x="220" y="1654" width="449" height="283.5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                <mutableString key="text">       Through the construction of extremely high-precision laser interferometers, whose arms are 4 kilometers long (about 2.5 miles long, see photo), the scientists of LIGO seeked to finally directly measure the effects of gravitational waves directly. Lasers would stretch across one end of each arm to the other and consequently measure the distance between the distance of the arms. When a gravitational wave passes through the interferometer, one would expect the arms to undulate in length, becoming shorter and longer than usual due to the ripples in space time. These fluctuations are tiny, smaller than one thousandth of the diameter of a proton, but they lead to telltale flickers in the output light of the interferometer. LIGO scientists and engineers needed years of design, painstaking construction and careful measurement to be able to differentiate real gravitational waves from light flickers caused by terrestrial disturbances, such as road traffic, earthquakes, and thunderstorms.
+</mutableString>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="screenshotat.png" translatesAutoresizingMaskIntoConstraints="NO" id="wBu-eh-hA3">
+                                                <rect key="frame" x="312" y="1922" width="240" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nkv-KK-C7h">
+                                                <rect key="frame" x="175" y="648" width="538" height="205"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                <string key="text">       It was exactly this problem that researchers who were trying to experimentally confirm the existence of gravitational waves, which Einstein’s theory of general relativity predicted would emanate from massive objects with high acceleration such as colliding black holes and neutron stars. These very violent events would distort space-time itself, sending out gravitational ripples that travel at the speed of light. (Read more here: https://www.ligo.caltech.edu/page/what-are-gw)
+</string>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="6000" id="8zm-Ri-pOx"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="6000" id="AdU-oo-xry"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Xbq-Eu-9EN" firstAttribute="trailing" secondItem="86g-vh-MYs" secondAttribute="trailing" id="81J-nL-0hW"/>
+                                    <constraint firstItem="86g-vh-MYs" firstAttribute="leading" secondItem="JhJ-TJ-Cv0" secondAttribute="leading" id="L5d-E1-eQx"/>
+                                    <constraint firstItem="Xbq-Eu-9EN" firstAttribute="bottom" secondItem="86g-vh-MYs" secondAttribute="bottom" id="Y8c-QF-txU"/>
+                                    <constraint firstAttribute="trailing" secondItem="86g-vh-MYs" secondAttribute="trailing" id="aTo-6U-qUF"/>
+                                    <constraint firstItem="86g-vh-MYs" firstAttribute="leading" secondItem="JhJ-TJ-Cv0" secondAttribute="leading" id="byg-Ir-8LN"/>
+                                    <constraint firstItem="86g-vh-MYs" firstAttribute="top" secondItem="JhJ-TJ-Cv0" secondAttribute="top" id="hFx-cz-gyD"/>
+                                    <constraint firstItem="86g-vh-MYs" firstAttribute="top" secondItem="8US-0g-rct" secondAttribute="top" id="rhK-Hw-9em"/>
+                                    <constraint firstAttribute="bottom" secondItem="86g-vh-MYs" secondAttribute="bottom" id="tgx-kV-UQE"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Xbq-Eu-9EN"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="JhJ-TJ-Cv0"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0xr-zH-oxe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8US-0g-rct" firstAttribute="leading" secondItem="0xr-zH-oxe" secondAttribute="leading" id="C0R-jP-OjJ"/>
+                            <constraint firstItem="86g-vh-MYs" firstAttribute="width" secondItem="Lwb-cG-AVm" secondAttribute="width" multiplier="1.06595" id="QtE-Of-F0k"/>
+                            <constraint firstItem="86g-vh-MYs" firstAttribute="height" secondItem="Lwb-cG-AVm" secondAttribute="height" multiplier="5.33808" id="X8G-gK-IfP"/>
+                            <constraint firstItem="8US-0g-rct" firstAttribute="trailing" secondItem="0xr-zH-oxe" secondAttribute="trailing" id="fap-14-4hp"/>
+                            <constraint firstItem="8US-0g-rct" firstAttribute="top" secondItem="Lwb-cG-AVm" secondAttribute="top" id="tIL-mA-xTV"/>
+                            <constraint firstItem="8US-0g-rct" firstAttribute="bottom" secondItem="0xr-zH-oxe" secondAttribute="bottom" id="tRI-f7-Apb"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qpk-Ea-yla"/>
+                    <size key="freeformSize" width="834" height="1194"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m17-A0-ZdR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -787,33 +908,45 @@
             <point key="canvasLocation" x="-1071" y="2340"/>
         </scene>
     </scenes>
+    <color key="tintColor" systemColor="systemCyanColor"/>
     <resources>
+        <image name="gw_artist_image.jpeg" width="841" height="1491"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="lightbulb.circle" catalog="system" width="128" height="123"/>
         <image name="person.3" catalog="system" width="128" height="66"/>
         <image name="questionmark.circle" catalog="system" width="128" height="123"/>
+        <image name="screenshotat.png" width="1316" height="857"/>
         <image name="sun.max.circle" catalog="system" width="128" height="123"/>
         <image name="terminal.fill" catalog="system" width="128" height="93"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
-            <color red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
