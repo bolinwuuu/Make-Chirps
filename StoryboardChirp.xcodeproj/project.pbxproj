@@ -28,6 +28,7 @@
 		1462249129ABFB6300DDF1E9 /* SpiralAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1462249029ABFB6300DDF1E9 /* SpiralAnimation.swift */; };
 		146A57982B54F7E600D8F43C /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A57962B54F7E600D8F43C /* CustomSlider.swift */; };
 		146A57992B54F7E600D8F43C /* ThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A57972B54F7E600D8F43C /* ThumbView.swift */; };
+		14B0C9722BAD059F007B2713 /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B0C9712BAD059F007B2713 /* ChatBubble.swift */; };
 		14DAE4662B8FDFD60077F666 /* TutorialFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DAE4652B8FDFD50077F666 /* TutorialFunctions.swift */; };
 		14E803502AD082D600996E28 /* UIAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E8034F2AD082D600996E28 /* UIAdjustment.swift */; };
 		62AD7610B71025A4077B45C9 /* Pods_StoryboardChirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658DD33AF4CB50BD9BAE5B20 /* Pods_StoryboardChirp.framework */; };
@@ -82,6 +83,7 @@
 		1462249029ABFB6300DDF1E9 /* SpiralAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralAnimation.swift; sourceTree = "<group>"; };
 		146A57962B54F7E600D8F43C /* CustomSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		146A57972B54F7E600D8F43C /* ThumbView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbView.swift; sourceTree = "<group>"; };
+		14B0C9712BAD059F007B2713 /* ChatBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubble.swift; sourceTree = "<group>"; };
 		14DAE4652B8FDFD50077F666 /* TutorialFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialFunctions.swift; sourceTree = "<group>"; };
 		14E8034F2AD082D600996E28 /* UIAdjustment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAdjustment.swift; sourceTree = "<group>"; };
 		5566186B885D36136704E55C /* Pods-StoryboardChirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardChirp.debug.xcconfig"; path = "Target Support Files/Pods-StoryboardChirp/Pods-StoryboardChirp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				144A28C32A089D9900BBB6D1 /* VC_Spiral.swift */,
 				14E8034F2AD082D600996E28 /* UIAdjustment.swift */,
 				14DAE4652B8FDFD50077F666 /* TutorialFunctions.swift */,
+				14B0C9712BAD059F007B2713 /* ChatBubble.swift */,
 			);
 			path = StoryboardChirp;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				1429A3A129842E0700F919F8 /* ViewController.swift in Sources */,
 				144A28BA2A089B9F00BBB6D1 /* VC_Spectro.swift in Sources */,
 				76606A552AAA2FC600F4F993 /* VC_Acknowledgements.swift in Sources */,
+				14B0C9722BAD059F007B2713 /* ChatBubble.swift in Sources */,
 				1429A3CF29842EF000F919F8 /* ColorTable.swift in Sources */,
 				144A28BE2A089C1700BBB6D1 /* VC_Frequency.swift in Sources */,
 				1429A39D29842E0700F919F8 /* AppDelegate.swift in Sources */,

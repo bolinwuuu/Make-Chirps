@@ -14,8 +14,11 @@ extension ViewController {
     @IBAction func swipeLeft(_ sender: Any) {
         print("swipe left")
         if currentTutorialPage == totalTutorialPageCount - 2 {
-            // entering last page, show Start button
+            // entering the last page, show Start button
             showTutorialEndButton()
+        } else if currentTutorialPage == 0 {
+            // leaving the first page
+            leaveFirstPage()
         }
         if currentTutorialPage < totalTutorialPageCount - 1 {
             // show the next page if not at the last page
@@ -29,6 +32,9 @@ extension ViewController {
         if currentTutorialPage == totalTutorialPageCount - 1 {
             // swiping right from the last page, remove Start button
             hideTutorialEndButton()
+        } else if currentTutorialPage == 1 {
+            // entering the first page
+            enterFirstPage()
         }
         if currentTutorialPage > 0 {
             // show the previous page if not at the first page
@@ -63,8 +69,9 @@ extension ViewController {
     func setupTutorial() {
         displayingTutorial = true
         
-        tutorialTitleText = [TUTORIALTITLE0, TUTORIALTITLE1, TUTORIALTITLE2,
-                          TUTORIALTITLE3, TUTORIALTITLE4, TUTORIALTITLE5, TUTORIALTITLE6, TUTORIALTITLE7]
+        setupTutorialTitleText()
+        setupTutorialContentText()
+        
 //        if !displayingViews {
 //            tutorialAddSubviews()
 //        }
@@ -89,8 +96,11 @@ extension ViewController {
     }
     
     func setupTutorialView() {
-        tutorialView.backgroundColor = .white
+        tutorialView.backgroundColor = .white.withAlphaComponent(1)
         tutorialView.alpha = 1
+        
+        pageDots.backgroundColor = .green
+        pageDots.layer.cornerRadius = 20
     }
     
     func tutorialAddSubviews() {
@@ -98,6 +108,7 @@ extension ViewController {
 //        tutorialView = UIView()
         self.view.addSubview(tutorialView)
         tutorialView.addSubview(tutorialTitle)
+        tutorialView.addSubview(tutorialContent)
 //        tutorialTitle.text = "Tutorial Page " + String(currentTutorialPage)
         tutorialView.addSubview(tutorialImageView)
         tutorialView.addSubview(tutorialEndButton)
@@ -110,12 +121,39 @@ extension ViewController {
         assert(displayingTutorial, "updateToCurrentTutorial() called when displayingTutorial == false")
         tutorialTitle.text = tutorialTitleText[currentTutorialPage]
         tutorialTitle.sizeToFit()
-        tutorialTitle.center = CGPoint(x: tutorialView.center.x, y: tutorialView.frame.height * (1/4))
+        tutorialTitle.center = CGPoint(x: tutorialView.center.x, y: tutorialTitle.center.y)
+        
+        tutorialContent.text = tutorialContentText[currentTutorialPage]
+        tutorialContent.sizeToFit()
+        tutorialContent.center = CGPoint(x: tutorialView.center.x, y: tutorialContent.center.y)
+        
         pageDots.currentPage = currentTutorialPage
+    }
+    
+    func leaveFirstPage() {
+        tutorialView.backgroundColor = .white.withAlphaComponent(0.3)
+        setupRedRect()
+        tutorialView.addSubview(redRect)
+    }
+    
+    func enterFirstPage() {
+        tutorialView.backgroundColor = .white.withAlphaComponent(1)
+        redRect.removeFromSuperview()
+    }
+    
+    func setupRedRect() {
+        redRect = UIView(frame: waveformButton.frame)
+        redRect.layer.borderColor = UIColor.red.cgColor
+        redRect.layer.borderWidth = 10
+        redRect.layer.cornerRadius = 10
+        redRect.backgroundColor = .clear
     }
     
     func removeTutorial() {
         displayingTutorial = false
+        if redRect != nil {
+            redRect.removeFromSuperview()
+        }
         tutorialView.removeFromSuperview()
 //        pageDots.isHidden = true
         hideTutorialEndButton()
@@ -136,5 +174,47 @@ extension ViewController {
     func hideTutorialEndButton() {
         tutorialEndButton.isHidden = true
         tutorialEndButton.isEnabled = false
+    }
+    
+    func setupTutorialTitleText() {
+        let welcomeTitle = "Welcome to Make Chirps!"
+        let waveformTitle = "Waveform Plot"
+        let frequencyTitle = "Frequency Plot"
+        let spectroTitle = "Spectrogram Plot"
+        let audioTitle = "Audio"
+        let collisionTitle = "Collision Animation"
+        let spiralTitle = "Spiral Animation"
+        let tutorialEndTitle = "Get started!"
+        tutorialTitleText = [welcomeTitle,
+                             waveformTitle,
+                             frequencyTitle,
+                             spectroTitle,
+                             audioTitle,
+                             collisionTitle,
+                             spiralTitle,
+                             tutorialEndTitle]
+        assert(tutorialTitleText.count == pageDots.numberOfPages,
+                "Number of pages \(pageDots.numberOfPages) doesn't match number of title \(tutorialTitleText.count).")
+    }
+    
+    func setupTutorialContentText() {
+        let welcomeContent = "Welcome content"
+        let waveformContent = "Click on this button to view the waveform plot."
+        let frequencyContent = "Click on this button to view the frequency plot."
+        let spectroContent = "Click on this button to view the spectrogram plot."
+        let audioContent = "Click on this button to hear the audio."
+        let collisionContent = "Click on this button to view the animation of star collisions."
+        let spiralContent = "Click on this button to view the animation of gravitational wave spiral."
+        let tutorialEndContent = ""
+        tutorialContentText = [welcomeContent,
+                               waveformContent,
+                               frequencyContent, 
+                               spectroContent,
+                               audioContent, 
+                               collisionContent,
+                               spiralContent,
+                               tutorialEndContent]
+        assert(tutorialContentText.count == pageDots.numberOfPages,
+                "Number of pages \(pageDots.numberOfPages) doesn't match number of title \(tutorialContentText.count).")
     }
 }

@@ -8,8 +8,6 @@
 import Foundation
 import UIKit
 
-import UIKit
-
 final class CustomSlider: UISlider {
 
     private var baseLayer = CALayer() // Step 3

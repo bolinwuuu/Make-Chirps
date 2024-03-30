@@ -207,7 +207,11 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet var tutorialTitle: UILabel!
     
+    @IBOutlet var tutorialContent: UILabel!
+    
     @IBOutlet var tutorialButton: UIButton!
+    
+    var redRect: UIView!
     
     var currentTutorialPage: Int = 0
     var totalTutorialPageCount: Int = 3
@@ -215,16 +219,8 @@ class ViewController: UIViewController, ChartViewDelegate {
     // true if the tutorial pages are displayed on the screen
     var displayingTutorial = false
     
-    let TUTORIALTITLE0 = "Welcome to Make Chirps!"
-    let TUTORIALTITLE1 = "Waveform Plot"
-    let TUTORIALTITLE2 = "Frequency Plot"
-    let TUTORIALTITLE3 = "Spectrogram Plot"
-    let TUTORIALTITLE4 = "Audio"
-    let TUTORIALTITLE5 = "Collision Animation"
-    let TUTORIALTITLE6 = "Spiral Animation"
-    let TUTORIALTITLE7 = "Get started!"
-    
     var tutorialTitleText: [String] = []
+    var tutorialContentText: [String] = []
     //        Collsion Animation Variables ends             //
     //------------------------------------------------------//
     
@@ -614,9 +610,6 @@ class ViewController: UIViewController, ChartViewDelegate {
         backgroundImageView = UIImageView(frame: UIScreen.main.bounds)
         self.view.insertSubview(backgroundImageView, at: 0)
         self.view.sendSubviewToBack(backgroundImageView)
-//        backgroundImageView.image = UIImage(named: "gw_artist_image.jpeg")
-//        backgroundImageView.image = UIImage(named: "gw_spiral_purple.jpeg")
-//        backgroundImageView.image = UIImage(named: "gw_spiral_bw.jpeg")
         backgroundImageView.image = UIImage(named: "Panorama")
         backgroundImageView.contentMode =  UIView.ContentMode.scaleAspectFill
 

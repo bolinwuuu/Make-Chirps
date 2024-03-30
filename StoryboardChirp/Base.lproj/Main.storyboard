@@ -390,7 +390,7 @@
                                     <constraint firstItem="jcM-cK-Dqf" firstAttribute="leading" secondItem="xgf-aV-9Rc" secondAttribute="leading" id="w2u-58-wqa"/>
                                 </constraints>
                             </scrollView>
-                            <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2lV-RY-okp">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2lV-RY-okp">
                                 <rect key="frame" x="0.0" y="0.0" width="834" height="600"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -432,6 +432,13 @@
                                         <color key="pageIndicatorTintColor" systemColor="opaqueSeparatorColor"/>
                                         <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </pageControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tutorial Content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAE-fx-EHX">
+                                        <rect key="frame" x="356" y="386" width="122" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <connections>
@@ -479,6 +486,7 @@
                         <outlet property="spiralButton" destination="e3j-XR-l3h" id="zse-gR-ctk"/>
                         <outlet property="spiralInfo" destination="ztS-4n-lCD" id="08g-FN-wiC"/>
                         <outlet property="tutorialButton" destination="lNI-Kf-2XG" id="leV-AD-HI4"/>
+                        <outlet property="tutorialContent" destination="IAE-fx-EHX" id="Mvj-Ip-ESr"/>
                         <outlet property="tutorialEndButton" destination="Eeq-1r-sb2" id="S5i-Mu-WWA"/>
                         <outlet property="tutorialImageView" destination="jU5-RX-gAA" id="Q2h-6I-bXl"/>
                         <outlet property="tutorialSkipButton" destination="zvP-sJ-tO1" id="O4i-ti-hUw"/>
