@@ -11,7 +11,7 @@ import Charts
 import AVFoundation
 import Accelerate
 
-class ViewController: UIViewController, ChartViewDelegate {
+class ViewController: UIViewController, ChartViewDelegate, ChatBubbleDelegate {
 
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -211,10 +211,12 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet var tutorialButton: UIButton!
     
+    var chatBubble: ChatBubble!
+    
     var redRect: UIView!
     
     var currentTutorialPage: Int = 0
-    var totalTutorialPageCount: Int = 3
+    var totalTutorialPageCount: Int = 9
     
     // true if the tutorial pages are displayed on the screen
     var displayingTutorial = false

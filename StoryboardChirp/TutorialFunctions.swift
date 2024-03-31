@@ -13,34 +13,12 @@ import Accelerate
 extension ViewController {
     @IBAction func swipeLeft(_ sender: Any) {
         print("swipe left")
-        if currentTutorialPage == totalTutorialPageCount - 2 {
-            // entering the last page, show Start button
-            showTutorialEndButton()
-        } else if currentTutorialPage == 0 {
-            // leaving the first page
-            leaveFirstPage()
-        }
-        if currentTutorialPage < totalTutorialPageCount - 1 {
-            // show the next page if not at the last page
-            currentTutorialPage += 1
-            updateToCurrentTutorial()
-        }
+        nextTutorialPage()
     }
     
     @IBAction func swipeRight(_ sender: Any) {
         print("swipe right")
-        if currentTutorialPage == totalTutorialPageCount - 1 {
-            // swiping right from the last page, remove Start button
-            hideTutorialEndButton()
-        } else if currentTutorialPage == 1 {
-            // entering the first page
-            enterFirstPage()
-        }
-        if currentTutorialPage > 0 {
-            // show the previous page if not at the first page
-            currentTutorialPage -= 1
-            updateToCurrentTutorial()
-        }
+        backTutorialPage()
     }
     
     // the Start button at the last tutorial page
@@ -82,7 +60,8 @@ extension ViewController {
             tutorialAddSubviews()
         }
         
-        totalTutorialPageCount = pageDots.numberOfPages
+//        totalTutorialPageCount = pageDots.numberOfPages
+        pageDots.numberOfPages = totalTutorialPageCount
 //        print("Total tutorial page count: \(totalTutorialPageCount)")
         
         currentTutorialPage = 0
@@ -127,6 +106,8 @@ extension ViewController {
         tutorialContent.sizeToFit()
         tutorialContent.center = CGPoint(x: tutorialView.center.x, y: tutorialContent.center.y)
         
+        updateChatBubble()
+        
         pageDots.currentPage = currentTutorialPage
     }
     
@@ -134,11 +115,47 @@ extension ViewController {
         tutorialView.backgroundColor = .white.withAlphaComponent(0.3)
         setupRedRect()
         tutorialView.addSubview(redRect)
+        
+        setupChatBubble()
+        tutorialView.addSubview(chatBubble)
     }
     
     func enterFirstPage() {
         tutorialView.backgroundColor = .white.withAlphaComponent(1)
         redRect.removeFromSuperview()
+        chatBubble.removeFromSuperview()
+    }
+    
+    func leaveLastPage() {
+        hideTutorialEndButton()
+        showChatBubbleNextButton()
+        setupChatBubble()
+        tutorialView.addSubview(chatBubble)
+    }
+    
+    func enterLastPage() {
+        showTutorialEndButton()
+        hideChatBubbleNextButton()
+        chatBubble.removeFromSuperview()
+    }
+    
+    func setupChatBubble() {
+        chatBubble = ChatBubble(frame: CGRect(x: tutorialView.center.x, y: tutorialView.center.y,
+                                              width: 500, height: 200),
+                                totalPageNumber: totalTutorialPageCount - 2)
+        chatBubble.delegate = self
+    }
+    
+    func didPressButtonInChatBubble(_ action: ChatBubble.Action) {
+        switch action {
+        case .closeBubble:
+            removeTutorial()
+        case .nextBubble:
+            nextTutorialPage()
+        case .backBubble:
+            backTutorialPage()
+        // Handle other actions
+        }
     }
     
     func setupRedRect() {
@@ -149,10 +166,67 @@ extension ViewController {
         redRect.backgroundColor = .clear
     }
     
+    func updateChatBubble() {
+        if currentTutorialPage > 0 && currentTutorialPage < totalTutorialPageCount - 1 {
+            updateChatBubblePosition()
+            chatBubble.updatePageNum(num: currentTutorialPage)
+            updateChatBubbleText()
+        }
+    }
+    
+    func updateChatBubblePosition() {
+        let buttonList = [waveformButton, freqButton, spectroButton, audioButton,
+                          animButton, spiralButton, tutorialButton]
+        let pointedButton = buttonList[currentTutorialPage - 1]
+        let pointedPosition: CGPoint = CGPoint(x: CGFloat((pointedButton!.frame.minX)),
+                                               y: CGFloat((pointedButton!.center.y)))
+        chatBubble.pointTo(position: pointedPosition,
+                           yMin: windowFrame.frame.minY, yMax: spiralButton.frame.maxY)
+        chatBubble.updatePageNum(num: currentTutorialPage)
+    }
+    
+    func updateChatBubbleText() {
+        chatBubble.updateTitle(text: tutorialTitleText[currentTutorialPage])
+        chatBubble.updateContent(text: tutorialContentText[currentTutorialPage])
+    }
+    
+    func nextTutorialPage() {
+        if currentTutorialPage == totalTutorialPageCount - 2 {
+            // entering the last page, show Start button
+            enterLastPage()
+        } else if currentTutorialPage == 0 {
+            // leaving the first page
+            leaveFirstPage()
+        }
+        if currentTutorialPage < totalTutorialPageCount - 1 {
+            // show the next page if not at the last page
+            currentTutorialPage += 1
+            updateToCurrentTutorial()
+        }
+    }
+    
+    func backTutorialPage() {
+        if currentTutorialPage == totalTutorialPageCount - 1 {
+            // swiping right from the last page, remove Start button
+            leaveLastPage()
+        } else if currentTutorialPage == 1 {
+            // entering the first page
+            enterFirstPage()
+        }
+        if currentTutorialPage > 0 {
+            // show the previous page if not at the first page
+            currentTutorialPage -= 1
+            updateToCurrentTutorial()
+        }
+    }
+    
     func removeTutorial() {
         displayingTutorial = false
         if redRect != nil {
             redRect.removeFromSuperview()
+        }
+        if chatBubble != nil {
+            chatBubble.removeFromSuperview()
         }
         tutorialView.removeFromSuperview()
 //        pageDots.isHidden = true
@@ -176,6 +250,16 @@ extension ViewController {
         tutorialEndButton.isEnabled = false
     }
     
+    func showChatBubbleNextButton() {
+        chatBubble.nextButton.isHidden = false
+        chatBubble.nextButton.isEnabled = true
+    }
+    
+    func hideChatBubbleNextButton() {
+        chatBubble.nextButton.isHidden = true
+        chatBubble.nextButton.isEnabled = false
+    }
+    
     func setupTutorialTitleText() {
         let welcomeTitle = "Welcome to Make Chirps!"
         let waveformTitle = "Waveform Plot"
@@ -184,6 +268,7 @@ extension ViewController {
         let audioTitle = "Audio"
         let collisionTitle = "Collision Animation"
         let spiralTitle = "Spiral Animation"
+        let lightBulbTitle = "Review the Tutorial Again?"
         let tutorialEndTitle = "Get started!"
         tutorialTitleText = [welcomeTitle,
                              waveformTitle,
@@ -192,9 +277,10 @@ extension ViewController {
                              audioTitle,
                              collisionTitle,
                              spiralTitle,
+                             lightBulbTitle,
                              tutorialEndTitle]
-        assert(tutorialTitleText.count == pageDots.numberOfPages,
-                "Number of pages \(pageDots.numberOfPages) doesn't match number of title \(tutorialTitleText.count).")
+        assert(tutorialTitleText.count == totalTutorialPageCount,
+                "Number of pages \(totalTutorialPageCount) doesn't match number of title \(tutorialTitleText.count).")
     }
     
     func setupTutorialContentText() {
@@ -205,6 +291,7 @@ extension ViewController {
         let audioContent = "Click on this button to hear the audio."
         let collisionContent = "Click on this button to view the animation of star collisions."
         let spiralContent = "Click on this button to view the animation of gravitational wave spiral."
+        let lightBulbContent = "Click on this button to recheck the tutorial anytime!"
         let tutorialEndContent = ""
         tutorialContentText = [welcomeContent,
                                waveformContent,
@@ -213,8 +300,9 @@ extension ViewController {
                                audioContent, 
                                collisionContent,
                                spiralContent,
+                               lightBulbContent,
                                tutorialEndContent]
-        assert(tutorialContentText.count == pageDots.numberOfPages,
-                "Number of pages \(pageDots.numberOfPages) doesn't match number of title \(tutorialContentText.count).")
+        assert(tutorialContentText.count == totalTutorialPageCount,
+                "Number of pages \(totalTutorialPageCount) doesn't match number of content \(tutorialContentText.count).")
     }
 }

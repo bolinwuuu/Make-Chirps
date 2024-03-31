@@ -7,10 +7,22 @@
 
 import UIKit
 
+protocol ChatBubbleDelegate: AnyObject {
+    func didPressButtonInChatBubble(_ action: ChatBubble.Action)
+}
+
 class ChatBubble: UIView {
+    enum Action {
+        case closeBubble
+        case nextBubble
+        case backBubble
+        // Add more actions for additional buttons
+    }
+    weak var delegate: ChatBubbleDelegate?
 
     var upperView: UIView!
     var lowerView: UIView!
+    var bubbleTail: UIView!
     
     var upperColor: UIColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 1)
     var lowerColor: UIColor = .darkGray
@@ -18,7 +30,7 @@ class ChatBubble: UIView {
     var textColor: UIColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1)
     
     var currPageNum: Int = 1
-    let totalPageNum: Int = 8
+    var totalPageNum: Int = 7
     var pageNumLabel: UILabel!
     
     var closeButton: UIButton!
@@ -32,8 +44,9 @@ class ChatBubble: UIView {
     var titleFontSize: CGFloat = 25.0
     var textFontSize: CGFloat = 20.0
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, totalPageNumber: Int) {
         super.init(frame: frame)
+        totalPageNum = totalPageNumber
 //        self.backgroundColor = .clear // Ensure transparent background
         setupSubviews()
     }
@@ -55,10 +68,39 @@ class ChatBubble: UIView {
         addChatText()
     }
     
-    func moveTo(new_origin: CGPoint) {
-        upperView.frame.origin = new_origin
-        lowerView.frame.origin = CGPoint(x: upperView.frame.minX, y: upperView.frame.maxY)
+    func pointTo(position: CGPoint, yMin: CGFloat, yMax: CGFloat) {
+        defaultTail()
+        let padding: CGFloat = 20
+        var centerY = position.y - tailY() + self.frame.height / 2
+        if centerY - self.frame.height / 2 < yMin {
+            moveTailTo(newY: bubbleTail.frame.height / 2)
+            centerY = position.y - tailY() + self.frame.height / 2
+        } else if centerY + self.frame.height / 2 > yMax {
+            moveTailTo(newY: self.frame.height - bubbleTail.frame.height / 2)
+            centerY = position.y - tailY() + self.frame.height / 2
+        }
+        self.center = CGPoint(x: position.x - padding - bubbleTail.frame.width - self.frame.width / 2,
+                              y: centerY)
+        
     }
+    
+    func tailY() -> CGFloat {
+        return bubbleTail.center.y
+    }
+    
+    func moveTailTo(newY: CGFloat) {
+        bubbleTail.center = CGPoint(x: bubbleTail.center.x, y: newY)
+    }
+    
+    func defaultTail() {
+        let defaultY = lowerView.center.y + bubbleTail.frame.height / 2
+        moveTailTo(newY: defaultY)
+    }
+    
+//    func moveTo(new_origin: CGPoint) {
+//        upperView.frame.origin = new_origin
+//        lowerView.frame.origin = CGPoint(x: upperView.frame.minX, y: upperView.frame.maxY)
+//    }
     
     private func setupBackground() {
         upperView = UIView(frame: CGRect(x: 0, y: 0,
@@ -77,24 +119,28 @@ class ChatBubble: UIView {
     }
     
     private func addTail() {
+        bubbleTail = UIView(frame: CGRect(x: lowerView.frame.maxX, y: lowerView.center.y,
+                                          width: 20, height: 40))
+        bubbleTail.backgroundColor = .clear
+        drawTail()
+        self.addSubview(bubbleTail)
+    }
+    
+    private func drawTail() {
         let shapeLayer = CAShapeLayer()
         let path = UIBezierPath()
-        // tail dimensions
-        let tailWidth: CGFloat = 20.0
-        let tailHeight: CGFloat = 40.0
-        let tailPosition = lowerView.frame.height * 0.5 // Adjust this to move the tail up or down
         
         // Add tail
-        path.move(to: CGPoint(x: lowerView.frame.maxX, y: tailPosition))
-        path.addLine(to: CGPoint(x: lowerView.frame.maxX + tailWidth, y: tailPosition + (tailHeight / 2)))
-        path.addLine(to: CGPoint(x: lowerView.frame.maxX, y: tailPosition + tailHeight))
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: bubbleTail.frame.width, y: bubbleTail.frame.height / 2))
+        path.addLine(to: CGPoint(x: 0, y: bubbleTail.frame.height))
         
         path.close()
         
         shapeLayer.path = path.cgPath
         shapeLayer.fillColor = lowerColor.cgColor // Customize bubble color
         
-        lowerView.layer.addSublayer(shapeLayer)
+        bubbleTail.layer.addSublayer(shapeLayer)
     }
     
     private func setupPageNum() {
@@ -109,39 +155,42 @@ class ChatBubble: UIView {
     
     private func addCloseButton() {
         closeButton = UIButton(type: .system)
+        closeButton.tag = 1
         let buttonConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .heavy,
                                                        scale: .small)
         closeButton.setImage(UIImage(systemName: "xmark", withConfiguration: buttonConfig), for: .normal)
         closeButton.tintColor = textColor
         closeButton.frame = CGRect(x: 0, y: 0,
                                    width: upperView.frame.height / 2.5, height: upperView.frame.height / 2.5)
-        closeButton.addTarget(self, action: #selector(closeButtonPressed), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         upperView.addSubview(closeButton)
         closeButton.center = CGPoint(x: upperView.frame.width * (14/15), y: upperView.center.y)
     }
     
     private func addNextButton() {
         nextButton = UIButton(type: .system)
+        nextButton.tag = 2
         nextButton.tintColor = titleColor
         nextButton.frame.size = nextButtonSize
         nextButton.setTitle("Next", for: .normal)
         nextButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 50)
         nextButton.titleLabel?.adjustsFontSizeToFitWidth = true
         nextButton.titleLabel?.minimumScaleFactor = 0.3
-        nextButton.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         lowerView.addSubview(nextButton)
         nextButton.center = CGPoint(x: lowerView.frame.width * (7/8), y: lowerView.frame.height * (5/6))
     }
     
     private func addBackButton() {
         backButton = UIButton(type: .system)
+        backButton.tag = 3
         backButton.tintColor = textColor
         backButton.frame.size = nextButtonSize
         backButton.setTitle("Back", for: .normal)
         backButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 50)
         backButton.titleLabel?.adjustsFontSizeToFitWidth = true
         backButton.titleLabel?.minimumScaleFactor = 0.3
-        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         lowerView.addSubview(backButton)
         backButton.center = CGPoint(x: lowerView.frame.width * (1/8), y: lowerView.frame.height * (5/6))
     }
@@ -164,28 +213,53 @@ class ChatBubble: UIView {
         chatText.numberOfLines = 0
         chatText.lineBreakMode = .byWordWrapping
         chatText.textAlignment = .left
-        chatText.frame = CGRect(x: lowerView.frame.width * (1/25), y: chatTitle.frame.maxY + lowerView.frame.height * (1/30),
+        chatText.frame = CGRect(x: lowerView.frame.width * (1/25), y: chatTitle.frame.maxY,
                                 width: lowerView.frame.width * 0.8, height: lowerView.frame.height * 0.5)
         chatText.textColor = textColor
         lowerView.addSubview(chatText)
     }
     
-    @objc func closeButtonPressed() {
-        print("close button pressed")
+    @objc func buttonPressed(sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            print("close button pressed")
+            delegate?.didPressButtonInChatBubble(.closeBubble)
+        case 2:
+            print("next button pressed")
+            delegate?.didPressButtonInChatBubble(.nextBubble)
+        case 3:
+            print("back button pressed")
+            delegate?.didPressButtonInChatBubble(.backBubble)
+        // Handle other buttons
+        default:
+            break
+        }
     }
     
-    @objc func nextButtonPressed() {
-        print("next button pressed")
-    }
-    
-    @objc func backButtonPressed() {
-        print("back button pressed")
-    }
+//    @objc func closeButtonPressed() {
+//        print("close button pressed")
+//    }
+//    
+//    @objc func nextButtonPressed() {
+//        print("next button pressed")
+//    }
+//    
+//    @objc func backButtonPressed() {
+//        print("back button pressed")
+//    }
 
     func updatePageNum(num: Int) {
-        currPageNum = num + 1
+        currPageNum = num
         pageNumLabel.text = String(currPageNum) + "/" + String(totalPageNum)
         pageNumLabel.sizeToFit()
+    }
+    
+    func updateTitle(text: String) {
+        chatTitle.text = text
+    }
+    
+    func updateContent(text: String) {
+        chatText.text = text
     }
 
 }
