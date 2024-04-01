@@ -213,7 +213,7 @@ class ViewController: UIViewController, ChartViewDelegate, ChatBubbleDelegate {
     
     var chatBubble: ChatBubble!
     
-    var redRect: UIView!
+//    var redRect: UIView!
     
     var currentTutorialPage: Int = 0
     var totalTutorialPageCount: Int = 9
@@ -223,7 +223,9 @@ class ViewController: UIViewController, ChartViewDelegate, ChatBubbleDelegate {
     
     var tutorialTitleText: [String] = []
     var tutorialContentText: [String] = []
-    //        Collsion Animation Variables ends             //
+    
+    var highlightRect: CGRect = .zero
+    //        Tutorial Variables ends             //
     //------------------------------------------------------//
     
     override func viewDidLoad() {

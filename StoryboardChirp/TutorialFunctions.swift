@@ -107,14 +107,15 @@ extension ViewController {
         tutorialContent.center = CGPoint(x: tutorialView.center.x, y: tutorialContent.center.y)
         
         updateChatBubble()
+        updateHighlightWindow()
         
         pageDots.currentPage = currentTutorialPage
     }
     
     func leaveFirstPage() {
-        tutorialView.backgroundColor = .white.withAlphaComponent(0.3)
-        setupRedRect()
-        tutorialView.addSubview(redRect)
+        tutorialView.backgroundColor = .black.withAlphaComponent(0.3)
+//        setupRedRect()
+//        tutorialView.addSubview(redRect)
         
         setupChatBubble()
         tutorialView.addSubview(chatBubble)
@@ -122,11 +123,13 @@ extension ViewController {
     
     func enterFirstPage() {
         tutorialView.backgroundColor = .white.withAlphaComponent(1)
-        redRect.removeFromSuperview()
+//        redRect.removeFromSuperview()
         chatBubble.removeFromSuperview()
+        removeHighlightWindow()
     }
     
     func leaveLastPage() {
+        tutorialView.backgroundColor = .black.withAlphaComponent(0.3)
         hideTutorialEndButton()
         showChatBubbleNextButton()
         setupChatBubble()
@@ -134,9 +137,11 @@ extension ViewController {
     }
     
     func enterLastPage() {
+        tutorialView.backgroundColor = .white.withAlphaComponent(1)
         showTutorialEndButton()
         hideChatBubbleNextButton()
         chatBubble.removeFromSuperview()
+        removeHighlightWindow()
     }
     
     func setupChatBubble() {
@@ -158,13 +163,13 @@ extension ViewController {
         }
     }
     
-    func setupRedRect() {
-        redRect = UIView(frame: waveformButton.frame)
-        redRect.layer.borderColor = UIColor.red.cgColor
-        redRect.layer.borderWidth = 10
-        redRect.layer.cornerRadius = 10
-        redRect.backgroundColor = .clear
-    }
+//    func setupRedRect() {
+//        redRect = UIView(frame: waveformButton.frame)
+//        redRect.layer.borderColor = UIColor.red.cgColor
+//        redRect.layer.borderWidth = 10
+//        redRect.layer.cornerRadius = 10
+//        redRect.backgroundColor = .clear
+//    }
     
     func updateChatBubble() {
         if currentTutorialPage > 0 && currentTutorialPage < totalTutorialPageCount - 1 {
@@ -188,6 +193,15 @@ extension ViewController {
     func updateChatBubbleText() {
         chatBubble.updateTitle(text: tutorialTitleText[currentTutorialPage])
         chatBubble.updateContent(text: tutorialContentText[currentTutorialPage])
+    }
+    
+    func updateHighlightWindow() {
+        if currentTutorialPage > 0 && currentTutorialPage < totalTutorialPageCount - 1 {
+            let buttonList = [waveformButton, freqButton, spectroButton, audioButton,
+                              animButton, spiralButton, tutorialButton]
+            let pointedButton = buttonList[currentTutorialPage - 1]
+            updateHighlightWindowPosition(to: pointedButton!.frame)
+        }
     }
     
     func nextTutorialPage() {
@@ -220,14 +234,47 @@ extension ViewController {
         }
     }
     
+    // create the highlight window
+    private func createMaskLayer() {
+        let maskLayer = CAShapeLayer()
+        
+        // Create a path for the entire TutorialView
+        let path = UIBezierPath(rect: tutorialView.bounds)
+        
+        // Add the "window" path if it's been set
+        if !highlightRect.equalTo(.zero) {
+            let windowPath = UIBezierPath(rect: highlightRect)
+            path.append(windowPath)
+        }
+        
+        // Use the even-odd fill rule to create the transparency effect
+        maskLayer.fillRule = .evenOdd
+        maskLayer.path = path.cgPath
+        
+        // Apply the mask to the TutorialView
+        tutorialView.layer.mask = maskLayer
+    }
+    
+    // update highlight window position
+    func updateHighlightWindowPosition(to rect: CGRect) {
+        highlightRect = rect // Update the window rectangle
+        createMaskLayer() // Reapply the mask with the new window
+    }
+    
+    func removeHighlightWindow() {
+        highlightRect = .zero // Reset the window rectangle
+        createMaskLayer() // Reapply the mask without the window
+    }
+    
     func removeTutorial() {
         displayingTutorial = false
-        if redRect != nil {
-            redRect.removeFromSuperview()
-        }
+//        if redRect != nil {
+//            redRect.removeFromSuperview()
+//        }
         if chatBubble != nil {
             chatBubble.removeFromSuperview()
         }
+        removeHighlightWindow()
         tutorialView.removeFromSuperview()
 //        pageDots.isHidden = true
         hideTutorialEndButton()
