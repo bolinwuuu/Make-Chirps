@@ -68,9 +68,61 @@ class ChatBubble: UIView {
         addChatText()
     }
     
-    func pointTo(position: CGPoint, yMin: CGFloat, yMax: CGFloat) {
-        defaultTail()
-        let padding: CGFloat = 20
+    func pointTo(screenFrame: CGRect, itemFrame: CGRect,
+                 xMin: CGFloat, xMax: CGFloat, yMin: CGFloat, yMax: CGFloat) {
+        let dir = pointDirection(screenFrame: screenFrame, itemFrame: itemFrame)
+        print("point", dir)
+        switch dir {
+        case "left":
+            let target = CGPoint(x: itemFrame.maxX, y: itemFrame.midY)
+            pointHorizontally(position: target, dir: "left", yMin: yMin, yMax: yMax)
+        case "right":
+            let target = CGPoint(x: itemFrame.minX, y: itemFrame.midY)
+            pointHorizontally(position: target, dir: "right", yMin: yMin, yMax: yMax)
+        case "up":
+            let target = CGPoint(x: itemFrame.midX, y: itemFrame.maxY)
+            pointVertically(position: target, dir: "up", xMin: xMin, xMax: xMax)
+        case "down":
+            let target = CGPoint(x: itemFrame.midX, y: itemFrame.minY)
+            pointVertically(position: target, dir: "down", xMin: xMin, xMax: xMax)
+        default:
+            print("error in pointTo")
+        }
+    }
+    
+    func pointDirection(screenFrame: CGRect, itemFrame: CGRect) -> String {
+        if itemFrame.midX < screenFrame.width / 2 {
+            // item in left
+            if screenFrame.width - itemFrame.maxX > self.frame.width {
+                // point left
+                return "left"
+            } else if itemFrame.midY < screenFrame.height / 2 {
+                // point up
+                return "up"
+            } else {
+                // point down
+                return "down"
+            }
+        } else {
+            // item in right
+            if itemFrame.minX > self.frame.width {
+                // point right
+                return "right"
+            } else if itemFrame.midY < screenFrame.height / 2 {
+                // point up
+                return "up"
+            } else {
+                // point down
+                return "down"
+            }
+        }
+        return "error in pointDirection"
+    }
+    
+    func pointHorizontally(position: CGPoint, dir: String, yMin: CGFloat, yMax: CGFloat) {
+        assert(dir == "left" || dir == "right")
+        defaultTail(dir: dir)
+        let padding: CGFloat = 10
         var centerY = position.y - tailY() + self.frame.height / 2
         if centerY - self.frame.height / 2 < yMin {
             moveTailTo(newY: bubbleTail.frame.height / 2)
@@ -79,22 +131,76 @@ class ChatBubble: UIView {
             moveTailTo(newY: self.frame.height - bubbleTail.frame.height / 2)
             centerY = position.y - tailY() + self.frame.height / 2
         }
-        self.center = CGPoint(x: position.x - padding - bubbleTail.frame.width - self.frame.width / 2,
-                              y: centerY)
+        var centerX: CGFloat = 0
+        if dir == "right" {
+            centerX = position.x - padding - bubbleTail.frame.width - self.frame.width / 2
+        } else {
+            centerX = position.x + padding + bubbleTail.frame.width + self.frame.width / 2
+        }
+        self.center = CGPoint(x: centerX, y: centerY)
         
+    }
+    
+    func pointVertically(position: CGPoint, dir: String, xMin: CGFloat, xMax: CGFloat) {
+        assert(dir == "up" || dir == "down")
+        defaultTail(dir: dir)
+        let padding: CGFloat = 10
+        var centerX = position.x - tailX() + self.frame.width / 2
+        if centerX - self.frame.width / 2 < xMin {
+            moveTailTo(newX: bubbleTail.frame.width / 2)
+            centerX = position.x - tailX() + self.frame.width / 2
+        } else if centerX + self.frame.width / 2 > xMax {
+            moveTailTo(newX: self.frame.width - bubbleTail.frame.width / 2)
+            centerX = position.x - tailX() + self.frame.width / 2
+        }
+        var centerY: CGFloat = 0
+        if dir == "down" {
+            centerY = position.y - padding - bubbleTail.frame.height - self.frame.height / 2
+        } else {
+            centerX = position.y + padding + bubbleTail.frame.height + self.frame.height / 2
+        }
+        self.center = CGPoint(x: centerX, y: centerY)
+        
+    }
+    
+    func tailX() -> CGFloat {
+        return bubbleTail.center.x
     }
     
     func tailY() -> CGFloat {
         return bubbleTail.center.y
     }
     
+    func moveTailTo(newCenter: CGPoint) {
+        bubbleTail.center = newCenter
+    }
+    
+    func moveTailTo(newX: CGFloat) {
+        bubbleTail.center = CGPoint(x: newX, y: bubbleTail.center.y)
+    }
+    
     func moveTailTo(newY: CGFloat) {
         bubbleTail.center = CGPoint(x: bubbleTail.center.x, y: newY)
     }
     
-    func defaultTail() {
+    func defaultTail(dir: String) {
+        let defaultX = lowerView.center.y + bubbleTail.frame.width / 2
         let defaultY = lowerView.center.y + bubbleTail.frame.height / 2
-        moveTailTo(newY: defaultY)
+        switch dir {
+        case "left":
+            moveTailTo(newCenter: CGPoint(x: lowerView.frame.minX, y: defaultY))
+        case "right":
+            moveTailTo(newCenter: CGPoint(x: lowerView.frame.maxX, y: defaultY))
+        case "up":
+            moveTailTo(newCenter: CGPoint(x: defaultX, y: upperView.frame.minX))
+        case "down":
+            moveTailTo(newCenter: CGPoint(x: defaultX, y: lowerView.frame.maxY))
+        default:
+            print("default dir: right")
+            moveTailTo(newCenter: CGPoint(x: lowerView.frame.maxX, y: defaultY))
+        }
+//        let defaultY = lowerView.center.y + bubbleTail.frame.height / 2
+//        moveTailTo(newY: defaultY)
     }
     
 //    func moveTo(new_origin: CGPoint) {
@@ -119,11 +225,14 @@ class ChatBubble: UIView {
     }
     
     private func addTail() {
-        bubbleTail = UIView(frame: CGRect(x: lowerView.frame.maxX, y: lowerView.center.y,
-                                          width: 20, height: 40))
+        let w: CGFloat = 40
+        let h: CGFloat = 40
+        bubbleTail = UIView(frame: CGRect(x: lowerView.frame.maxX - w / 2, y: lowerView.center.y,
+                                          width: w, height: h))
         bubbleTail.backgroundColor = .clear
         drawTail()
         self.addSubview(bubbleTail)
+        self.sendSubviewToBack(bubbleTail)
     }
     
     private func drawTail() {
@@ -131,9 +240,10 @@ class ChatBubble: UIView {
         let path = UIBezierPath()
         
         // Add tail
-        path.move(to: CGPoint(x: 0, y: 0))
+        path.move(to: CGPoint(x: bubbleTail.frame.width / 2, y: 0))
         path.addLine(to: CGPoint(x: bubbleTail.frame.width, y: bubbleTail.frame.height / 2))
-        path.addLine(to: CGPoint(x: 0, y: bubbleTail.frame.height))
+        path.addLine(to: CGPoint(x: bubbleTail.frame.width / 2, y: bubbleTail.frame.height))
+        path.addLine(to: CGPoint(x: 0, y: bubbleTail.frame.height / 2))
         
         path.close()
         

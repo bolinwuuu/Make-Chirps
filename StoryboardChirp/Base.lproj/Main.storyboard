@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jjg-Qm-ZGM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jjg-Qm-ZGM">
     <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -143,7 +143,7 @@
                                                 <rect key="frame" x="175" y="114" width="538" height="250"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
-                                                <mutableString key="text">       In the early 20th century, Albert Einstein's special and general theories of relativity caused an upheaval in the world of physics. Newton’s theories were considered well established through experiment, with only minor discrepancies observed, but those discrepancies proved to be valuable clues toward a new theory of reality. Einstein realized that Newton's Laws break down at very high speeds, near the speed of light, and near very massive objects like stars, including our own Sun. His solution revolutionized our understanding of both space and time. </mutableString>
+                                                <string key="text">       In the early 20th century, Albert Einstein's special and general theories of relativity caused an upheaval in the world of physics. Newton’s theories were considered well established through experiment, with only minor discrepancies observed, but those discrepancies proved to be valuable clues toward a new theory of reality. Einstein realized that Newton's Laws break down at very high speeds, near the speed of light, and near very massive objects like stars, including our own Sun. His solution revolutionized our understanding of both space and time. </string>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -162,7 +162,7 @@
                                                 <rect key="frame" x="220" y="946" width="449" height="183.5"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
-                                                <mutableString key="text">       Experimental data did indeed corroborate the possible emission of gravitational waves through indirect means; for example, the 1993 Nobel Prize in physics was given to Russell A. Hulse and Joseph H. Taylor Jr. "for the discovery of a new type of pulsar, a discovery that has opened up new possibilities for the study of gravitation" because they discovered that the rate of acceleration of orbiting neutron stars matched with the predictions from Einstein’s theory of general relativity, provided that gravitational waves were being omitted, discharging energy with them. However, this was not a direct observation of gravitational waves.</mutableString>
+                                                <string key="text">       Experimental data did indeed corroborate the possible emission of gravitational waves through indirect means; for example, the 1993 Nobel Prize in physics was given to Russell A. Hulse and Joseph H. Taylor Jr. "for the discovery of a new type of pulsar, a discovery that has opened up new possibilities for the study of gravitation" because they discovered that the rate of acceleration of orbiting neutron stars matched with the predictions from Einstein’s theory of general relativity, provided that gravitational waves were being omitted, discharging energy with them. However, this was not a direct observation of gravitational waves.</string>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -181,8 +181,8 @@
                                                 <rect key="frame" x="220" y="1330" width="449" height="283.5"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
-                                                <mutableString key="text">       Through the construction of extremely high-precision laser interferometers, whose arms are 4 kilometers long (about 2.5 miles long, see photo), the scientists of LIGO seeked to finally directly measure the effects of gravitational waves directly. Lasers would stretch across one end of each arm to the other and consequently measure the distance between the distance of the arms. When a gravitational wave passes through the interferometer, one would expect the arms to undulate in length, becoming shorter and longer than usual due to the ripples in space time. These fluctuations are tiny, smaller than one thousandth of the diameter of a proton, but they lead to telltale flickers in the output light of the interferometer. LIGO scientists and engineers needed years of design, painstaking construction and careful measurement to be able to differentiate real gravitational waves from light flickers caused by terrestrial disturbances, such as road traffic, earthquakes, and thunderstorms.
-</mutableString>
+                                                <string key="text">       Through the construction of extremely high-precision laser interferometers, whose arms are 4 kilometers long (about 2.5 miles long, see photo), the scientists of LIGO seeked to finally directly measure the effects of gravitational waves directly. Lasers would stretch across one end of each arm to the other and consequently measure the distance between the distance of the arms. When a gravitational wave passes through the interferometer, one would expect the arms to undulate in length, becoming shorter and longer than usual due to the ripples in space time. These fluctuations are tiny, smaller than one thousandth of the diameter of a proton, but they lead to telltale flickers in the output light of the interferometer. LIGO scientists and engineers needed years of design, painstaking construction and careful measurement to be able to differentiate real gravitational waves from light flickers caused by terrestrial disturbances, such as road traffic, earthquakes, and thunderstorms.
+</string>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -191,8 +191,8 @@
                                                 <rect key="frame" x="220" y="1654" width="449" height="283.5"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
-                                                <mutableString key="text">       Through the construction of extremely high-precision laser interferometers, whose arms are 4 kilometers long (about 2.5 miles long, see photo), the scientists of LIGO seeked to finally directly measure the effects of gravitational waves directly. Lasers would stretch across one end of each arm to the other and consequently measure the distance between the distance of the arms. When a gravitational wave passes through the interferometer, one would expect the arms to undulate in length, becoming shorter and longer than usual due to the ripples in space time. These fluctuations are tiny, smaller than one thousandth of the diameter of a proton, but they lead to telltale flickers in the output light of the interferometer. LIGO scientists and engineers needed years of design, painstaking construction and careful measurement to be able to differentiate real gravitational waves from light flickers caused by terrestrial disturbances, such as road traffic, earthquakes, and thunderstorms.
-</mutableString>
+                                                <string key="text">       Through the construction of extremely high-precision laser interferometers, whose arms are 4 kilometers long (about 2.5 miles long, see photo), the scientists of LIGO seeked to finally directly measure the effects of gravitational waves directly. Lasers would stretch across one end of each arm to the other and consequently measure the distance between the distance of the arms. When a gravitational wave passes through the interferometer, one would expect the arms to undulate in length, becoming shorter and longer than usual due to the ripples in space time. These fluctuations are tiny, smaller than one thousandth of the diameter of a proton, but they lead to telltale flickers in the output light of the interferometer. LIGO scientists and engineers needed years of design, painstaking construction and careful measurement to be able to differentiate real gravitational waves from light flickers caused by terrestrial disturbances, such as road traffic, earthquakes, and thunderstorms.
+</string>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -518,7 +518,6 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jU5-RX-gAA">
                                         <rect key="frame" x="297" y="169" width="240" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eeq-1r-sb2">
                                         <rect key="frame" x="480" y="305" width="62" height="35"/>
@@ -609,7 +608,7 @@
                         <outlet property="tutorialButton" destination="lNI-Kf-2XG" id="leV-AD-HI4"/>
                         <outlet property="tutorialContent" destination="IAE-fx-EHX" id="Mvj-Ip-ESr"/>
                         <outlet property="tutorialEndButton" destination="Eeq-1r-sb2" id="S5i-Mu-WWA"/>
-                        <outlet property="tutorialImageView" destination="jU5-RX-gAA" id="Q2h-6I-bXl"/>
+                        <outlet property="tutorialImageView" destination="jU5-RX-gAA" id="msr-OW-QbQ"/>
                         <outlet property="tutorialSkipButton" destination="zvP-sJ-tO1" id="O4i-ti-hUw"/>
                         <outlet property="tutorialTitle" destination="KCS-ee-fSc" id="kfR-WY-nVg"/>
                         <outlet property="tutorialView" destination="2lV-RY-okp" id="Xgy-Aw-K6F"/>
@@ -922,31 +921,28 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemCyanColor">
-            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.1960784314" green="0.67843137249999996" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

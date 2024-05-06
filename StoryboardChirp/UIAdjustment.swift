@@ -48,6 +48,8 @@ extension ViewController {
     }
     
     func portraitUI() {
+//        adjustScrollViewAndContentView()
+        
         // adjust frameRect & windowFrame
         adjustFrameRectAndWindowFramePortrait()
 
@@ -85,10 +87,13 @@ extension ViewController {
         print("functional buttons frame: \(waveformButton.frame)")
         print("spectrogram button numberOfLines: \(spectroButton.titleLabel?.numberOfLines)")
         print("spectrogram button adjustsFontSize: \(spectroButton.titleLabel?.adjustsFontSizeToFitWidth)")
+        print("tutorialView.frame \(tutorialView.frame)")
 
     }
     
     func landscapeUI() {
+//        adjustScrollViewAndContentView()
+        
         // adjust windowFrame
         adjustFrameRectAndWindowFrameLanscape()
 
@@ -108,22 +113,35 @@ extension ViewController {
             adjustTutorialLandscape()
         }
         
-        print("self.view.frame: \(self.view.frame)")
-        print("self.view.frame.maxY: \(self.view.frame.maxY)")
-        print("UIScreen.main.bound: \(UIScreen.main.bounds)")
-        print("centerFromTop: \(centerFromTop)")
-        print("contentView.frame: \(contentView.frame)")
-        print("backgroundimageview.frame: \(backgroundImageView.frame)")
-        print("frameRec: \(String(describing: frameRect))")
-        print("windowframe.frame: \(windowFrame.frame)")
-        print("windowframe.frame.maxY: \(windowFrame.frame.maxY)")
-        print("sliderregion.frame: \(sliderRegionView.frame)")
-        print("uiview.frame: \(uiview.frame)")
-        print("functional buttons frame: \(waveformButton.frame)")
-        print("toolbar height: \((self.tabBarController?.tabBar.frame.height)!)")
-        print("func button corner radius: \(waveformButton.layer.cornerRadius)")
-        print("collision button numberOfLines: \(animButton.titleLabel?.numberOfLines)")
-        print("collision button adjustsFontSize: \(animButton.titleLabel?.adjustsFontSizeToFitWidth)")
+//        print("self.view.frame: \(self.view.frame)")
+//        print("self.view.frame.maxY: \(self.view.frame.maxY)")
+//        print("UIScreen.main.bound: \(UIScreen.main.bounds)")
+//        print("centerFromTop: \(centerFromTop)")
+//        print("contentView.frame: \(contentView.frame)")
+//        print("backgroundimageview.frame: \(backgroundImageView.frame)")
+//        print("frameRec: \(String(describing: frameRect))")
+//        print("windowframe.frame: \(windowFrame.frame)")
+//        print("windowframe.frame.maxY: \(windowFrame.frame.maxY)")
+//        print("sliderregion.frame: \(sliderRegionView.frame)")
+//        print("uiview.frame: \(uiview.frame)")
+//        print("functional buttons frame: \(waveformButton.frame)")
+//        print("toolbar height: \((self.tabBarController?.tabBar.frame.height)!)")
+//        print("func button corner radius: \(waveformButton.layer.cornerRadius)")
+//        print("collision button numberOfLines: \(animButton.titleLabel?.numberOfLines)")
+//        print("collision button adjustsFontSize: \(animButton.titleLabel?.adjustsFontSizeToFitWidth)")
+        print("\n------\n")
+        print("windowFrame.center: \(windowFrame.center)")
+        if displayingTutorial {
+            print("tutorialImageView.center: \(tutorialImageView.center)")
+            print("tutorialView.frame: \(tutorialView.frame)")
+        }
+        print("UIScreen.main.bounds: \(UIScreen.main.bounds)")
+    }
+    
+    func adjustScrollViewAndContentView() {
+        scrollView.frame = CGRect(x: 0, y: scrollView.frame.minY,
+                                  width: UIScreen.main.bounds.width, height: scrollView.frame.height)
+//        scrollView.center = CGPoint(x: UIScreen.main.bounds.minX, y: scrollView.center.y)
     }
     
     func adjustFrameRectAndWindowFramePortrait() {
@@ -505,6 +523,28 @@ extension ViewController {
                                           y: tutorialButton.center.y + colorThemeButton.frame.height * 1.5)
     }
     
+    func adjustTutorialImageView() {
+        if currentTutorialPage == 0 || currentTutorialPage == totalTutorialPageCount - 1 {
+            let w = frameRect.width / 2
+            let h = frameRect.height / 2
+            tutorialImageView.frame = CGRect(x: tutorialView.center.x - w / 2, y: tutorialView.center.y - h / 2,
+                                             width: w, height: h)
+            tutorialImageView.center = tutorialView.center
+        } else {
+            tutorialImageView.frame = frameRect
+            tutorialImageView.center = windowFrame.center
+            
+//            tutorialImageView.center = tutorialView.center
+            print("\n---\nadjust tutorial image view\n---\n")
+            print("UIScreen.main.bounds: \(UIScreen.main.bounds)")
+            print("self.view.frame: \(self.view.frame)")
+            print("scrollView.frame: \(scrollView.frame)")
+            print("contentView.frame: \(contentView.frame)")
+            print("tutorialView.frame: \(tutorialView.frame)")
+            print("\n---\n")
+        }
+    }
+    
     func adjustTutorial() {
         assert(displayingTutorial, "adjustTutorial() called when displayingTutorial == false")
         let deviceOrientation = UIApplication.shared.connectedScenes
@@ -534,9 +574,14 @@ extension ViewController {
     }
     
     func adjustTutorialPortrait() {
+//        print("\n---\nadjust tutorial portrait\n---\n")
         tutorialView.frame = UIScreen.main.bounds
+//        tutorialView.center = CGPoint(x: scrollView.center.x, y: UIScreen.main.bounds.midY)
+        tutorialView.frame.origin = CGPoint(x: scrollView.frame.origin.x, y: tutorialView.frame.origin.y)
+        recenterTutorialView()
+//        tutorialView.frame = self.view.frame
         
-        tutorialImageView.center = tutorialView.center
+//        tutorialImageView.center = tutorialView.center
         
         tutorialTitle.font = tutorialTitle.font.withSize(30)
         tutorialTitle.sizeToFit()
@@ -550,10 +595,24 @@ extension ViewController {
         tutorialEndButton.center = CGPoint(x: tutorialView.center.x, y: tutorialView.frame.height * (3/4))
         tutorialSkipButton.center = CGPoint(x: windowFrame.frame.minX / 2, 
                                             y: tutorialButton.center.y)
+        
+        adjustTutorialImageView()
+        updateChatBubble()
+        updateHighlightWindow()
+        tutorialView.frame = UIScreen.main.bounds
     }
     
     func adjustTutorialLandscape() {
+//        tutorialView.frame = UIScreen.main.bounds
         adjustTutorialPortrait()
+//        tutorialView.center = CGPoint(x: contentView.center.x, y: tutorialView.center.y)
+        print("\n---\nadjust tutorial landscape\n---\n")
+        print("UIScreen.main.bounds: \(UIScreen.main.bounds)")
+        print("self.view.frame: \(self.view.frame)")
+        print("scrollView.frame: \(scrollView.frame)")
+        print("contentView.frame: \(contentView.frame)")
+        print("tutorialView.frame: \(tutorialView.frame)")
+        print("\n---\n")
     }
    
 }

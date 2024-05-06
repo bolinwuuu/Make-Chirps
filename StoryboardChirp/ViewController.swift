@@ -198,7 +198,8 @@ class ViewController: UIViewController, ChartViewDelegate, ChatBubbleDelegate {
     
     @IBOutlet var pageDots: UIPageControl!
     
-    // the Start button that ends the tutorials
+    // the Start button that goes to the second page when it's in the first page,
+    // and ends the tutorials in the last page
     @IBOutlet var tutorialEndButton: UIButton!
     
     @IBOutlet var tutorialSkipButton: UIButton!
@@ -216,13 +217,15 @@ class ViewController: UIViewController, ChartViewDelegate, ChatBubbleDelegate {
 //    var redRect: UIView!
     
     var currentTutorialPage: Int = 0
-    var totalTutorialPageCount: Int = 9
+    var totalTutorialPageCount: Int = 10
     
     // true if the tutorial pages are displayed on the screen
     var displayingTutorial = false
     
+    var tutorialTargets: [UIView] = []
     var tutorialTitleText: [String] = []
     var tutorialContentText: [String] = []
+    var tutorialImageName: [String] = []
     
     var highlightRect: CGRect = .zero
     //        Tutorial Variables ends             //
@@ -231,7 +234,7 @@ class ViewController: UIViewController, ChartViewDelegate, ChatBubbleDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupTutorialIfNeeded()
+//        setupTutorialIfNeeded()
         
         setBackgroundImageView()
         
@@ -242,8 +245,12 @@ class ViewController: UIViewController, ChartViewDelegate, ChatBubbleDelegate {
         
         setupButtons()
         
-        adjustUIAccordingToOrientation()
         contentView.addSubview(windowFrame)
+        adjustUIAccordingToOrientation()
+//        contentView.addSubview(windowFrame)
+        
+        setupTutorialIfNeeded()
+
         
         uiview.isHidden = true
         
@@ -270,7 +277,13 @@ class ViewController: UIViewController, ChartViewDelegate, ChatBubbleDelegate {
         
 //        sliderRegionView.layer.cornerRadius = 30
         
-
+        print("\n---\ndone didload\n---\n")
+        print("UIScreen.main.bounds: \(UIScreen.main.bounds)")
+        print("self.view.frame: \(self.view.frame)")
+        print("scrollView.frame: \(scrollView.frame)")
+        print("contentView.frame: \(contentView.frame)")
+        print("tutorialView.frame: \(tutorialView.frame)")
+        print("\n---\n")
     }
     
     override func viewWillTransition(to size: CGSize, 

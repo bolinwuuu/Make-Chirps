@@ -14,18 +14,25 @@ extension ViewController {
     @IBAction func swipeLeft(_ sender: Any) {
         print("swipe left")
         nextTutorialPage()
+        recenterTutorialView()
     }
     
     @IBAction func swipeRight(_ sender: Any) {
         print("swipe right")
         backTutorialPage()
+        recenterTutorialView()
     }
     
     // the Start button at the last tutorial page
     @IBAction func tutorialEndPressed(_ sender: Any) {
-        removeTutorial()
-        // COMMENT out the following line: tutorial shows for non first time users as well.
-//        UserDefaults.standard.set("Done", forKey: "Tutorial")
+        assert(currentTutorialPage == 0 || currentTutorialPage == totalTutorialPageCount - 1)
+        if currentTutorialPage == totalTutorialPageCount - 1 {
+            removeTutorial()
+            // COMMENT out the following line: tutorial shows for non first time users as well.
+//            UserDefaults.standard.set("Done", forKey: "Tutorial")
+        } else {
+            nextTutorialPage()
+        }
     }
     
     @IBAction func tutorialSkipButtonPressed(_ sender: Any) {
@@ -47,8 +54,10 @@ extension ViewController {
     func setupTutorial() {
         displayingTutorial = true
         
+        setupTutorialTargets()
         setupTutorialTitleText()
         setupTutorialContentText()
+        setupTutorialImageName()
         
 //        if !displayingViews {
 //            tutorialAddSubviews()
@@ -64,18 +73,23 @@ extension ViewController {
         pageDots.numberOfPages = totalTutorialPageCount
 //        print("Total tutorial page count: \(totalTutorialPageCount)")
         
+        tutorialTitle.textColor = .white
+        tutorialContent.isHidden = true
+        
         currentTutorialPage = 0
         
         adjustTutorial()
         
         updateToCurrentTutorial()
         
-        hideTutorialEndButton()
+//        hideTutorialEndButton()
+        showTutorialEndButton()
         
+        recenterTutorialView()
     }
     
     func setupTutorialView() {
-        tutorialView.backgroundColor = .white.withAlphaComponent(1)
+        tutorialView.backgroundColor = .black.withAlphaComponent(0.8)
         tutorialView.alpha = 1
         
         pageDots.backgroundColor = .green
@@ -97,33 +111,52 @@ extension ViewController {
     }
     
     func updateToCurrentTutorial() {
+
         assert(displayingTutorial, "updateToCurrentTutorial() called when displayingTutorial == false")
-        tutorialTitle.text = tutorialTitleText[currentTutorialPage]
-        tutorialTitle.sizeToFit()
-        tutorialTitle.center = CGPoint(x: tutorialView.center.x, y: tutorialTitle.center.y)
+        updateTutorialTitle()
         
-        tutorialContent.text = tutorialContentText[currentTutorialPage]
-        tutorialContent.sizeToFit()
-        tutorialContent.center = CGPoint(x: tutorialView.center.x, y: tutorialContent.center.y)
+//        tutorialContent.text = tutorialContentText[currentTutorialPage]
+//        tutorialContent.sizeToFit()
+//        tutorialContent.center = CGPoint(x: tutorialView.center.x, y: tutorialContent.center.y)
         
         updateChatBubble()
         updateHighlightWindow()
         
+        updateTutorialImage()
+        adjustTutorialImageView()
+        
         pageDots.currentPage = currentTutorialPage
+        
+//        print("windowFrame.center: \(windowFrame.center)")
+//        print("tutorialImageView.center: \(tutorialImageView.center)")
+        
+    }
+    
+    func updateTutorialTitle() {
+        if currentTutorialPage == 0 || currentTutorialPage == totalTutorialPageCount - 1 {
+            // only need title in these two pages
+            tutorialTitle.isHidden = false
+            tutorialTitle.text = tutorialTitleText[currentTutorialPage]
+            tutorialTitle.sizeToFit()
+            tutorialTitle.center = CGPoint(x: tutorialView.center.x, y: tutorialTitle.center.y)
+        } else {
+            tutorialTitle.isHidden = true
+        }
     }
     
     func leaveFirstPage() {
         tutorialView.backgroundColor = .black.withAlphaComponent(0.3)
 //        setupRedRect()
 //        tutorialView.addSubview(redRect)
-        
+        hideTutorialEndButton()
         setupChatBubble()
         tutorialView.addSubview(chatBubble)
     }
     
     func enterFirstPage() {
-        tutorialView.backgroundColor = .white.withAlphaComponent(1)
+        tutorialView.backgroundColor = .black.withAlphaComponent(0.8)
 //        redRect.removeFromSuperview()
+        showTutorialEndButton()
         chatBubble.removeFromSuperview()
         removeHighlightWindow()
     }
@@ -137,7 +170,7 @@ extension ViewController {
     }
     
     func enterLastPage() {
-        tutorialView.backgroundColor = .white.withAlphaComponent(1)
+        tutorialView.backgroundColor = .black.withAlphaComponent(0.8)
         showTutorialEndButton()
         hideChatBubbleNextButton()
         chatBubble.removeFromSuperview()
@@ -180,12 +213,9 @@ extension ViewController {
     }
     
     func updateChatBubblePosition() {
-        let buttonList = [waveformButton, freqButton, spectroButton, audioButton,
-                          animButton, spiralButton, tutorialButton]
-        let pointedButton = buttonList[currentTutorialPage - 1]
-        let pointedPosition: CGPoint = CGPoint(x: CGFloat((pointedButton!.frame.minX)),
-                                               y: CGFloat((pointedButton!.center.y)))
-        chatBubble.pointTo(position: pointedPosition,
+        let target = tutorialTargets[currentTutorialPage]
+        chatBubble.pointTo(screenFrame: UIScreen.main.bounds, itemFrame: target.frame,
+                           xMin: sliderRegionView.frame.minX, xMax: spiralButton.frame.maxX,
                            yMin: windowFrame.frame.minY, yMax: spiralButton.frame.maxY)
         chatBubble.updatePageNum(num: currentTutorialPage)
     }
@@ -197,10 +227,8 @@ extension ViewController {
     
     func updateHighlightWindow() {
         if currentTutorialPage > 0 && currentTutorialPage < totalTutorialPageCount - 1 {
-            let buttonList = [waveformButton, freqButton, spectroButton, audioButton,
-                              animButton, spiralButton, tutorialButton]
-            let pointedButton = buttonList[currentTutorialPage - 1]
-            updateHighlightWindowPosition(to: pointedButton!.frame)
+            let target = tutorialTargets[currentTutorialPage]
+            updateHighlightWindowPosition(to: target.frame)
         }
     }
     
@@ -217,6 +245,13 @@ extension ViewController {
             currentTutorialPage += 1
             updateToCurrentTutorial()
         }
+        print("\n---\nnext page\n---\n")
+        print("UIScreen.main.bounds: \(UIScreen.main.bounds)")
+        print("self.view.frame: \(self.view.frame)")
+        print("scrollView.frame: \(scrollView.frame)")
+        print("contentView.frame: \(contentView.frame)")
+        print("tutorialView.frame: \(tutorialView.frame)")
+        print("\n---\n")
     }
     
     func backTutorialPage() {
@@ -232,6 +267,13 @@ extension ViewController {
             currentTutorialPage -= 1
             updateToCurrentTutorial()
         }
+        print("\n---\nback page\n---\n")
+        print("UIScreen.main.bounds: \(UIScreen.main.bounds)")
+        print("self.view.frame: \(self.view.frame)")
+        print("scrollView.frame: \(scrollView.frame)")
+        print("contentView.frame: \(contentView.frame)")
+        print("tutorialView.frame: \(tutorialView.frame)")
+        print("\n---\n")
     }
     
     // create the highlight window
@@ -264,6 +306,24 @@ extension ViewController {
     func removeHighlightWindow() {
         highlightRect = .zero // Reset the window rectangle
         createMaskLayer() // Reapply the mask without the window
+    }
+    
+    func updateTutorialImage() {
+        if currentTutorialPage == 7 || currentTutorialPage == 8 {
+            // slider region and lightbulb button don't need images
+            tutorialImageView.isHidden = true
+        } else if currentTutorialPage == 4 {
+            // audio, use system speaker image
+            tutorialImageView.isHidden = false
+            let tutorialImage = UIImage(systemName: tutorialImageName[currentTutorialPage])
+            tutorialImageView.image = tutorialImage
+            tutorialImageView.contentMode = .scaleAspectFit
+        } else {
+            tutorialImageView.isHidden = false
+            let tutorialImage = UIImage(named: tutorialImageName[currentTutorialPage])
+            tutorialImageView.image = tutorialImage
+            tutorialImageView.contentMode = .scaleAspectFit
+        }
     }
     
     func removeTutorial() {
@@ -307,6 +367,13 @@ extension ViewController {
         chatBubble.nextButton.isEnabled = false
     }
     
+    func setupTutorialTargets() {
+        tutorialTargets = [UIView(), waveformButton, freqButton, spectroButton, audioButton,
+                           animButton, spiralButton, sliderRegionView, tutorialButton, UIView()]
+        assert(tutorialTargets.count == totalTutorialPageCount,
+                "Number of pages \(totalTutorialPageCount) doesn't match number of targets \(tutorialTargets.count).")
+    }
+    
     func setupTutorialTitleText() {
         let welcomeTitle = "Welcome to Make Chirps!"
         let waveformTitle = "Waveform Plot"
@@ -315,6 +382,7 @@ extension ViewController {
         let audioTitle = "Audio"
         let collisionTitle = "Collision Animation"
         let spiralTitle = "Spiral Animation"
+        let sliderTitle = "Adjust Masses & Speed"
         let lightBulbTitle = "Review the Tutorial Again?"
         let tutorialEndTitle = "Get started!"
         tutorialTitleText = [welcomeTitle,
@@ -324,6 +392,7 @@ extension ViewController {
                              audioTitle,
                              collisionTitle,
                              spiralTitle,
+                             sliderTitle,
                              lightBulbTitle,
                              tutorialEndTitle]
         assert(tutorialTitleText.count == totalTutorialPageCount,
@@ -338,6 +407,7 @@ extension ViewController {
         let audioContent = "Click on this button to hear the audio."
         let collisionContent = "Click on this button to view the animation of star collisions."
         let spiralContent = "Click on this button to view the animation of gravitational wave spiral."
+        let sliderContent = "Use these sliders to adjust the masses of stars and animation speed."
         let lightBulbContent = "Click on this button to recheck the tutorial anytime!"
         let tutorialEndContent = ""
         tutorialContentText = [welcomeContent,
@@ -347,9 +417,36 @@ extension ViewController {
                                audioContent, 
                                collisionContent,
                                spiralContent,
+                               sliderContent,
                                lightBulbContent,
                                tutorialEndContent]
         assert(tutorialContentText.count == totalTutorialPageCount,
                 "Number of pages \(totalTutorialPageCount) doesn't match number of content \(tutorialContentText.count).")
+    }
+    
+    func setupTutorialImageName() {
+        let iconImage = "icon_image"
+        let waveformImage = "waveform_example"
+        let freqImage = "frequency_example"
+        let spectroImage = "spectrogram_example"
+        let audioImage = "speaker.2"
+        let collisionImage = "collision_example"
+        let spiralImage = "spiral_example"
+        tutorialImageName = [iconImage,
+                             waveformImage,
+                             freqImage,
+                             spectroImage,
+                             audioImage,
+                             collisionImage,
+                             spiralImage,
+                             "",
+                             "",
+                             iconImage]
+        assert(tutorialImageName.count == totalTutorialPageCount,
+                "Number of pages \(totalTutorialPageCount) doesn't match number of image names \(tutorialImageName.count).")
+    }
+    
+    func recenterTutorialView() {
+        tutorialView.frame.origin = CGPoint(x: scrollView.frame.minX, y: tutorialView.frame.minY)
     }
 }
