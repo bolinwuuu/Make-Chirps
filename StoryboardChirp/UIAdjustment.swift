@@ -48,7 +48,7 @@ extension ViewController {
     }
     
     func portraitUI() {
-//        adjustScrollViewAndContentView()
+        adjustScrollViewAndContentView()
         
         // adjust frameRect & windowFrame
         adjustFrameRectAndWindowFramePortrait()
@@ -92,7 +92,7 @@ extension ViewController {
     }
     
     func landscapeUI() {
-//        adjustScrollViewAndContentView()
+        adjustScrollViewAndContentView()
         
         // adjust windowFrame
         adjustFrameRectAndWindowFrameLanscape()
@@ -129,19 +129,14 @@ extension ViewController {
 //        print("func button corner radius: \(waveformButton.layer.cornerRadius)")
 //        print("collision button numberOfLines: \(animButton.titleLabel?.numberOfLines)")
 //        print("collision button adjustsFontSize: \(animButton.titleLabel?.adjustsFontSizeToFitWidth)")
-        print("\n------\n")
-        print("windowFrame.center: \(windowFrame.center)")
-        if displayingTutorial {
-            print("tutorialImageView.center: \(tutorialImageView.center)")
-            print("tutorialView.frame: \(tutorialView.frame)")
-        }
-        print("UIScreen.main.bounds: \(UIScreen.main.bounds)")
+        printViewFrames(whichFunction: "landscape UI")
     }
     
     func adjustScrollViewAndContentView() {
-        scrollView.frame = CGRect(x: 0, y: scrollView.frame.minY,
+        scrollView.frame = CGRect(x: 0, y: 0,
                                   width: UIScreen.main.bounds.width, height: scrollView.frame.height)
-//        scrollView.center = CGPoint(x: UIScreen.main.bounds.minX, y: scrollView.center.y)
+        contentView.frame = CGRect(x: 0, y: 0,
+                                  width: UIScreen.main.bounds.width, height: contentView.frame.height)
     }
     
     func adjustFrameRectAndWindowFramePortrait() {
@@ -351,7 +346,7 @@ extension ViewController {
     }
     
     func adjustFrameRectAndWindowFrameLanscape() {
-        centerFromTop = UIDevice.current.userInterfaceIdiom == .pad ? UIScreen.main.bounds.width / 3 : UIScreen.main.bounds.width / 4.5
+        centerFromTop = UIDevice.current.userInterfaceIdiom == .pad ? UIScreen.main.bounds.width / 3 : UIScreen.main.bounds.width / 4
         
 //        frameProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.75 : 0.6
         frameProp = UIDevice.current.userInterfaceIdiom == .pad ? 0.68 : 0.65
@@ -524,7 +519,9 @@ extension ViewController {
     }
     
     func adjustTutorialImageView() {
+        printViewFrames(whichFunction: "adjust tutorial image view begins")
         if currentTutorialPage == 0 || currentTutorialPage == totalTutorialPageCount - 1 {
+            // show icon in the first & last pages
             let w = frameRect.width / 2
             let h = frameRect.height / 2
             tutorialImageView.frame = CGRect(x: tutorialView.center.x - w / 2, y: tutorialView.center.y - h / 2,
@@ -535,14 +532,43 @@ extension ViewController {
             tutorialImageView.center = windowFrame.center
             
 //            tutorialImageView.center = tutorialView.center
-            print("\n---\nadjust tutorial image view\n---\n")
-            print("UIScreen.main.bounds: \(UIScreen.main.bounds)")
-            print("self.view.frame: \(self.view.frame)")
-            print("scrollView.frame: \(scrollView.frame)")
-            print("contentView.frame: \(contentView.frame)")
-            print("tutorialView.frame: \(tutorialView.frame)")
-            print("\n---\n")
+            printViewFrames(whichFunction: "adjust tutorial image view ends")
         }
+    }
+    
+    func adjustTutorialSkipButton() {
+        tutorialSkipButton.frame = CGRect(x: 0, y: 0,
+                                          width: waveformButton.frame.width * (2/3), height: waveformButton.frame.height * (2/3))
+        tutorialSkipButton.layer.cornerRadius = tutorialSkipButton.frame.height / 4
+        
+        tutorialSkipButton.backgroundColor = .lightGray
+        tutorialSkipButton.tintColor = .white
+//        tutorialSkipButton.layer.shadowOffset = CGSize(width: 0, height: tutorialSkipButton.frame.height / 8)
+//        tutorialSkipButton.layer.shadowColor = UIColor.darkGray.cgColor
+//        tutorialSkipButton.layer.shadowOpacity = 1.0
+        
+        tutorialSkipButton.center = CGPoint(x: tutorialSkipButton.frame.width * (2/3),
+                                            y: windowFrame.frame.minY + tutorialSkipButton.frame.height * 2)
+    }
+    
+    func adjustTutorialEndButton() {
+        tutorialEndButton.frame = CGRect(x: 0, y: 0,
+                                         width: waveformButton.frame.width * 1.25, height: waveformButton.frame.height * 1.25)
+        tutorialEndButton.layer.cornerRadius = tutorialEndButton.frame.height / 4
+        
+        let buttonBackground = UIColor(red: 255/255, green: 120/255, blue: 40/255, alpha: 1)
+        let buttonShadow = UIColor(red: 225/255, green: 85/255, blue: 0/255, alpha: 1)
+        tutorialEndButton.backgroundColor = buttonBackground
+        tutorialEndButton.tintColor = .white
+        let fontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 25
+        tutorialEndButton.titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
+        tutorialEndButton.layer.shadowOffset = CGSize(width: 0, height: tutorialSkipButton.frame.height / 8)
+        tutorialEndButton.layer.shadowColor = buttonShadow.cgColor
+        tutorialEndButton.layer.shadowOpacity = 1.0
+        tutorialEndButton.layer.shadowRadius = 2.0
+        tutorialEndButton.layer.masksToBounds = false
+        
+        tutorialEndButton.center = CGPoint(x: tutorialView.center.x, y: tutorialView.frame.height * (3/4))
     }
     
     func adjustTutorial() {
@@ -574,16 +600,20 @@ extension ViewController {
     }
     
     func adjustTutorialPortrait() {
-//        print("\n---\nadjust tutorial portrait\n---\n")
-        tutorialView.frame = UIScreen.main.bounds
-//        tutorialView.center = CGPoint(x: scrollView.center.x, y: UIScreen.main.bounds.midY)
-        tutorialView.frame.origin = CGPoint(x: scrollView.frame.origin.x, y: tutorialView.frame.origin.y)
-        recenterTutorialView()
+        adjustTutorialShared()
+    }
+    
+    func adjustTutorialLandscape() {
+        adjustTutorialShared()
+    }
+    
+    func adjustTutorialShared() {
+        adjustTutorialView()
 //        tutorialView.frame = self.view.frame
         
 //        tutorialImageView.center = tutorialView.center
-        
-        tutorialTitle.font = tutorialTitle.font.withSize(30)
+        let fontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 50 : 30
+        tutorialTitle.font = tutorialTitle.font.withSize(fontSize)
         tutorialTitle.sizeToFit()
         tutorialTitle.center = CGPoint(x: tutorialView.center.x, y: tutorialView.frame.height * (1/4))
         
@@ -592,27 +622,21 @@ extension ViewController {
         tutorialContent.center = CGPoint(x: tutorialView.center.x, y: tutorialView.frame.height * (2/3))
 
         pageDots.center = CGPoint(x: tutorialView.center.x, y: tutorialView.frame.height * (4/5))
-        tutorialEndButton.center = CGPoint(x: tutorialView.center.x, y: tutorialView.frame.height * (3/4))
-        tutorialSkipButton.center = CGPoint(x: windowFrame.frame.minX / 2, 
-                                            y: tutorialButton.center.y)
+        adjustTutorialEndButton()
+        adjustTutorialSkipButton()
         
         adjustTutorialImageView()
         updateChatBubble()
         updateHighlightWindow()
-        tutorialView.frame = UIScreen.main.bounds
-    }
-    
-    func adjustTutorialLandscape() {
-//        tutorialView.frame = UIScreen.main.bounds
-        adjustTutorialPortrait()
-//        tutorialView.center = CGPoint(x: contentView.center.x, y: tutorialView.center.y)
-        print("\n---\nadjust tutorial landscape\n---\n")
-        print("UIScreen.main.bounds: \(UIScreen.main.bounds)")
-        print("self.view.frame: \(self.view.frame)")
-        print("scrollView.frame: \(scrollView.frame)")
-        print("contentView.frame: \(contentView.frame)")
-        print("tutorialView.frame: \(tutorialView.frame)")
-        print("\n---\n")
+        
+        // this is used to solve a wierd bug happening when the app is changing orientation on the first tutorial page
+        if currentTutorialPage == 0 {
+            nextTutorialPage()
+            backTutorialPage()
+        } else if currentTutorialPage == totalTutorialPageCount - 1 {
+            backTutorialPage()
+            nextTutorialPage()
+        }
     }
    
 }

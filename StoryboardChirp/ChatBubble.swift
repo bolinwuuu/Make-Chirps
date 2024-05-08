@@ -36,7 +36,7 @@ class ChatBubble: UIView {
     var closeButton: UIButton!
     var nextButton: UIButton!
     var backButton: UIButton!
-    let nextButtonSize: CGSize = CGSize(width: 50, height: 20)
+    var nextButtonSize: CGSize = CGSize(width: 50, height: 20)
     
     var chatTitle: UILabel!
     var chatText: UILabel!
@@ -48,6 +48,9 @@ class ChatBubble: UIView {
         super.init(frame: frame)
         totalPageNum = totalPageNumber
 //        self.backgroundColor = .clear // Ensure transparent background
+        nextButtonSize = UIDevice.current.userInterfaceIdiom == .pad ? CGSize(width: 50, height: 20) : CGSize(width: 30, height: 15)
+        titleFontSize = UIDevice.current.userInterfaceIdiom == .pad ? 25 : 13
+        textFontSize = UIDevice.current.userInterfaceIdiom == .pad ? 20 : 12
         setupSubviews()
     }
     
@@ -122,7 +125,7 @@ class ChatBubble: UIView {
     func pointHorizontally(position: CGPoint, dir: String, yMin: CGFloat, yMax: CGFloat) {
         assert(dir == "left" || dir == "right")
         defaultTail(dir: dir)
-        let padding: CGFloat = 10
+        let padding: CGFloat = self.frame.height / 60
         var centerY = position.y - tailY() + self.frame.height / 2
         if centerY - self.frame.height / 2 < yMin {
             moveTailTo(newY: bubbleTail.frame.height / 2)
@@ -144,7 +147,7 @@ class ChatBubble: UIView {
     func pointVertically(position: CGPoint, dir: String, xMin: CGFloat, xMax: CGFloat) {
         assert(dir == "up" || dir == "down")
         defaultTail(dir: dir)
-        let padding: CGFloat = 10
+        let padding: CGFloat = self.frame.height / 60
         var centerX = position.x - tailX() + self.frame.width / 2
         if centerX - self.frame.width / 2 < xMin {
             moveTailTo(newX: bubbleTail.frame.width / 2)
@@ -225,8 +228,8 @@ class ChatBubble: UIView {
     }
     
     private func addTail() {
-        let w: CGFloat = 40
-        let h: CGFloat = 40
+        let w: CGFloat = self.frame.height / 5
+        let h: CGFloat = self.frame.height / 5
         bubbleTail = UIView(frame: CGRect(x: lowerView.frame.maxX - w / 2, y: lowerView.center.y,
                                           width: w, height: h))
         bubbleTail.backgroundColor = .clear
@@ -259,8 +262,14 @@ class ChatBubble: UIView {
         pageNumLabel.font = UIFont.boldSystemFont(ofSize: pageNumLabel.font.pointSize)
         pageNumLabel.sizeToFit()
         pageNumLabel.textColor = titleColor
+//        pageNumLabel.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: nextButtonSize)
+//        pageNumLabel.frame = CGRect(x: 0, y: 0,
+//                                    width: nextButtonSize.width / 3, height: nextButtonSize.height / 3)
+//        pageNumLabel.adjustsFontSizeToFitWidth = true
+//        pageNumLabel.minimumScaleFactor = 0.1
+        pageNumLabel.font = UIFont.boldSystemFont(ofSize: textFontSize)
         upperView.addSubview(pageNumLabel)
-        pageNumLabel.center = CGPoint(x: upperView.frame.width / 15, y: upperView.center.y)
+        pageNumLabel.center = CGPoint(x: upperView.frame.width / 13, y: upperView.center.y)
     }
     
     private func addCloseButton() {
@@ -285,7 +294,7 @@ class ChatBubble: UIView {
         nextButton.setTitle("Next", for: .normal)
         nextButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 50)
         nextButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        nextButton.titleLabel?.minimumScaleFactor = 0.3
+        nextButton.titleLabel?.minimumScaleFactor = 0.1
         nextButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         lowerView.addSubview(nextButton)
         nextButton.center = CGPoint(x: lowerView.frame.width * (7/8), y: lowerView.frame.height * (5/6))
@@ -299,7 +308,7 @@ class ChatBubble: UIView {
         backButton.setTitle("Back", for: .normal)
         backButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 50)
         backButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        backButton.titleLabel?.minimumScaleFactor = 0.3
+        backButton.titleLabel?.minimumScaleFactor = 0.1
         backButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         lowerView.addSubview(backButton)
         backButton.center = CGPoint(x: lowerView.frame.width * (1/8), y: lowerView.frame.height * (5/6))
@@ -309,9 +318,11 @@ class ChatBubble: UIView {
         chatTitle = UILabel()
         chatTitle.text = "Test Title"
         chatTitle.font = UIFont.boldSystemFont(ofSize: titleFontSize)
+        chatTitle.numberOfLines = 0
+        chatTitle.lineBreakMode = .byWordWrapping
         chatTitle.textAlignment = .left
         chatTitle.frame = CGRect(x: lowerView.frame.width * (1/25), y: lowerView.frame.height * (1/16),
-                                 width: lowerView.frame.width * 0.8, height: 30)
+                                 width: lowerView.frame.width * 0.8, height: lowerView.frame.height * 0.25)
         chatTitle.textColor = titleColor
         lowerView.addSubview(chatTitle)
     }
@@ -324,7 +335,7 @@ class ChatBubble: UIView {
         chatText.lineBreakMode = .byWordWrapping
         chatText.textAlignment = .left
         chatText.frame = CGRect(x: lowerView.frame.width * (1/25), y: chatTitle.frame.maxY,
-                                width: lowerView.frame.width * 0.8, height: lowerView.frame.height * 0.5)
+                                width: lowerView.frame.width * 0.9, height: lowerView.frame.height * 0.5)
         chatText.textColor = textColor
         lowerView.addSubview(chatText)
     }

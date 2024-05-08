@@ -13,14 +13,14 @@ import Accelerate
 extension ViewController {
     @IBAction func swipeLeft(_ sender: Any) {
         print("swipe left")
+        adjustScrollViewAndContentView()
         nextTutorialPage()
-        recenterTutorialView()
     }
     
     @IBAction func swipeRight(_ sender: Any) {
         print("swipe right")
+        adjustScrollViewAndContentView()
         backTutorialPage()
-        recenterTutorialView()
     }
     
     // the Start button at the last tutorial page
@@ -36,12 +36,17 @@ extension ViewController {
     }
     
     @IBAction func tutorialSkipButtonPressed(_ sender: Any) {
+        printViewFrames(whichFunction: "tutorial skip button pressed begins")
+        adjustScrollViewAndContentView()
         removeTutorial()
+        printViewFrames(whichFunction: "tutorial skip button pressed ends")
     }
     
     @IBAction func tutorialButtonPressed(_ sender: Any) {
+        printViewFrames(whichFunction: "tutorial button pressed begins")
+        adjustScrollViewAndContentView()
         setupTutorial()
-        
+        printViewFrames(whichFunction: "tutorial button pressed ends")
     }
     
     func setupTutorialIfNeeded() {
@@ -52,6 +57,7 @@ extension ViewController {
     
     // set up tutorial pages
     func setupTutorial() {
+        printViewFrames(whichFunction: "setup tutorial begins")
         displayingTutorial = true
         
         setupTutorialTargets()
@@ -65,7 +71,8 @@ extension ViewController {
         
         setupTutorialView()
 
-        if !tutorialView.isDescendant(of: self.view) {
+//        if !tutorialView.isDescendant(of: self.view) {
+        if !tutorialView.isDescendant(of: scrollView) {
             tutorialAddSubviews()
         }
         
@@ -75,6 +82,7 @@ extension ViewController {
         
         tutorialTitle.textColor = .white
         tutorialContent.isHidden = true
+        pageDots.isHidden = true
         
         currentTutorialPage = 0
         
@@ -85,10 +93,10 @@ extension ViewController {
 //        hideTutorialEndButton()
         showTutorialEndButton()
         
-        recenterTutorialView()
     }
     
     func setupTutorialView() {
+        adjustTutorialView()
         tutorialView.backgroundColor = .black.withAlphaComponent(0.8)
         tutorialView.alpha = 1
         
@@ -99,7 +107,8 @@ extension ViewController {
     func tutorialAddSubviews() {
         assert(displayingTutorial, "tutorialAddSubviews() called when displayingTutorial == false")
 //        tutorialView = UIView()
-        self.view.addSubview(tutorialView)
+//        self.view.addSubview(tutorialView)
+        scrollView.addSubview(tutorialView)
         tutorialView.addSubview(tutorialTitle)
         tutorialView.addSubview(tutorialContent)
 //        tutorialTitle.text = "Tutorial Page " + String(currentTutorialPage)
@@ -145,7 +154,7 @@ extension ViewController {
     }
     
     func leaveFirstPage() {
-        tutorialView.backgroundColor = .black.withAlphaComponent(0.3)
+        tutorialView.backgroundColor = .black.withAlphaComponent(0.5)
 //        setupRedRect()
 //        tutorialView.addSubview(redRect)
         hideTutorialEndButton()
@@ -157,12 +166,13 @@ extension ViewController {
         tutorialView.backgroundColor = .black.withAlphaComponent(0.8)
 //        redRect.removeFromSuperview()
         showTutorialEndButton()
+        tutorialEndButton.setTitle("Explore", for: .normal)
         chatBubble.removeFromSuperview()
         removeHighlightWindow()
     }
     
     func leaveLastPage() {
-        tutorialView.backgroundColor = .black.withAlphaComponent(0.3)
+        tutorialView.backgroundColor = .black.withAlphaComponent(0.5)
         hideTutorialEndButton()
         showChatBubbleNextButton()
         setupChatBubble()
@@ -172,14 +182,17 @@ extension ViewController {
     func enterLastPage() {
         tutorialView.backgroundColor = .black.withAlphaComponent(0.8)
         showTutorialEndButton()
+        tutorialEndButton.setTitle("Begin", for: .normal)
         hideChatBubbleNextButton()
         chatBubble.removeFromSuperview()
         removeHighlightWindow()
     }
     
     func setupChatBubble() {
+        let w: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 500 : 220
+        let h: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 200 : 150
         chatBubble = ChatBubble(frame: CGRect(x: tutorialView.center.x, y: tutorialView.center.y,
-                                              width: 500, height: 200),
+                                              width: w, height: h),
                                 totalPageNumber: totalTutorialPageCount - 2)
         chatBubble.delegate = self
     }
@@ -245,13 +258,6 @@ extension ViewController {
             currentTutorialPage += 1
             updateToCurrentTutorial()
         }
-        print("\n---\nnext page\n---\n")
-        print("UIScreen.main.bounds: \(UIScreen.main.bounds)")
-        print("self.view.frame: \(self.view.frame)")
-        print("scrollView.frame: \(scrollView.frame)")
-        print("contentView.frame: \(contentView.frame)")
-        print("tutorialView.frame: \(tutorialView.frame)")
-        print("\n---\n")
     }
     
     func backTutorialPage() {
@@ -267,13 +273,6 @@ extension ViewController {
             currentTutorialPage -= 1
             updateToCurrentTutorial()
         }
-        print("\n---\nback page\n---\n")
-        print("UIScreen.main.bounds: \(UIScreen.main.bounds)")
-        print("self.view.frame: \(self.view.frame)")
-        print("scrollView.frame: \(scrollView.frame)")
-        print("contentView.frame: \(contentView.frame)")
-        print("tutorialView.frame: \(tutorialView.frame)")
-        print("\n---\n")
     }
     
     // create the highlight window
@@ -446,7 +445,21 @@ extension ViewController {
                 "Number of pages \(totalTutorialPageCount) doesn't match number of image names \(tutorialImageName.count).")
     }
     
-    func recenterTutorialView() {
-        tutorialView.frame.origin = CGPoint(x: scrollView.frame.minX, y: tutorialView.frame.minY)
+    func adjustTutorialView() {
+        tutorialView.frame = CGRect(x: 0, y: 0,
+                                    width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+    }
+    
+    // this function is for debugging
+    func printViewFrames(whichFunction: String) {
+//        print("\n---\n\(whichFunction)\n---\n")
+//        print("UIScreen.main.bounds: \(UIScreen.main.bounds)")
+//        print("self.view.frame: \(self.view.frame)")
+//        print("scrollView.frame: \(scrollView.frame)")
+//        print("contentView.frame: \(contentView.frame)")
+//        if displayingTutorial {
+//            print("tutorialView.frame: \(tutorialView.frame)")
+//        }
+//        print("\n---\n")
     }
 }

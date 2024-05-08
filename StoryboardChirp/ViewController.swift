@@ -235,6 +235,7 @@ class ViewController: UIViewController, ChartViewDelegate, ChatBubbleDelegate {
         super.viewDidLoad()
         
 //        setupTutorialIfNeeded()
+//        scrollView.removeConstraints(scrollView.constraints)
         
         setBackgroundImageView()
         
@@ -277,13 +278,9 @@ class ViewController: UIViewController, ChartViewDelegate, ChatBubbleDelegate {
         
 //        sliderRegionView.layer.cornerRadius = 30
         
-        print("\n---\ndone didload\n---\n")
-        print("UIScreen.main.bounds: \(UIScreen.main.bounds)")
-        print("self.view.frame: \(self.view.frame)")
-        print("scrollView.frame: \(scrollView.frame)")
-        print("contentView.frame: \(contentView.frame)")
-        print("tutorialView.frame: \(tutorialView.frame)")
-        print("\n---\n")
+        
+        
+        printViewFrames(whichFunction: "done viewDidLoad")
     }
     
     override func viewWillTransition(to size: CGSize, 
