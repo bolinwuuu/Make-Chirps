@@ -28,8 +28,6 @@ extension ViewController {
         assert(currentTutorialPage == 0 || currentTutorialPage == totalTutorialPageCount - 1)
         if currentTutorialPage == totalTutorialPageCount - 1 {
             removeTutorial()
-            // COMMENT out the following line: tutorial shows for non first time users as well.
-//            UserDefaults.standard.set("Done", forKey: "Tutorial")
         } else {
             nextTutorialPage()
         }
@@ -52,6 +50,8 @@ extension ViewController {
     func setupTutorialIfNeeded() {
         if isFirstTimeUser() {
             setupTutorial()
+        } else {
+            removeTutorial()
         }
     }
     
@@ -339,6 +339,8 @@ extension ViewController {
         hideTutorialEndButton()
 //        tutorialImageView.removeFromSuperview()
 //        tutorialTitle.isHidden = true
+        // COMMENT out the following line: tutorial shows for non first time users as well.
+        UserDefaults.standard.set("Done", forKey: "Tutorial")
     }
     
     func isFirstTimeUser() -> Bool {
