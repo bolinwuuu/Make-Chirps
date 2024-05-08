@@ -330,9 +330,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				761F477C2BA9D05000A3940D /* screenshotat.png in Resources */,
-				1471D2102A7825AA006DECDB /* sonify6_lg.jpg in Resources */,
-				1471D21E2A7991A1006DECDB /* gw_spiral_bw.jpeg in Resources */,
-				1471D21A2A783097006DECDB /* panorama_edited.png in Resources */,
 				761045D32AABB9DA00E67C3B /* Acknowledgements.pdf in Resources */,
 				761045D62AABB9E800E67C3B /* infotest.pdf in Resources */,
 				1429A3A929842E0900F919F8 /* LaunchScreen.storyboard in Resources */,
@@ -618,7 +615,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = bolinw.StoryboardChirp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -648,7 +645,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = bolinw.StoryboardChirp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
